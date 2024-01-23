@@ -11,6 +11,8 @@ VERA系列基准题是美国国家橡树岭实验室为验证CASL计划中开发
 
 相关参考文献如下:
 
+.. _vera_reference:
+
 1. Godfrey, A.T., 2014. VERA core physics benchmark progression problem
    specifications. Oak Ridge National Laboratory, Oak Ridge, TN, Report No.
    CASL-U-2012-0131-004. https://www.casl.gov/sites/default/files/docs/CASL-U-2012-0131-004.pdf.
