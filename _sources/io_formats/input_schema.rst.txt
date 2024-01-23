@@ -14,3 +14,6 @@
 
 .. literalinclude:: ../../../ngm/input_schema.py
     :language: python
+
+
+.. _python-jsonschema: https://python-jsonschema.readthedocs.io/en/stable/
