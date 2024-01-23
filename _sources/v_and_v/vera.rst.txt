@@ -17,4 +17,4 @@ VERA_1系列基准题包含1A-1E总共5个两维单栅元问题，用来考察�
 #. CRANE用户输入文件与 :ref:`examples_vera` 基准题示例中一致；
 #. CRANE版本号 ``1.3.3``；
 
-该基准问题参考解来至 `参考文献<vera_reference>`_，由KENO-VI计算获得。
+该基准问题参考解来至 :ref:`vera_reference`，由蒙卡程序KENO-VI计算获得。
