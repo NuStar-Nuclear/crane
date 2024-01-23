@@ -1,0 +1,38 @@
+===================
+What's New in 1.2.3
+===================
+
+------------
+New Features
+------------
+
+#. 对轴向功率、燃耗、通量等分布进行了平滑处理；
+#. 增加从CARIN.OUT中自动读取组件功率分布、探测器活度分布设计程序计算值的功能；
+#. 增加了针对Singularity平台的自动构建脚本；
+
+---------
+Bug Fixes
+---------
+
+#. e6501b1: incorrect weight calculated for axial interpolation
+#. ba0d16b: thermal alone have no dynamic bug, reset timer control
+#. dbfde9b: is_thermal_modeling need set true when setting thermal
+#. 64ff04d: unheat rod effective temperature by fuspac
+#. dfb3a00: size of _spherical_harmonics not large enough for hexagonal cases
+#. 376fe72: save last node burnup
+#. 1beb78b: the size of _lines in SectMesing may exceed 16
+#. 8b257ca: points_assem_track may not be nullptr in some cases, which can case memory error
+#. d0d6e03: _library may nullptr for some core2d
+#. 279bb62: main core2d may change when control rod moving
+#. c0ea48b: fulidprop 'LPhase' invalid address
+#. d84f04e: moderator_dens vector not cleared
+#. c9b0a22: bad size of is_cb_searchings
+#. 512a070: unheat rod average temperature bug
+#. b9569ba: use last state's boron and temperature distribution for depletion squence
+#. d92e90d: flux_type name changed
+#. 6ef96cb: can not plot control rod withdrawn steps due to key error
+#. 7248fb2: pass 47 points(afa3g), found frapcon vgap bug
+#. 50134d9: RCCA may empty
+#. dc07e47: subplane axial mesh not needed for axial power\burnup\flux\temperature plotting
+#. df99155: different shape of df and df_ref for CRW comparation
+#. 6b6e8f8: key error in scripts.py

@@ -1,0 +1,720 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>12. 结果比较 &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/usersguide/compare.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="13. 常见错误排查" href="troubleshoot.html" />
+    <link rel="prev" title="11. 可视化" href="visualization.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">用户指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library.html">1. 多群常数库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials.html">2. 材料定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">3. 几何建模</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 堆芯状态参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">5. 计算选项设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html">6. 燃耗跟踪</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lppt.html">7. 低功率物理实验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicycle.html">8. 多循环换料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">9. 启动计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">10. 结果输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">11. 可视化</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">12. 结果比较</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#compare-visualization">12.1. 结果比较可视化</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#plot-power-distribution-compare">12.1.1. 功率分布比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-flux-distribution-compare">12.1.2. 通量分布比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-detector-reaction-distribution-compare">12.1.3. 探测器活度分布比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-burnup-distribution-compare">12.1.4. 燃耗分布比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-number-density-distribution-compare">12.1.5. 核素核子密度分布比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#dancoff">12.1.6. Dancoff因子分布比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-result-summary-compare">12.1.7. 汇总数据随燃耗变化比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-criticals-compare">12.1.8. 临界实验结果比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-control-rod-worths-compare">12.1.9. 控制棒组价值比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-control-rod-worths-curve-compare">12.1.10. 控制棒组价值曲线比较可视化</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#plot-timing-statistics-compare">12.1.11. 分项耗时统计比较可视化</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#compare">12.2. compare 命令</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html">13. 常见错误排查</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">用户指南</a> &raquo;</li>
+        
+      <li><span class="section-number">12. </span>结果比较</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/usersguide/compare.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="usersguide-compare">
+<span id="id1"></span><h1><span class="section-number">12. </span>结果比较<a class="headerlink" href="#usersguide-compare" title="Permalink to this heading">¶</a></h1>
+<section id="compare-visualization">
+<span id="id2"></span><h2><span class="section-number">12.1. </span>结果比较可视化<a class="headerlink" href="#compare-visualization" title="Permalink to this heading">¶</a></h2>
+<p>CRANE自带丰富的 <a class="reference internal" href="visualization.html#usersguide-visualization"><span class="std std-ref">可视化</span></a> 功能，不仅有针对输入模型可视化，更有详细的结果可视化。
+而对于结果的可视化，除了支持对某一个计算结果的可视化外，CRANE还可以将两个结果放在一起进行比较可视化。</p>
+<p>例如，执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7.h5<span class="w"> </span>VERA_7_another.h5
+</pre></div>
+</div>
+<p>或者：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7.h5<span class="w"> </span>VERA_7_another.xlsx
+</pre></div>
+</div>
+<p>就可进入到 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 问题两个计算结果比较的可视化界面，结果比较的偏差是前者减去后者，这里是
+<code class="docutils literal notranslate"><span class="pre">VERA_7</span> <span class="pre">-</span> <span class="pre">VERA_7_another</span></code>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>第一个文件是需要比较的结果，必须是 <a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>，而后一个文件是比较的对象，
+可以是 <a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>，也可以是 <a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a>。如果是
+<a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a>，则只支持比较 <a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a>
+中存储的结果数据，如全堆组件功率分布、探测器活度分布、控制棒价值等。</p>
+</div>
+<p>接下来我们就以 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 等基准题为例来展示如何使用CRANE的结果比较可视化功能。</p>
+<section id="plot-power-distribution-compare">
+<span id="id3"></span><h3><span class="section-number">12.1.1. </span>功率分布比较可视化<a class="headerlink" href="#plot-power-distribution-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-power-distribution"><span class="std std-ref">功率分布可视化</span></a> 功能进行结果比较。</p>
+<p><a class="reference internal" href="visualization.html#plot-power-distribution"><span class="std std-ref">功率分布可视化</span></a> 中所有功能都支持比较可视化，这里我们仅以
+<a class="reference internal" href="visualization.html#plot-power-distribution-assembly-integral"><span class="std std-ref">组件积分功率分布可视化</span></a>、<a class="reference internal" href="visualization.html#plot-power-distribution-assembly-axial"><span class="std std-ref">以组件为单位的轴向功率分布可视化</span></a>
+和 <a class="reference internal" href="visualization.html#plot-power-distribution-axial"><span class="std std-ref">堆芯轴向功率分布可视化</span></a> 为示例。</p>
+<p>我们尝试与一个更高收敛判据的结果进行比较，来查看提高裂变源收敛判据对功率分布的影响。我们将 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 中的
+<a class="reference internal" href="../io_formats/input.html#pi-fission-converge-criterion"><span class="std std-ref">fission_converge_criterion</span></a> 改为 <code class="docutils literal notranslate"><span class="pre">1e-4</span></code>，算得的结果保存为 <code class="docutils literal notranslate"><span class="pre">VERA_7_tighter_converged.h5</span></code>，
+并执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7.h5<span class="w"> </span>VERA_7_tighter_converged.h5
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>assembly-integral
+</pre></div>
+</div>
+<p>可绘制出两个结果比较的组件积分功率分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_power_distribution_assembly_integral_compare.png"><img alt="../_images/plot_power_distribution_assembly_integral_compare.png" src="../_images/plot_power_distribution_assembly_integral_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>可见将裂变源收敛判据由 <code class="docutils literal notranslate"><span class="pre">5e-4</span></code> 提高至 <code class="docutils literal notranslate"><span class="pre">1e-4</span></code>，对组件积分功率分布几乎没有影响。</p>
+<p>执行以下交互式命令行:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>assembly-axial
+</pre></div>
+</div>
+<p>可绘制出两个结果比较的以组件为单位的轴向功率分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_power_distribution_assembly_axial_compare.png"><img alt="../_images/plot_power_distribution_assembly_axial_compare.png" src="../_images/plot_power_distribution_assembly_axial_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>执行以下交互式命令行:</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>axial
+</pre></div>
+</div>
+<p>可绘制出两个结果比较的堆芯轴向功率分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_power_distribution_axial_compare.png"><img alt="../_images/plot_power_distribution_axial_compare.png" src="../_images/plot_power_distribution_axial_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>可见对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 问题，无论是径向功率分布还是轴向功率分布，提高裂变源收敛判据至 <code class="docutils literal notranslate"><span class="pre">1e-4</span></code>
+对其影响都非常小。<a class="reference internal" href="../io_formats/input.html#pi-fission-converge-criterion"><span class="std std-ref">fission_converge_criterion</span></a> 设置成 <code class="docutils literal notranslate"><span class="pre">5e-4</span></code> 已足够精确。</p>
+</section>
+<section id="plot-flux-distribution-compare">
+<span id="id4"></span><h3><span class="section-number">12.1.2. </span>通量分布比较可视化<a class="headerlink" href="#plot-flux-distribution-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-flux-distribution"><span class="std std-ref">通量分布可视化</span></a> 功能进行结果比较。</p>
+<p><a class="reference internal" href="visualization.html#plot-flux-distribution"><span class="std std-ref">通量分布可视化</span></a> 中所有功能都支持比较可视化，这里我们仅以
+<a class="reference internal" href="visualization.html#plot-flux-distribution-cell-radial-slice"><span class="std std-ref">径向切面的栅元通量分布可视化</span></a> 为示例。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>如果对细网通量进行比较，则需要两个结果的细网网格划分是一致的。如下面将围板厚度变化后，细网划分将会变化，
+则无法比较细网通量分布。</p>
+</div>
+<p>我们想了解围板厚度变化对于径向通量分布的影响，我们将 <a class="reference internal" href="../examples/vera.html#vera-5a-2d"><span class="std std-ref">VERA_5A_2D</span></a> 中的 <a class="reference internal" href="../io_formats/input.html#baffle"><span class="std std-ref">baffle 对象</span></a>
+厚度减小1毫米，由 <code class="docutils literal notranslate"><span class="pre">2.85</span></code> 改为 <code class="docutils literal notranslate"><span class="pre">2.75</span></code>，重新计算获得的结果保存为 <code class="docutils literal notranslate"><span class="pre">VERA_5A_2D_thinner_baffle.h5</span></code>，并执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_5A_2D_thinner_baffle.h5<span class="w"> </span>VERA_5A_2D.h5
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span>--flux-type<span class="w"> </span>cell-radial-slice<span class="w"> </span>--energy<span class="w"> </span>thermal
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>由于 <a class="reference internal" href="../examples/vera.html#vera-5a-2d"><span class="std std-ref">VERA_5A_2D</span></a> 问题为两维问题，轴向只有一层，因此这里无需通过 <code class="docutils literal notranslate"><span class="pre">--axial-height</span></code> 选项指定高度。</p>
+</div>
+<p>可绘制出两个结果比较的径向切面的栅元热通量分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_flux_distribution_cell_radial_slice_thermal_compare.png"><img alt="../_images/plot_flux_distribution_cell_radial_slice_thermal_compare.png" src="../_images/plot_flux_distribution_cell_radial_slice_thermal_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>可见，围板厚度减少后，在围板区域由于慢化剂占比增多，该处的热通量是增大的。</p>
+<p>你也可以通过 <code class="docutils literal notranslate"><span class="pre">--difference-type</span></code> 选项来选择是相对偏差还是绝对偏差（默认是相对偏差）。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>在有些情况下，尤其是通量分布比较时，离活性区较远的地方本身绝对值就比较小，相对偏差就很大，
+还会导致整个分布颜色渲染过于集中，此时比较绝对偏差更为合理。</p>
+</div>
+<p>增加 <code class="docutils literal notranslate"><span class="pre">--difference-type</span> <span class="pre">absolute</span></code> 以选择绝对偏差：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span>--flux-type<span class="w"> </span>cell-radial-slice<span class="w"> </span>--energy<span class="w"> </span>thermal<span class="w"> </span>--difference-type<span class="w"> </span>absolute
+</pre></div>
+</div>
+<p>可绘制出径向切面的栅元热通量绝对偏差分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_flux_distribution_cell_radial_slice_thermal_compare_abs.png"><img alt="../_images/plot_flux_distribution_cell_radial_slice_thermal_compare_abs.png" src="../_images/plot_flux_distribution_cell_radial_slice_thermal_compare_abs.png" style="width: 800px;" /></a>
+</figure>
+<p>将 <code class="docutils literal notranslate"><span class="pre">--energy</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">epithermal</span></code> 以选择非热通量：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span>--flux-type<span class="w"> </span>cell-radial-slice<span class="w"> </span>--energy<span class="w"> </span>epithermal<span class="w"> </span>--difference-type<span class="w"> </span>absolute
+</pre></div>
+</div>
+<p>可绘制出径向切面的栅元非热通量绝对偏差分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_flux_distribution_cell_radial_slice_epithermal_compare_abs.png"><img alt="../_images/plot_flux_distribution_cell_radial_slice_epithermal_compare_abs.png" src="../_images/plot_flux_distribution_cell_radial_slice_epithermal_compare_abs.png" style="width: 800px;" /></a>
+</figure>
+<p>与热通量相反，围板厚度减小后该处非热通量是增加的。</p>
+</section>
+<section id="plot-detector-reaction-distribution-compare">
+<span id="id5"></span><h3><span class="section-number">12.1.3. </span>探测器活度分布比较可视化<a class="headerlink" href="#plot-detector-reaction-distribution-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-detector-reaction-distribution"><span class="std std-ref">探测器活度分布可视化</span></a> 功能进行结果比较。</p>
+<p>我们采用 <a class="reference internal" href="#plot-power-distribution-compare"><span class="std std-ref">功率分布比较可视化</span></a> 中的例子来比较探测器活度分布。
+执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7.h5<span class="w"> </span>VERA_7_tighter_converged.h5
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-detector-reaction-distribution
+</pre></div>
+</div>
+<p>可绘制出两个结果比较的探测器活度分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_detector_reaction_distribution_compare.png"><img alt="../_images/plot_detector_reaction_distribution_compare.png" src="../_images/plot_detector_reaction_distribution_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>和组件功率分布比较是一致的，两个结果偏差极小。</p>
+</section>
+<section id="plot-burnup-distribution-compare">
+<span id="id6"></span><h3><span class="section-number">12.1.4. </span>燃耗分布比较可视化<a class="headerlink" href="#plot-burnup-distribution-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-burnup-distribution"><span class="std std-ref">燃耗分布可视化</span></a> 功能进行结果比较。</p>
+<p><a class="reference internal" href="visualization.html#plot-burnup-distribution"><span class="std std-ref">燃耗分布可视化</span></a> 中所有功能都支持比较可视化，这里我们仅以
+<a class="reference internal" href="visualization.html#plot-burnup-distribution-pin-integral"><span class="std std-ref">棒积分燃耗分布可视化</span></a>、<a class="reference internal" href="visualization.html#plot-burnup-distribution-pin-axial-slice"><span class="std std-ref">轴向切面的棒燃耗分布可视化</span></a>、
+<a class="reference internal" href="visualization.html#plot-burnup-distribution-axial"><span class="std std-ref">堆芯轴向燃耗分布可视化</span></a> 为示例。</p>
+<p><a class="reference internal" href="../examples/vera.html#vera-9"><span class="std std-ref">VERA_9</span></a> 问题燃耗过程中D棒组有极小一部分插入堆芯，现在我们以D棒组全提（即将
+<a class="reference internal" href="../io_formats/input.html#dep-state-control-rod-position"><span class="std std-ref">control_rod_position</span></a> 中D棒棒位全部设置为230）再进行计算，保存计算结果文件名为
+<code class="docutils literal notranslate"><span class="pre">VERA_9_ARO.h5</span></code>，并执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_9_ARO.h5<span class="w"> </span>VERA_9.h5
+</pre></div>
+</div>
+<p>在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution<span class="w"> </span>--burnup-type<span class="w"> </span>pin-integral<span class="w"> </span>--burnup<span class="w"> </span><span class="m">16939</span>
+</pre></div>
+</div>
+<p>可绘制出两个结果比较的寿期末棒积分燃耗分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_burnup_distribution_pin_integral_compare.png"><img alt="../_images/plot_burnup_distribution_pin_integral_compare.png" src="../_images/plot_burnup_distribution_pin_integral_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>可见，相比于D棒组部分插入情况，完全ARO情况下D棒组位置附近的燃耗要深一些。</p>
+<p>执行交互式命令行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution<span class="w"> </span>--burnup-type<span class="w"> </span>pin-axial-slice<span class="w"> </span>--axial-slice-coef<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>--burnup<span class="w"> </span><span class="m">16939</span>
+</pre></div>
+</div>
+<p>可绘制出两个结果比较的寿期末方程为 <code class="docutils literal notranslate"><span class="pre">x+y=0</span></code> 轴向切面的棒燃耗分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_burnup_distribution_pin_axial_slice_compare.png"><img alt="../_images/plot_burnup_distribution_pin_axial_slice_compare.png" src="../_images/plot_burnup_distribution_pin_axial_slice_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>或执行轴向燃耗可视化命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution<span class="w"> </span>--burnup-type<span class="w"> </span>axial<span class="w"> </span>--burnup<span class="w"> </span><span class="m">16939</span>
+</pre></div>
+</div>
+<p>查看两个结果轴向燃耗分布的比较情况：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_burnup_distribution_axial_compare.png"><img alt="../_images/plot_burnup_distribution_axial_compare.png" src="../_images/plot_burnup_distribution_axial_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>无论是轴向切面燃耗分布还是堆芯轴向燃耗分布，都可以看到，这种正常运行工况下D棒组少量插入堆芯，
+只对接近顶部位置的燃料燃耗有影响。</p>
+</section>
+<section id="plot-number-density-distribution-compare">
+<span id="id7"></span><h3><span class="section-number">12.1.5. </span>核素核子密度分布比较可视化<a class="headerlink" href="#plot-number-density-distribution-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-number-density-distribution"><span class="std std-ref">核素核子密度分布可视化</span></a> 功能进行结果比较。</p>
+<p><a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 是满功率平衡氙问题，这里我们计算一个 <code class="docutils literal notranslate"><span class="pre">95%</span></code> 功率状态，并与满功率状态下 <code class="docutils literal notranslate"><span class="pre">Xe-135</span></code>
+的核子密度分布进行比较。对 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 的 <a class="reference internal" href="../io_formats/input.html#relative-power"><span class="std std-ref">relative_power</span></a> 设置为 <code class="docutils literal notranslate"><span class="pre">0.95</span></code>，计算结果保存为
+<code class="docutils literal notranslate"><span class="pre">VERA_7_FP95.h5</span></code>，执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7_FP95.h5<span class="w"> </span>VERA_7.h5
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-number-density-distribution<span class="w"> </span>--nuclide-name<span class="w"> </span>Xe-135<span class="w"> </span>--direction<span class="w"> </span>axial<span class="w"> </span>--axial-slice-coef<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+</pre></div>
+</div>
+<p>可绘制出两个结果比较的方程为 <code class="docutils literal notranslate"><span class="pre">x+y=0</span></code> 轴向切面的Xe-135核子密度分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_number_density_distribution_axial_compare.png"><img alt="../_images/plot_number_density_distribution_axial_compare.png" src="../_images/plot_number_density_distribution_axial_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>可见功率降为 <code class="docutils literal notranslate"><span class="pre">95%</span></code> 时，不同位置的Xe-135浓度减少在0.67%~6.07%之间。</p>
+</section>
+<section id="dancoff">
+<span id="plot-dancoff-factors-compare"></span><h3><span class="section-number">12.1.6. </span>Dancoff因子分布比较可视化<a class="headerlink" href="#dancoff" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-dancoff-factors"><span class="std std-ref">Dancoff因子分布可视化</span></a> 功能进行结果比较。</p>
+<p>我们采用 <a class="reference internal" href="#plot-number-density-distribution-compare"><span class="std std-ref">核素核子密度分布比较可视化</span></a> 中的例子来比较Dancoff因子分布。
+执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7_FP95.h5<span class="w"> </span>VERA_7.h5
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中分别执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-dancoff-factors<span class="w"> </span>--direction<span class="w"> </span>radial<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">100</span>
+</pre></div>
+</div>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-dancoff-factors<span class="w"> </span>--direction<span class="w"> </span>radial<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">400</span>
+</pre></div>
+</div>
+<p>可绘制出两个结果比较的距离堆芯底部（包含反射层）距离分别为 <code class="docutils literal notranslate"><span class="pre">100cm、400cm</span></code> 处径向切面的Dancoff因子分布图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_dancoff_factors_radial_100_compare.png"><img alt="../_images/plot_dancoff_factors_radial_100_compare.png" src="../_images/plot_dancoff_factors_radial_100_compare.png" style="width: 800px;" /></a>
+</figure>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_dancoff_factors_radial_400_compare.png"><img alt="../_images/plot_dancoff_factors_radial_400_compare.png" src="../_images/plot_dancoff_factors_radial_400_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>可以看到，堆芯功率降低导致上部的水密度相比下部减少更多，从而上部比下部的Dancoff因子相差更大。</p>
+</section>
+<section id="plot-result-summary-compare">
+<span id="id8"></span><h3><span class="section-number">12.1.7. </span>汇总数据随燃耗变化比较可视化<a class="headerlink" href="#plot-result-summary-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-result-summary"><span class="std std-ref">汇总数据随燃耗变化可视化</span></a> 功能进行结果比较。</p>
+<p>我们采用 <a class="reference internal" href="#plot-burnup-distribution-compare"><span class="std std-ref">燃耗分布比较可视化</span></a> 中的算例，但是反过来比较，执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_9.h5<span class="w"> </span>VERA_9_ARO.h5
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-result-summary<span class="w"> </span>--x-axis<span class="w"> </span>burnup<span class="w"> </span>--y-axis-first<span class="w"> </span>boron_concentration<span class="w"> </span>--y-axis-third<span class="w"> </span>control_rod_withdrawn_steps<span class="w"> </span>--rod-bank<span class="w"> </span>D
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里除了画出了两个结果的硼降曲线比较外，还将D棒组的棒位作为第三个Y坐标值同时显示，需要注意的是，
+第三个坐标的数据是来自于第一个结果的。</p>
+</div>
+<p>可绘制出两个结果比较的硼降曲线：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_result_summary_bor_compare.png"><img alt="../_images/plot_result_summary_bor_compare.png" src="../_images/plot_result_summary_bor_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>可以看到，在燃耗深度~15000MWd/tU左右，D棒插入最多，与ARO结果相比硼浓度偏差也达到最大，但也不到20ppm。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>硼浓度比较会显示 <code class="docutils literal notranslate"><span class="pre">±50</span></code> 两条红色虚线，表示工程验收限值。</p>
+</div>
+</section>
+<section id="plot-criticals-compare">
+<span id="id9"></span><h3><span class="section-number">12.1.8. </span>临界实验结果比较可视化<a class="headerlink" href="#plot-criticals-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-criticals"><span class="std std-ref">临界实验结果可视化</span></a> 功能进行结果比较。</p>
+<p>我们采用 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题CRANE计算结果与KENO-VI的结果比较，在 <a class="reference internal" href="../io_formats/output_excel.html#criticals"><span class="std std-ref">criticals</span></a>
+中把KENO-VI的结果替换进去并保存为 <code class="docutils literal notranslate"><span class="pre">KENO-VI.xlsx</span></code>，执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_5.h5<span class="w"> </span>KENO-VI.xlsx
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-criticals
+</pre></div>
+</div>
+<p>可绘制出CRANE与KENO-VI的临界实验结果比较的条状图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_criticals_compare.png"><img alt="../_images/plot_criticals_compare.png" src="../_images/plot_criticals_compare.png" style="width: 800px;" /></a>
+</figure>
+</section>
+<section id="plot-control-rod-worths-compare">
+<span id="id10"></span><h3><span class="section-number">12.1.9. </span>控制棒组价值比较可视化<a class="headerlink" href="#plot-control-rod-worths-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-control-rod-worths"><span class="std std-ref">控制棒组价值可视化</span></a> 功能进行结果比较。</p>
+<p>我们采用 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题CRANE计算结果与KENO-VI的结果比较，在 <a class="reference internal" href="../io_formats/output_excel.html#control-rod-worths"><span class="std std-ref">control_rod_worths</span></a>
+中把KENO-VI的结果替换进去并保存为 <code class="docutils literal notranslate"><span class="pre">KENO-VI.xlsx</span></code>，执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_5.h5<span class="w"> </span>KENO-VI.xlsx
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths
+</pre></div>
+</div>
+<p>可绘制出CRANE与KENO-VI的控制棒组价值比较的条状图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_control_rod_worths_compare.png"><img alt="../_images/plot_control_rod_worths_compare.png" src="../_images/plot_control_rod_worths_compare.png" style="width: 800px;" /></a>
+</figure>
+</section>
+<section id="plot-control-rod-worths-curve-compare">
+<span id="id11"></span><h3><span class="section-number">12.1.10. </span>控制棒组价值曲线比较可视化<a class="headerlink" href="#plot-control-rod-worths-curve-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-control-rod-worths-curve"><span class="std std-ref">控制棒组价值曲线可视化</span></a> 功能进行结果比较。</p>
+<p>我们采用 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题CRANE计算结果与KENO-VI的结果比较，在 <a class="reference internal" href="../io_formats/output_excel.html#control-rod-worths-curve"><span class="std std-ref">control_rod_worths_curve</span></a>
+中把KENO-VI的结果替换进去并保存为 <code class="docutils literal notranslate"><span class="pre">KENO-VI.xlsx</span></code>，执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_5.h5<span class="w"> </span>KENO-VI.xlsx
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths-curve<span class="w"> </span>--rod-bank<span class="w"> </span>D<span class="w"> </span>--worth-type<span class="w"> </span>IRW<span class="o">(</span>pcm<span class="o">)</span>
+</pre></div>
+</div>
+<p>可绘制出CRANE与KENO-VI的控制棒组积分价值曲线比较图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_control_rod_worths_curve_IRW_compare.png"><img alt="../_images/plot_control_rod_worths_curve_IRW_compare.png" src="../_images/plot_control_rod_worths_curve_IRW_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>设置 <code class="docutils literal notranslate"><span class="pre">--worth-type</span></code> 为 <code class="docutils literal notranslate"><span class="pre">DRW(pcm)</span></code>，并通过 <code class="docutils literal notranslate"><span class="pre">--difference-type</span></code> 选择绝对误差：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths-curve<span class="w"> </span>--rod-bank<span class="w"> </span>D<span class="w"> </span>--worth-type<span class="w"> </span>DRW<span class="o">(</span>pcm<span class="o">)</span><span class="w"> </span>--difference-type<span class="w"> </span>absolute
+</pre></div>
+</div>
+<p>可绘制出CRANE与KENO-VI的控制棒组积分价值比较的条状图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_control_rod_worths_curve_DRW_compare.png"><img alt="../_images/plot_control_rod_worths_curve_DRW_compare.png" src="../_images/plot_control_rod_worths_curve_DRW_compare.png" style="width: 800px;" /></a>
+</figure>
+</section>
+<section id="plot-timing-statistics-compare">
+<span id="id12"></span><h3><span class="section-number">12.1.11. </span>分项耗时统计比较可视化<a class="headerlink" href="#plot-timing-statistics-compare" title="Permalink to this heading">¶</a></h3>
+<p>这里我们介绍如何使用 <a class="reference internal" href="visualization.html#plot-timing-statistics"><span class="std std-ref">分项耗时统计可视化</span></a> 功能进行计算耗时比较。</p>
+<p>以下我们有两个计算结果：计算对象都是某CNP650机组第一循环1/4堆芯跟踪计算，但计算平台不同，
+分别为配备 <code class="docutils literal notranslate"><span class="pre">RTX</span> <span class="pre">4090</span></code> 显卡的服务器和配备 <code class="docutils literal notranslate"><span class="pre">RTX</span> <span class="pre">3090</span></code> 显卡的服务器，显卡数量都是 <code class="docutils literal notranslate"><span class="pre">8</span></code> 张。
+<a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a> 名分别为 <code class="docutils literal notranslate"><span class="pre">QS2_U1C1_4090.h5</span></code> 和 <code class="docutils literal notranslate"><span class="pre">QS2_U1C1_3090.h5</span></code>。</p>
+<p>首先执行命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>QS2_U1C1_4090.h5<span class="w"> </span>QS2_U1C1_3090.h5
+</pre></div>
+</div>
+<p>然后在交互式命令行界面中执行：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-timing-statistics<span class="w"> </span>--plot-type<span class="w"> </span>bar
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>分项耗时统计比较不支持饼图，即选项 <code class="docutils literal notranslate"><span class="pre">--plot-type</span></code> 不能为 <code class="docutils literal notranslate"><span class="pre">pie</span></code>。</p>
+</div>
+<p>可绘制出分项耗时统计比较的条状图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/plot_timing_statistics_bar_compare.png"><img alt="../_images/plot_timing_statistics_bar_compare.png" src="../_images/plot_timing_statistics_bar_compare.png" style="width: 800px;" /></a>
+</figure>
+<p>可见对于该问题，采用 <code class="docutils literal notranslate"><span class="pre">RTX</span> <span class="pre">4090</span></code> 显卡对计算效率提升非常显著，比起 <code class="docutils literal notranslate"><span class="pre">RTX</span> <span class="pre">3090</span></code>
+耗时占比最大的 <code class="docutils literal notranslate"><span class="pre">MOC2D</span> <span class="pre">Solving</span></code> 模块减少一半以上时间，而总耗时也减少 <code class="docutils literal notranslate"><span class="pre">45%</span></code> 左右。</p>
+</section>
+</section>
+<section id="compare">
+<span id="compare-command"></span><h2><span class="section-number">12.2. </span>compare 命令<a class="headerlink" href="#compare" title="Permalink to this heading">¶</a></h2>
+<p>在真实的堆芯启动物理实验和功率历史跟踪计算中，除了比较低功率物理实验计算结果外，
+还需要比较硼降曲线以及多个燃耗点的组功率分布、活度分布等。</p>
+<p>为了将结果比较批量化，CRANE提供了 <a class="reference internal" href="../commands.html#crane-compare"><span class="std std-ref">crane compare</span></a> 命令，该命令能够自动比较
+<a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a> 中的以下四类数据并生成相关图表：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p>低功率物理实验计算的汇总信息，即 <a class="reference internal" href="../io_formats/output_excel.html#lppt-summary"><span class="std std-ref">lppt_summary</span></a>，生成 <code class="docutils literal notranslate"><span class="pre">1</span></code> 张表；</p></li>
+<li><p>跟踪计算的硼浓度，即 <a class="reference internal" href="../io_formats/output_excel.html#excel-summary-boron-concentration"><span class="std std-ref">boron_concentration (ppm)</span></a>，生成 <code class="docutils literal notranslate"><span class="pre">1</span></code> 张图；</p></li>
+<li><p>跟踪计算的组件积分功率分布，即 <a class="reference internal" href="../io_formats/output_excel.html#assembly-power"><span class="std std-ref">assembly_power</span></a>，<a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a>
+中有几个状态点的数据就生成几张图；</p></li>
+<li><p>跟踪计算的探测器活度分布，即 <a class="reference internal" href="../io_formats/output_excel.html#detector-reaction"><span class="std std-ref">detector_reaction</span></a>，<a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a>
+中有几个状态点的数据就生成几张图。</p></li>
+</ol>
+</div></blockquote>
+<p>这里我们以 <a class="reference internal" href="../examples/beavrs.html#beavrs-c1"><span class="std std-ref">BEAVRS_C1</span></a> 为例来比较CRANE计算结果与测量结果。</p>
+<p>首先将测量值输入到 <a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a> 中的相应位置。</p>
+<p>将低功率物理实验测量值填入 <a class="reference internal" href="../io_formats/output_excel.html#lppt-summary"><span class="std std-ref">lppt_summary</span></a> （下图黄色部分）：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_lppt_summary.png"><img alt="../_images/beavrs_c1_lppt_summary.png" src="../_images/beavrs_c1_lppt_summary.png" style="width: 800px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>将跟踪计算的硼浓度测量值填入 <a class="reference internal" href="../io_formats/output_excel.html#excel-summary-boron-concentration"><span class="std std-ref">boron_concentration (ppm)</span></a> （下图黄色部分）：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_summary_boron.png"><img alt="../_images/beavrs_c1_summary_boron.png" src="../_images/beavrs_c1_summary_boron.png" style="width: 800px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>将 <code class="docutils literal notranslate"><span class="pre">4587</span> <span class="pre">MWd/tU</span></code> 燃耗点的组件积分功率分布及燃耗填入 <a class="reference internal" href="../io_formats/output_excel.html#assembly-power"><span class="std std-ref">assembly_power</span></a> （下图黄色部分）：</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>若计算值中没有 <code class="docutils literal notranslate"><span class="pre">4587</span> <span class="pre">MWd/tU</span></code> 这个燃耗的状态点，则会寻找最接近该燃耗值的状态点进行比较，下同。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">beavrs_c1</span></code> 基准题并没有组件功率分布测量值，这里为演示功能而输入了一个功率分布“测量值”。</p>
+</div>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_assembly_power.png"><img alt="../_images/beavrs_c1_assembly_power.png" src="../_images/beavrs_c1_assembly_power.png" style="width: 800px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>将 <code class="docutils literal notranslate"><span class="pre">1043,</span> <span class="pre">4587,</span> <span class="pre">12525.6</span> <span class="pre">MWd/tU</span></code> 3个燃耗点的探测器活度分布及燃耗值填入 <a class="reference internal" href="../io_formats/output_excel.html#detector-reaction"><span class="std std-ref">detector_reaction</span></a> （下图黄色部分）：</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这3个燃耗点的探测器活度分布数据来至 <a class="reference internal" href="#id13">参考文献</a> [1]。</p>
+</div>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_detector_reaction.png"><img alt="../_images/beavrs_c1_detector_reaction.png" src="../_images/beavrs_c1_detector_reaction.png" style="width: 800px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对于有探测器布置但该次测量无有效值的位置，需要输入一个极小值，如图中蓝色部分的 <code class="docutils literal notranslate"><span class="pre">1E-20</span></code>。</p>
+</div>
+<p>以上测量值输入完成后，保存该 <a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a> 名为 <code class="docutils literal notranslate"><span class="pre">MEASURE.xlsx</span></code>，
+并执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>compare<span class="w"> </span>BEAVRS_C1.h5<span class="w"> </span>MEASURE.xlsx<span class="w"> </span>-a<span class="w"> </span>-d
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">-a</span></code> 选项为开启组件功率分布比较，<code class="docutils literal notranslate"><span class="pre">-d</span></code> 选项为开启探测器活度分布比较，
+而低功率物理实验和硼降曲线比较默认就是开启。</p>
+</div>
+<p>即可自动创建名为 <code class="docutils literal notranslate"><span class="pre">CRANE_vs_Measure_of_BEAVRS_C1</span></code> 的文件夹，包含有以下图表：</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里的文件夹命名规则为：CRANE_vs_&lt;比较对象的文件名&gt;_of_&lt;堆芯名称&gt;。</p>
+</div>
+<p>低功率物理实验结果比较的汇总表：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_compare_lppt.png"><img alt="../_images/beavrs_c1_compare_lppt.png" src="../_images/beavrs_c1_compare_lppt.png" style="width: 800px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>跟踪计算硼降曲线比较图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_compare_boron.png"><img alt="../_images/beavrs_c1_compare_boron.png" src="../_images/beavrs_c1_compare_boron.png" style="width: 800px;" /></a>
+</figure>
+<p><code class="docutils literal notranslate"><span class="pre">4587</span> <span class="pre">MWd/tU</span></code> 燃耗点的组件功率分布比较图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_compare_assembly_power.png"><img alt="../_images/beavrs_c1_compare_assembly_power.png" src="../_images/beavrs_c1_compare_assembly_power.png" style="width: 800px;" /></a>
+</figure>
+<p><code class="docutils literal notranslate"><span class="pre">1043</span> <span class="pre">MWd/tU</span></code> 燃耗点的探测器活度分布比较图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_compare_detector_reaction_1043.png"><img alt="../_images/beavrs_c1_compare_detector_reaction_1043.png" src="../_images/beavrs_c1_compare_detector_reaction_1043.png" style="width: 800px;" /></a>
+</figure>
+<p><code class="docutils literal notranslate"><span class="pre">4587</span> <span class="pre">MWd/tU</span></code> 燃耗点的探测器活度分布比较图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_compare_detector_reaction_4587.png"><img alt="../_images/beavrs_c1_compare_detector_reaction_4587.png" src="../_images/beavrs_c1_compare_detector_reaction_4587.png" style="width: 800px;" /></a>
+</figure>
+<p><code class="docutils literal notranslate"><span class="pre">12525.6</span> <span class="pre">MWd/tU</span></code> 燃耗点的探测器活度分布比较图：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/beavrs_c1_compare_detector_reaction_12525.png"><img alt="../_images/beavrs_c1_compare_detector_reaction_12525.png" src="../_images/beavrs_c1_compare_detector_reaction_12525.png" style="width: 800px;" /></a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p id="id13">参考文献：</p>
+<ol class="arabic simple">
+<li><p>Kan Wang, et al. 2017, Analysis of BEAVRS two-cycle benchmark using RMC based on full core detailed model,
+Progress in Nuclear Energy, (2017) 1-12.</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="troubleshoot.html" class="btn btn-neutral float-right" title="13. 常见错误排查" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="visualization.html" class="btn btn-neutral float-left" title="11. 可视化" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

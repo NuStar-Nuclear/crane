@@ -1,0 +1,551 @@
+.. _io_file_formats_output_hdf5:
+
+
+===================
+HDF5 结果文件
+===================
+
+`HDF5 <https://www.hdfgroup.org/solutions/hdf5/>`_ 是层级数据格式(Hierarchical Data Format: HDF)，
+是用来存储和组织大量数据的一组文件格式。
+
+CRANE的HDF5结果文件除包含所有计算结果数据外，还保存了用户输入文件数据、程序的版本号以及数据库版本号等信息。
+
+.. note:: HDF5结果文件名默认为堆芯名称 :ref:`core_name` + ``.h5``，如 :ref:`vera_7` 问题的HDF5结果文件为
+          ``VERA_7.h5``。
+
+以下基于每个 `HDF5 group`_ 来介绍每个部分的数据内容：
+
+
+.. _statepoint_burnup_distribution:
+
+-----------------------------------------
+/statepoint<index>/burnup_distribution/
+-----------------------------------------
+
+该 `HDF5 group`_ 包含所有燃耗分布相关的结果数据, 由以下 `HDF5 dataset`_ 组成：
+
+    .. _h5_assembly_burnup_distribution:
+    
+    :assembly_burnup_distribution:
+        float[层数][组件数]，三维组件燃耗分布，层顺序从底到顶，组件顺序： **方形组件堆型为从左到右，从上到下；
+        六角形组件堆型为从左到右，从下到上，都只数考虑对称性后的计算区域**。
+
+        .. note:: 这里 ``float[层数][组件数]`` 表示为两维单精度数组，若在HDF Viewer或者vscode中查看该数组，
+                  第一维（行）为层编号，第二维（列）为组件编号，下同。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，燃耗单位。
+
+    .. _h5_axial_burnup_distribution:
+
+    :axial_burnup_distribution:
+        float[层数]，堆芯轴向燃耗分布，层顺序从底到顶。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，燃耗单位。
+
+        对该数据可视化请参阅 :ref:`plot_burnup_distribution_axial`。
+
+    .. _h5_integral_assembly_burnup_distribution:
+
+    :integral_assembly_burnup_distribution:
+        float[组件数]，组件积分燃耗分布，组件顺序同 :ref:`h5_assembly_burnup_distribution`。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，燃耗单位。
+
+        对该数据可视化请参阅 :ref:`plot_burnup_distribution_assembly_integral`。
+
+    .. _h5_integral_pin_burnup_distribution:
+
+    :integral_pin_burnup_distribution:
+        float[栅元数]，栅元（棒）积分燃耗分布，栅元顺序为： **从左到右从，从上到下先数第一个组件的栅元，
+        再同样数第二个组件的栅元，直至数到最后，都只数考虑对称性后的计算区域**。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，燃耗单位。
+
+        对该数据可视化请参阅 :ref:`plot_burnup_distribution_pin_integral`。
+
+    .. _h5_pin_burnup_distribution:
+
+    :pin_burnup_distribution:
+        float[层数][栅元数]，三维栅元（棒）燃耗分布，层顺序从底到顶，栅元顺序同
+        :ref:`h5_integral_pin_burnup_distribution`。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，燃耗单位。
+
+        .. note:: 该数组只有当输出类型 :ref:`output_type` 为 ``MEDIUM或MAXIMUM`` 时才会输出。
+
+        对该数据可视化请参阅 :ref:`plot_burnup_distribution_pin_radial_slice` 和
+        :ref:`plot_burnup_distribution_pin_axial_slice`。
+
+
+.. _statepoint_cmfd:
+
+--------------------------
+/statepoint<index>/cmfd/
+--------------------------
+
+该 `HDF5 group`_ 包含CMFD栅元的中子平衡偏差数据，由以下 `HDF5 dataset`_ 组成：
+    
+    .. _h5_cell_neutron_balance_error:
+
+    :cell_neutron_balance_error:
+        float[层数][栅元数][能群数]，三维栅元的中子平衡性偏差，层顺序从底到顶，栅元顺序同
+        :ref:`h5_integral_pin_burnup_distribution`，能群默认为单群。
+
+        .. note:: 这里的栅元中子平衡性偏差是： (裂变产生-散射进入-移出-泄漏)/移出。因此该值越小表示栅元中子平衡性关系越好。
+
+        .. note:: 该数组只有当输出类型 :ref:`output_type` 为 ``MAXIMUM`` 时才会输出。
+
+
+.. _statepoint_dancoff_factors:
+
+------------------------------------
+/statepoint<index>/dancoff_factors/
+------------------------------------
+
+该 `HDF5 group`_ 包含所有共振区的能群平均的Dancoff因子，由以下 `HDF5 dataset`_ 组成：
+    
+    .. _h5_group_averaged_dancoff_factors:
+
+    :group_averaged_dancoff_factors:
+        float[层数][共振区数][1]，三维能群平均的共振区Dancoff因子，层顺序从底到顶，共振区顺序同栅元顺序。
+
+        .. note:: 该数组只有当输出类型 :ref:`output_type` 为 ``MEDIUM或MAXIMUM`` 时才会输出。
+
+        对该数据可视化请参阅 :ref:`plot_dancoff_factors`。
+
+
+.. _statepoint_flux_distribution:
+
+--------------------------------------
+/statepoint<index>/flux_distribution/
+--------------------------------------
+
+该 `HDF5 group`_ 包含所有通量分布的结果数据，由以下 `HDF5 dataset`_ 组成：
+    
+    .. _h5_cell_flux_distribution:
+
+    :cell_flux_distribution:
+        float[层数][共振区数][能群数]，三维栅元通量分布，层顺序从底到顶，栅元顺序同
+        :ref:`h5_integral_pin_burnup_distribution`，能群数为2，
+        顺序为 ``[epithermal, thermal]``。
+
+        .. note:: 该数组只有当输出类型 :ref:`output_type` 为 ``MEDIUM或MAXIMUM`` 时才会输出。
+
+        对该数据可视化请参阅 :ref:`plot_flux_distribution_cell_radial_slice` 和
+        :ref:`plot_flux_distribution_cell_axial_slice`。
+
+     .. _h5_mesh_flux_distribution:
+
+    :mesh_flux_distribution_in_plane__<i>:
+        float[MOC网格数][能群数]，第i层的细网（MOC网格）通量分布，能群数为2，
+        顺序为 ``[epithermal, thermal]``。
+
+        .. note:: 该数组只有当输出类型 :ref:`output_type` 为 ``MAXIMUM`` 时才会输出。
+
+        对该数据可视化请参阅 :ref:`plot_flux_distribution_mesh_radial_slice` 和
+        :ref:`plot_flux_distribution_mesh_axial_slice`。
+
+     .. _h5_plane_flux_distribution:
+
+    :plane_flux_distribution:
+        float[层数][能群数]，堆芯轴向（层积分）通量分布，层顺序从底到顶，能群数为2，顺序为 ``[epithermal, thermal]``。
+
+        对该数据可视化请参阅 :ref:`plot_flux_distribution_axial`。
+
+
+.. _statepoint_nuclide_number_density:
+
+-------------------------------------------
+/statepoint<index>/nuclide_number_density/
+-------------------------------------------
+
+该 `HDF5 group`_ 包含所有燃耗区的重要核素的核子密度信息，由若干个以核素名称命名的 `HDF5 dataset`_ 组成：
+
+    .. note:: 当输出类型 :ref:`output_type` 为 ``MAXIMUM`` 时，输出I-135, Xe-135, Pm-149, Sm-149,
+      U-235, U-238, Pu-239, Pu-241共8种核素；当输出类型 :ref:`output_type` 为 ``MEDIUM`` 时，只输出I-135这1种核素；
+      当输出类型 :ref:`output_type` 为 ``MINIMUM`` 时，整个 :ref:`statepoint_nuclide_number_density` 都不输出。
+    
+    .. _h5_nuclide_number_density:
+
+    :I-135|Xe-135|Pm-149|Sm-149|U-235|U-238|Pu-239|Pu-241:
+        float[燃耗区数]，对应核素的每个燃耗区的核子密度，燃耗区顺序见同栅元顺序。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，核子密度单位。
+
+        对该数据可视化请参阅 :ref:`plot_number_density_distribution`。
+
+
+.. _statepoint_power_distribution:
+
+-----------------------------------------
+/statepoint<index>/power_distribution/
+-----------------------------------------
+
+该 `HDF5 group`_ 包含所有功率分布相关的结果数据, 由以下 `HDF5 dataset`_ 组成：
+
+    .. _h5_Fxy:
+    
+    :Fxy:
+        float[层数]，每层棒功率分布最大值，层顺序从底到顶。
+
+    .. _h5_Fxy_fuel_pin_index:
+    
+    :Fxy_fuel_pin_index:
+        int[层数]，每层棒功率分布最大值所在棒的索引编号，层顺序从底到顶。
+
+    .. _h5_assembly_power_distritbution:
+    
+    :assembly_power_distribution:
+        float[层数][组件数]，三维组件功率分布，层顺序从底到顶，组件顺序同 :ref:`h5_assembly_burnup_distribution`。
+
+        对该数据可视化请参阅 :ref:`plot_power_distribution_assembly_radial_slice` 和
+        :ref:`plot_power_distribution_assembly_axial`。
+
+    .. _h5_axial_power_distribution:
+
+    :axial_power_distribution:
+        float[层数]，堆芯轴向功率分布，层顺序从底到顶。
+
+        对该数据可视化请参阅 :ref:`plot_power_distribution_axial`。
+
+    .. _h5_full_core_integral_assembly_power_distribution:
+
+    :full_core_integral_assembly_power_distribution:
+        float[全堆组件数]，全堆组件积分燃耗分布，组件顺序同 :ref:`h5_assembly_burnup_distribution`。
+
+        对该数据可视化请参阅 :ref:`plot_power_distribution_assembly_integral_full_core`。
+
+    .. _h5_integral_assembly_power_distribution:
+
+    :integral_assembly_power_distribution:
+        float[组件数]，组件积分燃耗分布，组件顺序同 :ref:`h5_assembly_burnup_distribution`。
+
+        对该数据可视化请参阅 :ref:`plot_power_distribution_assembly_integral`。
+
+    .. _h5_integral_pin_power_distribution:
+
+    :integral_pin_power_distribution:
+        float[栅元数]，栅元（棒）积分功率分布，栅元顺序同 :ref:`h5_integral_pin_burnup_distribution`。
+
+        对该数据可视化请参阅 :ref:`plot_power_distribution_pin_integral`。
+
+    .. _h5_pin_power_distribution:
+
+    :pin_burnup_distribution:
+        float[层数][栅元数]，三维栅元（棒）功率分布，层顺序从底到顶，栅元顺序同 :ref:`h5_integral_pin_burnup_distribution`。
+
+        .. note:: 该数组只有当输出类型 :ref:`output_type` 为 ``MEDIUM或MAXIMUM`` 时才会输出。
+
+        对该数据可视化请参阅 :ref:`plot_power_distribution_pin_radial_slice` 和
+        :ref:`plot_power_distribution_pin_axial_slice`。
+
+
+.. _statepoint_summary:
+
+----------------------------
+/statepoint<index>/summary/
+----------------------------
+
+该 `HDF5 group`_ 包含每个状态点汇总的结果数据以及状态参数等，如功率峰因子、有效增值系数、燃耗深度、计算时间等等，
+由以下 `HDF5 dataset`_ 组成：
+
+    .. note:: 这里绝大部分数据随燃耗的变化可通过 :ref:`plot_result_summary` 进行可视化。
+
+    .. _h5_Fdh:
+    
+    :Fdh:
+        double，积分棒功率分布最大值，即积分棒功率峰因子。
+
+    .. _h5_Fdh_fuel_pin_index:
+    
+    :h5_Fdh_fuel_pin_index:
+        int，积分棒功率分布最大值所在棒的索引编号。
+
+    .. _h5_Fq:
+    
+    :Fq:
+        double，三维棒功率分布最大值，即三维棒功率峰因子。
+
+    .. _h5_Fq_fuel_pin_index:
+    
+    :h5_Fdh_fuel_pin_index:
+        int，三维棒功率分布最大值所在棒的索引编号。
+
+    .. _h5_Fq_plane_index:
+    
+    :h5_Fdh_plane_index:
+        int，三维棒功率分布最大值所在层的索引编号。
+
+    .. _h5_average_effective_temperature:
+
+    :average_effective_temperature:
+        float，平均燃料有效温度。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，温度单位。
+
+    .. _h5_average_number_densities:
+
+    :average_number_densities:
+        float[可燃核素数]，核素平均核子密度，可燃核素清单见 :ref:`nuclide_names`。
+
+        .. note:: 这里的平均指的是对存在相应核素的所有燃耗区进行体积平均。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，核子密度单位。
+
+    .. _h5_average_outlet_temperature:
+
+    :average_outlet_temperature:
+        float，平均冷却剂出口温度。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，温度单位。
+
+    .. _h5_axial_offset:
+
+    :axial_offset:
+        double，轴向功率偏移。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，%。
+    
+    .. _h5_boron_concentration:
+
+    :boron_concentration:
+        double，可溶硼浓度。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，硼浓度单位。
+
+    .. _h5_burnup:
+    
+    :burnup:
+        double，燃耗深度。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，燃耗深度单位。
+
+    .. _h5_computing_time:
+    
+    :computing_time:
+        double，该状态点计算耗时。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，时间单位。
+
+    .. _h5_control_rod_withdrawn_steps:
+    
+    :control_rod_withdrawn_steps:
+        int[控制棒棒组数]，控制棒棒组当前棒位。
+
+    .. _h5_differential_boron_worth:
+    
+    :differential_boron_worth:
+        double，硼微分价值。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，硼微分价值单位。
+
+    .. _h5_effective_full_power_days:
+    
+    :effective_full_power_days:
+        double，等效满功率天。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，等效满功率天的单位。
+
+    .. _h5_inlet_temperature:
+    
+    :inlet_temperature:
+        double，冷却剂入口温度。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，温度单位。
+
+    .. _h5_keff:
+    
+    :keff:
+        double，有效增值系数。
+
+    .. _h5_maximal_effective_temperature:
+    
+    :maximal_effective_temperature:
+        float，燃料有效温度最大值。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，温度单位。
+
+    .. _h5_maximal_outlet_temperature:
+    
+    :maximal_outlet_temperature:
+        float，冷却剂出口温度最大值。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，温度单位。
+
+    .. _h5_num_core_rebuildings:
+    
+    :num_core_rebuildings:
+        int，堆芯几何重构次数。
+
+    .. _h5_num_critical_boron_searchs:
+    
+    :num_critical_boron_searchs:
+        int，临界硼搜索次数。
+
+    .. _h5_num_dancoff_computations:
+    
+    :num_dancoff_computations:
+        int，Dancoff因子计算次数。
+
+    .. _h5_num_depletion_computations:
+    
+    :num_depletion_computations:
+        int，燃耗计算次数。
+
+    .. _h5_num_macro_xs_updatings:
+    
+    :num_macro_xs_updatings:
+        int，宏观截面更新次数。
+
+    .. _h5_num_outer_iterations:
+    
+    :num_outer_iterations:
+        int，外迭代次数。
+
+    .. _h5_num_resonance_computations:
+    
+    :num_resonance_computations:
+        int，共振计算次数。
+
+    .. _h5_num_thermal_feedbacks:
+    
+    :num_thermal_feedbacks:
+        int，热工水力反馈次数。
+
+    .. _h5_num_xe_sm_transients:
+    
+    :num_xe_sm_transients:
+        int，Xe、Sm瞬态计算次数。
+
+    .. _h5_output_type:
+    
+    :output_type:
+        string，输出类型，即 :ref:`output_type`。
+
+    .. _h5_relative_inlet_flows:
+    
+    :relative_inlet_flows:
+        double，相对流量水平。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，%。
+
+    .. _h5_relative_power:
+    
+    :relative_power:
+        double，相对功率水平。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，%。
+
+    .. _h5_squence_name:
+    
+    :squence_name:
+        string，计算序列名称。
+
+    .. _h5_squence_type:
+    
+    :squence_type:
+        string，计算序列类型，[CRIT, ITC, IRW, IRWC, DEP]五选一。
+
+    .. _h5_state_index:
+    
+    :state_index:
+        int，该状态点索引编号。
+
+    .. _h5_system_pressure:
+    
+    :system_pressure:
+        double，系统压力。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，系统压力单位。
+
+    .. _h5_time:
+    
+    :time:
+        double，燃耗时间。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，时间单位。
+
+    .. _h5_total_heavy_metal_weight:
+    
+    :total_heavy_metal_weight:
+        double，初始重核素总装量。
+
+        包含的 `HDF5 attribute`_：``unit``，字符串，初始重核素总装量单位。
+
+    .. _h5_which_rod_bank:
+    
+    :which_rod_bank:
+        string，控制棒状态。
+
+
+.. _h5_summary:
+
+----------------------------
+/summary/
+----------------------------
+
+该 `HDF5 group`_ 包含该次计算的一些总体信息，如用户输入文件、多群常数库、程序版本号等，
+由以下 `HDF5 dataset`_ 组成：
+
+    .. _h5_compile_info:
+    
+    :compile_info:
+        string，程序编译信息。
+
+    .. _h5_fuel_plane_thickness:
+    
+    :fuel_plane_thickness:
+        double[层数]，从底到顶轴向燃料层的厚度，单位 cm。
+
+    .. _h5_git_sha1:
+    
+    :git_sha1:
+        string，程序的Git commit SHA-1 哈希值。
+
+    .. _h5_input_string:
+    
+    :input_string:
+        string，Json格式的用户输入文件内容。
+
+    .. _h5_nuclide_names:
+    
+    :nuclide_names:
+        string[数据库核素数量]，数据中每个核素的名称。
+
+    .. _h5_plane_thickness:
+    
+    :plane_thickness:
+        double[层数]，从底到顶轴向层的厚度，单位 cm。
+
+    .. _h5_rlib_used:
+    
+    :rlib_used:
+        string，该次计算所用的多群常数库。
+
+    .. _h5_version:
+    
+    :version:
+        string，程序版本号。
+
+
+.. _h5_summary_timing_statistic:
+
+----------------------------
+/summary/timing_statistics/
+----------------------------
+
+该 `HDF5 group`_ 包含该次计算不同模块（部分）的计算耗时信息，由以下 `HDF5 dataset`_ 组成：
+
+    .. note:: 对该数据的可视化可参阅 :ref:`plot_timing_statistics`。
+
+    .. _h5_time_split:
+    
+    :time_splits_description:
+        double，该模块（部分）计算耗时。
+        
+        包含的 `HDF5 attribute`_：``unit``，字符串，时间单位 seconds。
+
+
+.. _HDF5 group: https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group
+.. _HDF5 dataset: https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset
+.. _HDF5 attribute: https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr

@@ -1,0 +1,24 @@
+.. _io_file_format_material_db:
+
+
+==============
+材料配置文件
+==============
+
+为了方便用户定义材料，CRANE会提供一个 `YAML <https://yaml.org>`_ 格式的材料配置文件。
+该文件名为 ``material_db.yaml``，并与 :ref:`io_file_formats_nuclear_lib` 一样，
+会随程序一起默认安装在 ``/安装目录/ngm/data_files/`` 下。
+
+其中该材料配置文件的内容包含以下三部分：
+
+#. 核素 ``nuclides``，定义了每类核素的名称以及同位素成分组成，例如天然铀就是通过U-234, U-235, U-236和U-238四种同位素以一定的比例组成;
+#. 化合物 ``compounds``，化合物是几种同位素以一定的原子数量比率组成的，如UO2、GD2O3、B4C等;
+#. 混合物 ``mixtures``，混合物则是几种同位素以一定的重量百分比组成的，如SS304、SS316、AIC等。
+
+其中化合物 ``compounds``、和混合物 ``mixtures`` 是用户可以添加或修改的，并且可以直接作为预先配置好的 :ref:`mateiral` 来使用的，
+以方便用户使用。
+
+材料配置文件中的具体内容如下：
+
+.. literalinclude:: ../../../ngm/data_files/material_db.yaml
+    :language: yaml

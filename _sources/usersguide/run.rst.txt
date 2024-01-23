@@ -1,0 +1,61 @@
+.. _usersguide_run:
+
+
+==============
+启动计算
+==============
+
+当输入文件准备好以后，首先可以通过命令行 :ref:`crane_visualize` 对模型进行可视化，检查建模是否正确。有关可视化的详细介绍可参阅
+:ref:`usersguide_visualization`。
+
+如果建模一切正常，就可以通过命令行 :ref:`crane_run` 来启动计算。
+
+以C5G7基准题为例，假设你准备好了基准问题 :ref:`C5G7_3D` 输入文件，名为 ``C5G7_3D.yaml``，
+你就可以在该输入文件目录下执行以下命令来启动计算：
+
+.. code-block:: sh
+
+    crane run C5G7_3D.yaml
+
+启动计算后，屏幕会打印出以下信息：
+
+.. figure:: ../_images/run_c5g7_3d.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+这些都是CRANE运行时的日志信息，除了屏幕输出外，还会默认保存在名为 ``CRANE.log`` 的日志文件中。
+
+.. note:: CRANE采用滚动式日志文件，大小上限为 ``50M``，超过后会将旧的信息依次保存至 ``CRANE.1.log`` 和 ``CRANE.2.log``。
+
+程序默认使用当前服务器上所有可利用的GPU来执行计算。我们可通过以下命令来查看GPU资源使用情况：
+
+.. code-block:: sh
+
+    nvidia-smi
+
+如以下是在配备有两张RTX3090显卡的服务器上计算 :ref:`c5g7_3d` 执行上述命令后的屏幕输出：
+
+.. figure:: ../_images/run_nvidia_smi.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+你可以通过 ``-d`` 或 ``--deivices-ids`` 选项来指定计算采用哪些显卡：
+
+.. code-block:: sh
+
+    crane run C5G7_3D.yaml --deivices-ids 0,1,2,3
+
+以上则是采用编号为0,1,2,3的4张显卡来进行计算，前提是计算平台需要至少配备4张显卡。
+
+CRANE计算完成后默认会保存 :ref:`io_file_formats_output_excel` 和 :ref:`io_file_formats_output_hdf5`，
+并进入交互式可视化命令行界面，如下图所示：
+
+.. figure:: ../_images/visualization_shell.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+在该界面下可运行 :ref:`interactive_commands` 来进行各种模型和结果的可视化，详见
+:ref:`usersguide_visualization`。

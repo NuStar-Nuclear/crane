@@ -1,0 +1,409 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>OpenMC Compatibility &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/usersguide/openmc.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="index.html">用户指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>OpenMC Compatibility</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/usersguide/openmc.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="openmc-compatibility">
+<span id="usersguide-openmc"></span><h1>OpenMC Compatibility<a class="headerlink" href="#openmc-compatibility" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="https://docs.openmc.org/">OpenMC</a> is a community-developed Monte Carlo neutron and photon transport simulation code.
+ROBIN3’s input model can be directly converted to OpenMC input model by <code class="xref py py-mod docutils literal notranslate"><span class="pre">robin3.openmc_compatible</span></code>
+module. This functionality enables developpers and users to compare and verify
+results of ROBIN3 efficiently with Monte Carlo code.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OpenMC Compatibility now only supports the newest OpenMC on <em>develop</em> branch, and will
+support OpenMC v0.13.0 in the future.</p>
+</div>
+<p>Normally, users only need to call the <code class="xref py py-meth docutils literal notranslate"><span class="pre">robin3.openmc_compatible.robin3_to_openmc()</span></code> method and ROBIN3 will automatically
+complete all the steps required to generate the OpenMC input files. For example, if
+we have a ROBIN3 input file named <code class="docutils literal notranslate"><span class="pre">robin3_input.yaml</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robin3</span><span class="o">.</span><span class="n">openmc_compatible</span><span class="o">.</span><span class="n">robin3_to_openmc</span><span class="p">(</span><span class="s2">&quot;robin3_input.yaml&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or using commandline:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robin3</span> <span class="n">r3</span><span class="o">-</span><span class="n">to</span><span class="o">-</span><span class="n">openmc</span> <span class="n">robin3_input</span><span class="o">.</span><span class="n">yaml</span>
+</pre></div>
+</div>
+<p>If multiple burnup points in ROBIN3 input, a pre-written script named <code class="docutils literal notranslate"><span class="pre">deplete.py</span></code> will be
+created in current working path. Run the script to perform depletion using OpenMC:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">python</span> <span class="n">deplete</span><span class="o">.</span><span class="n">py</span>
+</pre></div>
+</div>
+<p>Method <code class="xref py py-meth docutils literal notranslate"><span class="pre">robin3.openmc_compatible.get_model()</span></code> can return an <a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.model.Model.html#openmc.model.Model" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.model.Model</span></code></a>.
+For users who are familiar with OpenMC Python API, the following two patterns are also recommended:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">robin3</span><span class="o">.</span><span class="n">openmc_compatible</span><span class="o">.</span><span class="n">robin3_to_openmc</span><span class="p">(</span><span class="s2">&quot;robin3_input.yaml&quot;</span><span class="p">)</span>
+<span class="n">integrator</span> <span class="o">=</span> <span class="n">openmc_compatible</span><span class="o">.</span><span class="n">depletion_integrator_from_xml</span><span class="p">()</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">robin3.util</span> <span class="kn">import</span> <span class="n">load_data_from_file</span>
+
+<span class="n">robin3_model</span> <span class="o">=</span> <span class="n">load_data_from_file</span><span class="p">(</span><span class="s2">&quot;robin3_input.yaml&quot;</span><span class="p">)[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">openmc_model</span> <span class="o">=</span> <span class="n">robin3</span><span class="o">.</span><span class="n">openmc_compatible</span><span class="o">.</span><span class="n">get_model</span><span class="p">(</span><span class="n">robin3_model</span><span class="p">)</span>
+<span class="n">geometry</span> <span class="o">=</span> <span class="n">openmc_model</span><span class="o">.</span><span class="n">geometry</span>
+<span class="n">settings</span> <span class="o">=</span> <span class="n">openmc_model</span><span class="o">.</span><span class="n">settings</span>
+<span class="n">burnup_info</span> <span class="o">=</span> <span class="n">robin3_model</span><span class="p">[</span><span class="s2">&quot;statepoints&quot;</span><span class="p">]</span>
+<span class="n">integrator</span> <span class="o">=</span> <span class="n">robin3</span><span class="o">.</span><span class="n">openmc_compatible</span><span class="o">.</span><span class="n">get_depletion_integrator</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span> <span class="n">settings</span><span class="p">,</span> <span class="n">burnup_info</span><span class="p">)</span>
+<span class="n">integrator</span><span class="o">.</span><span class="n">integrate</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>The <code class="xref py py-mod docutils literal notranslate"><span class="pre">robin3.openmc_compatible</span></code> module is still experimental
+and may undergo substantial changes in future releases. Some methods in this module have
+<code class="docutils literal notranslate"><span class="pre">optimized</span></code> argument which turns on some empirical algorithms to remove
+redundant instances in ROBIN3 pre-processed geometry.
+If you encounter error, first retry with <code class="docutils literal notranslate"><span class="pre">optimized</span></code> option off.</p>
+</div>
+<section id="material">
+<h2>Material<a class="headerlink" href="#material" title="Permalink to this heading">¶</a></h2>
+<p>ROBIN3’s <a class="reference internal" href="materials.html#usersguide-materials"><span class="std std-ref">two types of material</span></a> can both be converted to <a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Material.html#openmc.Material" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Material</span></code></a>.</p>
+<p>Note some of the methods in this module has an argument named <code class="docutils literal notranslate"><span class="pre">material_assimulation</span></code>, with which on
+nuclide densities in material is calculated and given by ROBIN3, not OpenMC.
+There are subtle differences between the two. However, if a ROBIN3 material contains sub material
+with S(α,β), this argument must be assigned True, because <a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Material.html#openmc.Material.mix_materials" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Material.mix_materials()</span></code></a>
+currently does not support mix materials with S(α,β).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>ROBIN3 and OpenMC use different nuclear data. Natural abundance, atomic mass,
+formula to calculate uranium enrichment and boron concentration are also different.</p>
+</div>
+</section>
+<section id="geometry">
+<h2>Geometry<a class="headerlink" href="#geometry" title="Permalink to this heading">¶</a></h2>
+<p>ROBIN3’s geometry can be either a single assembly or a complete core.
+The former can be regarded as a lattice, the latter can be regarded as a two-level nested lattice.
+The input dictionary of robin3 and the geometry class of openmc have the following rough correspondence:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>ROBIN3 dict</p></th>
+<th class="head"><p>OpenMC class</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../io_formats/input.html#primitive"><span class="std std-ref">primitive</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Region.html#openmc.Region" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Region</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../io_formats/input.html#region"><span class="std std-ref">region</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Cell.html#openmc.Cell" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Cell</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Universe.html#openmc.Universe" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Universe</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../io_formats/input.html#assembly"><span class="std std-ref">assembly</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Universe.html#openmc.Universe" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Universe</span></code></a> containing <a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Lattice.html#openmc.Lattice" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Lattice</span></code></a> of pins</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../io_formats/input.html#core"><span class="std std-ref">core</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Universe.html#openmc.Universe" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Universe</span></code></a> containing <a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Lattice.html#openmc.Lattice" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Lattice</span></code></a> of assemblies</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OpenMC Compatibility geometry interface is mainly designed for ROBIN3 geometry
+after pre-processing. Directly apply them on raw ROBIN3 geometry may result in issues.</p>
+</div>
+</section>
+<section id="tallies">
+<h2>Tallies<a class="headerlink" href="#tallies" title="Permalink to this heading">¶</a></h2>
+<p>Tallies of generated model contain following scores:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">kappa-fission</span></code> in cells filled by fissionable materials.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">flux</span></code> in cells converted from tagged ROBIN3 region. Number of energy groups depend on the nuclear data
+library used by ROBIN3.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">heating-local</span></code> of the whole given geometry, if it exists at least one tagged ROBIN3 region.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">absorption</span></code>, <code class="docutils literal notranslate"><span class="pre">fission</span></code>, <code class="docutils literal notranslate"><span class="pre">scatter</span> <span class="pre">matrix</span></code> and <code class="docutils literal notranslate"><span class="pre">chi</span></code> of the whole given geometry, if the model is a single assembly.
+Scores are divided in two energy groups by default, “0 - 0.0625 eV” and “0.0625 eV - 20 MeV”.</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>To get volumes required to normalize flux or calculate pin power,
+OpenMC Compatibility module will retrieve volume values from ROBIN3 or drive OpenMC
+to launch volume calculation during conversion of model to get fissionable volumes
+and volumes of tagged ROBIN3 region. If user chooses ROBIN3, <span class="xref std std-ref">volume.yaml</span>
+will be generated, otherwise <a class="reference external" href="https://docs.openmc.org/en/stable/io_formats/volume.html#io-volume" title="(in OpenMC v0.14)"><span class="xref std std-ref">volume results file</span></a> of OpenMC.</p>
+</section>
+<section id="settings">
+<h2>Settings<a class="headerlink" href="#settings" title="Permalink to this heading">¶</a></h2>
+<p>Conversion from ROBIN3 model to OpenMC model will also generate <a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Settings.html#openmc.Settings" title="(in OpenMC v0.14)"><code class="docutils literal notranslate"><span class="pre">openmc.Settings</span></code></a> that contains
+some empirical default parameters.</p>
+<p>For single assembly model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span><span class="o">.</span><span class="n">batches</span> <span class="o">=</span> <span class="mi">200</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">inactive</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">particles</span> <span class="o">=</span> <span class="mi">20000</span>
+</pre></div>
+</div>
+<p>For core model:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">settings</span><span class="o">.</span><span class="n">batches</span> <span class="o">=</span> <span class="mi">60</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">inactive</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">trigger_max_batches</span> <span class="o">=</span> <span class="mi">100</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">trigger_active</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">trigger_batch_interval</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">particles</span> <span class="o">=</span> <span class="mi">500000</span>
+<span class="n">settings</span><span class="o">.</span><span class="n">keff_trigger</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;type&#39;</span><span class="p">:</span> <span class="s1">&#39;std_dev&#39;</span><span class="p">,</span> <span class="s1">&#39;threshold&#39;</span><span class="p">:</span> <span class="mf">50E-5</span><span class="p">}</span>
+</pre></div>
+</div>
+<p>A Shannon Entropy mesh, whose dimension depends on the whole geometry’s bounding box,
+is also defined to cover the whole geometry.</p>
+<p>The default temperature of OpenMC is set to 300 K to match ROBIN3’s default temperature.
+If energy mode is <code class="docutils literal notranslate"><span class="pre">'continuous-energy'</span></code>, Windowed Multipole is turned off by default because
+it currently does not support <code class="docutils literal notranslate"><span class="pre">heating-local</span></code> tally
+(see issue <a class="reference external" href="https://github.com/openmc-dev/openmc/issues/1697">#1697</a>).</p>
+</section>
+<section id="depletion">
+<h2>Depletion<a class="headerlink" href="#depletion" title="Permalink to this heading">¶</a></h2>
+<p>Similar to tallies, depletion also requires volumes, in order to calculate evolution of number of nuclides.
+Thus OpenMC Compatibility module drives OpenMC to launch volume calculation during conversion or directly uses
+volumes calculated by ROBIN3 to obtain volumes of depletable materials. Volume values will be directly dumped in
+<a class="reference external" href="https://docs.openmc.org/en/stable/io_formats/materials.html#io-materials" title="(in OpenMC v0.14)"><span class="xref std std-ref">materials.xml</span></a> as one of the properties of corresponding material. So the results of volume calculation
+of depletable materials won’t exist in <span class="xref std std-ref">volume.yaml</span>, even if user chooses to use ROBIN3’s volume results.</p>
+<p>In order to take care of users who are not familiar with Python, OpenMC Compatibility module
+creates <code class="docutils literal notranslate"><span class="pre">deplete.py</span></code> script in the working path. This script will call <code class="xref py py-meth docutils literal notranslate"><span class="pre">robin3.openmc_compatible.depletion_integrator_from_xml()</span></code>
+method which reads depletion parameters from <code class="docutils literal notranslate"><span class="pre">./depletion.xml</span></code> by default. Users can
+modify <span class="xref std std-ref">this XML file</span> to change depletion related parameters such as time steps,
+units, power density, etc.</p>
+</section>
+<section id="post-processing">
+<h2>Post-processing<a class="headerlink" href="#post-processing" title="Permalink to this heading">¶</a></h2>
+<p>With the volumes obtained during conversion of model from ROBIN3 to OpenMC and the scored
+tallies obtained by running OpenMC simulation, methods provided by <code class="xref py py-mod docutils literal notranslate"><span class="pre">robin3.openmc_compatible</span></code>
+are able to generate specific results to compare with ROBIN3.</p>
+<p>For example, <code class="xref py py-meth docutils literal notranslate"><span class="pre">robin3.openmc_compatible.process_flux()</span></code> can show steps-plot of
+multi-energy-group flux spectrum in tagged region. <code class="xref py py-meth docutils literal notranslate"><span class="pre">robin3.openmc_compatible.process_pin_power()</span></code>
+plot the comparison of pin power distribution between ROBIN3 and OpenMC.</p>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

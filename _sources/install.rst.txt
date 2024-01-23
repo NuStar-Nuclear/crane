@@ -1,0 +1,83 @@
+.. _install:
+
+=========
+安装指引
+=========
+
+这部分文档将指引你如何快速的"安装"CRANE。
+
+和很多在高性能计算(HPC)服务器上的应用类似，CRANE也采用了基于 `Singularity`_ 的容器化部署方式，因此
+用户仅需要在服务器上安装配置好 `Singularity`_ 即可，并不需要真正的安装CRANE及其所有依赖环境。另外，
+由于CRANE需要使用Nvidia的GPU，因此服务器上还需要安装好Nvidia的显卡驱动。 
+
+---------------------
+安装 `Singularity`_
+---------------------
+`Singularity`_ 是一个用于在Linux操作系统上运行高度自定义的、可移植的、隔离的、可重复的计算环境的容器平台。
+它可以用于在超级计算机上运行高性能计算 (HPC) 应用程序，也可以用于在云计算环境和科学Gateways中部署可重
+复的计算环境。
+
+CRANE利用这个容器平台预先构建 `Singularity`_ 镜像格式文件(Singularity image Format)进行分发，用户无需担心
+如何安装CRANE所需的所有软件，而只需要学会Singularity基本的使用方式即可。其社区免费版SingularityCE
+的安装及使用说明可参考其
+`官方文档 <https://docs.sylabs.io/guides/latest/user-guide/quick_start.html#quick-installation-steps>`_。
+
+-----------------------
+安装 `CUDA-Toolkit`_
+-----------------------
+
+CRANE采用了容器化部署方式，因此理论上只需要安装好Nvidia显卡驱动即可在容器中调用Nvidia的GPU进行计算，但
+是我们还是建议安装 `CUDA-Toolkit`_ 。因为它包含了一切CRANE运行需要的GPU加速动态链接库及GPU资源使用查看工具等。
+
+`CUDA-Toolkit`_ 可以从 `NVIDIA官网 <https://developer.nvidia.com/cuda-downloads>`_ 下载安装。
+通常在Unbuntu20.04系统上安装CUDA-Toolkit-11.1包含以下几个步骤:
+
+.. code-block:: sh
+    
+    wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+    sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+    wget https://developer.download.nvidia.com/compute/cuda/11.1.0/local_installers/cuda-repo-ubuntu2004-11-1-local_11.1.0-455.23.05-1_amd64.deb
+    sudo dpkg -i cuda-repo-ubuntu2004-11-1-local_11.1.0-455.23.05-1_amd64.deb
+    sudo apt-key add /var/cuda-repo-ubuntu2004-11-1-local/7fa2af80.pub
+    sudo apt-get update
+    sudo apt-get -y install cuda
+
+.. note:: 为了使CRANE都能够达到更高的计算效率，我们强烈推荐使用Nvidia的 ``RTX 4090`` 显卡，而 ``RTX 4090`` 显卡需要
+          `CUDA-Toolkit`_ 的版本号至少 ``11.1`` 及以上。
+
+--------------
+尝试运行 CRANE
+--------------
+
+当完成 `Singularity`_ 以及 `CUDA-Toolkit`_ 的安装以后，便可尝试运行CRANE。
+
+如果是通过SSH远程登陆服务器来使用CRANE，我们强烈推荐在本地安装 `MobaXterm`_ 的免费开源版，
+它提供了远程使用CRANE所有的网络工具包括SSH，X11，FTP等，SSH用来登陆服务器以运行CRANE命令行工具，
+X11可以进行CRANE的远程可视化，FTP又可以很方便的把CRANE的输入输出文件拷贝至本地进行编辑查看等操作。
+
+登陆服务器后，首先执行以下命令来进入CRANE容器：
+
+.. code-block:: sh
+
+    singularity --nv shell crane_<version>.sif
+ 
+.. note:: 通常CRANE的镜像文件名会带有该CRANE的版本号，如crane_1.3.1.sif。
+
+进入CRANE容器后，用户即可运行CRANE的命令行工具来使用CRANE了，如运行以下命令查看CRANE当前版本信息:
+
+.. code-block:: sh
+
+    crane --version
+
+或者查看CRANE的命令行帮助信息:
+
+.. code-block:: sh
+
+    crane --help
+
+CRANE的所有与命令行相关的详细功能可查阅 :ref:`commands`。
+
+
+.. _Singularity: https://docs.sylabs.io/guides/latest/user-guide/
+.. _CUDA-Toolkit: https://developer.nvidia.com/cuda-toolkit/
+.. _MobaXterm: https://mobaxterm.mobatek.net

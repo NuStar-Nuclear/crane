@@ -1,0 +1,308 @@
+.. _examples_vera_dep:
+
+
+==================
+VERA depletion
+==================
+
+
+VERA depletion基准题是基于VERA系列两维单栅元、两维单组件问题的一系列燃耗输运耦合计算基准题。
+它包含二维单栅元燃耗、两维单组件燃耗两类基准问题。
+
+相关参考文献如下:
+
+1. Kim, K.S., 2015. Specification for the VERA Depletion Benchmark Suite. Oak Ridge
+   National Lab. (ORNL), Oak Ridge, TN (United States), p. Medium: ED; Size: p. 32.
+
+
+两维单栅元燃耗问题：
+
+   #. :ref:`vera_dep_1a`
+   #. :ref:`vera_dep_1b`
+   #. :ref:`vera_dep_1c`
+   #. :ref:`vera_dep_1d`
+   #. :ref:`vera_dep_1e`
+   #. :ref:`vera_dep_1f`
+   #. :ref:`vera_dep_1g`
+   #. :ref:`vera_dep_1h`
+   #. :ref:`vera_dep_1i`
+   #. :ref:`vera_dep_1h`
+
+两维单组件燃耗问题：
+
+   #. :ref:`vera_dep_2a`
+   #. :ref:`vera_dep_2b`
+   #. :ref:`vera_dep_2c`
+   #. :ref:`vera_dep_2d`
+   #. :ref:`vera_dep_2e`
+   #. :ref:`vera_dep_2f`
+   #. :ref:`vera_dep_2g`
+   #. :ref:`vera_dep_2h`
+   #. :ref:`vera_dep_2i`
+   #. :ref:`vera_dep_2j`
+   #. :ref:`vera_dep_2k`
+   #. :ref:`vera_dep_2l`
+   #. :ref:`vera_dep_2m`
+   #. :ref:`vera_dep_2n`
+   #. :ref:`vera_dep_2o`
+   #. :ref:`vera_dep_2p`
+
+
+.. _vera_dep_1a:
+
+----------------
+VERA_DEP_1A
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1A.yaml
+    :language: yaml
+
+
+.. _vera_dep_1b:
+
+----------------
+VERA_DEP_1B
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1B.yaml
+    :language: yaml
+
+
+.. _vera_dep_1c:
+
+----------------
+VERA_DEP_1C
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1C.yaml
+    :language: yaml
+
+
+.. _vera_dep_1d:
+
+----------------
+VERA_DEP_1D
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1D.yaml
+    :language: yaml
+
+
+.. _vera_dep_1e:
+
+----------------
+VERA_DEP_1E
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1E.yaml
+    :language: yaml
+
+
+.. _vera_dep_1f:
+
+----------------
+VERA_DEP_1F
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1F.yaml
+    :language: yaml
+
+
+.. _vera_dep_1g:
+
+----------------
+VERA_DEP_1G
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1G.yaml
+    :language: yaml
+
+
+.. _vera_dep_1h:
+
+----------------
+VERA_DEP_1H
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1H.yaml
+    :language: yaml
+
+
+.. _vera_dep_1i:
+
+----------------
+VERA_DEP_1I
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1I.yaml
+    :language: yaml
+
+
+.. _vera_dep_1j:
+
+----------------
+VERA_DEP_1J
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_1J.yaml
+    :language: yaml
+
+
+.. _vera_dep_2a:
+
+----------------
+VERA_DEP_2A
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2A.yaml
+    :language: yaml
+
+
+.. _vera_dep_2b:
+
+----------------
+VERA_DEP_2B
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2B.yaml
+    :language: yaml
+
+
+.. _vera_dep_2c:
+
+----------------
+VERA_DEP_2C
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2C.yaml
+    :language: yaml
+
+
+.. _vera_dep_2d:
+
+----------------
+VERA_DEP_2D
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2D.yaml
+    :language: yaml
+
+
+.. _vera_dep_2e:
+
+----------------
+VERA_DEP_2E
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2E.yaml
+    :language: yaml
+
+
+.. _vera_dep_2f:
+
+----------------
+VERA_DEP_2F
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2F.yaml
+    :language: yaml
+
+
+.. _vera_dep_2g:
+
+----------------
+VERA_DEP_2G
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2G.yaml
+    :language: yaml
+
+
+.. _vera_dep_2h:
+
+----------------
+VERA_DEP_2H
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2H.yaml
+    :language: yaml
+
+
+.. _vera_dep_2i:
+
+----------------
+VERA_DEP_2I
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2I.yaml
+    :language: yaml
+
+
+.. _vera_dep_2j:
+
+----------------
+VERA_DEP_2J
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2J.yaml
+    :language: yaml
+
+
+.. _vera_dep_2k:
+
+----------------
+VERA_DEP_2K
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2K.yaml
+    :language: yaml
+
+
+.. _vera_dep_2l:
+
+----------------
+VERA_DEP_2L
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2L.yaml
+    :language: yaml
+
+
+.. _vera_dep_2m:
+
+----------------
+VERA_DEP_2M
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2M.yaml
+    :language: yaml
+
+
+.. _vera_dep_2n:
+
+----------------
+VERA_DEP_2N
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2N.yaml
+    :language: yaml
+
+
+.. _vera_dep_2o:
+
+----------------
+VERA_DEP_2O
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2O.yaml
+    :language: yaml
+
+
+.. _vera_dep_2p:
+
+----------------
+VERA_DEP_2P
+----------------
+
+.. literalinclude:: ../../../examples/VERA_DEP_2P.yaml
+    :language: yaml

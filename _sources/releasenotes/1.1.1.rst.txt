@@ -1,0 +1,31 @@
+===================
+What's New in 1.1.1
+===================
+
+------------
+New Features
+------------
+
+#. 支持以体积打混的方式进行材料定义；
+#. 增加预测修正、预测两种方式的输运-燃耗耦合计算策略；
+#. 支持对含钆燃料棒进行细分燃耗区的模拟；
+#. 增加燃耗分布编辑输出及可视化功能；
+#. 多群常数库更新至RLIB-1.0.7；
+
+---------
+Bug Fixes
+---------
+
+#. 25306b1: length used to compute flux slope should be the xy-plane-projected length
+#. ec3973c: bad reflector name got if _reflector_middle is empty
+#. 9a2f47b: _num_assembly_layers_reflector not used
+#. d05471d: empty input map padding bug
+#. 2188470: forget to synchronize all gpus after moc1d solvers launched kernels
+#. 1cba234: forget to copy plane related attrs in _clone method
+#. e9b7806: uCMFD inner iteration do not update cell avg flux
+#. 01d6396: tqdm progress bar cannot show correctly when implement openmp parallel
+#. 7f41878: input convex polygon which on the symmetry boundary will rewrite the boundary condition
+#. 846bb6b: 0 heights accurred if no bottom reflector defined
+#. 8cc507a: reflector assemblies do not need offset when generating geo data for openmc
+#. 1adb1ea: top plane may be erased by float round error
+#. 64ca6a4: incorrect negtive linear source correction

@@ -1,0 +1,385 @@
+.. _examples_vera:
+
+
+========
+VERA
+========
+
+
+VERA系列基准题是美国国家橡树岭实验室为验证CASL计划中开发的程序所设计的一系列非常完备的基准题，
+它是以西屋公司设计的17×17压水堆Watts Bar为模型，涵盖从二维单栅元到三维全堆芯、多物理耦合及时间依赖的十类基准问题。
+
+相关参考文献如下:
+
+1. Godfrey, A.T., 2014. VERA core physics benchmark progression problem
+   specifications. Oak Ridge National Laboratory, Oak Ridge, TN, Report No.
+   CASL-U-2012-0131-004. https://www.casl.gov/sites/default/files/docs/CASL-U-2012-0131-004.pdf.
+
+
+两维单栅元问题：
+
+   #. :ref:`vera_1a`
+   #. :ref:`vera_1b`
+   #. :ref:`vera_1c`
+   #. :ref:`vera_1d`
+   #. :ref:`vera_1e`
+
+两维单组件问题：
+
+   #. :ref:`vera_2a`
+   #. :ref:`vera_2b`
+   #. :ref:`vera_2c`
+   #. :ref:`vera_2d`
+   #. :ref:`vera_2e`
+   #. :ref:`vera_2f`
+   #. :ref:`vera_2g`
+   #. :ref:`vera_2h`
+   #. :ref:`vera_2i`
+   #. :ref:`vera_2j`
+   #. :ref:`vera_2k`
+   #. :ref:`vera_2l`
+   #. :ref:`vera_2m`
+   #. :ref:`vera_2n`
+   #. :ref:`vera_2o`
+   #. :ref:`vera_2p`
+   #. :ref:`vera_2q`
+
+三维单组件问题：
+
+   #. :ref:`vera_3a`
+   #. :ref:`vera_3b`
+
+三维3x3组件问题：
+
+   #. :ref:`vera_4`
+
+两维堆芯问题：
+
+   #. :ref:`vera_5a_2d`
+   #. :ref:`vera_5b_2d`
+
+真实堆芯低功率物理实验问题：
+
+   #. :ref:`vera_5`
+
+单组件带热工水力反馈问题：
+
+   #. :ref:`vera_6`
+
+真实堆芯平衡氙带热工水力反馈问题：
+
+   #. :ref:`vera_7`
+
+真实堆芯燃耗跟踪问题：
+
+   #. :ref:`vera_9`
+
+
+.. _vera_1a:
+
+----------------
+VERA_1A
+----------------
+
+.. literalinclude:: ../../../examples/VERA_1A.yaml
+    :language: yaml
+
+
+.. _vera_1b:
+
+----------------
+VERA_1B
+----------------
+
+.. literalinclude:: ../../../examples/VERA_1B.yaml
+    :language: yaml
+
+
+.. _vera_1c:
+
+----------------
+VERA_1C
+----------------
+
+.. literalinclude:: ../../../examples/VERA_1C.yaml
+    :language: yaml
+
+
+.. _vera_1d:
+
+----------------
+VERA_1D
+----------------
+
+.. literalinclude:: ../../../examples/VERA_1D.yaml
+    :language: yaml
+
+
+.. _vera_1e:
+
+----------------
+VERA_1E
+----------------
+
+.. literalinclude:: ../../../examples/VERA_1E.yaml
+    :language: yaml
+
+
+.. _vera_2a:
+
+----------------
+VERA_2A
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2A.yaml
+    :language: yaml
+
+
+.. _vera_2b:
+
+----------------
+VERA_2B
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2B.yaml
+    :language: yaml
+
+
+.. _vera_2c:
+
+----------------
+VERA_2C
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2C.yaml
+    :language: yaml
+
+
+.. _vera_2d:
+
+----------------
+VERA_2D
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2D.yaml
+    :language: yaml
+
+
+.. _vera_2e:
+
+----------------
+VERA_2E
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2E.yaml
+    :language: yaml
+
+
+.. _vera_2f:
+
+----------------
+VERA_2F
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2F.yaml
+    :language: yaml
+
+
+.. _vera_2g:
+
+----------------
+VERA_2G
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2G.yaml
+    :language: yaml
+
+
+.. _vera_2h:
+
+----------------
+VERA_2H
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2H.yaml
+    :language: yaml
+
+
+.. _vera_2i:
+
+----------------
+VERA_2I
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2I.yaml
+    :language: yaml
+
+
+.. _vera_2j:
+
+----------------
+VERA_2J
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2J.yaml
+    :language: yaml
+
+
+.. _vera_2k:
+
+----------------
+VERA_2K
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2K.yaml
+    :language: yaml
+
+
+.. _vera_2l:
+
+----------------
+VERA_2L
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2L.yaml
+    :language: yaml
+
+
+.. _vera_2m:
+
+----------------
+VERA_2M
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2M.yaml
+    :language: yaml
+
+
+.. _vera_2n:
+
+----------------
+VERA_2N
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2N.yaml
+    :language: yaml
+
+
+.. _vera_2o:
+
+----------------
+VERA_2O
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2O.yaml
+    :language: yaml
+
+
+.. _vera_2p:
+
+----------------
+VERA_2P
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2P.yaml
+    :language: yaml
+
+
+.. _vera_2q:
+
+----------------
+VERA_2Q
+----------------
+
+.. literalinclude:: ../../../examples/VERA_2Q.yaml
+    :language: yaml
+
+
+.. _vera_3a:
+
+----------------
+VERA_3A
+----------------
+
+.. literalinclude:: ../../../examples/VERA_3A.yaml
+    :language: yaml
+
+
+.. _vera_3b:
+
+----------------
+VERA_3B
+----------------
+
+.. literalinclude:: ../../../examples/VERA_3B.yaml
+    :language: yaml
+
+
+.. _vera_4:
+
+----------------
+VERA_4
+----------------
+
+.. literalinclude:: ../../../examples/VERA_4.yaml
+    :language: yaml
+
+
+.. _vera_5a_2d:
+
+----------------
+VERA_5A_2D
+----------------
+
+.. literalinclude:: ../../../examples/VERA_5A_2D.yaml
+    :language: yaml
+
+
+.. _vera_5b_2d:
+
+----------------
+VERA_5B_2D
+----------------
+
+.. literalinclude:: ../../../examples/VERA_5B_2D.yaml
+    :language: yaml
+
+
+.. _vera_5:
+
+----------------
+VERA_5
+----------------
+
+.. literalinclude:: ../../../examples/VERA_5.yaml
+    :language: yaml
+
+
+.. _vera_6:
+
+----------------
+VERA_6
+----------------
+
+.. literalinclude:: ../../../examples/VERA_6.yaml
+    :language: yaml
+
+
+.. _vera_7:
+
+----------------
+VERA_7
+----------------
+
+.. literalinclude:: ../../../examples/VERA_7.yaml
+    :language: yaml
+
+
+.. _vera_9:
+
+----------------
+VERA_9
+----------------
+
+.. literalinclude:: ../../../examples/VERA_9.yaml
+    :language: yaml

@@ -1,0 +1,403 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>7. 低功率物理实验 &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/usersguide/lppt.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="8. 多循环换料" href="multicycle.html" />
+    <link rel="prev" title="6. 燃耗跟踪" href="depletion.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">用户指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library.html">1. 多群常数库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials.html">2. 材料定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">3. 几何建模</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 堆芯状态参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">5. 计算选项设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html">6. 燃耗跟踪</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7. 低功率物理实验</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#crit-computation">7.1. 临界实验计算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#tc-computation">7.2. 温度系数计算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crw-computation">7.3. 控制棒组价值计算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crwc-computation">7.4. 控制棒组价值曲线计算</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="multicycle.html">8. 多循环换料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">9. 启动计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">10. 结果输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">11. 可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compare.html">12. 结果比较</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html">13. 常见错误排查</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">用户指南</a> &raquo;</li>
+        
+      <li><span class="section-number">7. </span>低功率物理实验</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/usersguide/lppt.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="usersguide-lppt">
+<span id="id1"></span><h1><span class="section-number">7. </span>低功率物理实验<a class="headerlink" href="#usersguide-lppt" title="Permalink to this heading">¶</a></h1>
+<p>低功率物理实验的模拟计算，即 <a class="reference internal" href="../io_formats/input.html#low-power-physic-tests"><span class="std std-ref">low_power_physic_tests 对象</span></a>，是用来定义低功率物理实验计算相关内容的，包含临界实验、
+温度系数、控制棒价值等计算。</p>
+<p>理论上通过CRANE的单个状态点计算功能，你就可以通过定义多个问题来模拟低功率物理实验，如温度系数可以通过定义两个温度不同、
+其余输入都完全一样的模型分别计算出有效增值因子再编辑出温度系数。</p>
+<p>但是这样一方面会有很多重复输入，另一方面由于需要重复进行几何处理及初始化、无法利用上一状态点的通量分布作为初始值等原因使得计算效率较低。
+因此CRANE为用户提供了一些序列计算功能，低功率物理实验就是其中之一。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>目前CRANE版本的序列计算功能仅支持低功率物理实验，未来会开放更多序列计算功能。</p>
+</div>
+<p>低功率物理实验计算分为以下四种：</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#crit-computation"><span class="std std-ref">临界实验计算</span></a>，通过 <a class="reference internal" href="../io_formats/input.html#lppt-criticals"><span class="std std-ref">criticals</span></a> 定义，这是一系列临界状态点计算，每个状态点的都应该是临界状态，
+即测量的keff等于1.0；</p></li>
+<li><p><a class="reference internal" href="#tc-computation"><span class="std std-ref">温度系数计算</span></a>，通过 <a class="reference internal" href="../io_formats/input.html#lppt-temperature-coefficients"><span class="std std-ref">temperature_coefficients</span></a> 定义，可计算 <code class="docutils literal notranslate"><span class="pre">ITC,</span> <span class="pre">MTC,</span> <span class="pre">FTC</span></code> 三种类型的温度系数；</p></li>
+<li><p><a class="reference internal" href="#crw-computation"><span class="std std-ref">控制棒组价值计算</span></a>，通过 <a class="reference internal" href="../io_formats/input.html#lppt-control-rod-worths"><span class="std std-ref">control_rod_worths</span></a> 定义，可计算不同状态下的各组控制棒价值。</p></li>
+<li><p><a class="reference internal" href="#crwc-computation"><span class="std std-ref">控制棒组价值曲线计算</span></a>，通过 <a class="reference internal" href="../io_formats/input.html#lppt-control-rod-worths-curve"><span class="std std-ref">control_rod_worths_curve</span></a> 定义，可计算不同状态下的各组控制棒价值曲线。</p></li>
+</ol>
+<section id="crit-computation">
+<span id="id2"></span><h2><span class="section-number">7.1. </span>临界实验计算<a class="headerlink" href="#crit-computation" title="Permalink to this heading">¶</a></h2>
+<p>临界实验计算通过 <a class="reference internal" href="../io_formats/input.html#lppt-criticals"><span class="std std-ref">criticals</span></a> 定义，实际上是一系列单点计算，只是每个状态点的都应该是临界状态，keff的测量值等于1.0。
+每个临界实验状态点通过 <a class="reference internal" href="../io_formats/input.html#critical"><span class="std std-ref">critical 对象</span></a> 定义。</p>
+<p>以下是 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题中的临界实验计算输入（对应为case1-case10）：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">low_power_physic_tests</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">criticals</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">Initial</span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1285</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">167</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">ARO</span><span class="w">    </span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1291</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">bank_A</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1170</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">97</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">bank_B</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1170</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">113</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">bank_C</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1170</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">119</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">bank_D</span><span class="w"> </span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1170</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">18</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">bank_SA</span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1170</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">69</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">bank_SB</span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1170</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">134</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">bank_SC</span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1170</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">71</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">bank_SD</span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1170</span><span class="p p-Indicator">,</span><span class="nt"> moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">565</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">71</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">]}</span>
+</pre></div>
+</div>
+<p>这里定义了10个临界状态点，每个状态点都输入了硼浓度、慢化剂温度、燃料温度和控制棒棒位。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里只要设置 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a> 中的 <a class="reference internal" href="../io_formats/input.html#inlet-temperature"><span class="std std-ref">inlet_temperature</span></a> 为565，则上面的慢化剂温度和燃料温度就可以缺省。</p>
+</div>
+</section>
+<section id="tc-computation">
+<span id="id3"></span><h2><span class="section-number">7.2. </span>温度系数计算<a class="headerlink" href="#tc-computation" title="Permalink to this heading">¶</a></h2>
+<p>温度系数计算通过 <a class="reference internal" href="../io_formats/input.html#lppt-temperature-coefficients"><span class="std std-ref">temperature_coefficients</span></a> 定义，每个温度系数的计算参数通过单个 <a class="reference internal" href="../io_formats/input.html#temperature-coefficient"><span class="std std-ref">temperature_coefficient 对象</span></a>
+定义，CRANE支持等温温度系数、慢化剂温度系数和燃料温度系数三种温度系数计算，对应的 <a class="reference internal" href="../io_formats/input.html#tc-type"><span class="std std-ref">type</span></a> 分别为 <code class="docutils literal notranslate"><span class="pre">ITC,</span> <span class="pre">MTC,</span> <span class="pre">FTC</span></code>。</p>
+<p>温度系数计算的温度变化范围由 <a class="reference internal" href="../io_formats/input.html#tc-delta-temperature"><span class="std std-ref">delta_temperature</span></a> 控制， <strong>默认为基准题温度上加减2K</strong>。</p>
+<p>以下是 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题的温度系数计算输入：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">low_power_physic_tests</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">temperature_coefficients</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="nv">ARO_ITC</span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1291</span><span class="p p-Indicator">,</span><span class="nt"> types</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">ITC</span><span class="p p-Indicator">],</span><span class="nt"> delta_temperature</span><span class="p">:</span><span class="w"> </span><span class="nv">5</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+</pre></div>
+</div>
+<p>这里只计算了ARO且硼浓度为1291ppm下的等温温度系数，是通过基准温度565K下加减5K来计算获得的。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该问题中的 <a class="reference internal" href="../io_formats/input.html#inlet-temperature"><span class="std std-ref">inlet_temperature</span></a> 必须为565K，这样加减5K正好是560K和570K。</p>
+</div>
+</section>
+<section id="crw-computation">
+<span id="id4"></span><h2><span class="section-number">7.3. </span>控制棒组价值计算<a class="headerlink" href="#crw-computation" title="Permalink to this heading">¶</a></h2>
+<p>控制棒组价值（积分价值）计算通过 <a class="reference internal" href="../io_formats/input.html#lppt-control-rod-worths"><span class="std std-ref">control_rod_worths</span></a> 定义，默认情况下，控制棒价值计算首先会在初始状态点（ARO）
+下搜索临界硼浓度，然后在该临界硼浓度下根据每个 <a class="reference internal" href="../io_formats/input.html#control-rod-worth"><span class="std std-ref">control_rod_worth 对象</span></a> （插棒状态）下计算获得keff并编辑出该棒组的棒价值。</p>
+<p>如以下是 <a class="reference internal" href="../examples/beavrs.html#beavrs-c2"><span class="std std-ref">BEAVRS_C2</span></a> 基准题的控制棒组价值计算输入：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">low_power_physic_tests</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">control_rod_worths</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">D</span><span class="p p-Indicator">,</span><span class="nt">  control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">C</span><span class="p p-Indicator">,</span><span class="nt">  control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">B</span><span class="p p-Indicator">,</span><span class="nt">  control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">A</span><span class="p p-Indicator">,</span><span class="nt">  control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SE</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SD</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SC</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SB</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SA</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+</pre></div>
+</div>
+<p>这里初始状态（在 <a class="reference internal" href="../io_formats/input.html#core-control-rod"><span class="std std-ref">control_rod</span></a> 中设置）是ARO的，首先计算该状态点下的临界硼浓度，
+再分别计算这里的 <code class="docutils literal notranslate"><span class="pre">9</span></code> 个插棒状态下的keff来最终获得棒价值，所以一共是计算 <code class="docutils literal notranslate"><span class="pre">10</span></code> 个状态点。</p>
+<p>另外，你也可以通过将 <a class="reference internal" href="../io_formats/input.html#crw-description"><span class="std std-ref">description</span></a> 设置成 <code class="docutils literal notranslate"><span class="pre">ARO</span></code> 来定义ARO状态点的参数，而不是采用默认情况。</p>
+<p>如以下是 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题的控制组价值计算输入：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">low_power_physic_tests</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">control_rod_worths</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">ARO</span><span class="p p-Indicator">,</span><span class="nt">     control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">],</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1170</span><span class="p p-Indicator">}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">Bank_A</span><span class="p p-Indicator">,</span><span class="nt">  control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">Bank_B</span><span class="p p-Indicator">,</span><span class="nt">  control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">Bank_C</span><span class="p p-Indicator">,</span><span class="nt">  control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">Bank_D</span><span class="p p-Indicator">,</span><span class="nt">  control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">Bank_SA</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">Bank_SB</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">Bank_SC</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">Bank_SD</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">230</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">]}</span>
+</pre></div>
+</div>
+<p>这里ARO状态点下的硼浓度直接输入为1170ppm，而不进行临界硼搜索，后续所有插棒状态点的硼浓度都会沿用该ARO状态点下的硼浓度。</p>
+<p>如果要进行更为任意的棒价值计算，如有些棒价值是其他棒插入情况下获得的，如 <a class="reference internal" href="../examples/beavrs.html#beavrs-c1"><span class="std std-ref">BEAVRS_C1</span></a> 基准题中的控制棒组价值计算：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">low_power_physic_tests</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">control_rod_worths</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">D</span><span class="p p-Indicator">,</span><span class="nt">             control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">C_Din</span><span class="p p-Indicator">,</span><span class="nt">         control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">C_Din</span><span class="p p-Indicator">,</span><span class="nt">         control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">B_DCin</span><span class="p p-Indicator">,</span><span class="nt">        control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">B_DCin</span><span class="p p-Indicator">,</span><span class="nt">        control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">A_DCBin</span><span class="p p-Indicator">,</span><span class="nt">       control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">A_DCBin</span><span class="p p-Indicator">,</span><span class="nt">       control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SE_DCBAin</span><span class="p p-Indicator">,</span><span class="nt">     control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SE_DCBAin</span><span class="p p-Indicator">,</span><span class="nt">     control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SD_DCBASEin</span><span class="p p-Indicator">,</span><span class="nt">   control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SD_DCBASEin</span><span class="p p-Indicator">,</span><span class="nt">   control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SC_DCBASESDin</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SC_DCBASESDin</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">]}</span>
+</pre></div>
+</div>
+<p>在控制棒价值计算中如果发现有同样的两个 <a class="reference internal" href="../io_formats/input.html#crw-description"><span class="std std-ref">description</span></a> ，CRANE会认为这两个状态点依次为未插棒与插棒状态，
+而不是以初始ARO状态点作为未插棒状态，因此这里就是计算的是C棒组在D棒组全插下的价值，B棒组在C、D棒组全插下的价值，依次类推。</p>
+</section>
+<section id="crwc-computation">
+<span id="id5"></span><h2><span class="section-number">7.4. </span>控制棒组价值曲线计算<a class="headerlink" href="#crwc-computation" title="Permalink to this heading">¶</a></h2>
+<p>控制棒组价值曲线（微分价值）计算通过 <a class="reference internal" href="../io_formats/input.html#lppt-control-rod-worths-curve"><span class="std std-ref">control_rod_worths_curve</span></a> 定义，
+控制棒价值曲线计算通过用户输入的步长等信息自动构建一些列状态点来模拟插棒过程，然后在不同棒位下计算获得keff并编辑出该棒组的棒价值曲线。</p>
+<p>如以下是 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题的对D棒组的价值曲线计算输入：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">low_power_physic_tests</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">control_rod_worths_curve</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">bank</span><span class="p">:</span><span class="w"> </span><span class="nv">D</span><span class="p p-Indicator">,</span><span class="nt"> step_size</span><span class="p">:</span><span class="w"> </span><span class="nv">23</span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1230</span><span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+<p>这里步长 <a class="reference internal" href="../io_formats/input.html#crwc-step-size"><span class="std std-ref">step_size</span></a> 设置为 23，硼浓度 <a class="reference internal" href="../io_formats/input.html#crwc-boron-concentration"><span class="std std-ref">boron_concentration</span></a> 设置为 1230 ppm。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>若这里不输入硼浓度，则会在棒全提时进行临界硼搜索，后续插棒状态点采用该硼浓度进行计算。</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="multicycle.html" class="btn btn-neutral float-right" title="8. 多循环换料" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="depletion.html" class="btn btn-neutral float-left" title="6. 燃耗跟踪" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

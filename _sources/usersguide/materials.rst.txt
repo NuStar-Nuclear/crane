@@ -1,0 +1,121 @@
+.. _usersguide_materials:
+
+
+=========
+材料定义
+=========
+
+在CRANE中，材料会根据其宏观截面是否给定分为以下两种类型:
+
+#. 宏观截面给定的材料。该类材料通过 :ref:`cross_section` 定义，直接输入材料的宏观截面，
+   这类材料只是为了满足部分宏观截面给定的基准题的需要，如 :ref:`c5g7_3d` 国际基准题；
+#. 宏观截面未给定的材料。该类材料通过 :ref:`material` 定义，也称微观材料，
+   这是绝大多数情况下我们需要定义的材料类型。微观材料需要输入核素的核子密度或者材料成分及其占比来定义。
+
+CRANE通过一个 :ref:`materials` 来包含所有的材料。
+
+.. note:: 同一个问题中不能同时使用两种类型的材料，因此 :ref:`materials` 中要么只包含 :ref:`material`，要么只包含
+          :ref:`cross_section` 。
+
+
+.. _macro_xs:
+
+-----------------
+宏观截面给定材料
+-----------------
+
+宏观截面给定的材料通过 :ref:`cross_section` 定义，用户只需直接输入该材料的多群宏观截面即可，包含 :ref:`输运截面<sigma_tr>`、
+:ref:`裂变截面<sigma_f>`、:ref:`裂变中子产生截面<nu_sigma_f>`、:ref:`裂变能量产生截面<kappa_sigma_f>`、
+:ref:`裂变谱<chi>` 以及 :ref:`散射矩阵<sigma_s>`。
+
+如 :ref:`c5g7_3d` 国际基准题中的UO2和控制棒材料：
+
+.. literalinclude:: ../_yamls/C5G7_UO2_CRD.yaml
+    :language: yaml
+
+
+.. _micro_xs:
+
+----------
+微观材料
+----------
+
+微观材料是我们计算真实问题所需要定义的材料类型，为了减少用户输入，CRANE对大部分常用材料已经预先配置了一个
+:ref:`io_file_format_material_db`，其中的化合物和混合物是可以直接做为预先定义好的材料使用。
+
+若用户所需要定义的材料不在 :ref:`io_file_format_material_db` 中，可通过以下三种方式在 :ref:`io_file_formats_input`
+中定义材料：
+
+
+.. _by_number_densities:
+
+通过核子密度
+-------------
+
+这种方式需要输入核素的名称和对应的核子密度，即 :ref:`material_elements` 和 :ref:`material_number_densities`，
+其他属性除 :ref:`material_name` 外不用输入。
+
+如 :ref:`vera_2a` 基准题中的富集度3.1%的UO2材料定义如下：
+
+.. literalinclude:: ../_yamls/fuel_31.yaml
+    :language: yaml
+
+
+.. _by_weight_percents:
+
+通过成分重量占比
+-----------------
+
+这种方式需要输入成分（这里的成分必须是材料配置文件中的化合物或者混合物）名称、对应的重量占比以及材料密度，
+即 :ref:`material_elements`、:ref:`material_weight_percents` 和 :ref:`material_density`，
+其他属性除 :ref:`material_name` 外不输入。
+
+如与上述材料同样密度（10.257g/cm³）下富集度为3.1%的UO2材料定义如下：
+
+.. literalinclude:: ../_yamls/fuel_31_wp.yaml
+    :language: yaml
+
+这里 ``UO2_3.1`` 的意思是3.1%富集度的UO2材料。此时CRANE会根据以下公式来计算铀同位素的重量百分比：
+
+.. math::
+   \text{U234} = 0.0126 * (\text{enrichment} - 0.72) + 0.005 \\
+   \text{U235} = \text{enrichment} \\
+   \text{U236} = 0.01 * (0.0201 * \text{enrichment} + 0.0459) \\
+   \text{U238} = 100 - \text{U234} - \text{U235} - \text{U236} 
+
+.. note:: 目前CRANE只支持 ``UO2`` 和 ``金属U`` 可以直接以下划线加浮点数的方式来定义其富集度。
+
+以上是只有UO2一种成分，如果是含钆燃料，如基体UO2富集度1.8%，GD2O3重量占比为5%，
+材料密度为10.111g/cm³的材料输入如下：
+
+.. literalinclude:: ../_yamls/fuel_gd.yaml
+    :language: yaml
+
+.. note:: 材料成分的名称必须是 :ref:`io_file_format_material_db` 中已经定义的化合物或者混合物，如这里的
+          ``GD2O3``。
+
+
+.. _by_volume_percents:
+
+通过成分体积占比
+-----------------
+
+通过成分体积占比的方式就是把多种已有材料按一定的体积占比进行打混。这种需求比较常见于在某些结构材料几何
+构造特别复杂情况下，将该材料与慢化剂材料进行打混处理。
+
+这种方式需要输入材料名称以及对应的体积占比，即 :ref:`material_elements` 和 :ref:`material_volume_percents`，
+其他属性除 :ref:`material_name` 外不输入。
+
+比如这里定义了两种材料，一种是SS304不锈钢，另外一种是SS304和慢化剂以各一半的体积进行打混的材料：
+
+.. literalinclude:: ../_yamls/ss304_mod.yaml
+    :language: yaml
+
+这里的SS304也可以换做是材料配置文件中混合物（因为混合物有密度输入，才能计算核子密度），而这里的 ``MOD``
+特指慢化剂材料。
+
+.. note:: ``MOD`` 是慢化剂材料的保留字符串，来命令CRANE会根据系统压力、可溶硼浓度，以及当地的温度实时计算慢化剂
+          材料的核子密度。如果用户自己定义了 ``MOD`` 材料，程序则会将用户的定义的材料覆盖实时计算的 ``MOD``
+          材料。
+
+更多材料定义的例子可参阅 :ref:`examples`。

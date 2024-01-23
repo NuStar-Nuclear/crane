@@ -1,0 +1,33 @@
+===================
+What's New in 1.1.0
+===================
+
+------------
+New Features
+------------
+
+#. 增加几何模型可视化、功率分布、通量分布等结果可视化功能；
+#. 增加支持中子学各个模块的多GPU计算功能；
+#. 增加控制棒移动后的堆芯几何重构功能；
+#. 支持部分控制棒插入层的轴向再均匀化功能；
+#. 增加控制棒价值序列计算功能； 
+#. 多群常数库更新至RLIB-1.0.6；
+
+---------
+Bug Fixes
+---------
+
+#. 889d3f0: linear source bug in moc1d_solver
+#. 57fb3b2: linear source bug in moc2d_solver
+#. 3ffc931: symmetry boundary is not large enough in 1 assembly core case
+#. 3e9d8fb: neighbor cells on assembly boundary are excluded from nearest cells in assembly having water gap
+#. 56df971: rate do not need to be positive in prolong_radial_net_current
+#. 55975d0: json parse error
+#. 06397dc: current on boundary not updated by kernel update_cell_radial_net_current
+#. 39c5d4b: cannot find the moderator material
+#. ca69dff: 'duplicated' heights
+#. 65e83f3: temporary fix the same planes but with different boundary type bug
+#. dc296b2: incorrect transverse leakage computation of neighbor planes
+#. cd096ce: cell radial transverse leakage should be calculated before computing radial transverse sources
+#. 3e6e184: forget to initialize top_in_angular_flux and bottom_in_angular_flux
+#. 38c687a: dimension error in np.divide

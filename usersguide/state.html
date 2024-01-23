@@ -1,0 +1,315 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>4. 堆芯状态参数 &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/usersguide/state.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. 计算选项设置" href="settings.html" />
+    <link rel="prev" title="3. 几何建模" href="geometry.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">用户指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library.html">1. 多群常数库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials.html">2. 材料定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">3. 几何建模</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 堆芯状态参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">5. 计算选项设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html">6. 燃耗跟踪</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lppt.html">7. 低功率物理实验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicycle.html">8. 多循环换料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">9. 启动计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">10. 结果输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">11. 可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compare.html">12. 结果比较</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html">13. 常见错误排查</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">用户指南</a> &raquo;</li>
+        
+      <li><span class="section-number">4. </span>堆芯状态参数</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/usersguide/state.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="usersguide-state">
+<span id="id1"></span><h1><span class="section-number">4. </span>堆芯状态参数<a class="headerlink" href="#usersguide-state" title="Permalink to this heading">¶</a></h1>
+<p>顾名思义，堆芯状态参数，即 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a>，是定义堆芯状态的一些物理参数，如系统压力、堆芯总功率、堆芯入口温度等等。</p>
+<p>根据计算问题需求可分为以下三种情况来定义堆芯状态参数：</p>
+<ol class="arabic simple">
+<li><p>宏观截面给定的基准题，如 <a class="reference internal" href="../examples/c5g7.html#c5g7-3d"><span class="std std-ref">C5G7_3D</span></a> 基准题等，该类问题直接给定了材料的宏观截面，也不会有热工水力反馈，
+因此不需要定义 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a>。</p></li>
+<li><p>给定材料温度或堆芯冷态问题，如 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题，该类问题可通过 <a class="reference internal" href="../io_formats/input.html#moderator-temperature"><span class="std std-ref">moderator_temperature</span></a> 和
+<a class="reference internal" href="../io_formats/input.html#fuel-temperature"><span class="std std-ref">fuel_temperature</span></a> 分别设置慢化剂与燃料温度，或只定义 <a class="reference internal" href="../io_formats/input.html#inlet-temperature"><span class="std std-ref">inlet_temperature</span></a>，不需要进行热工水力反馈计算，
+与热工水力反馈相关的状态参数如 <a class="reference internal" href="../io_formats/input.html#total-power"><span class="std std-ref">total_power</span></a>、<a class="reference internal" href="../io_formats/input.html#inlet-temperature"><span class="std std-ref">inlet_temperature</span></a>、<a class="reference internal" href="../io_formats/input.html#inlet-mass-flow-rate"><span class="std std-ref">inlet_mass_flow_rate</span></a>
+等等都可缺省。</p></li>
+<li><p>堆芯热态问题，如 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题，该类问题需要进行热工水力反馈计算，因此与热工水力反馈相关的所有参数都不可缺省。</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当进行序列计算时，如燃耗计算，则 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a> 中定义的参数会作为堆芯初始状态点（燃耗等于0）的参数。</p>
+</div>
+<p>以下为 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题的 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a> 输入：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">state</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">system_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15.516</span>
+<span class="w">  </span><span class="nt">inlet_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">565</span>
+<span class="w">  </span><span class="nt">boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1285</span>
+</pre></div>
+</div>
+<p>该问题为堆芯冷态问题，只定义了系统压力、入口温度和硼浓度。</p>
+<p>以下为 <a class="reference internal" href="../examples/vera_dep.html#vera-dep-2c"><span class="std std-ref">VERA_DEP_2C</span></a> 基准题的 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a> 输入：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">state</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">system_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15.516</span>
+<span class="w">  </span><span class="nt">power_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40.0</span>
+<span class="w">  </span><span class="nt">moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600</span>
+<span class="w">  </span><span class="nt">fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">900</span>
+<span class="w">  </span><span class="nt">boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1300</span>
+</pre></div>
+</div>
+<p>该问题为给定温度的单组件燃耗问题，因此定义了慢化剂和燃料温度，以及燃耗计算需要的功率密度。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当进行燃耗计算时，<a class="reference internal" href="../io_formats/input.html#total-power"><span class="std std-ref">total_power</span></a> 和 <a class="reference internal" href="../io_formats/input.html#power-density"><span class="std std-ref">power_density</span></a> 必须至少定义一个。</p>
+</div>
+<p>以下为 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题的 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a> 输入：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">state</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">system_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15.516</span>
+<span class="w">  </span><span class="nt">total_power</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3411</span>
+<span class="w">  </span><span class="nt">inlet_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">565.0</span>
+<span class="w">  </span><span class="nt">boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1285</span>
+<span class="w">  </span><span class="nt">inlet_mass_flow_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16593.92</span>
+</pre></div>
+</div>
+<p>该问题为堆芯热态问题，因此该处定义了热工水力反馈计算不可缺省的堆芯总功率、入口温度、入口流量等。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当开启临界硼搜索时，<a class="reference internal" href="../io_formats/input.html#boron-concentration"><span class="std std-ref">boron_concentration</span></a> 只会作为初始硼浓度，最终的硼浓度是搜索计算得到的。</p>
+</div>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="settings.html" class="btn btn-neutral float-right" title="5. 计算选项设置" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="geometry.html" class="btn btn-neutral float-left" title="3. 几何建模" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,449 @@
+.. _io_file_formats_output_excel:
+
+
+===================
+Excel 结果文件
+===================
+
+对于计算结果的输出，除了保存了所有数据的 :ref:`io_file_formats_output_hdf5` 外，为了能够方便用户在Windows上编辑查看，
+CRANE还输出了一个Excel文件，里面保存了用户相对比较关心的结果数据。
+
+.. note:: Excel结果文件名默认为堆芯名称 :ref:`core_name` + ``.xlsx``，如 :ref:`vera_7` 问题的Excel结果文件为
+          ``VERA_7.xlsx``。
+
+除了汇总输出重要结果数据外，该文件也支持结果比较功能，用户可以修改文件中结果数据，如功率分布、棒价值等，
+然后就可以该文件作为参考解进行比较，具体可以参阅 :ref:`compare`。
+
+该 :ref:`io_file_formats_output_excel` 至多包含以下十个sheet:
+
+    #. :ref:`summary`
+    #. :ref:`assembly_power`
+    #. :ref:`axial_power`
+    #. :ref:`detector_reaction`
+    #. :ref:`criticals`
+    #. :ref:`temperature_coefficients`
+    #. :ref:`control_rod_worths`
+    #. :ref:`control_rod_worths_curve`
+    #. :ref:`lppt_summary`
+    #. :ref:`timing_statistics`
+
+
+.. _summary:
+
+--------
+summary
+--------
+
+summary表中保存各个状态点的计算结果汇总信息，表中每一行代表一个状态点，从左至右每一列分别为：
+
+    :state_index:
+        整数，状态点索引编号。
+
+    :burnup (MWd/tU):
+        浮点数，燃耗深度，单位 MWd/tU。
+
+    :effective_full_power_days (EFPD):
+        浮点数，等效满功率天，单位 EFPD。
+
+    :time (day):
+        浮点数，燃耗时间，单位 day。
+
+    .. _excel_summary_boron_concentration:
+
+    :boron_concentration (ppm):
+        浮点数，可溶硼浓度，单位 ppm。
+
+    :differential_boron_worth (pcm/ppm):
+        浮点数，可溶硼的硼微分价值，单位 pcm/ppm。
+
+    :relative_powers (%):
+        浮点数，相对功率水平，单位 %。
+
+    :relative_inlet_flows (%):
+        浮点数，相对流量水平，单位 %。
+        
+    :keff:
+        浮点数，有效增值系数。
+
+    :axial_offset (%):
+        浮点数，轴向功率偏移，单位 %。
+
+    :Fdh:
+        浮点数，积分（两维）棒功率峰因子。
+
+    :Fq:
+        浮点数，三维棒功率峰因子。
+
+        .. note:: 该三维棒功率的轴向分层是根据材料层和用户输入的 :ref:`plane_max_thickness` 决定的，不是固定的分层。
+
+    :inlet_temperature (K):
+        浮点数，入口温度，单位 Kelvin。
+
+    :average_outlet_temperature (K):
+        浮点数，平均出口温度，单位 Kelvin。
+
+    :maximal_outlet_temperature (K):
+        浮点数，最大出口温度，单位 Kelvin。
+
+    :average_effective_temperature (K):
+        浮点数，平均燃料有效温度，单位 Kelvin。
+
+    :maximal_effective_temperature (K):
+        浮点数，最大燃料有效温度，单位 Kelvin。
+
+    :average_number_densities I-135 (/barn/cm):
+        浮点数，I-135的平均核子密度，单位 /barn/cm。
+
+    :average_number_densities Xe-135 (/barn/cm):
+        浮点数，Xe-135的平均核子密度，单位 /barn/cm。
+
+    :average_number_densities Pm-149 (/barn/cm):
+        浮点数，Pm-149的平均核子密度，单位 /barn/cm。
+
+    :average_number_densities Sm-149 (/barn/cm):
+        浮点数，Sm-149的平均核子密度，单位 /barn/cm。
+
+    :average_number_densities Gd-155 (/barn/cm):
+        浮点数，Gd-155的平均核子密度，单位 /barn/cm。
+
+    :average_number_densities Gd-157 (/barn/cm):
+        浮点数，Gd-157的平均核子密度，单位 /barn/cm。
+
+    :average_number_densities U-235 (/barn/cm):
+        浮点数，U-235的平均核子密度，单位 /barn/cm。
+
+    :average_number_densities U-238 (/barn/cm):
+        浮点数，U-238的平均核子密度，单位 /barn/cm。
+
+    :average_number_densities Pu-239 (/barn/cm):
+        浮点数，Pu-239的平均核子密度，单位 /barn/cm。
+
+    :output_type:
+        字符串，输出类型，即 :ref:`output_type`，[MINIMAL, MEDIUM, MAXIMUM]三选一。
+
+    :squence_type:
+        字符串，计算序列类型，[CRIT, ITC, IRW, IRWC, DEP]五选一。
+
+    :which_rod_bank:
+        字符串，计算序列描述，即临界物理实验计算的 :ref:`critical_description`、温度系数计算的
+        :ref:`tc_description` 或棒价值计算的 :ref:`crw_description`。
+
+    :computing_time (second):
+        浮点数，计算耗时，单位 second。
+
+    :num_outer_iterations:
+        整数，外迭代次数。
+    
+    :num_core_rebuildings:
+        整数，0或1，堆芯几何重构次数。
+        
+        .. note:: 只有当控制棒棒位发生变化时才需要重构堆芯几何。
+
+    :num_dancoff_computations:
+        整数，Dancoff因子计算次数。
+
+        .. note:: 只有慢化剂密度发生显著变化或者控制棒棒位显著变化时需要重新计算Dancoff因子。
+    
+    :num_resonance_computations:
+        整数，共振计算次数。
+
+    :num_depletion_computations:
+        整数，0或1，燃耗计算次数。
+
+    :num_macro_xs_updatings:
+        整数，宏观截面更新次数。
+
+    :num_thermal_feedbacks:
+        整数，热工水力反馈计算次数。
+
+    :num_critical_boron_searchs:
+        整数，临界硼浓度搜索次数。
+
+    :num_xe_sm_transients:
+        整数，Xe、Sm瞬态计算次数。
+
+    :bank_<id>_withdrawn_steps:
+        整数，控制棒组<id>的棒位。
+
+    
+.. _assembly_power:
+
+---------------
+assembly_power
+---------------
+
+assembly_power表中保存各个状态点的全堆组件积分功率分布，表中每n行（n为组件行数）代表一个状态点，
+从左至右每列分别为：
+
+    .. note:: 方形组件堆型功率分布是根据实际组件排布输出的（所以这里n为组件行数），而六角形组件堆型，
+              由于Excel不方便输出六角形的排布，因此把所有组件的功率排成一行（n为1）。
+
+    :row_index:
+
+        字符串，组件行编号，即 :ref:`assembly_row_index`。
+
+    :state_index:
+        整数，状态点索引编号。
+
+    :burnup (MWd/tU):
+        浮点数，燃耗深度，单位 MWd/tU。
+
+    :effective_full_power_days (EFPD):
+        浮点数，等效满功率天，单位 EFPD。
+
+    :relative_powers (%):
+        浮点数，相对功率水平，单位 %。
+
+    :control_rod_position:
+        字符串，控制棒棒位信息。
+
+    :[01--n]:
+        浮点数，积分组件功率分布。
+
+        .. note:: 方形组件堆型中用组件列编号，六角形组件堆型中用组件索引编号命名这里的每列。
+
+
+.. _axial_power:
+
+---------------
+axial_power
+---------------
+
+axial_power表中保存堆芯轴向（层积分）功率分布，表中每一行代表一个状态点，从左至右每列分别为：
+
+    :state_index:
+        整数，状态点索引编号。
+
+    :burnup (MWd/tU):
+        浮点数，燃耗深度，单位 MWd/tU。
+
+    :Plane #:
+        第2行：浮点数，每层的厚度，单位 cm；
+        第3行：浮点数，每层的中心距离堆芯底部（包含反射层）的距离，也就是高度，单位 cm；
+        第4行到最后：浮点数，每层的轴向功率。
+
+
+.. _detector_reaction:
+
+------------------
+detector_reaction
+------------------
+
+.. note:: 该sheet只有输入了探测器相关数据后才会保存。
+
+detector_reaction表中保存各个状态点的组件探测器活度分布，表中每n行（n为组件行数）代表一个状态点，
+从左至右每列分别为：
+
+    :row_index:
+        字符串，组件行编号，即 :ref:`assembly_row_index`。
+
+    :state_index:
+        整数，状态点索引编号。
+
+    :burnup (MWd/tU):
+        浮点数，燃耗深度，单位 MWd/tU。
+
+    :effective_full_power_days (EFPD):
+        浮点数，等效满功率天，单位 EFPD。
+
+    :relative_powers (%):
+        浮点数，相对功率水平，单位 %。
+
+    :control_rod_position:
+        字符串，控制棒棒位信息。
+
+    :[01--n]:
+        浮点数，组件探测器活度。
+
+        .. note:: 方形组件堆型中用组件列编号，六角形组件堆型中用组件索引编号命名这里的每列。
+
+
+.. _criticals:
+
+---------------
+criticals
+---------------
+
+.. note:: 该sheet只有开启了 :ref:`crit_computation` 后才会保存。
+
+criticals表中保存 :ref:`crit_computation` 的结果，表中每一行代表一个状态点，从左至右每列分别为：
+
+    :state_index:
+        整数，状态点索引编号。
+
+    :bank_<id>_withdrawn_steps:
+        整数，控制棒组<id>的棒位。
+
+    :which_rod_bank:
+        字符串，临界实验计算序列描述，即 :ref:`critical_description`。
+
+    :boron_concentration (ppm):
+        浮点数，可溶硼浓度，单位 ppm。
+
+    :keff:
+        浮点数，有效增值系数。
+
+    :deviation (pcm):
+        浮点数，有效增值系数与临界值1.0的偏差，单位 pcm。
+
+
+.. _temperature_coefficients:
+
+-------------------------
+temperature_coefficients
+-------------------------
+
+.. note:: 该sheet只有开启了 :ref:`tc_computation` 后才会保存。
+
+temperature_coefficients表中保存 :ref:`tc_computation` 的结果，表中每一行代表一个温度系数结果，
+从左至右每列分别为：
+
+    :index:
+        整数，索引编号。
+
+    :type:
+        浮点数，温度系数类型，即 :ref:`tc_type`, [ITC, MTC, FTC]三选一。
+
+    :description:
+        字符串，温度系数计算序列描述，即 :ref:`tc_description`。
+
+    :moderator_temperature_0 (K):
+        浮点数，第一个状态点的慢化剂温度，单位 Kelvin。
+
+    :moderator_temperature_1 (K):
+        浮点数，第二个状态点的慢化剂温度，单位 Kelvin。
+
+    :fuel_temperature_0 (K):
+        浮点数，第一个状态点的燃料温度，单位 Kelvin。
+
+    :fuel_temperature_1 (K):
+        浮点数，第二个状态点的燃料温度，单位 Kelvin。
+
+    :keff_0:
+        浮点数，第一个状态点的有效增值系数。
+
+    :keff_1:
+        浮点数，第二个状态点的有效增值系数。
+
+    :temperature_coefficient (pcm/C°):
+        浮点数，温度系数，单位 pcm/C°。
+
+
+.. _control_rod_worths:
+
+-------------------------
+control_rod_worths
+-------------------------
+
+.. note:: 该sheet只有开启了 :ref:`crw_computation` 后才会保存。
+
+control_rod_worths表中保存 :ref:`crw_computation` 的结果，表中每一行代表一组控制棒价值计算结果，
+从左至右每列分别为：
+
+    :index:
+        整数，索引编号。
+
+    :description:
+        字符串，控制棒计算序列描述，即 :ref:`crw_description`。
+
+    :keff:
+        浮点数，有效增值系数。
+
+    :CBC (ppm):
+        浮点数，临界硼浓度，单位 ppm。
+
+    :IRW (pcm):
+        浮点数，控制棒价值，单位 pcm。
+
+
+.. _control_rod_worths_curve:
+
+-------------------------
+control_rod_worths_curve
+-------------------------
+
+.. note:: 该sheet只有开启了 :ref:`crwc_computation` 后才会保存。
+
+control_rod_worths_curve表中保存 :ref:`crwc_computation` 的结果，表中每一行代表一组控制棒某个棒位的结果，
+从左至右每列分别为：
+
+    :index:
+        整数，索引编号。
+
+    :rod_bank:
+        字符串，该控制棒组名称。
+
+    :rod_withdrawn_steps:
+        整数，该控制棒组棒位。
+
+    :rod_axial_height (cm):
+        浮点数，该控制棒组当前棒位下与全插时的高度差，全插时为0，单位 cm。
+
+    :keff:
+        浮点数，有效增值系数。
+
+    :CBC (ppm):
+        浮点数，临界硼浓度，若不进行临界硼搜索则为空，单位 ppm。
+
+    :IRW (pcm):
+        浮点数，当前棒位下的控制棒积分价值，单位 pcm。
+
+    :DRW (pcm):
+        浮点数，当前棒位下的控制棒微分价值，单位 pcm。
+
+    :DRW (pcm/cm):
+        浮点数，当前棒位下的每单位cm控制棒的微分价值，单位 pcm/cm。
+
+
+.. _lppt_summary:
+
+-------------
+lppt_summary
+-------------
+
+.. note:: 该sheet只有开启了 :ref:`usersguide_lppt` 中至少一项计算后才会保存。
+
+lppt_summary表中保存 :ref:`low_power_physic_tests` 序列计算结果汇总，表中每一行代表一个结果，
+从左至右每列分别为：
+
+    :index:
+        整数，索引编号。
+
+    :type:
+        字符串，计算序列类型，[CB, ITC, MTC, FTC, IRW]五选一。
+
+    :description:
+        字符串，计算序列描述，即CRIT :ref:`critical_description`，TC :ref:`tc_description` 和IRW
+        :ref:`crw_description`。
+
+    :result:
+        浮点数，序列计算结果，CB对应临界硼浓度，ITC、MTC和FTC对应温度系数，IRW对应控制棒价值。
+
+    :unit:
+        字符串，计算结果的单位。
+
+    :IRW (pcm):
+        浮点数，控制棒价值，单位 pcm。
+
+
+.. _timing_statistics:
+
+-----------------
+timing_statistics
+-----------------
+
+timing_statistics表中保存各部分（模块）计算耗时的统计信息，表中每一行代表每一部分的计算时间信息，
+从左至右每列分别为：
+
+    :index:
+        整数，索引编号。
+
+    :time_splits_description:
+        字符串，对该部分（或模块）计算时间的描述。
+
+    :wall_time_consumed (seconds):
+        浮点数，该部分计算所消耗时间，单位 second。
+
+    :percents (%):
+        浮点数，该部分计算所消耗时间所占百分比，单位 %。
+

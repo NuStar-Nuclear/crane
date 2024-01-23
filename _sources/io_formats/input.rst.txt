@@ -1,0 +1,1631 @@
+.. _io_file_formats_input:
+
+
+==============
+用户输入文件
+==============
+
+.. _copy_from:
+
+------------------
+copy_from 字符串
+------------------
+
+copy_from，字符串，拷贝输入的文件名称。CRANE会将copy_from定义的文件中的内容全部拷贝至当前文件下，用户可在此基础上追加或者替换输入内容。
+主要用于多循环计算时将前序循环的输入内容拷贝过来，以减少重复输入。
+
+.. note:: :ref:`copy_from` 定义的文件如果不在程序执行目录下，则必须添加该文件的绝对路径。
+
+
+.. _materials:
+
+----------------
+materials 列表
+----------------
+
+materials是一个 :ref:`cross_section` 或者 :ref:`material` 的列表。
+
+.. note:: 当计算宏观截面给定问题时，如C5G7基准题问题时materials是一个 :ref:`cross_section` 列表，
+          其余情况下materials应该是一个 :ref:`material` 列表。
+
+.. _cross_section:
+
+--------------------
+cross_section 对象
+--------------------
+
+cross_section对象用来定义宏观截面给定的材料, 该对象包含以下属性:
+
+    :name:
+        字符串，材料名称，用来索引该材料，必须是唯一的，不同材料的名称不可重复。
+
+        *不可缺省*
+    
+    .. _sigma_tr:
+    
+    :sigma_tr:
+        浮点数列表，多群输运截面，列表长度为能群数，单位/cm。
+
+        *不可缺省*
+
+    .. _sigma_f:
+
+    :sigma_f:
+        浮点数列表，多群裂变截面，列表长度为能群数，单位/cm。
+
+        *不可缺省*
+
+    .. _nu_sigma_f:
+        
+    :nu_sigma_f:
+        浮点数列表，多群裂变中子产生截面，列表长度为能群数，单位/cm。
+
+        *不可缺省*
+
+    .. _kappa_sigma_f:
+    
+    :kappa_sigma_f:
+        浮点数列表，多群裂变能量产生截面，列表长度为能群数，单位/cm。
+
+        *不可缺省*
+
+    .. _sigma_s:
+
+    :sigma_s:
+        浮点数列表，多群散射矩阵，列表长度为能群数的平方，顺序为1->1,1->2,1->3....1->n,2->1,2->2,2->3...2->n，单位/cm。
+
+        *不可缺省*
+
+    .. _chi:
+
+    :chi:
+        浮点数列表，多群裂变谱，列表长度为能群数。
+
+        *不可缺省*
+
+
+.. _material:
+
+---------------
+material 对象
+---------------
+
+material对象用来定义宏观截面未给定的材料（微观材料），该对象包含以下属性：
+
+    .. _material_name:
+
+    :name:
+        字符串，材料名称，用来索引该材料，必须是唯一的，不同材料的名称不可重复。
+
+        *不可缺省*
+    
+    .. _material_elements:
+
+    :elements:
+        字符串列表，组成材料的核素或者成分名称，采用核子密度输入时为核素名称，其余情况下为成分名称。
+         
+        *不可缺省*
+    
+    .. _material_number_densities:
+
+    :number_densities:
+        浮点数列表，核素的核子密度，单位/barn-cm。
+
+        *采用核子密度输入时不可缺省*                            |
+
+    .. _material_weight_percents:
+
+    :weight_percents:
+        浮点数列表，组成材料各个成分的重量占比，取值范围为（0，1.0）。
+
+        *采用成分重量占比输入时不可缺省*
+
+    .. _material_density:
+        
+    :density:
+        浮点数，材料的密度，单位g/cm³。
+        
+        *采用成分重量占比输入时不可缺省*
+ 
+    .. _material_volume_percents:
+
+    :volume_percents:
+        浮点数列表，组成材料各个成分的体积占比，取值范围为（0，1.0）。
+        
+        *采用成分体积占比输入时不可缺省*
+
+.. _geometries:
+
+------------------
+geometries 对象
+------------------
+
+geometries对象包含了所有几何相关的数据，该对象包含以下属性：
+
+    .. _geometries_structures:
+
+    :structures:
+        :ref:`structure` 列表，用来定义两维层面上的所有几何机构体（除围板外）。
+
+        *不可缺省*
+
+    .. _geometries_baffles:
+
+    :baffles:
+        :ref:`baffle` 列表，用来两维层面上所有的围板结构。
+
+        *当需要定义围板时不可缺省*
+
+    .. _geometries_lattices:
+
+    :lattices:
+        :ref:`lattice` 列表，用来定义两维层面上组件内部几何结构体（除格架外）的排布。
+
+        *不可缺省*
+
+    .. _geometries_grids:
+
+    :grids:
+        :ref:`grid` 列表，用来定义两维层面上组件内部格架的排布。
+
+        *当需要定义格架时不可缺省*
+
+    .. _geometries_assemblies:
+
+    :assemblies:
+        :ref:`assembly` 列表，用来定义三维组件的轴向分层信息。
+
+        *不可缺省*
+
+    .. _geometries_inserted_rods:
+
+    :inserted_rods:
+        :ref:`inserted_rod` 列表，用来定义可插入式的三维棒状结构轴向分层信息，如控制棒等。
+
+        *当需要定义中子测量管、可插入式可燃毒物棒或控制棒时不可缺省*
+
+    .. _geometries_instrument_bundle:
+
+    :instrument_bundle:
+        :ref:`regular_bundle` 列表，用来定义中子测量管在组件内部的排布。
+
+        *当需要定义中子测量管时不可缺省*
+
+    .. _geometries_burnable_absorber_bundle:
+
+    :burnable_absorber_bundle:
+        :ref:`regular_bundle` 列表，用来定义可燃毒物棒在组件内部的排布。
+
+        *当需要定义可插入式可燃毒物棒时不可缺省*
+
+    .. _geometries_control_rod_bundle:
+
+    :control_rod_bundle:
+        :ref:`cr_bundle` 列表，用来定义控制棒束的排布。
+
+        .. note:: 和中子测量管和可插入式毒物棒必须规则地插入组件内部不同，控制棒可插入到堆芯任意位置，可以是组件内部，也可以是组件之间。
+
+        *当需要定义控制棒时不可缺省*
+
+    .. _geometries_core:
+
+    :core:
+        :ref:`core`，用来定义堆芯层面的几何信息，如组件布置、控制棒布置等。
+
+        *不可缺省*
+
+
+.. _structure:
+
+----------------
+structure 对象
+----------------
+
+structure对象用来定义两维层面的几何结构体，该对象包含以下属性： 
+
+    .. _structure_name:
+
+    :name:
+        字符串，结构体名称，用来索引该几何结构体，必须是唯一的，不同结构体的名称不可重复。
+
+        *不可缺省*
+
+    .. _structure_primitives:
+    
+    :primitives:
+        :ref:`primitive` 列表，用来定义组成该结构体的所有几何基元。
+        
+        *不可缺省*
+
+    .. _structure_regions:
+
+    :regions:
+        :ref:`region` 列表，用来定义该结构体的材料布置。
+
+        *不可缺省*
+
+    .. _structure_meshing:
+
+    :meshing:
+        :ref:`meshing`，用来定义输运计算需要的细网划分信息。
+
+        *不可缺省*
+
+.. _primitive:
+
+----------------
+primitive 对象
+----------------
+
+primitive对象用来定义几何基本单元，简称几何基元, CRANE支持圆和任意凸多边形两种几何基元，该对象包含一下属性： 
+
+    .. _primitive_type:
+    
+    :type:
+        字符串，该基元的类型，圆还是凸多边形，[CIRCLE, POLYGON]二选一。
+
+        *不可缺省*
+
+    .. _primitive_center:
+
+    :center:
+        :ref:`point`，基元圆心，仅当该基元为圆时有效。 
+
+        *默认值: {"x": 0.0, "y": 0.0}*
+
+    .. _primitive_radius:
+
+    :radius:
+        浮点数，基元半径，仅当该基元为圆时有效，单位cm。 
+
+        *当该基元为圆时不可缺省*
+
+    .. _primitive_vertexes:
+
+    :vertexes:
+        :ref:`point` 列表, 基元各个顶点坐标，仅当该基元为凸多边形时有效，顶点的排列顺序没有要求，CRANE默认必须是凸的多边形。
+        
+        *当该基元为凸多边行时不可缺省*
+
+.. _region:
+
+-------------
+region 对象
+-------------
+
+region对象用来定义结构体内的材料区布置，该对象包含以下属性：
+
+    .. _region_material:
+
+    :material:
+        字符串，该区的材料名称。
+        
+        *不可缺省*
+
+    .. _region_space:
+
+    :space:
+        字符串，通过前序几何基元的序号和以下3种布尔运算符来定义该材料区的实际空间:
+
+        .. table:: Boolean Operators Used to Define Space.
+
+        +------------+---------------------------+
+        |   符号     |    操作                   |
+        +============+===========================+
+        |     &      |    交集                   |
+        +------------+---------------------------+
+        |     \|     |    并集                   |
+        +------------+---------------------------+
+        |     \-     |    补集                   |
+        +------------+---------------------------+
+
+        .. note:: 空间定义"1&2"表示基元1与基元2的交集, 空间定义"4|(3-2)"表示基元4与基元3减去基元2的并集，括号结合率在这里适用。
+        
+        *不可缺省*
+
+.. _point:
+
+------------
+point 对象
+------------
+
+point对象用来定义xy两维平面上的一个点, 该对象包含以下属性：
+
+    .. _point_x
+
+    :x:
+        浮点数，x轴坐标，单位cm。
+        
+        *不可缺省*
+
+    .. _point_y
+
+    :y:
+        浮点数，y轴坐标，单位cm。
+        
+        *不可缺省*
+        
+..  _meshing:
+
+--------------
+meshing 对象
+--------------
+
+meshing对象用来定义输运计算时需要的细网划分信息，该对象包含以下属性：
+
+    .. _meshing_type:
+    
+    :type:
+        字符串，细网划分的类型，同心圆环型还是方块型，[SECTORS, RECTANGLES]二选一。
+
+        *不可缺省*
+
+    .. _meshing_center:
+
+    :center:
+        :ref:`point`， 同心圆环的圆心，仅当细网划分为同心圆环时有效.
+        
+        *默认值: {"x": 0.0, "y": 0.0}*
+    
+    .. _meshing_num_azimuths:
+
+    :num_azimuths:
+        整数，同心圆环周向一圈再划分的数量, 仅当细网划分为同心圆环时有效，[4, 6, 8, 12, 16]五选一。 
+
+        *不可缺省*
+    
+    .. _meshing_radii:
+
+    :radii:
+        浮点数列表, 同心圆环的半径，仅当细网划分为同心圆环时有效，单位cm。
+
+        *不可缺省*
+
+.. _baffle:
+
+-------------
+baffle 对象
+-------------
+
+baffle对象用来方便地定义方形组件堆芯的两维层面的围板结构，该对象包含以下属性：
+
+    .. _baffle_name:
+
+    :name:
+        字符串，结构体名称，用来索引该围板结构，必须是唯一的，不同围板结构的名称不可重复。
+
+        *不可缺省*
+
+    .. _baffle_regions:
+
+    :regions:
+        :ref:`baffle_region` 列表，用来定义该围板结构的材料布置。
+
+        *不可缺省*
+
+.. _baffle_region:
+
+--------------------
+baffle_region 对象
+--------------------
+
+baffle_region对象用来定义围板结构的材料布置，该对象包含以下属性：
+
+    .. _br_material:
+
+    :material:
+        字符串，该区的材料名称。
+        
+        *不可缺省*
+
+    .. _br_thickness:
+
+    :thickness:
+        浮点数，该材料区的厚度，围板通过固定向外扩展多个厚度的材料形成，单位cm。
+
+        *不可缺省*
+ 
+.. _lattice:
+
+--------------
+lattice 对象
+--------------
+
+lattice对象简称结构体排布，用来定义两维层面上组件内部除可插入式结构体和格架外的其他几何结构体排布信息，其包含以下属性:
+
+    .. _lattice_name:
+
+    :name:
+        字符串，结构体排布名称，用来索引该结构体排布，必须是唯一的，不同结构体排布的名称不可重复。
+
+        *不可缺省*
+    
+    .. _cell_map:
+
+    :cell_map:
+        字符串列表，结构体排布图，通过该列表以及栅元对边距和组件对边距来唯一确定每个结构体在组件中位置。
+
+        *定义规则排布的结构体时不可缺省*
+    
+    .. _structure_locations:
+
+    :structure_locations:
+        :ref:`structure_location` 列表，用来定义非规则排布的结构体位置，structure_locations可以和cell_map同时使用。
+
+        *定义非规则排布的结构体时不可缺省*
+
+    .. _assembly_rectangle_meshing_density:
+
+    :rectangle_meshing_density:
+
+        浮点数，除用户指定细网划分的结构体外其他区域（如六角形组件的外层的水隙栅元等）的网格划分密度，单位cm。
+
+        .. note:: CRANE对用户指定结构体都是以同心圆环进行细网划分，其他区域则用方块网格进行划分。
+        
+        *默认值：0.4*
+
+.. _structure_location:
+
+-------------------------
+structure_location 对象
+-------------------------
+
+structure_location对像用来放置结构体到指定的任意位置，主要用于定义非规则排布的结构体，如组件内部大水洞、组件外围盒子等等，其包含以下属性:
+
+    .. _sl_structure:
+
+    :structure:
+        字符串，需要放置的结构体名称，必须是structures对象列表中已定义的结构体。
+
+        *不可缺省*
+
+    .. _sl_location:
+
+    :location:
+        :ref:`point`，放置的坐标点，以组件中心为原点。
+        
+        *不可缺省*
+
+.. _grid:
+
+-----------
+grid 对象
+-----------
+
+grid对象简称格架排布，用来定义两维层面上组件内部格架排布信息，其包含以下属性:
+
+    .. _grid_name:
+
+    :name:
+        字符串，格架排布名称，用来索引该格架排布，必须是唯一的，不同格架排布的名称不可重复。
+
+        *不可缺省*
+    
+    .. _grid_map:
+
+    :grid_map:
+        字符串列表，格架排布图，通过该列表以及栅元对边距和组件对边距来唯一确定每个格架在组件中位置。
+
+        *定义规则排布的格架时不可缺省*
+
+    .. _grid_structure_locations:
+
+    :structure_locations:
+        :ref:`structure_location` 列表，用来定义非规则排布的格架位置，structure_locations可以和grid_map同时使用。
+
+        *定义非规则排布的格架时不可缺省*
+
+.. _assembly:
+
+---------------
+assembly 对象
+---------------
+
+assembly对象用来定义三维组件轴向（z方向）的分层信息，其包含以下属性:
+
+    .. _assembly_name:
+
+    :name:
+        字符串，三维组件名称，用来索引该组件，必须是唯一的，不同组件的名称不可重复。
+
+        *不可缺省*
+    
+    .. _assembly_axial:
+
+    :axial:
+        :ref:`axial_slice` 列表，用来定义轴向分层信息，从底到顶定义组件的每一层。
+
+        *不可缺省*
+
+    .. _assembly_grids:
+
+    :grids:
+        :ref:`grid_slice` 列表，用来定义格架在组件中的轴向高度及所在位置。
+
+        *定义有格架的组件时不可缺省*
+
+..  _axial_slice:
+
+------------------
+axial_slice 对象
+------------------
+
+axial_slice对象用来对某个两维对象（可以是 :ref:`lattice`, :ref:`structure`, :ref:`baffle` ）在轴向（z方向）上进行三维扩展，其包含以下属性:
+
+    .. _as_slice:
+
+    :slice:
+        字符串，两维对象的名称，可以是 :ref:`lattice`, :ref:`structure`, :ref:`baffle` 的名称，具体看使用场景。
+
+        *不可缺省*
+
+    .. _as_height:
+ 
+    :height:
+        浮点数，轴向高度，或者说这层的厚度，单位cm
+        
+        *不可缺省*
+
+..  _grid_slice:
+
+------------------
+grid_slice 对象
+------------------
+
+grid_slice对象用来对某个两维格架排布在轴向（z方向）上进行三维扩展，其包含以下属性:
+
+    .. _gs_slice:
+
+    :slice:
+        字符串，两维格架排布的名称。
+
+        *不可缺省*
+
+    .. _gs_height:
+ 
+    :height:
+        浮点数，轴向高度，或者说这层格架的厚度，单位cm
+        
+        *不可缺省*
+
+    .. _gs_position:
+
+    :position:
+        浮点数，格架位置，格架底部距离组件底部的高度差，单位cm
+        
+        *不可缺省*
+
+.. _inserted_rod:
+
+------------------
+inserted_rod 对象
+------------------
+
+inserted_rod对象用来定义三维可插入式结构体（如测量管、分离式可燃毒物棒、控制棒）的轴向分层信息，其包含以下属性:
+
+    .. _inserted_rod_name:
+
+    :name:
+        字符串，三维可插入式结构体名称，用来索引该三维可插入式结构体，必须是唯一的，不同可插入式结构体的名称不可重复。
+
+        *不可缺省*
+    
+    .. _inserted_rod_axial:
+
+    :axial:
+        :ref:`axial_slice` 列表，用来定义三维可插入式结构体轴向分层信息，从底到顶定义可插入式结构体的每一层。
+
+        *不可缺省*
+
+.. _regular_bundle:
+
+---------------------
+regular_bundle 对象
+---------------------
+
+regular_bundle对象用来定义三维可插入式结构体（测量管、分离式可燃毒物棒）在组件中的规则排布信息，其包含以下属性:
+
+    .. _regular_bundle_name:
+
+    :name:
+        字符串，插入式结构体在组件内规则排布方式的名称，用来索引该规则排布方式，必须是唯一的，同一列表下不同排布对象的名称不可重复。
+
+        *不可缺省*
+
+    .. _regular_bundle_inserting_map:
+
+    :inserting_map:
+        字符串列表，插入式结构体在组件内部的规则排布图，类似于cell_map、grid_map。
+
+        *不可缺省*
+    
+.. _cr_bundle:
+
+----------------
+cr_bundle 对象
+----------------
+
+cr_bundle对象用来定义控制棒束的排布信息，其包含以下属性:
+
+    .. _cr_bundle_name:
+
+    :name:
+        字符串，该控制棒束排布方式的名称，用来索引该控制棒排布方式，必须是唯一的，同一列表下不同控制棒排布方式的名称不可重复。
+
+        *不可缺省*
+
+    .. _cr_bundle_inserting_map:
+
+    :inserting_map:
+        字符串列表，控制棒束在组件内部的规则排布图，类似于cell_map、grid_map。
+
+        *当定义规则排布的控制棒束时不可缺省*
+
+    .. _cr_bundle_locations:
+
+    :locations:
+        :ref:`inserted_rod_location` 列表，用于对控制棒进行任意组合形成控制棒束，用于非规则的控制棒位置定义。
+
+        *当定义非规则排布的控制棒束时不可缺省*
+
+.. _inserted_rod_location:
+
+----------------------------
+inserted_rod_location 对象
+----------------------------
+
+inserted_rod_location对象用来对控制棒进行任意组合形成控制棒束，在定义非规则排布的控制棒束时使用。
+
+    .. _irl_inserted_rod: 
+
+    :inserted_rod: 
+        字符串，采用哪个可插入式结构体（控制棒）进行排布，即 :ref:`inserted_rod` 的名称。
+
+        *不可缺省*
+
+    .. _irl_location: 
+
+    :location:
+        :ref:`point`，该插入式结构体（控制棒）相对于整个控制棒束中心所在的位置。
+
+        *不可缺省*
+
+.. _core:
+
+-----------
+core 对象
+-----------
+
+core对象用于定义堆芯几何布置，如组件布置、控制棒布置、反射层等等，该对象包含以下属性:
+
+    .. _core_name:
+
+    :name:
+        字符串，用于唯一标识该堆芯，且作为默认的输出文件名称。
+
+        *不可缺省*
+    
+    .. _core_type:
+
+    :type:
+        字符串，堆芯组件类型，方形组件还是六角形组件，[SQUARE, HEXAGON]二选一。
+
+        *默认值：SQUARE*
+
+    .. _core_symmetry:
+
+    :symmetry:
+        整数，堆芯的对称性，当组件类型为方形时是[1, 4, 8]三选一，当组件类型为六角形时是[1, 3, 6]三选一。
+
+        *默认值：1*
+
+    .. _core_is_periodic:
+
+    :is_periodic:
+        布尔值，堆芯是否是旋转对称，仅当symmetry为[3, 4, 6]时有效。
+
+        *默认值：true*
+
+    .. _assembly_pitch:
+
+    :assembly_pitch:
+        浮点数，组件对边距，单位cm。
+        
+        *不可缺省*
+
+    .. _cell_pitch:
+
+    :cell_pitch:
+        浮点数，栅元对边距，单位cm。
+
+        *不可缺省*
+
+    .. _plane_max_thickness:
+
+    :plane_max_thickness:
+        浮点数，堆芯轴向分层的最大厚度，堆芯轴向经过材料分层后，厚度超过该值的层将继续等分至每层厚度都小于该值，单位cm。
+
+        *不可缺省*
+
+    .. _num_assembly_layers_reflector:
+
+    :num_assembly_layers_reflector:
+        整数，计算区域所覆盖的堆芯反射层所占组件层数，即活性区以外计算区域内的组件层数。
+
+        *默认值：1* 
+
+    .. _core_rectangle_meshing_density:
+
+    :rectangle_meshing_density:
+        浮点数，围板反射层区域细分的方块网格密度，该网格用户输运计算，单位cm。
+
+        *默认值：0.4* 
+
+    .. _assembly_column_index:
+
+    :assembly_column_index:
+        字符串列表，组件列编号，用于后续换料时确定旧组件在前序循环的位置，仅当组件类型为方形时有效。
+
+        *默认值：[A,B,C,D,E,F,G,H,J,K,L,M,N,P,R,S,T,U,V,W,X,Y,Z]*
+
+    .. _assembly_row_index:
+
+    :assembly_row_index:
+        字符串列表，组件行编号，用于后续换料时确定旧组件在前序循环的位置，仅当组件类型为方形时有效。
+
+        *默认值：[01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23]*
+
+    .. _current_cycle:
+
+    :current_cycle:
+        整数，当前循环编号，仅当多循环计算时有效。
+
+        *默认值：0* 
+
+        .. note:: 当current_cycle大于0时CRANE会自动将最后一个燃耗点的堆芯状态保存至再启动文件，以供后续循环使用。
+
+    .. _previous_cycles:
+
+    :previous_cycles:
+        :ref:`previous_cycle` 列表，用来定义当前循环组件需要用到的前序循环信息。
+
+        *当需要进行换料堆芯计算时不可缺省*
+
+    .. _assembly_map:
+
+    :assembly_map:
+        字符串列表，组件布置图，即 :ref:`assembly` 在堆芯内的布置图，多循环换料堆芯计算时以“列编号+行编号+C+循环号”来命名旧组件。
+
+        .. note:: 旧组件必须是6个字符，第1个字符为列编号，第2-3个字符为行编号，第4个字符为"C"，第5-6字符为循环号，
+                  如A01C02表示第2循环A列01行的组件。
+
+        .. note:: 为避免新、旧组件名解析错误，新组件不得采用以上命名规则。
+
+        *不可缺省*
+
+    .. _instrument_map:
+
+    :instrument_map:
+        字符串列表，插入中子测量管的组件布置图，即 :ref:`geometries_instrument_bundle` 在堆芯内的布置图。
+
+        *当需要计算探测器活度分布时不可缺省*
+
+    .. _detector_reaction_id:
+
+    :detector_reaction_id:
+        整数，探测器采用的核素反应类型的ID号，该ID号的命名可参阅
+        `The WIMS Library Update Project(WLUP) <https://www-pub.iaea.org/MTCD/publications/PDF/Pub1264_web.pdf>`_
+        文献第29-30页。
+        
+        *默认值：1003（U-235的(n,f)反应）*
+
+    .. _burnable_absorber_map:
+
+    :burnable_absorber_map:
+        字符串列表，插入可燃毒物棒的组件布置图，即 :ref:`geometries_burnable_absorber_bundle` 在堆芯内的布置图。
+
+        *当有分离式可燃毒物棒时不可缺省*
+
+    .. _burnable_absorber_position:
+    
+    :burnable_absorber_position:
+        浮点数列表，可燃毒物棒束高度布置图，即 :ref:`geometries_burnable_absorber_bundle` 底部距离组件底部的高度在堆芯内的布置图。
+
+        *默认值：[0,0,0......0]*
+
+    .. _core_control_rod:
+
+    :control_rod:
+        :ref:`control_rod`，用来定义堆芯内控制棒信息，如控制棒步长、分组、堆内布置等等。
+
+        *当有堆芯内有控制棒时不可缺省*
+    
+    .. _core_baffle:
+
+    :baffle:
+        :ref:`axial_slice` 列表，用来定义堆芯围板结构, 通过该列表从底到顶构建堆芯围板。
+
+        *当堆芯有围板时不可缺省*
+
+    .. _reflector_middle:
+
+    :reflector_middle:
+        :ref:`axial_slice` 列表，用来定义堆芯中间的径向反射层，通过该列表从底到顶构建径向反射层。
+
+        *当堆芯有径向反射层时不可缺省*
+
+    .. _reflector_top:
+
+    :reflector_top:
+        :ref:`axial_slice` 列表，用来定义堆芯顶部反射层，通过该列表从底到顶构建顶部反射层。
+
+        *当堆芯有顶部反射层时不可缺省*
+
+    .. _reflector_bottom:
+
+    :reflector_bottom:
+        :ref:`axial_slice` 列表，用来定义堆芯底部反射层，通过该列表从底到顶构建底部反射层。
+
+        *当堆芯有底部反射层时不可缺省*
+
+    .. _outer_albedo:
+
+    :outer_albedo:
+        浮点数，范围在[0.0, 1.0]，堆芯外围非对称边界处的反照率。
+
+        *默认值：0.0*
+
+    .. _top_boundary_condition:
+
+    :top_boundary_condition:
+        字符串，堆芯顶部边界条件，全反射还是真空，[REFLECTIVE, VACUUM]二选一。
+
+        *默认值：VACUUM*
+
+    .. _bottom_boundary_condition:
+
+    :bottom_boundary_condition:
+        字符串，堆芯底部边界条件，全反射还是真空，[REFLECTIVE, VACUUM]二选一。
+
+        *默认值：VACUUM*
+
+.. _previous_cycle:
+
+--------------------
+previous_cycle 对象
+--------------------
+
+previous_cycle对象用来定义当前循环需要用到的前序循环的信息，该对象包含以下属性:
+
+    .. _restart_file:
+
+    :restart_file:
+        字符串， 该前序循环的再启动文件名及其绝对路径，若在当前计算目录下则不需要包含路径。
+
+        *不可缺省*
+
+    .. _shutdown_cooling_days:
+
+    :shutdown_cooling_days:
+        浮点数，该前序循环到当前循环的停堆冷却时间，单位天。
+        
+        *不可缺省*
+
+.. _control_rod:
+
+-----------------
+control_rod 对象
+-----------------
+
+control_rod对象用于定义堆芯内控制棒信息，如控制棒步长、分组、堆内布置等等，该对象包含以下属性：
+
+    .. _control_rod_max_num_steps:
+
+    :max_num_steps:
+        整数，控制棒行程的最大步数。
+
+        *不可缺省*
+
+    .. _control_rod_step_size:
+
+    :step_size:
+        浮点数，控制棒行程的步长，单位cm。
+
+        *不可缺省*
+
+    .. _control_rod_fully_withdrawn_height:
+
+    :fully_withdrawn_height:
+        浮点数，控制棒全提后其底部距离组件底部的高度，单位cm。
+
+        *不可缺省*
+
+    .. _control_rod_banks:
+
+    :banks:
+        :ref:`cr_bank` 列表，用来定义控制棒分组。
+
+        *不可缺省*
+
+    .. _control_rod_location_map:
+    
+    :location_map:
+        字符串列表，控制棒组布置图，即 :ref:`cr_bank` 在堆芯内的布置图。
+        
+        *规则位置插入控制棒组时不可缺省*
+
+    .. _control_rod_locations:
+
+    :locations:
+        :ref:`cr_location` 列表，用来定义控制棒在堆芯位置，用于非规则位置的控制棒插入，如组件间插控制棒。
+
+        *非规则位置插入控制棒组时不可缺省*
+
+.. _cr_bank:
+
+--------------
+cr_bank 对象
+--------------
+
+cr_bank对象用于定义控制棒组，该对象包含以下属性：
+
+    .. _cr_bank_name:
+
+    :name:
+        字符串，控制棒组的唯一名称，不同控制棒组名称不得重复。
+
+        *不可缺省*
+
+    .. _cr_bank_bundle:
+
+    :bundle:
+        字符串，该控制棒组采用的控制棒束名称，即 :ref:`cr_bundle` 的名称。
+        
+        *不可缺省*
+
+    .. _cr_bank_position:
+
+    :position:
+        整数，该控制棒组当前棒位。
+
+        *不可缺省*
+
+.. _cr_location:
+
+------------------
+cr_location 对象
+------------------
+
+cr_location对象用于描述控制棒组如何非规则地插入堆芯，该对象包含以下属性：
+
+    .. _cr_loc_bank:
+
+    :bank:
+        字符串，插入的控制棒组的名称，即 :ref:`cr_bank` 的名称。
+
+        *不可缺省*
+
+    .. _cr_loc_location:
+
+    :location:
+        :ref:`point`，该控制棒组插入堆芯的位置。
+        
+        *不可缺省*
+
+    .. _cr_loc_position:
+
+    :position:
+        整数，该控制棒组当前棒位。
+
+        *不可缺省*
+
+.. _state:
+
+------------
+state 对象
+------------
+
+state对象用于定义堆芯的初始状态参数，该对象包含以下属性：
+
+    .. _system_pressure:
+
+    :system_pressure:
+        浮点数，系统压力，单位MPa。
+
+        *不可缺省*
+
+    .. _boron_concentration: 
+
+    :boron_concentration:
+        浮点数，可溶硼浓度，单位ppm。
+
+        *不可缺省*
+
+    .. _boron_10_abundance: 
+
+    :boron_10_abundance:
+        浮点数，硼10丰度，范围[0, 100]，单位%。
+
+        *默认值：19.9*
+
+    .. _inlet_temperature:
+
+    :inlet_temperature:
+        浮点数，堆芯入口温度，单位Kelvin。
+
+        *开启热工水力反馈计算时不可缺省*
+
+    .. _moderator_temperature:
+
+    :moderator_temperature:
+        浮点数，慢化剂温度，用于慢化剂温度给定的情况，单位Kelvin。
+
+        *inlet_temperature未输入时不可缺省*
+
+    .. _fuel_temperature:
+
+    :fuel_temperature:
+        浮点数，燃料温度，用于燃料温度给定的情况，单位Kelvin。
+
+        *inlet_temperature未输入时不可缺省*
+
+    .. _total_power:
+
+    :total_power:
+        浮点数，堆芯总功率，单位MW。
+
+        *开启热工水力反馈计算时不可缺省*
+
+    .. _relative_power:
+
+    :relative_power:
+        浮点数，范围[0, 1.1]，相对功率水平。
+
+        *默认值:1.0*
+
+    .. _inlet_mass_flow_rate:
+
+    :inlet_mass_flow_rate:
+        浮点数，堆芯冷却剂流量，单位kg/s。
+
+        *开启热工水力反馈计算时不可缺省*
+
+    .. _relative_inlet_flow:
+
+    :relative_inlet_flow:
+        浮点数，范围[0, 1.1]，相对流量水平。
+
+        *默认值:1.0*
+
+    .. _power_density:
+
+    :power_density:
+        浮点数，功率密度，用于不带热工水力反馈的燃耗计算，单位w/g。
+
+        *当需要做不带热工水力反馈的燃耗计算时不可缺省*
+
+
+.. _settings:
+
+---------------
+settings 对象
+---------------
+
+settings对象用于设置计算参数，该对象包含以下属性：
+
+    
+    .. _settings_energy_deposition:
+
+    :energy_deposition:
+        字符串，能量沉积方式，是通过裂变直接释放还是考虑当地的俘获释热，[KAPPA_FISSION, HEATING_LOCAL]二选一。
+
+        *默认值：KAPPA_FISSION*
+
+    .. _settings_xe_transients:
+
+    :xe_transients:
+        字符串，氙状态，分真实燃耗跟踪、平衡氙、零氙三种情况，分别为[TRAN, EQUI, ZERO]，三选一。
+
+        *默认值：TRAN*
+    
+    .. _settings_critical_boron_search:
+
+    :critical_boron_search:
+        :ref:`critical_boron_search`，用于定义临界硼搜索相关信息。
+
+        *开启临界硼搜索时不可缺省*
+
+    .. _settings_power_iteration:
+
+    :power_iteration:
+        :ref:`power_iteration`，用于定义功率迭代（外迭代）的收敛判据等信息。
+
+    .. _settings_moc_2d:
+
+    :moc_2d:
+        :ref:`moc_2d`，用于定义两维MOC输运计算的控制参数。
+
+    .. _settings_cmfd:
+
+    :cmfd:
+        :ref:`cmfd`，用于定义三维粗网有限差分cmfd加速的控制参数。
+
+    .. _settings_output:
+
+    :output:
+        :ref:`output`，用于定义输出相关的控制参数。
+
+.. _critical_boron_search:
+
+----------------------------
+critical_boron_search 对象
+----------------------------
+
+critical_boron_search对象用于定义临界硼搜索相关参数，其包含以下属性：
+    
+    .. _cb_search_on:
+
+    :cb_search_on:
+        布尔值，是否开启临界硼搜索。
+
+        *默认值：false*
+
+    .. _boron_converge_criterion:
+
+    :boron_converge_criterion:
+        浮点数，临界硼搜索收敛判据，单位ppm。
+
+        *默认值：0.5*
+
+.. _power_iteration:
+
+----------------------
+power_iteration 对象
+----------------------
+
+power_iteration对象用于定义功率迭代（外迭代）控制参数，其包含以下属性：
+
+    .. _pi_fission_converge_criterion:
+
+    :fission_converge_criterion:
+        浮点数，裂变源收敛判据。
+
+        *默认值：1e-4*
+
+    .. _pi_keff_converge_criterion:
+
+    :keff_converge_criterion:
+        浮点数，有效增殖因子收敛判据。
+
+        *默认值：1e-5*
+
+    .. _pi_max_num_outer_iterations:
+
+    :max_num_outer_iterations:
+        整数，最大外迭代次数。
+
+        *默认值：9999*
+
+.. _moc_2d:
+
+-------------
+moc_2d 对象
+-------------
+
+moc_2d对象用于定义两维MOC计算的相关控制参数，该对象包含以下属性：
+
+    .. _moc2d_num_azimuths:
+       
+    :num_azimuths:
+        整数，0～90°范围（如果是六角形组件则是0~60°）内方位角离散个数，必须是2的倍数，取值范围[2, 64]。
+
+        *默认值：方形组件为 12，六角形组件为 8*
+
+    .. _moc2d_num_polars:
+
+    :num_polars:
+        整数，0-90°范围内极角离散个数，[2, 3, 4]三选一。
+
+        *默认值：3*
+
+    .. _moc2d_track_density:
+    
+    :track_density:
+        浮点数，特征线密度，取值范围[0.001, 1.0]，单位cm。
+
+        *默认值：0.05*
+
+    .. _moc2d_source_type:
+
+    :source_type:
+        字符串，MOC计算的源近似类型，平源近似还是线性源近似，分别为[FLAT, LINEAR]，二选一。
+
+        *默认值：FLAT*
+
+.. _cmfd:
+
+-----------
+cmfd 对象
+-----------
+
+cmfd对象用于定义三维CMFD加速相关的控制参数，该对象包含以下属性：
+
+    .. _cmfd_on:
+
+    :cmfd_on:
+        布尔值，是否开启CMFD加速。
+
+        *默认值：true*
+    
+    .. _cmfd_fission_converge_criterion:
+
+    :fission_converge_criterion:
+        浮点数，CMFD迭代的裂变源收敛判据。
+
+        *默认值：2e-6*
+
+    .. _cmfd_keff_converge_criterion:
+
+    :keff_converge_criterion:
+        浮点数，CMFD迭代的有效增殖因子收敛判据。
+
+        *默认值：2e-7*
+
+.. _output:
+
+------------
+output 对象
+------------
+
+output对象用于定义输出相关的控制参数，该对象包含以下属性：
+
+    .. _output_type:
+
+    :type:
+        字符串，输出数据的详细程度，[MINIMAL, MEDIUM, MAXIMUM]三选一。
+
+        *默认值：MEDIUM*
+
+.. _low_power_physic_tests:
+
+----------------------------
+low_power_physic_tests 对象
+----------------------------
+
+low_power_physic_tests对象用来定义低功率物理实验计算序列的相关参数，该对象包含以下属性：
+
+    .. _lppt_criticals:
+
+    :criticals:
+        :ref:`critical` 列表，用于定义临界实验计算控制参数。
+
+        *当开启临界实验计算时不可缺省*
+
+    .. _lppt_temperature_coefficients:
+
+    :temperature_coefficients:
+        :ref:`temperature_coefficient` 列表，用于定义温度系数计算序列参数。
+
+        *当开启温度系数计算序列时不可缺省*
+    
+    .. _lppt_control_rod_worths:
+
+    :control_rod_worths:
+        :ref:`control_rod_worth` 列表，用于定义控制棒价值计算序列参数。
+
+        *当开启控制棒价值计算序列时不可缺省*
+
+    .. _lppt_control_rod_worths_curve:
+
+    :control_rod_worths_curve:
+        :ref:`control_rod_worth_curve` 列表，用于定义控制棒价值曲线计算序列参数。
+
+        *当开启控制棒价值曲线计算序列时不可缺省*
+
+
+.. _critical:
+
+---------------
+critical 对象
+---------------
+
+critical对象用于定义临界实验计算的控制参数，该对象包含以下属性：
+
+    .. _critical_description:
+
+    :description:
+        字符串，该临界实验计算的描述。
+
+        *不可缺省*
+
+    .. _critical_boron_concentration:
+
+    :boron_concentration:
+        浮点数，该临界实验计算采用的硼浓度，单位ppm。
+
+        *默认值：初始状态下的硼浓度*
+
+    .. _critical_moderator_temperature:
+
+    :moderator_temperature:
+        浮点数，该临界实验计算采用的慢化剂温度，单位Kelvin。
+
+        *默认值：初始状态下的慢化剂温度*
+
+    .. _critical_fuel_temperature:
+
+    :fuel_temperature:
+        浮点数，该临界实验计算采用的燃料温度，单位Kelvin。
+
+        *默认值：初始状态下的燃料温度*
+
+    .. _critical_control_rod_position:
+
+    :control_rod_position:
+        整数列表，该临界实验计算采用的控制棒棒位。
+
+        *默认值：初始状态下的控制棒棒位*
+
+
+.. _temperature_coefficient:
+
+-----------------------------
+temperature_coefficient 对象
+-----------------------------
+
+temperature_coefficient对象用于定义温度系数计算的控制参数，该对象包含以下属性：
+
+    .. _tc_description:
+
+    :description:
+        字符串，该温度系数计算的描述。
+
+        *不可缺省*
+    
+    .. _tc_type:
+
+    :type:
+        字符串列表，需要计算的温度系数类型，等温温度系数、慢化剂温度系数还是燃料温度系数，分别对应为[ITC, MTC, FTC]，可选一个或多个。
+
+        *不可缺省*
+    
+    .. _tc_delta_temperature:
+
+    :delta_temperature:
+        浮点数，计算温度系数时温度的变化范围，以基础温度分别加减该值来做两个状态点的计算并产生温度系数。
+
+        *默认值：2.0*
+
+    .. _tc_boron_concentration:
+
+    :boron_concentration:
+        浮点数，该温度系数计算时采用的硼浓度，单位ppm。
+
+        *默认值：初始状态下的硼浓度*
+
+    .. _tc_control_rod_position:
+
+    :control_rod_position:
+        整数列表，该温度系数计算时采用的控制棒棒位。
+
+        *默认值：初始状态下的控制棒棒位*
+
+
+.. _control_rod_worth:
+
+------------------------
+control_rod_worth 对象
+------------------------
+
+control_rod_worth对象用于定义控制棒价值（积分价值）计算参数，该对象包含以下属性：
+
+    .. _crw_description:
+
+    :description:
+        字符串，该控制棒价值计算的描述，通过同样描述下的两个状态点来计算棒价值。
+
+        .. note:: 控制棒价值计算是通过同样 :ref:`crw_description` 前后两个不同棒位下的状态点计算来产生棒价值的。
+
+        .. note:: ``ARO`` 是保留字符串，用来自定义棒全提下的状态点参数，见 :ref:`crw_computation`。
+
+        *不可缺省*
+    
+    .. _crw_boron_concentration:
+
+    :boron_concentration:
+        浮点数，该控制棒价值计算时采用的硼浓度，单位ppm。
+
+        *默认值：初始状态下的硼浓度*
+
+    .. _crw_moderator_temperature:
+
+    :moderator_temperature:
+        浮点数，该控制棒价值计算采用的慢化剂温度，单位Kelvin。
+
+        *默认值：初始状态下的慢化剂温度*
+
+    .. _crw_fuel_temperature:
+
+    :fuel_temperature:
+        浮点数，该控制棒价值计算采用的燃料温度，单位Kelvin。
+
+        *默认值：初始状态下的燃料温度*
+
+    .. _crw_control_rod_position:
+
+    :control_rod_position:
+        整数列表，该控制棒价值计算时采用的控制棒棒位。
+
+        *不可缺省*
+
+
+.. _control_rod_worth_curve:
+
+--------------------------------
+control_rod_worth_curve 对象
+--------------------------------
+
+control_rod_worth_curve对象用于定义控制棒价值曲线（微分价值）计算参数，该对象包含以下属性：
+
+    .. _crwc_bank:
+
+    :bank:
+        字符串，计算哪组控制棒，必须是 :ref:`banks` 中定义的控制棒组名称。
+
+        *不可缺省*
+
+    .. _crwc_step_size:
+
+    :step_size:
+        整数，该控制棒价值曲线计算时采用的步长。
+
+        *不可缺省*
+    
+    .. _crwc_boron_concentration:
+
+    :boron_concentration:
+        浮点数，该控制棒价值曲线计算时采用的硼浓度，单位ppm。
+
+        *默认值：初始状态下的硼浓度*
+
+    .. _crwc_moderator_temperature:
+
+    :moderator_temperature:
+        浮点数，该控制棒价值曲线计算采用的慢化剂温度，单位Kelvin。
+
+        *默认值：初始状态下的慢化剂温度*
+
+    .. _crwc_fuel_temperature:
+
+    :fuel_temperature:
+        浮点数，该控制棒价值曲线计算采用的燃料温度，单位Kelvin。
+
+        *默认值：初始状态下的燃料温度*
+
+
+.. _depletion:
+
+---------------
+depletion 对象
+---------------
+
+depletion对象用于定义燃耗计算相关控制参数，该对象包含以下属性：
+
+    .. _dep_time_step_units:
+
+    :time_step_units:
+        字符串，燃耗计算采用的时间步长单位，[MWd/tU, EFPD, DAY]三选一。
+
+        *默认值：MWd/tU*
+    
+    .. _dep_coupling_strategy:
+
+    :coupling_strategy:
+        字符串，燃耗计算与输运计算耦合策略，[PREDICTOR, PREDICTOR_CORRECTOR, LINEAR_RATE]三选一。
+
+        *默认值：LINEAR_RATE*
+
+    .. _dep_states:
+
+    :states:
+        :ref:`depletion_state` 列表，用于定义每个燃耗点的状态参数。
+
+        *不可缺省*
+
+.. _depletion_state:
+
+---------------------
+depletion_state 对象
+---------------------
+
+depletion_state对象用于定义燃耗点的状态参数，该对象包含以下属性：
+    
+    .. _dep_state_burnup:
+
+    :burnup:
+        浮点数，当前燃耗点的燃耗值，单位为 :ref:`time_step_units` 中定义的单位。
+
+        *不可缺省*
+
+    .. _dep_state_delta_time:
+
+    :delta_time:
+        浮点数，衰变时间，当前后两个燃耗值相等，即进行零功率衰变计算时需要输入，单位天。
+
+        *停堆衰变计算时不可缺省*
+
+    .. _dep_state_boron_concentration:
+
+    :boron_concentration:
+        浮点数，可溶硼浓度，单位ppm。
+
+        .. note:: 临界硼搜索功能开启时则采用搜索得到的硼浓度。
+
+        *默认值：初始状态硼浓度*
+
+    .. _dep_state_boron_10_abundance:
+
+    :boron_10_abundance:
+        浮点数，硼10丰度，单位%。
+
+        *默认值：19.9*
+        
+    .. _dep_state_inlet_temperature:
+
+    :inlet_temperature:
+        浮点数，堆芯入口温度，单位Kelvin。
+
+        *默认值：初始状态的堆芯入口温度*
+
+    .. _dep_state_moderator_temperature:
+
+    :moderator_temperature:
+        浮点数，慢化剂温度，仅当未开启热工水力反馈计算时有效，单位Kelvin。
+
+        *默认值:初始状态的慢化剂温度*
+    
+    .. _dep_state_fuel_temperature:
+
+    :fuel_temperature:
+        浮点数，燃料温度，仅当未开启热工水力反馈计算时有效，单位Kelvin。
+
+        *默认值:初始状态的燃料温度*
+    
+    .. _dep_state_relative_power:
+
+    :relative_power:
+        浮点数，相对功率水平，取值范围[0, 1.1]。
+
+        *默认值：1.0*
+
+    .. _dep_state_relative_inlet_flow:
+
+    :relative_inlet_flow:
+        浮点数，相对流量水平，取值范围[0, 1.1]。
+
+        *默认值：1.0*
+
+    .. _dep_state_control_rod_position:
+
+    :control_rod_position:
+        整数列表，该状态点的控制棒棒位。
+
+        *默认值：初始状态下的控制棒棒位*
+
+        .. note:: 该控制棒棒位整数列表的棒组顺序与 :ref:`control_rod_banks` 定义的棒组顺序是一致的。
+                    
+    .. _dep_state_save_restart_file:
+    
+    :save_restart_file:
+        布尔值，是否保存该燃耗点的再启动文件，燃耗计算最后一个状态点保存的再启动文件名默认为
+        :ref:`core_name` ``+.restart.h5``，其他状态点下保存的再启动文件名默认为
+        :ref:`core_name` ``+.restart+燃耗点编号.h5``。
+
+        *默认值：仅当:ref:`current_cycle`大于0时最后一个燃耗点时为true，其余为false*
+    
+    .. _dep_state_output_type:
+
+    :output_type:
+        字符串，该状态点输出的结果数据详细程度，[MINIMAL, MEDIUM, MAXIMUM]三选一。
+        
+        *默认值：初始状态点的结果数据输出详细程度*

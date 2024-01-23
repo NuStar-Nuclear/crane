@@ -1,0 +1,132 @@
+.. _usersguide_settings:
+
+
+================
+计算选项设置
+================
+
+计算选项设置，即 :ref:`settings`，是用来定义CRANE各部分计算模块的控制参数，如功率迭代（外迭代）、两维MOC、
+CMFD加速、临界硼搜索、氙瞬态、能量沉积方式、热工水力反馈以及输出数据控制等。
+
+
+功率迭代
+------------
+
+功率迭代（外迭代）控制参数通过 :ref:`power_iteration` 设置，它包含迭代收敛判据、最大迭代次数等控制参数。
+
+如对于 :ref:`vera_5` 基准题我们设置如下：
+
+.. literalinclude:: ../_yamls/power_iteration_vera5.yaml
+    :language: yaml
+
+由于真正起到全局耦合作用的CMFD加速设置的收敛判据远高于此，因此这里的裂变源收敛判据设置到 ``5e-4`` 精度也足够了。
+
+如果需要快速计算调试，可以通过 :ref:`pi_max_num_outer_iterations` 来减少迭代次数。
+
+.. note:: 当 :ref:`pi_max_num_outer_iterations` 设置太小，跳出迭代时并未达到收敛判据的标准时，CRANE会给出警告信息。
+
+
+两维MOC
+-----------
+
+两维MOC计算控制参数通过 :ref:`moc_2d` 设置，它包含MOC计算采用的离散角度数量、特征线密度及源项近似类型等。
+
+如对于 :ref:`vera_5` 基准题我们设置如下：
+
+.. literalinclude:: ../_yamls/moc2d_vera5.yaml
+    :language: yaml
+
+以上MOC计算离散方位角总共是 ``12 x 3 x 8 = 288`` 个，这对于热中子谱的压水堆来说足够精确了。
+该设置也是程序的默认值, 即缺省整个 :ref:`moc_2d` 下程序的设置。
+
+.. note:: 对于六角形组件堆型，:ref:`moc2d_num_azimuths` 是 ``0~60°`` 的离散角度数量，因此设置为 ``8`` 即可。
+
+至于 :ref:`moc2d_source_type`，即是否采用线性源近似，我们建议大型压水堆采用平源近似（默认值）即可，
+因为采用线性源近似计算量会大很多。而对于精度要求较高，而规模较小的问题，如 :ref:`c5g7_3d`，则可以采用线性源近似。
+
+
+CMFD加速
+-------------
+
+CMFD加速计算控制参数通过 :ref:`cmfd` 设置，它包含CMFD加速开关及其收敛判据。
+
+.. note:: CRANE采用的是多群+少群双层CMFD加速，多群CMFD固定迭代次数，少群CMFD才需要通过收敛判据来调整，
+          它起到耦合全局的作用，因此这里的CMFD加速设置指的是少群CMFD。
+
+如对于 :ref:`vera_5` 基准题我们设置如下：
+
+.. literalinclude:: ../_yamls/cmfd_vera5.yaml
+    :language: yaml
+
+以上设置也是程序的默认值, 即缺省整个 :ref:`cmfd` 下程序的设置。
+
+
+临界硼搜索
+-------------
+
+临界硼搜索控制参数通过 :ref:`critical_boron_search` 设置，它包含临界硼搜索开关及其收敛判据。
+
+如对于 :ref:`vera_7` 基准题我们设置如下：
+
+.. literalinclude:: ../_yamls/cb_search_vera7.yaml
+    :language: yaml
+
+这里的 :ref:`boron_converge_criterion` 为 ``0.1`` ppm，是比较高的收敛判据，默认值为 ``0.5`` ppm。
+
+.. note:: 当开启临界硼搜索时，硼浓度收敛标准优先级高于keff，因此当硼浓度收敛时，keff哪怕没有达到收敛判据也认为是收敛的。
+
+:ref:`cb_search_on` 默认为 ``false``，因此缺省整个 :ref:`critical_boron_search` 则不进行临界硼搜索。
+
+
+氙瞬态
+----------
+
+氙瞬态控制参数通过 :ref:`xe_transients` 设置，分为真实燃耗跟踪、平衡氙、零氙三种情况，对应为 ``TRAN、EQUI、ZERO``。
+
+如对于 :ref:`vera_7` 基准题我们设置如下：
+
+.. literalinclude:: ../_yamls/xe_transients_vera7.yaml
+    :language: yaml
+
+ :ref:`vera_7` 基准题是平衡氙状态，因此设置为 ``EQUI``，默认值是 ``TRAN``，即真实燃耗跟踪。
+
+
+能量沉积方式
+---------------
+
+能量沉积方式通过 :ref:`energy_deposition` 设置，分为只统计裂变释能和裂变释能、俘获释能都统计两种情况，
+对应为 ``KAPPA_FISSION`` 和 ``HEATING_LOCAL``。
+
+对于 :ref:`vera_7` 基准题我们设置如下：
+
+.. literalinclude:: ../_yamls/energy_deposition_vera7.yaml
+    :language: yaml
+
+该问题为真实堆芯问题，考虑俘获释能是更加符合实际的，特别对于俘获反应较多的可燃毒物棒位置的功率有较显著影响。
+
+而对于 :ref:`c5g7_3d` 基准题我们设置如下：
+
+.. literalinclude:: ../_yamls/energy_deposition_c5g7.yaml
+    :language: yaml
+
+宏观截面给定问题的功率只能通过裂变能量产生截面来统计，因此设置为 ``KAPPA_FISSION``。
+
+
+热工水力反馈
+---------------
+
+热工水力反馈控制参数通过 :ref:`thermal` 设置。
+
+
+输出数据控制
+---------------
+
+输出数据控制通过 :ref:`output` 设置，用来定义输出数据的详细程度，或者指定哪些数据需要额外输出。
+
+CRANE定义了最小、中等、最大三种详细程度的输出，对应的 :ref:`output_type` 分别为：
+
+#. ``MAXIMUM``，程序会输出所有计算结果数据，该模式下输出数据存储会比较庞大；
+#. ``MEDIUM``，除去MOC细网少群通量分布外其他所有计算结果数据，也是默认的输出设置；
+#. ``MINIMAL``，除去MOC细网少群通量分布，精细到栅元的三维数据，如功率分布、通量分布、燃耗分布外的其他所有计算结果数据；
+
+.. note:: 采用 ``MEDIUM`` 情况下， :ref:`vera_7` 基准题的输出数据量约在 ``16M`` 左右。

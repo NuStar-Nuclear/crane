@@ -1,0 +1,671 @@
+.. _usersguide_geometry:
+
+
+==========
+几何建模
+==========
+
+CRANE是一个三维（两维耦合一维）数值反应堆物理程序，其几何建模方式在不同方向上采用策略是不同的：
+
+1. 径向（XY平面）上采用构造实体几何（CSG）的几何建模方式，可以很好的描述堆芯各种复杂几何结构；
+2. 轴向（Z方向）上采用简单的堆叠累加，非常适合真实反应堆拉伸几何的构造特点。
+
+在径向上，CRANE目前支持两种最基本的几何基本单元（几何基元）：圆和任意凸多边形。
+通过这两类最基本的几何基元，可组合出实际反应堆中各种复杂的几何构件，如组件格架、重反射层、十字螺旋燃料棒等等：
+
+.. figure:: ../_images/complex_geometries.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+CRANE通过定义 :ref:`geometries` 来进行几何建模，:ref:`geometries` 包含 :ref:`geometries_structures`、
+:ref:`geometries_baffles`、:ref:`geometries_lattices`、:ref:`geometries_grids`、:ref:`geometries_assemblies`、
+:ref:`geometries_instrument_bundle`、:ref:`geometries_burnable_absorber_bundle`、:ref:`geometries_control_rod_bundle`
+以及最重要的 :ref:`core`。
+
+较为简单的几何建模，如 :ref:`vera_2a` 两维单组件问题建模可参阅 :ref:`quickstart`。
+
+接下来我们通过各种例子来详细解释上述对象，并指引你如何对一个真实的堆芯进行几何建模。
+
+
+---------------
+两维几何结构体
+---------------
+
+两维几何结构体，即 :ref:`structure`，指的是整个堆芯包含的各种各样的几何构件的两维（XY平面）切面。几何构件可以小到燃料棒、
+大到反应堆的压力容器，它是用户定义出来的一个不可分离的几何体。
+
+所有的 :ref:`structure` 都定义在 :ref:`geometries_structures` 列表中，
+后面使用的时候通过 :ref:`structure_name` 来引用该两维几何结构体。
+
+每个 :ref:`structure` 通过 :ref:`structure_primitives` 来定义该两维几何结构体由哪些最基本的几何基元组成。
+几何基元的定义可以参阅 :ref:`primitive`。
+
+.. note:: 目前CRANE支持圆和任意凸多边形两种几何基元。
+
+而 :ref:`structure` 的材料区定义则是通过 :ref:`structure_regions` 实现。
+
+:ref:`structure_regions` 中个每个 :ref:`region` 通过在 :ref:`region_space`
+中对上述中几何基元的顺序编号进行以下 ``3`` 种方式的布尔运算获得，再添加 :ref:`material` 名称即可。
+
+.. table:: Boolean Operators Used to Define Space.
+
++------------+---------------------------+
+|   符号     |    操作                   |
++============+===========================+
+|     &      |    交集                   |
++------------+---------------------------+
+|     \|     |    并集                   |
++------------+---------------------------+
+|     \-     |    补集                   |
++------------+---------------------------+
+
+例如空间定义 ``1&`` 表示基元1与基元2的交集, 空间定义 ``4|(3-2)`` 表示基元4与基元3减去基元2的并集。
+
+.. note:: 括号结合率在 :ref:`region_space` 定义中是适用的。
+
+另外，:ref:`structure` 中的 :ref:`meshing` 来定义该两维几何结构体的细网划分信息，该信息用于特征线方法的输运计算。
+
+
+.. _structure_fuel_pins:
+
+普通燃料棒
+----------
+
+以下定义了两种燃料棒的 :ref:`structure`：
+
+.. literalinclude:: ../_yamls/structure_fuel_pins.yaml
+    :language: yaml
+
+它们看起来是这样的：
+
+.. figure:: ../_images/structure_fuel_pins.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. note:: 这里的第一个材料区的space定义需要输入 ``'1'`` 而不是 ``1``，因为YAML对单个数字 ``1`` 会解析为整数而不是字符串，而
+          ``2-1`` 则自动解析为字符串。
+
+这两个 :ref:`structure` 有同样的几何结构和细网划分，但是最内圈的材料不一样，因此采用了 `YAML <https://yaml.org>`_
+语法中的锚点规则：``&`` 定义锚点，``<<: *`` 定义引用，以减少重复输入。
+
+这里的 :ref:`meshing` 半径0.4750前添加了负号，其作用是在0.4750外再用多一倍的周向网格进行细分，也就是0.4750内是4等分，
+0.4750外是8等分，如下所示：
+
+.. figure:: ../_images/negative_meshing.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _structure_gt:
+
+导向管
+-------
+
+以下定义了一个导向管的 :ref:`structure`：
+
+.. literalinclude:: ../_yamls/structure_gt.yaml
+    :language: yaml
+
+它们看起来是这样的：
+
+.. figure:: ../_images/structure_gt.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可以看到，导向管由于中心是空的（默认会被 ``MOD`` 材料填充），因此在定义材料区的时候最里面那圈是不需要输入的。
+当有控制棒或者可插入式可燃毒物时，就可以插入该空区域内。
+
+此外，若该导向管有探测器插入，那么对于该处探测器的活度是以最内圈（也就是这里的半径0.15圆内）的细分网格区域来统计的。
+
+
+含钆燃料棒
+----------
+
+以下定义了一个含钆燃料棒的 :ref:`structure`：
+
+.. literalinclude:: ../_yamls/structure_gd_pin.yaml
+    :language: yaml
+
+它看起来是这样的：
+
+.. figure:: ../_images/structure_gd_pin.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+这里和普通燃料棒不同，含钆燃料棒随着燃耗的进行，燃料棒由内向外的成分差异非常显著，因此需要对含钆燃料棒进行细分燃耗区，
+因此这里虽然是同样的材料，但定义了 ``10`` 个等面积的材料区，后续燃耗时自动作为 ``10`` 个燃耗区进行计算：
+
+.. figure:: ../_images/depletion_gd_pin.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _box_grid:
+
+格架“盒子”
+-----------
+
+以下定义了一个格架盒子的 :ref:`structure`：
+
+.. literalinclude:: ../_yamls/structure_grid_box.yaml
+    :language: yaml
+
+格架是在组件已经有燃料棒的情况下再放进去的，在燃料棒的结构体已经定义过了细网划分信息，
+因此这里不再需要定义 :ref:`meshing`。
+
+它看起来是这样的：
+
+.. figure:: ../_images/structure_grid_box.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+这里定义了一个正方形的盒子格架，通过 :ref:`grid` 可以将此格架规则排布至整个组件。
+
+通常实际商用压水堆的格架构造并非是一个正方形盒子，
+但是一般计算时将其等效成一个面积相同在燃料棒外面的方盒子已经足够精确了。
+
+当然，你也可以用任意凸多边形来定义更加复杂的真实格架，比如像下面那样的VVER堆型的格架：
+
+.. figure:: ../_images/structure_grid_vver.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _structure_reflector:
+
+围桶、中子屏蔽板、压力容器等
+-------------------------------
+
+以下定义了包含有围桶、中子屏蔽板和压力容器的 :ref:`structure`：
+
+.. literalinclude:: ../_yamls/structure_reflector.yaml
+    :language: yaml
+
+其中中子屏蔽板的空间定义 ``(4-3)&(7|8|9|10)`` 是通过一个2个圆相减再与4个三角形的并集再交集来产生的。
+它看起来是这样的：
+
+.. figure:: ../_images/structure_reflector.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+这里的围桶、中子屏蔽板和压力容器一起定义成一个 :ref:`structure`。然后将其用于 :ref:`reflector_middle`、
+:ref:`reflector_top`、:ref:`reflector_bottom` 中即可定义堆芯三维的围板反射层。
+
+通过这样的方式，可以定义非常复杂的围板反射层构件，如VVER堆型的重反射层，该输入文件可参阅 :ref:`vver_1000`：
+
+.. figure:: ../_images/structure_reflector_vver.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _structure_baffle:
+
+---------------
+两维围板结构体
+---------------
+
+两维围板结构体，即 :ref:`baffle`，是指三维堆芯围板在两维（XY平面）的切面，之所以将围板与普通的两维几何结构体分开，
+是因为围板都是沿着堆芯活性区外围延伸一定厚度的材料，如果用普通两维几何结构体的凸多边形定义，将会需要定义非常多的凸多边形，
+并不方便。
+
+因此，CRANE通过 :ref:`baffle` 来定义围板，可以让用户输入更为简单。
+
+所有的 :ref:`baffle` 都定义在 :ref:`geometries_baffles` 列表中，
+后面使用的时候通过 :ref:`baffle_name` 来引用该两维围板结构体。
+
+以下定义了包含0.50cm的水隙，厚度为2.22cm的不锈钢围板：
+
+.. literalinclude:: ../_yamls/baffle_reflector.yaml
+    :language: yaml
+
+它看起来是这样的：
+
+.. figure:: ../_images/baffle_reflector.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+:ref:`baffle` 定义完成后，在 :ref:`core` 定义中用于 :ref:`core_baffle` 的定义，以组成三维的堆芯围板。
+这种方式可以支持不同高度下有不同的围板结构。当然，一般商用压水堆的围板在不同高度下是一样的。
+
+
+--------------
+两维组件栅格
+--------------
+
+有了各种类型的两维几何结构体后，如何将其排列成组件呢？这时就需要用到两维组件栅格，
+即 :ref:`lattice`。
+
+CRANE通过两种方式将 :ref:`structure` 布置到组件中：
+
+#. 通过 :ref:`cell_map` 规则地将 :ref:`structure` 布置到组件中，支持方形组件或六角形组件布置，
+   此时布置间距通过 :ref:`cell_pitch` 和 :ref:`assembly_pitch` 计算得到。 
+#. 通过 :ref:`structure_location` 列表以给定坐标（两维几何结构体中心相对组件中心）的方式任意布置 :ref:`structure`。
+
+.. note:: 为了减少用户输入，:ref:`lattice` 中不需要定义格架以及可插入式的结构如可分离的可燃毒物棒等，它们会在其他方定义。
+
+这两种方式可以同时使用，互相作为补充。但无论怎样布置，不同结构体之间不能有材料区的重叠，否则会出现
+:ref:`region_overlap_between_structure`，可以通过 :ref:`crane_check_region_overlap` 命令来检查重叠区域。
+
+所有的 :ref:`lattice` 都定义在 :ref:`geometries_lattices` 列表中，
+后面使用的时候通过 :ref:`lattice_name` 来引用该两维组件栅格。
+
+
+.. _lattice_pwr:
+
+方形压水堆组件栅格
+--------------------
+
+这里采用 :ref:`structure_fuel_pins` 中的 ``F31`` 和 :ref:`structure_gt` 中的 ``GT`` 
+布置了一个17x17典型方形压水堆组件的 :ref:`lattice`：
+
+.. literalinclude:: ../_yamls/lattice_pwr.yaml
+    :language: yaml
+
+它看起来是这样的：
+
+.. figure:: ../_images/lattice_pwr.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+这是一个最简单的压水堆组件的 :ref:`lattice` 例子，只用到 :ref:`cell_map` 来对燃料棒和导向管进行布置。
+
+
+.. _lattice_vver:
+
+六角形压水堆组件栅格
+-----------------------
+
+除了方形组件以外，CRANE还支持六角形组件，以下为一个典型的VVER组件的 :ref:`lattice`：
+
+.. literalinclude:: ../_yamls/lattice_vver.yaml
+    :language: yaml
+
+这里通过 :ref:`structure_locations` 方式布置了一个组件的支撑构件 ``plate``，他是一个通过凸多边形定义的 :ref:`structure`。
+它看起来是这样的：
+
+.. figure:: ../_images/lattice_vver.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+.. note:: 对于六角形组件，:ref:`lattice` 定义好了之后放入到堆芯中会默认逆时针旋转30°。
+
+
+沸水堆组件栅格
+-------------------
+
+如果是像某些沸水堆组件中间有占据2x2栅元的大水洞，且还有组件盒的，可以通过以下方式定义 :ref:`lattice`：
+
+.. literalinclude:: ../_yamls/lattice_bwr.yaml
+    :language: yaml
+
+这里同样采用 :ref:`cell_map` 和 :ref:`structure_locations` 相结合的方式，普通的燃料棒用 :ref:`cell_map` 进行布置，
+而大水洞的导向管 ``GT2`` 和组件盒 ``BOX`` 用 :ref:`structure_locations` 布置。
+
+.. note:: 在需要放置大水洞的2x2栅元位置，需要用 ``''`` 空字符串在 :ref:`cell_map` 中进行占位，
+          表示留空给 :ref:`structure_locations` 布置。
+
+它看起来是这样的：
+
+.. figure:: ../_images/lattice_bwr.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+--------------
+两维格架栅格
+--------------
+
+两维格架栅格，即 :ref:`grid`，类似于 :ref:`lattice`，它是将格架的两维几何结构体进行布置，以方便与
+:ref:`lattice` 组合到三维组件 :ref:`assembly` 中去。
+
+之所以将格架分开定义，是为了能够让用户更加自由地将不同的组件类型与格架类型进行组合。
+
+.. note:: 格架栅格与组件栅格组合的时候，也必须满足各自排布的几何结构体之间不能有重叠，否则会出现
+          :ref:`region_overlap_between_structure`，可以通过 :ref:`crane_check_region_overlap`
+          命令来检查重叠区域。
+
+:ref:`grid` 定义同样支持规则布置和非规则布置，对应需输入 :ref:`grid_map` 和 :ref:`grid_structure_locations`。
+所有的 :ref:`grid` 都定义在 :ref:`geometries_grids` 列表中，使用的时候通过 :ref:`grid_name` 来引用该两维格架栅格。
+
+
+.. _grids_pwr:
+
+方形压水堆格架栅格
+--------------------
+
+以下将 :ref:`box_grid` 中定义的"盒子"格架进行17x17的排布（导向管位置没有格架）：
+
+.. literalinclude:: ../_yamls/grids_pwr.yaml
+    :language: yaml
+
+它看起来是这样的：
+
+.. figure:: ../_images/grids_pwr.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+这是一个最简单的两维格架栅格例子，只用到了 :ref:`grid_map` 进行规则排布，且只有一种格架几何结构体。
+
+
+六角形压水堆格架栅格
+----------------------
+
+和 :ref:`lattice` 一样，你可通过组合 :ref:`grid_map` 和 :ref:`grid_structure_locations` 构造出更加复杂的两维格架栅格。
+以下是一个VVER堆型的格架栅格，排布着不同类型的格架，还包含组件外围的条带：
+
+.. literalinclude:: ../_yamls/grids_vver.yaml
+    :language: yaml
+
+它看起来是这样的：
+
+.. figure:: ../_images/grids_vver.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+-----------
+三维组件
+-----------
+
+三维组件，即 :ref:`assembly`，它通过 :ref:`assembly_axial` 将 :ref:`lattice` 进行轴向（Z方向） **从底到顶** 的堆叠，
+通过 :ref:`assembly_grids` 轴向堆叠 :ref:`grid` 以定义不同高度下的格架，最终组成一个三维的组件。
+
+所有的 :ref:`assembly` 都定义在 :ref:`geometries_assemblies` 列表中，
+后面定义堆芯组件布置时通过 :ref:`assembly_name` 来引用该三维组件。
+
+.. note:: 不同类型组件其堆叠起来的总高度必须是一致的，如果有些组件长，有些组件短，可以在短组件中堆叠以空字符串 ``''``
+          布置的“空两维组件格栅”来达到长组件的高度。
+
+以下基于 :ref:`lattice_pwr` 中的 ``L31`` 和 :ref:`grids_pwr` 中的 ``Space_grid`` 组成了一个典型的方形压水堆三维组件：
+
+.. literalinclude:: ../_yamls/assembly_pwr.yaml
+    :language: yaml
+
+该组件总高度为365.8cm，在距离组件底部高度为3.722、66.767...总共7个位置处有格架，且有3.3cm和1.8cm两种厚度。
+它的 ``y = 0`` 切面图以及不同高度的XY切面图看起来是这样的：
+
+.. figure:: ../_images/assembly_pwr.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+以上是一个非常简单的三维组件示例，真实组件的定义还可能会有组件底部的端塞、上部的充气层等等，
+这些通过堆叠不同的 :ref:`lattice` 都可以实现。
+
+
+.. _inserted_rods:
+
+---------------------
+三维可插入式结构体
+---------------------
+
+三维可插入式结构体，即 :ref:`inserted_rod`，它通过 :ref:`inserted_rod_axial` 将 :ref:`structure` 
+进行轴向（Z方向） **从底到顶** 的堆叠来组成一个三维棒状结构，如控制棒、可燃毒物棒等，用于排布成束并插入堆芯。
+
+所有的 :ref:`inserted_rod` 都定义在 :ref:`geometries_inserted_rods` 列表中，
+后面定义插入式结构布置时通过 :ref:`inserted_rod_name` 来引用该结构体。
+
+.. note:: 可插入式结构体与一般结构体的区别在于，可插入式结构体先Z方向堆叠成 :ref:`inserted_rod`，
+          再XY方向排布成bundle，而一般结构体先XY方向排布成 :ref:`lattice`，再Z方向堆叠成 :ref:`assembly`。
+
+以下定义了3种可插入式结构体，分别为可燃毒物棒 ``BP``、下部B4C上部AIC的控制棒 ``CRD`` 以及中子测量管 ``IR``：
+
+.. literalinclude:: ../_yamls/inserted_rods.yaml
+    :language: yaml
+
+这里需要注意的是，CRANE采用基于材料区的轴向再均匀化方法来处理控制棒锯齿效应，因此
+**要求控制棒从底到顶的材料区划分必须是一致的**，对于不同高度下控制棒半径不一样的情况需要用户去划分几何一致的材料区，
+如下所示：
+
+.. literalinclude:: ../_yamls/crd_region_divide.yaml
+    :language: yaml
+
+
+----------------
+中子测量管束
+----------------
+
+中子测量管束，是 :ref:`regular_bundle` 的一种，它通过 :ref:`regular_bundle_inserting_map` 将 :ref:`inserted_rod` 
+先进行组件范围内的排布，组成以组件为单位的中子测量管束，再通过 :ref:`instrument_map` 在堆芯中进行布置。
+
+所有的中子测量管束都定义在 :ref:`geometries_instrument_bundle` 列表中，
+后面进行堆芯内布置时通过 :ref:`regular_bundle_name` 来引用该中子测量管束。
+
+以下用 :ref:`inserted_rods` 中的 ``IR`` 定义了最常见的中心测量管束，即只有一根测量管，且在组件中心处：
+
+.. literalinclude:: ../_yamls/bundle_it.yaml
+    :language: yaml
+
+
+---------------------
+分离式可燃毒物棒束
+---------------------
+
+分离式可燃毒物棒束，也是 :ref:`regular_bundle` 的一种，它通过 :ref:`regular_bundle_inserting_map` 将 :ref:`inserted_rod` 
+先进行组件范围内的排布，组成以组件单位的可燃毒物棒束，再通过 :ref:`burnable_absorber_map` 在堆芯中进行布置。
+
+所有的分离式可燃毒物棒束都定义在 :ref:`geometries_burnable_absorber_bundle` 列表中，
+后面进行堆芯内布置时通过 :ref:`regular_bundle_name` 来引用该可燃毒物棒束。
+
+以下用 :ref:`inserted_rods` 中的 ``PR`` 定义了 :ref:`vera_5` 基准题中 ``5`` 种可燃毒物棒束，分别含 8、12、16、20、24
+根可燃毒物棒：
+
+.. literalinclude:: ../_yamls/bundle_bp.yaml
+    :language: yaml
+
+
+-----------
+控制棒束
+-----------
+
+与中子测量管束和分离式可燃毒物棒束有些区别，CRANE对控制棒束（即 :ref:`cr_bundle`）定义既支持组件内部规则地进行排布，
+又可以非规则的插入至组件内部任意位置，甚至是组件与组件之间，如沸水堆十字形控制棒。
+
+所有的控制棒束都定义在 :ref:`geometries_control_rod_bundle` 列表中，
+后面进行堆芯内布置时通过 :ref:`cr_bundle_name` 来引用该控制棒束。
+
+规则排布的控制棒束
+-----------------------
+
+对于规则排布于组件内的控制棒束，可以通过 :ref:`cr_bundle_inserting_map` 将 :ref:`inserted_rod` 
+先进行排布，组成控制棒束，再通过 :ref:`control_rod_location_map` 在堆芯中进行布置。
+
+以下用 :ref:`inserted_rods` 中的 ``CRD`` 定义了典型压水堆的控制棒束，一个组件内部根：
+
+.. literalinclude:: ../_yamls/bundle_cr_pwr.yaml
+    :language: yaml
+
+
+非规则排布的控制棒束
+-------------------------
+
+对于非规则排布的控制棒束，可以通过 :ref:`cr_bundle_locations` 将 :ref:`inserted_rod` 
+根据坐标任意排布，组成控制棒束，再通过 :ref:`control_rod_locations` 放置在堆芯的任意位置。
+
+以下用非规则的方式定义了两种控制棒束，分别包含4根和8根控制棒：
+
+.. literalinclude:: ../_yamls/bundle_cr_bwr.yaml
+    :language: yaml
+
+关于非规则排布控制棒应用的列子可参阅 :ref:`example_bwr`。
+
+
+-----------
+三维堆芯
+-----------
+
+可以说在三维堆芯（即 :ref:`core`）定义之前，其他所有的几何建模都是为其做准备的，最终还是需要通过定义 :ref:`core`
+将之前的所有建模数据组装起来，形成一个真实的三维堆芯模型。
+
+构建 :ref:`core` 的逻辑是这样的：
+
+#. 通过 :ref:`assembly_map` 将三维组件 :ref:`assembly` 规则地布置，组成三维堆芯的“活性区”；
+#. 通过 :ref:`reflector_middle`、:ref:`reflector_top`、:ref:`reflector_bottom` 以及 :ref:`core_baffle` 
+   用“反射层”将“活性区”围起来；
+#. 通过 :ref:`instrument_map` 将中子测量管束布置到堆芯中；
+#. 通过 :ref:`burnable_absorber_map` 和 :ref:`burnable_absorber_position` 将分离式可燃毒物棒束布置到堆芯中；
+#. 通过 :ref:`control_rod` 将控制棒布置到堆芯中，后续通过 :ref:`state_control_rod_position` 来改变棒位；
+
+
+活性区
+----------
+
+这里的堆芯活性区指的是三维组件占据的区域，并非狭义的活性区，活性区通过 :ref:`assembly_map` 来定义，
+支持方形和六角形排布两种方式，和 :ref:`cell_map` 类似，布置图必须排满，没有组件的地方必须用空字符串 ``''``
+占位，如以下就是 :ref:`vera_5` 基准题中的组件布置图：
+
+.. literalinclude:: ../_yamls/core_assembly_vera5.yaml
+    :language: yaml
+
+无论堆芯对称性如何，CRANE都要求用户输入整个堆芯模型（组件、中子测量管、可燃毒物、控制棒等所有堆芯布置图），
+而不是部分堆芯。
+
+但是如果你非要偷懒，可以将非计算区域的组件用 ``''`` 代替，
+如1/4堆芯计算时上面的布置图可以这样输入（我们并不建议这样做）：
+
+.. literalinclude:: ../_yamls/core_assembly_vera5_sym4.yaml
+    :language: yaml
+
+.. note:: 这种情况下，由于组件布置图与对称性条件不一致，CRANE会给出警告信息。
+
+当进行后续循环计算时，:ref:`assembly_map` 中的旧料采用组件行列编号以及循环号的方式来定义，具体请参阅 :ref:`multi-cycle`。
+
+
+反射层
+---------
+
+反射层包含围板（如果有的话）、中间反射层、底部反射层和顶部反射层。分别通过 :ref:`core_baffle`、:ref:`reflector_middle`、
+:ref:`reflector_top`、:ref:`reflector_bottom` 在Z方向从底到顶堆叠两维结构体来描述的。
+
+以下就是 :ref:`vera_5` 基准题中的反射层定义：
+
+.. literalinclude:: ../_yamls/core_reflector_vera5.yaml
+    :language: yaml
+
+.. note:: 中间反射层所用到的结构体必须“空心的”，如 :ref:`structure_reflector` 中的基元1内是没有定义的，
+          以留空间给活性区以及围板。
+
+
+堆内中子测量管
+-------------------
+
+通过 :ref:`instrument_map` 可将之前定义的 :ref:`geometries_instrument_bundle` 列表中的中子测量管束
+布置到堆芯中，CRANE会根据该信息编辑产生探测器活度在堆内的分布。如 :ref:`vera_5` 基准题中的堆内中子测量管布置图如下：
+
+.. literalinclude:: ../_yamls/core_instrument_vera5.yaml
+    :language: yaml
+
+没有中子测量管的组件必须用空字符串 ``''`` 占位。
+
+探测器使用的核素反应类型通过 :ref:`detector_reaction_id` 定义， **默认为U-235的(n,f)反应**，
+通常不同核素反应类型对探测器堆内活度分布影响不大。
+
+
+堆内分离式可燃毒物棒
+-------------------------
+
+通过 :ref:`burnable_absorber_map` 可将之前定义的 :ref:`geometries_burnable_absorber_bundle`
+列表中的分离式可燃毒物棒束布置到堆芯中，再通过 :ref:`burnable_absorber_position` 来调整每个棒束的高度，
+如 :ref:`vera_5` 基准题中的堆内分离式可燃毒物棒布置图如下：
+
+.. literalinclude:: ../_yamls/core_burnable_absorber_vera5.yaml
+    :language: yaml
+
+没有分离式可燃毒物棒的组件必须用空字符串 ``''``
+（高度用 ``0``）占位。
+
+
+堆内控制棒
+----------------
+
+堆内控制棒定义通过 :ref:`control_rod` 完成，其包含控制棒步长、总步数、全提时高度位置等，另外通过 :ref:`control_rod_banks`
+来进行控制棒分组，这里就需要用到前面定义的 :ref:`cr_bundle`。
+
+如果控制棒以组件为单位来布置的，则通过 :ref:`control_rod_location_map` 来定义控制棒堆内布置，
+如VERA基准题中5的堆内控制棒可以这样定义：
+
+.. literalinclude:: ../_yamls/core_control_rod_vera5.yaml
+    :language: yaml
+
+没有插入控制棒的组件必须用空字符串 ``''`` 占位。
+
+如果控制棒并非以组件为单位布置，如BWR中的控制棒是在组件间布置的，则可以通过 :ref:`control_rod_locations` 定义，类似于这样：
+
+.. literalinclude:: ../_yamls/core_control_rod_bwr.yaml
+    :language: yaml
+
+控制棒非规则定义的例子具体可参见:ref:`examples_bwr`。这种通过坐标的方式可以让控制棒布置到堆芯中任意位置，甚至是活性区外。
+
+
+关于对称性
+-------------
+
+堆芯对称性通过 :ref:`core_symmetry` 定义，除直接全堆计算外，CRANE支持以下部分堆芯计算：
+
+#. 对于方形组件的堆型，支持 ``1/4、1/8`` 堆芯计算；
+#. 对于六角形组件的堆型，支持 ``1/3、1/6`` 堆芯计算；
+
+.. note:: 强烈建议用户根据对称性来进行部分堆芯计算以减少计算量。百万千瓦级的商用压水堆如果用全堆芯计算，
+          即使在10张RTX4090显卡的服务器上，其计算需要的存储量也超过总显存，转而使用大量内存导致计算效率大幅降低。
+
+是否是旋转对称则通过 :ref:`core_is_periodic` 设置，默认都是旋转对称的。
+
+对于方形组件堆型的 ``1/4`` 堆芯计算，CRANE的计算区域如下所示：
+
+.. figure:: ../_images/square_sym_4.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+对于方形组件堆型的 ``1/8`` 堆芯计算，CRANE的计算区域如下所示：
+
+.. figure:: ../_images/square_sym_8.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+对于六角形组件堆型的 ``1/3`` 堆芯计算，CRANE的计算区域如下所示：
+
+.. figure:: ../_images/hexagon_sym_3.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+对于六角形组件堆型的 ``1/6`` 堆芯计算，CRANE的计算区域如下所示：
+
+.. figure:: ../_images/hexagon_sym_6.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+.. note:: CRANE会对堆芯对称性做检查，当组件布置图与对称性条件不一致时会给出警告信息。
+
+
+关于轴向分层
+-----------------
+
+当你完成堆芯建模以后，CRANE会叠加所有材料轴向布置信息（如组件材料、格架、控制棒、可燃毒物棒等等）以及
+:ref:`plane_max_thickness` 自动计算轴向分层网格，因此在建模之前你无需考虑轴向网格划分。
+
+当然，你可以通过 :ref:`plane_max_thickness` 来调整轴向层的最大厚度，对于一般商用压水堆而言，
+这个值在 ``20cm`` 左右就足够精确了。
+
+.. note:: 根据材料交界面划分出来的层有可能很薄，当有非常薄 ``（小于0.5cm）`` 的层时，程序会给出警告信息，
+          因为很薄的层可能会造成CMFD迭代不稳定，若此时出现收敛问题，可适当调整材料布置以避免出现非常薄的层。

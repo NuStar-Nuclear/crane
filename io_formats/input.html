@@ -1,0 +1,1686 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>4. 用户输入文件 &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/io_formats/input.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="5. Excel 结果文件" href="output_excel.html" />
+    <link rel="prev" title="3. 用户输入规则配置文件" href="input_schema.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersguide/index.html">用户指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">文件格式说明</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nuclear_lib.html">1. 多群常数库文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="material_db.html">2. 材料配置文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input_schema.html">3. 用户输入规则配置文件</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4. 用户输入文件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#copy-from">4.1. copy_from 字符串</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#materials">4.2. materials 列表</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cross-section">4.3. cross_section 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#material">4.4. material 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#geometries">4.5. geometries 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure">4.6. structure 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#primitive">4.7. primitive 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#region">4.8. region 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#point">4.9. point 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#meshing">4.10. meshing 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#baffle">4.11. baffle 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#baffle-region">4.12. baffle_region 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lattice">4.13. lattice 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#structure-location">4.14. structure_location 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grid">4.15. grid 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#assembly">4.16. assembly 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#axial-slice">4.17. axial_slice 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#grid-slice">4.18. grid_slice 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inserted-rod">4.19. inserted_rod 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#regular-bundle">4.20. regular_bundle 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cr-bundle">4.21. cr_bundle 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inserted-rod-location">4.22. inserted_rod_location 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#core">4.23. core 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#previous-cycle">4.24. previous_cycle 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-rod">4.25. control_rod 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cr-bank">4.26. cr_bank 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cr-location">4.27. cr_location 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#state">4.28. state 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#settings">4.29. settings 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#critical-boron-search">4.30. critical_boron_search 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#power-iteration">4.31. power_iteration 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moc-2d">4.32. moc_2d 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmfd">4.33. cmfd 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#output">4.34. output 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#low-power-physic-tests">4.35. low_power_physic_tests 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#critical">4.36. critical 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#temperature-coefficient">4.37. temperature_coefficient 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-rod-worth">4.38. control_rod_worth 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-rod-worth-curve">4.39. control_rod_worth_curve 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#depletion">4.40. depletion 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#depletion-state">4.41. depletion_state 对象</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="output_excel.html">5. Excel 结果文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output_hdf5.html">6. HDF5 结果文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="restart.html">7. 再启动文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">文件格式说明</a> &raquo;</li>
+        
+      <li><span class="section-number">4. </span>用户输入文件</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/io_formats/input.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="io-file-formats-input">
+<span id="id1"></span><h1><span class="section-number">4. </span>用户输入文件<a class="headerlink" href="#io-file-formats-input" title="Permalink to this heading">¶</a></h1>
+<section id="copy-from">
+<span id="id2"></span><h2><span class="section-number">4.1. </span>copy_from 字符串<a class="headerlink" href="#copy-from" title="Permalink to this heading">¶</a></h2>
+<p>copy_from，字符串，拷贝输入的文件名称。CRANE会将copy_from定义的文件中的内容全部拷贝至当前文件下，用户可在此基础上追加或者替换输入内容。
+主要用于多循环计算时将前序循环的输入内容拷贝过来，以减少重复输入。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><a class="reference internal" href="#copy-from"><span class="std std-ref">copy_from 字符串</span></a> 定义的文件如果不在程序执行目录下，则必须添加该文件的绝对路径。</p>
+</div>
+</section>
+<section id="materials">
+<span id="id3"></span><h2><span class="section-number">4.2. </span>materials 列表<a class="headerlink" href="#materials" title="Permalink to this heading">¶</a></h2>
+<p>materials是一个 <a class="reference internal" href="#cross-section"><span class="std std-ref">cross_section 对象</span></a> 或者 <a class="reference internal" href="#material"><span class="std std-ref">material 对象</span></a> 的列表。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当计算宏观截面给定问题时，如C5G7基准题问题时materials是一个 <a class="reference internal" href="#cross-section"><span class="std std-ref">cross_section 对象</span></a> 列表，
+其余情况下materials应该是一个 <a class="reference internal" href="#material"><span class="std std-ref">material 对象</span></a> 列表。</p>
+</div>
+</section>
+<section id="cross-section">
+<span id="id4"></span><h2><span class="section-number">4.3. </span>cross_section 对象<a class="headerlink" href="#cross-section" title="Permalink to this heading">¶</a></h2>
+<p>cross_section对象用来定义宏观截面给定的材料, 该对象包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，材料名称，用来索引该材料，必须是唯一的，不同材料的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="sigma-tr">
+<dt class="field-odd">sigma_tr<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，多群输运截面，列表长度为能群数，单位/cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="sigma-f">
+<dt class="field-odd">sigma_f<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，多群裂变截面，列表长度为能群数，单位/cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="nu-sigma-f">
+<dt class="field-odd">nu_sigma_f<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，多群裂变中子产生截面，列表长度为能群数，单位/cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="kappa-sigma-f">
+<dt class="field-odd">kappa_sigma_f<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，多群裂变能量产生截面，列表长度为能群数，单位/cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="sigma-s">
+<dt class="field-odd">sigma_s<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，多群散射矩阵，列表长度为能群数的平方，顺序为1-&gt;1,1-&gt;2,1-&gt;3….1-&gt;n,2-&gt;1,2-&gt;2,2-&gt;3…2-&gt;n，单位/cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="chi">
+<dt class="field-odd">chi<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，多群裂变谱，列表长度为能群数。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="material">
+<span id="id5"></span><h2><span class="section-number">4.4. </span>material 对象<a class="headerlink" href="#material" title="Permalink to this heading">¶</a></h2>
+<p>material对象用来定义宏观截面未给定的材料（微观材料），该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="material-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，材料名称，用来索引该材料，必须是唯一的，不同材料的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="material-elements">
+<dt class="field-odd">elements<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，组成材料的核素或者成分名称，采用核子密度输入时为核素名称，其余情况下为成分名称。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="material-number-densities">
+<dt class="field-odd">number_densities<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，核素的核子密度，单位/barn-cm。</p>
+<p><em>采用核子密度输入时不可缺省</em>                            |</p>
+</dd>
+</dl>
+<dl class="field-list" id="material-weight-percents">
+<dt class="field-odd">weight_percents<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，组成材料各个成分的重量占比，取值范围为（0，1.0）。</p>
+<p><em>采用成分重量占比输入时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="material-density">
+<dt class="field-odd">density<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，材料的密度，单位g/cm³。</p>
+<p><em>采用成分重量占比输入时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="material-volume-percents">
+<dt class="field-odd">volume_percents<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，组成材料各个成分的体积占比，取值范围为（0，1.0）。</p>
+<p><em>采用成分体积占比输入时不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="geometries">
+<span id="id6"></span><h2><span class="section-number">4.5. </span>geometries 对象<a class="headerlink" href="#geometries" title="Permalink to this heading">¶</a></h2>
+<p>geometries对象包含了所有几何相关的数据，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="geometries-structures">
+<dt class="field-odd">structures<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structure"><span class="std std-ref">structure 对象</span></a> 列表，用来定义两维层面上的所有几何机构体（除围板外）。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="geometries-baffles">
+<dt class="field-odd">baffles<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#baffle"><span class="std std-ref">baffle 对象</span></a> 列表，用来两维层面上所有的围板结构。</p>
+<p><em>当需要定义围板时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="geometries-lattices">
+<dt class="field-odd">lattices<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#lattice"><span class="std std-ref">lattice 对象</span></a> 列表，用来定义两维层面上组件内部几何结构体（除格架外）的排布。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="geometries-grids">
+<dt class="field-odd">grids<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#grid"><span class="std std-ref">grid 对象</span></a> 列表，用来定义两维层面上组件内部格架的排布。</p>
+<p><em>当需要定义格架时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="geometries-assemblies">
+<dt class="field-odd">assemblies<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#assembly"><span class="std std-ref">assembly 对象</span></a> 列表，用来定义三维组件的轴向分层信息。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="geometries-inserted-rods">
+<dt class="field-odd">inserted_rods<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#inserted-rod"><span class="std std-ref">inserted_rod 对象</span></a> 列表，用来定义可插入式的三维棒状结构轴向分层信息，如控制棒等。</p>
+<p><em>当需要定义中子测量管、可插入式可燃毒物棒或控制棒时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="geometries-instrument-bundle">
+<dt class="field-odd">instrument_bundle<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#regular-bundle"><span class="std std-ref">regular_bundle 对象</span></a> 列表，用来定义中子测量管在组件内部的排布。</p>
+<p><em>当需要定义中子测量管时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="geometries-burnable-absorber-bundle">
+<dt class="field-odd">burnable_absorber_bundle<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#regular-bundle"><span class="std std-ref">regular_bundle 对象</span></a> 列表，用来定义可燃毒物棒在组件内部的排布。</p>
+<p><em>当需要定义可插入式可燃毒物棒时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="geometries-control-rod-bundle">
+<dt class="field-odd">control_rod_bundle<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#cr-bundle"><span class="std std-ref">cr_bundle 对象</span></a> 列表，用来定义控制棒束的排布。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>和中子测量管和可插入式毒物棒必须规则地插入组件内部不同，控制棒可插入到堆芯任意位置，可以是组件内部，也可以是组件之间。</p>
+</div>
+<p><em>当需要定义控制棒时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="geometries-core">
+<dt class="field-odd">core<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#core"><span class="std std-ref">core 对象</span></a>，用来定义堆芯层面的几何信息，如组件布置、控制棒布置等。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="structure">
+<span id="id7"></span><h2><span class="section-number">4.6. </span>structure 对象<a class="headerlink" href="#structure" title="Permalink to this heading">¶</a></h2>
+<p>structure对象用来定义两维层面的几何结构体，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="structure-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，结构体名称，用来索引该几何结构体，必须是唯一的，不同结构体的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="structure-primitives">
+<dt class="field-odd">primitives<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#primitive"><span class="std std-ref">primitive 对象</span></a> 列表，用来定义组成该结构体的所有几何基元。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="structure-regions">
+<dt class="field-odd">regions<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#region"><span class="std std-ref">region 对象</span></a> 列表，用来定义该结构体的材料布置。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="structure-meshing">
+<dt class="field-odd">meshing<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#meshing"><span class="std std-ref">meshing 对象</span></a>，用来定义输运计算需要的细网划分信息。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="primitive">
+<span id="id8"></span><h2><span class="section-number">4.7. </span>primitive 对象<a class="headerlink" href="#primitive" title="Permalink to this heading">¶</a></h2>
+<p>primitive对象用来定义几何基本单元，简称几何基元, CRANE支持圆和任意凸多边形两种几何基元，该对象包含一下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="primitive-type">
+<dt class="field-odd">type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该基元的类型，圆还是凸多边形，[CIRCLE, POLYGON]二选一。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="primitive-center">
+<dt class="field-odd">center<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#point"><span class="std std-ref">point 对象</span></a>，基元圆心，仅当该基元为圆时有效。</p>
+<p><em>默认值: {“x”: 0.0, “y”: 0.0}</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="primitive-radius">
+<dt class="field-odd">radius<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，基元半径，仅当该基元为圆时有效，单位cm。</p>
+<p><em>当该基元为圆时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="primitive-vertexes">
+<dt class="field-odd">vertexes<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#point"><span class="std std-ref">point 对象</span></a> 列表, 基元各个顶点坐标，仅当该基元为凸多边形时有效，顶点的排列顺序没有要求，CRANE默认必须是凸的多边形。</p>
+<p><em>当该基元为凸多边行时不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="region">
+<span id="id9"></span><h2><span class="section-number">4.8. </span>region 对象<a class="headerlink" href="#region" title="Permalink to this heading">¶</a></h2>
+<p>region对象用来定义结构体内的材料区布置，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="region-material">
+<dt class="field-odd">material<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该区的材料名称。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="region-space">
+<dt class="field-odd">space<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，通过前序几何基元的序号和以下3种布尔运算符来定义该材料区的实际空间:</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>符号</p></th>
+<th class="head"><p>操作</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>&amp;</p></td>
+<td><p>交集</p></td>
+</tr>
+<tr class="row-odd"><td><p>|</p></td>
+<td><p>并集</p></td>
+</tr>
+<tr class="row-even"><td><p>-</p></td>
+<td><p>补集</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>空间定义”1&amp;2”表示基元1与基元2的交集, 空间定义”4|(3-2)”表示基元4与基元3减去基元2的并集，括号结合率在这里适用。</p>
+</div>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="point">
+<span id="id10"></span><h2><span class="section-number">4.9. </span>point 对象<a class="headerlink" href="#point" title="Permalink to this heading">¶</a></h2>
+<p>point对象用来定义xy两维平面上的一个点, 该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list">
+<dt class="field-odd">x<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，x轴坐标，单位cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list">
+<dt class="field-odd">y<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，y轴坐标，单位cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="meshing">
+<span id="id11"></span><h2><span class="section-number">4.10. </span>meshing 对象<a class="headerlink" href="#meshing" title="Permalink to this heading">¶</a></h2>
+<p>meshing对象用来定义输运计算时需要的细网划分信息，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="meshing-type">
+<dt class="field-odd">type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，细网划分的类型，同心圆环型还是方块型，[SECTORS, RECTANGLES]二选一。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="meshing-center">
+<dt class="field-odd">center<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#point"><span class="std std-ref">point 对象</span></a>， 同心圆环的圆心，仅当细网划分为同心圆环时有效.</p>
+<p><em>默认值: {“x”: 0.0, “y”: 0.0}</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="meshing-num-azimuths">
+<dt class="field-odd">num_azimuths<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，同心圆环周向一圈再划分的数量, 仅当细网划分为同心圆环时有效，[4, 6, 8, 12, 16]五选一。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="meshing-radii">
+<dt class="field-odd">radii<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表, 同心圆环的半径，仅当细网划分为同心圆环时有效，单位cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="baffle">
+<span id="id12"></span><h2><span class="section-number">4.11. </span>baffle 对象<a class="headerlink" href="#baffle" title="Permalink to this heading">¶</a></h2>
+<p>baffle对象用来方便地定义方形组件堆芯的两维层面的围板结构，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="baffle-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，结构体名称，用来索引该围板结构，必须是唯一的，不同围板结构的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="baffle-regions">
+<dt class="field-odd">regions<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#baffle-region"><span class="std std-ref">baffle_region 对象</span></a> 列表，用来定义该围板结构的材料布置。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="baffle-region">
+<span id="id13"></span><h2><span class="section-number">4.12. </span>baffle_region 对象<a class="headerlink" href="#baffle-region" title="Permalink to this heading">¶</a></h2>
+<p>baffle_region对象用来定义围板结构的材料布置，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="br-material">
+<dt class="field-odd">material<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该区的材料名称。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="br-thickness">
+<dt class="field-odd">thickness<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该材料区的厚度，围板通过固定向外扩展多个厚度的材料形成，单位cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="lattice">
+<span id="id14"></span><h2><span class="section-number">4.13. </span>lattice 对象<a class="headerlink" href="#lattice" title="Permalink to this heading">¶</a></h2>
+<p>lattice对象简称结构体排布，用来定义两维层面上组件内部除可插入式结构体和格架外的其他几何结构体排布信息，其包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="lattice-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，结构体排布名称，用来索引该结构体排布，必须是唯一的，不同结构体排布的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cell-map">
+<dt class="field-odd">cell_map<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，结构体排布图，通过该列表以及栅元对边距和组件对边距来唯一确定每个结构体在组件中位置。</p>
+<p><em>定义规则排布的结构体时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="structure-locations">
+<dt class="field-odd">structure_locations<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structure-location"><span class="std std-ref">structure_location 对象</span></a> 列表，用来定义非规则排布的结构体位置，structure_locations可以和cell_map同时使用。</p>
+<p><em>定义非规则排布的结构体时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="assembly-rectangle-meshing-density">
+<dt class="field-odd">rectangle_meshing_density<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，除用户指定细网划分的结构体外其他区域（如六角形组件的外层的水隙栅元等）的网格划分密度，单位cm。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CRANE对用户指定结构体都是以同心圆环进行细网划分，其他区域则用方块网格进行划分。</p>
+</div>
+<p><em>默认值：0.4</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="structure-location">
+<span id="id15"></span><h2><span class="section-number">4.14. </span>structure_location 对象<a class="headerlink" href="#structure-location" title="Permalink to this heading">¶</a></h2>
+<p>structure_location对像用来放置结构体到指定的任意位置，主要用于定义非规则排布的结构体，如组件内部大水洞、组件外围盒子等等，其包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="sl-structure">
+<dt class="field-odd">structure<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，需要放置的结构体名称，必须是structures对象列表中已定义的结构体。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="sl-location">
+<dt class="field-odd">location<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#point"><span class="std std-ref">point 对象</span></a>，放置的坐标点，以组件中心为原点。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="grid">
+<span id="id16"></span><h2><span class="section-number">4.15. </span>grid 对象<a class="headerlink" href="#grid" title="Permalink to this heading">¶</a></h2>
+<p>grid对象简称格架排布，用来定义两维层面上组件内部格架排布信息，其包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="grid-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，格架排布名称，用来索引该格架排布，必须是唯一的，不同格架排布的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="grid-map">
+<dt class="field-odd">grid_map<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，格架排布图，通过该列表以及栅元对边距和组件对边距来唯一确定每个格架在组件中位置。</p>
+<p><em>定义规则排布的格架时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="grid-structure-locations">
+<dt class="field-odd">structure_locations<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#structure-location"><span class="std std-ref">structure_location 对象</span></a> 列表，用来定义非规则排布的格架位置，structure_locations可以和grid_map同时使用。</p>
+<p><em>定义非规则排布的格架时不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="assembly">
+<span id="id17"></span><h2><span class="section-number">4.16. </span>assembly 对象<a class="headerlink" href="#assembly" title="Permalink to this heading">¶</a></h2>
+<p>assembly对象用来定义三维组件轴向（z方向）的分层信息，其包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="assembly-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，三维组件名称，用来索引该组件，必须是唯一的，不同组件的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="assembly-axial">
+<dt class="field-odd">axial<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#axial-slice"><span class="std std-ref">axial_slice 对象</span></a> 列表，用来定义轴向分层信息，从底到顶定义组件的每一层。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="assembly-grids">
+<dt class="field-odd">grids<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#grid-slice"><span class="std std-ref">grid_slice 对象</span></a> 列表，用来定义格架在组件中的轴向高度及所在位置。</p>
+<p><em>定义有格架的组件时不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="axial-slice">
+<span id="id18"></span><h2><span class="section-number">4.17. </span>axial_slice 对象<a class="headerlink" href="#axial-slice" title="Permalink to this heading">¶</a></h2>
+<p>axial_slice对象用来对某个两维对象（可以是 <a class="reference internal" href="#lattice"><span class="std std-ref">lattice 对象</span></a>, <a class="reference internal" href="#structure"><span class="std std-ref">structure 对象</span></a>, <a class="reference internal" href="#baffle"><span class="std std-ref">baffle 对象</span></a> ）在轴向（z方向）上进行三维扩展，其包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="as-slice">
+<dt class="field-odd">slice<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，两维对象的名称，可以是 <a class="reference internal" href="#lattice"><span class="std std-ref">lattice 对象</span></a>, <a class="reference internal" href="#structure"><span class="std std-ref">structure 对象</span></a>, <a class="reference internal" href="#baffle"><span class="std std-ref">baffle 对象</span></a> 的名称，具体看使用场景。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="as-height">
+<dt class="field-odd">height<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，轴向高度，或者说这层的厚度，单位cm</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="grid-slice">
+<span id="id19"></span><h2><span class="section-number">4.18. </span>grid_slice 对象<a class="headerlink" href="#grid-slice" title="Permalink to this heading">¶</a></h2>
+<p>grid_slice对象用来对某个两维格架排布在轴向（z方向）上进行三维扩展，其包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="gs-slice">
+<dt class="field-odd">slice<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，两维格架排布的名称。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="gs-height">
+<dt class="field-odd">height<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，轴向高度，或者说这层格架的厚度，单位cm</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="gs-position">
+<dt class="field-odd">position<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，格架位置，格架底部距离组件底部的高度差，单位cm</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="inserted-rod">
+<span id="id20"></span><h2><span class="section-number">4.19. </span>inserted_rod 对象<a class="headerlink" href="#inserted-rod" title="Permalink to this heading">¶</a></h2>
+<p>inserted_rod对象用来定义三维可插入式结构体（如测量管、分离式可燃毒物棒、控制棒）的轴向分层信息，其包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="inserted-rod-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，三维可插入式结构体名称，用来索引该三维可插入式结构体，必须是唯一的，不同可插入式结构体的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="inserted-rod-axial">
+<dt class="field-odd">axial<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#axial-slice"><span class="std std-ref">axial_slice 对象</span></a> 列表，用来定义三维可插入式结构体轴向分层信息，从底到顶定义可插入式结构体的每一层。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="regular-bundle">
+<span id="id21"></span><h2><span class="section-number">4.20. </span>regular_bundle 对象<a class="headerlink" href="#regular-bundle" title="Permalink to this heading">¶</a></h2>
+<p>regular_bundle对象用来定义三维可插入式结构体（测量管、分离式可燃毒物棒）在组件中的规则排布信息，其包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="regular-bundle-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，插入式结构体在组件内规则排布方式的名称，用来索引该规则排布方式，必须是唯一的，同一列表下不同排布对象的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="regular-bundle-inserting-map">
+<dt class="field-odd">inserting_map<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，插入式结构体在组件内部的规则排布图，类似于cell_map、grid_map。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="cr-bundle">
+<span id="id22"></span><h2><span class="section-number">4.21. </span>cr_bundle 对象<a class="headerlink" href="#cr-bundle" title="Permalink to this heading">¶</a></h2>
+<p>cr_bundle对象用来定义控制棒束的排布信息，其包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="cr-bundle-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该控制棒束排布方式的名称，用来索引该控制棒排布方式，必须是唯一的，同一列表下不同控制棒排布方式的名称不可重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cr-bundle-inserting-map">
+<dt class="field-odd">inserting_map<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，控制棒束在组件内部的规则排布图，类似于cell_map、grid_map。</p>
+<p><em>当定义规则排布的控制棒束时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cr-bundle-locations">
+<dt class="field-odd">locations<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#inserted-rod-location"><span class="std std-ref">inserted_rod_location 对象</span></a> 列表，用于对控制棒进行任意组合形成控制棒束，用于非规则的控制棒位置定义。</p>
+<p><em>当定义非规则排布的控制棒束时不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="inserted-rod-location">
+<span id="id23"></span><h2><span class="section-number">4.22. </span>inserted_rod_location 对象<a class="headerlink" href="#inserted-rod-location" title="Permalink to this heading">¶</a></h2>
+<p>inserted_rod_location对象用来对控制棒进行任意组合形成控制棒束，在定义非规则排布的控制棒束时使用。</p>
+<blockquote>
+<div><dl class="field-list" id="irl-inserted-rod">
+<dt class="field-odd">inserted_rod<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，采用哪个可插入式结构体（控制棒）进行排布，即 <a class="reference internal" href="#inserted-rod"><span class="std std-ref">inserted_rod 对象</span></a> 的名称。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="irl-location">
+<dt class="field-odd">location<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#point"><span class="std std-ref">point 对象</span></a>，该插入式结构体（控制棒）相对于整个控制棒束中心所在的位置。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="core">
+<span id="id24"></span><h2><span class="section-number">4.23. </span>core 对象<a class="headerlink" href="#core" title="Permalink to this heading">¶</a></h2>
+<p>core对象用于定义堆芯几何布置，如组件布置、控制棒布置、反射层等等，该对象包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="core-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，用于唯一标识该堆芯，且作为默认的输出文件名称。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="core-type">
+<dt class="field-odd">type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，堆芯组件类型，方形组件还是六角形组件，[SQUARE, HEXAGON]二选一。</p>
+<p><em>默认值：SQUARE</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="core-symmetry">
+<dt class="field-odd">symmetry<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，堆芯的对称性，当组件类型为方形时是[1, 4, 8]三选一，当组件类型为六角形时是[1, 3, 6]三选一。</p>
+<p><em>默认值：1</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="core-is-periodic">
+<dt class="field-odd">is_periodic<span class="colon">:</span></dt>
+<dd class="field-odd"><p>布尔值，堆芯是否是旋转对称，仅当symmetry为[3, 4, 6]时有效。</p>
+<p><em>默认值：true</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="assembly-pitch">
+<dt class="field-odd">assembly_pitch<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，组件对边距，单位cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cell-pitch">
+<dt class="field-odd">cell_pitch<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，栅元对边距，单位cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="plane-max-thickness">
+<dt class="field-odd">plane_max_thickness<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，堆芯轴向分层的最大厚度，堆芯轴向经过材料分层后，厚度超过该值的层将继续等分至每层厚度都小于该值，单位cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="num-assembly-layers-reflector">
+<dt class="field-odd">num_assembly_layers_reflector<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，计算区域所覆盖的堆芯反射层所占组件层数，即活性区以外计算区域内的组件层数。</p>
+<p><em>默认值：1</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="core-rectangle-meshing-density">
+<dt class="field-odd">rectangle_meshing_density<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，围板反射层区域细分的方块网格密度，该网格用户输运计算，单位cm。</p>
+<p><em>默认值：0.4</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="assembly-column-index">
+<dt class="field-odd">assembly_column_index<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，组件列编号，用于后续换料时确定旧组件在前序循环的位置，仅当组件类型为方形时有效。</p>
+<p><em>默认值：[A,B,C,D,E,F,G,H,J,K,L,M,N,P,R,S,T,U,V,W,X,Y,Z]</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="assembly-row-index">
+<dt class="field-odd">assembly_row_index<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，组件行编号，用于后续换料时确定旧组件在前序循环的位置，仅当组件类型为方形时有效。</p>
+<p><em>默认值：[01,02,03,04,05,06,07,08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23]</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="current-cycle">
+<dt class="field-odd">current_cycle<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，当前循环编号，仅当多循环计算时有效。</p>
+<p><em>默认值：0</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当current_cycle大于0时CRANE会自动将最后一个燃耗点的堆芯状态保存至再启动文件，以供后续循环使用。</p>
+</div>
+</dd>
+</dl>
+<dl class="field-list" id="previous-cycles">
+<dt class="field-odd">previous_cycles<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#previous-cycle"><span class="std std-ref">previous_cycle 对象</span></a> 列表，用来定义当前循环组件需要用到的前序循环信息。</p>
+<p><em>当需要进行换料堆芯计算时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="assembly-map">
+<dt class="field-odd">assembly_map<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，组件布置图，即 <a class="reference internal" href="#assembly"><span class="std std-ref">assembly 对象</span></a> 在堆芯内的布置图，多循环换料堆芯计算时以“列编号+行编号+C+循环号”来命名旧组件。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>旧组件必须是6个字符，第1个字符为列编号，第2-3个字符为行编号，第4个字符为”C”，第5-6字符为循环号，
+如A01C02表示第2循环A列01行的组件。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>为避免新、旧组件名解析错误，新组件不得采用以上命名规则。</p>
+</div>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="instrument-map">
+<dt class="field-odd">instrument_map<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，插入中子测量管的组件布置图，即 <a class="reference internal" href="#geometries-instrument-bundle"><span class="std std-ref">instrument_bundle</span></a> 在堆芯内的布置图。</p>
+<p><em>当需要计算探测器活度分布时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="detector-reaction-id">
+<dt class="field-odd">detector_reaction_id<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，探测器采用的核素反应类型的ID号，该ID号的命名可参阅
+<a class="reference external" href="https://www-pub.iaea.org/MTCD/publications/PDF/Pub1264_web.pdf">The WIMS Library Update Project(WLUP)</a>
+文献第29-30页。</p>
+<p><em>默认值：1003（U-235的(n,f)反应）</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="burnable-absorber-map">
+<dt class="field-odd">burnable_absorber_map<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，插入可燃毒物棒的组件布置图，即 <a class="reference internal" href="#geometries-burnable-absorber-bundle"><span class="std std-ref">burnable_absorber_bundle</span></a> 在堆芯内的布置图。</p>
+<p><em>当有分离式可燃毒物棒时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="burnable-absorber-position">
+<dt class="field-odd">burnable_absorber_position<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数列表，可燃毒物棒束高度布置图，即 <a class="reference internal" href="#geometries-burnable-absorber-bundle"><span class="std std-ref">burnable_absorber_bundle</span></a> 底部距离组件底部的高度在堆芯内的布置图。</p>
+<p><em>默认值：[0,0,0……0]</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="core-control-rod">
+<dt class="field-odd">control_rod<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#control-rod"><span class="std std-ref">control_rod 对象</span></a>，用来定义堆芯内控制棒信息，如控制棒步长、分组、堆内布置等等。</p>
+<p><em>当有堆芯内有控制棒时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="core-baffle">
+<dt class="field-odd">baffle<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#axial-slice"><span class="std std-ref">axial_slice 对象</span></a> 列表，用来定义堆芯围板结构, 通过该列表从底到顶构建堆芯围板。</p>
+<p><em>当堆芯有围板时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="reflector-middle">
+<dt class="field-odd">reflector_middle<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#axial-slice"><span class="std std-ref">axial_slice 对象</span></a> 列表，用来定义堆芯中间的径向反射层，通过该列表从底到顶构建径向反射层。</p>
+<p><em>当堆芯有径向反射层时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="reflector-top">
+<dt class="field-odd">reflector_top<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#axial-slice"><span class="std std-ref">axial_slice 对象</span></a> 列表，用来定义堆芯顶部反射层，通过该列表从底到顶构建顶部反射层。</p>
+<p><em>当堆芯有顶部反射层时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="reflector-bottom">
+<dt class="field-odd">reflector_bottom<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#axial-slice"><span class="std std-ref">axial_slice 对象</span></a> 列表，用来定义堆芯底部反射层，通过该列表从底到顶构建底部反射层。</p>
+<p><em>当堆芯有底部反射层时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="outer-albedo">
+<dt class="field-odd">outer_albedo<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，范围在[0.0, 1.0]，堆芯外围非对称边界处的反照率。</p>
+<p><em>默认值：0.0</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="top-boundary-condition">
+<dt class="field-odd">top_boundary_condition<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，堆芯顶部边界条件，全反射还是真空，[REFLECTIVE, VACUUM]二选一。</p>
+<p><em>默认值：VACUUM</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="bottom-boundary-condition">
+<dt class="field-odd">bottom_boundary_condition<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，堆芯底部边界条件，全反射还是真空，[REFLECTIVE, VACUUM]二选一。</p>
+<p><em>默认值：VACUUM</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="previous-cycle">
+<span id="id25"></span><h2><span class="section-number">4.24. </span>previous_cycle 对象<a class="headerlink" href="#previous-cycle" title="Permalink to this heading">¶</a></h2>
+<p>previous_cycle对象用来定义当前循环需要用到的前序循环的信息，该对象包含以下属性:</p>
+<blockquote>
+<div><dl class="field-list" id="restart-file">
+<dt class="field-odd">restart_file<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串， 该前序循环的再启动文件名及其绝对路径，若在当前计算目录下则不需要包含路径。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="shutdown-cooling-days">
+<dt class="field-odd">shutdown_cooling_days<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该前序循环到当前循环的停堆冷却时间，单位天。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="control-rod">
+<span id="id26"></span><h2><span class="section-number">4.25. </span>control_rod 对象<a class="headerlink" href="#control-rod" title="Permalink to this heading">¶</a></h2>
+<p>control_rod对象用于定义堆芯内控制棒信息，如控制棒步长、分组、堆内布置等等，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="control-rod-max-num-steps">
+<dt class="field-odd">max_num_steps<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，控制棒行程的最大步数。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="control-rod-step-size">
+<dt class="field-odd">step_size<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，控制棒行程的步长，单位cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="control-rod-fully-withdrawn-height">
+<dt class="field-odd">fully_withdrawn_height<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，控制棒全提后其底部距离组件底部的高度，单位cm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="control-rod-banks">
+<dt class="field-odd">banks<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#cr-bank"><span class="std std-ref">cr_bank 对象</span></a> 列表，用来定义控制棒分组。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="control-rod-location-map">
+<dt class="field-odd">location_map<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，控制棒组布置图，即 <a class="reference internal" href="#cr-bank"><span class="std std-ref">cr_bank 对象</span></a> 在堆芯内的布置图。</p>
+<p><em>规则位置插入控制棒组时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="control-rod-locations">
+<dt class="field-odd">locations<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#cr-location"><span class="std std-ref">cr_location 对象</span></a> 列表，用来定义控制棒在堆芯位置，用于非规则位置的控制棒插入，如组件间插控制棒。</p>
+<p><em>非规则位置插入控制棒组时不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="cr-bank">
+<span id="id27"></span><h2><span class="section-number">4.26. </span>cr_bank 对象<a class="headerlink" href="#cr-bank" title="Permalink to this heading">¶</a></h2>
+<p>cr_bank对象用于定义控制棒组，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="cr-bank-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，控制棒组的唯一名称，不同控制棒组名称不得重复。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cr-bank-bundle">
+<dt class="field-odd">bundle<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该控制棒组采用的控制棒束名称，即 <a class="reference internal" href="#cr-bundle"><span class="std std-ref">cr_bundle 对象</span></a> 的名称。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cr-bank-position">
+<dt class="field-odd">position<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，该控制棒组当前棒位。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="cr-location">
+<span id="id28"></span><h2><span class="section-number">4.27. </span>cr_location 对象<a class="headerlink" href="#cr-location" title="Permalink to this heading">¶</a></h2>
+<p>cr_location对象用于描述控制棒组如何非规则地插入堆芯，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="cr-loc-bank">
+<dt class="field-odd">bank<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，插入的控制棒组的名称，即 <a class="reference internal" href="#cr-bank"><span class="std std-ref">cr_bank 对象</span></a> 的名称。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cr-loc-location">
+<dt class="field-odd">location<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#point"><span class="std std-ref">point 对象</span></a>，该控制棒组插入堆芯的位置。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cr-loc-position">
+<dt class="field-odd">position<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，该控制棒组当前棒位。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="state">
+<span id="id29"></span><h2><span class="section-number">4.28. </span>state 对象<a class="headerlink" href="#state" title="Permalink to this heading">¶</a></h2>
+<p>state对象用于定义堆芯的初始状态参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="system-pressure">
+<dt class="field-odd">system_pressure<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，系统压力，单位MPa。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="boron-concentration">
+<dt class="field-odd">boron_concentration<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，可溶硼浓度，单位ppm。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="boron-10-abundance">
+<dt class="field-odd">boron_10_abundance<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，硼10丰度，范围[0, 100]，单位%。</p>
+<p><em>默认值：19.9</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="inlet-temperature">
+<dt class="field-odd">inlet_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，堆芯入口温度，单位Kelvin。</p>
+<p><em>开启热工水力反馈计算时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="moderator-temperature">
+<dt class="field-odd">moderator_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，慢化剂温度，用于慢化剂温度给定的情况，单位Kelvin。</p>
+<p><em>inlet_temperature未输入时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="fuel-temperature">
+<dt class="field-odd">fuel_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，燃料温度，用于燃料温度给定的情况，单位Kelvin。</p>
+<p><em>inlet_temperature未输入时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="total-power">
+<dt class="field-odd">total_power<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，堆芯总功率，单位MW。</p>
+<p><em>开启热工水力反馈计算时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="relative-power">
+<dt class="field-odd">relative_power<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，范围[0, 1.1]，相对功率水平。</p>
+<p><em>默认值:1.0</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="inlet-mass-flow-rate">
+<dt class="field-odd">inlet_mass_flow_rate<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，堆芯冷却剂流量，单位kg/s。</p>
+<p><em>开启热工水力反馈计算时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="relative-inlet-flow">
+<dt class="field-odd">relative_inlet_flow<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，范围[0, 1.1]，相对流量水平。</p>
+<p><em>默认值:1.0</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="power-density">
+<dt class="field-odd">power_density<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，功率密度，用于不带热工水力反馈的燃耗计算，单位w/g。</p>
+<p><em>当需要做不带热工水力反馈的燃耗计算时不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="settings">
+<span id="id30"></span><h2><span class="section-number">4.29. </span>settings 对象<a class="headerlink" href="#settings" title="Permalink to this heading">¶</a></h2>
+<p>settings对象用于设置计算参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="settings-energy-deposition">
+<dt class="field-odd">energy_deposition<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，能量沉积方式，是通过裂变直接释放还是考虑当地的俘获释热，[KAPPA_FISSION, HEATING_LOCAL]二选一。</p>
+<p><em>默认值：KAPPA_FISSION</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="settings-xe-transients">
+<dt class="field-odd">xe_transients<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，氙状态，分真实燃耗跟踪、平衡氙、零氙三种情况，分别为[TRAN, EQUI, ZERO]，三选一。</p>
+<p><em>默认值：TRAN</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="settings-critical-boron-search">
+<dt class="field-odd">critical_boron_search<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#critical-boron-search"><span class="std std-ref">critical_boron_search 对象</span></a>，用于定义临界硼搜索相关信息。</p>
+<p><em>开启临界硼搜索时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list simple" id="settings-power-iteration">
+<dt class="field-odd">power_iteration<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#power-iteration"><span class="std std-ref">power_iteration 对象</span></a>，用于定义功率迭代（外迭代）的收敛判据等信息。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="settings-moc-2d">
+<dt class="field-odd">moc_2d<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#moc-2d"><span class="std std-ref">moc_2d 对象</span></a>，用于定义两维MOC输运计算的控制参数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="settings-cmfd">
+<dt class="field-odd">cmfd<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#cmfd"><span class="std std-ref">cmfd 对象</span></a>，用于定义三维粗网有限差分cmfd加速的控制参数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="settings-output">
+<dt class="field-odd">output<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#output"><span class="std std-ref">output 对象</span></a>，用于定义输出相关的控制参数。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="critical-boron-search">
+<span id="id31"></span><h2><span class="section-number">4.30. </span>critical_boron_search 对象<a class="headerlink" href="#critical-boron-search" title="Permalink to this heading">¶</a></h2>
+<p>critical_boron_search对象用于定义临界硼搜索相关参数，其包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="cb-search-on">
+<dt class="field-odd">cb_search_on<span class="colon">:</span></dt>
+<dd class="field-odd"><p>布尔值，是否开启临界硼搜索。</p>
+<p><em>默认值：false</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="boron-converge-criterion">
+<dt class="field-odd">boron_converge_criterion<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，临界硼搜索收敛判据，单位ppm。</p>
+<p><em>默认值：0.5</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="power-iteration">
+<span id="id32"></span><h2><span class="section-number">4.31. </span>power_iteration 对象<a class="headerlink" href="#power-iteration" title="Permalink to this heading">¶</a></h2>
+<p>power_iteration对象用于定义功率迭代（外迭代）控制参数，其包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="pi-fission-converge-criterion">
+<dt class="field-odd">fission_converge_criterion<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，裂变源收敛判据。</p>
+<p><em>默认值：1e-4</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="pi-keff-converge-criterion">
+<dt class="field-odd">keff_converge_criterion<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，有效增殖因子收敛判据。</p>
+<p><em>默认值：1e-5</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="pi-max-num-outer-iterations">
+<dt class="field-odd">max_num_outer_iterations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，最大外迭代次数。</p>
+<p><em>默认值：9999</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="moc-2d">
+<span id="id33"></span><h2><span class="section-number">4.32. </span>moc_2d 对象<a class="headerlink" href="#moc-2d" title="Permalink to this heading">¶</a></h2>
+<p>moc_2d对象用于定义两维MOC计算的相关控制参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="moc2d-num-azimuths">
+<dt class="field-odd">num_azimuths<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，0～90°范围（如果是六角形组件则是0~60°）内方位角离散个数，必须是2的倍数，取值范围[2, 64]。</p>
+<p><em>默认值：方形组件为 12，六角形组件为 8</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="moc2d-num-polars">
+<dt class="field-odd">num_polars<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，0-90°范围内极角离散个数，[2, 3, 4]三选一。</p>
+<p><em>默认值：3</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="moc2d-track-density">
+<dt class="field-odd">track_density<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，特征线密度，取值范围[0.001, 1.0]，单位cm。</p>
+<p><em>默认值：0.05</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="moc2d-source-type">
+<dt class="field-odd">source_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，MOC计算的源近似类型，平源近似还是线性源近似，分别为[FLAT, LINEAR]，二选一。</p>
+<p><em>默认值：FLAT</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="cmfd">
+<span id="id34"></span><h2><span class="section-number">4.33. </span>cmfd 对象<a class="headerlink" href="#cmfd" title="Permalink to this heading">¶</a></h2>
+<p>cmfd对象用于定义三维CMFD加速相关的控制参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="cmfd-on">
+<dt class="field-odd">cmfd_on<span class="colon">:</span></dt>
+<dd class="field-odd"><p>布尔值，是否开启CMFD加速。</p>
+<p><em>默认值：true</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cmfd-fission-converge-criterion">
+<dt class="field-odd">fission_converge_criterion<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，CMFD迭代的裂变源收敛判据。</p>
+<p><em>默认值：2e-6</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="cmfd-keff-converge-criterion">
+<dt class="field-odd">keff_converge_criterion<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，CMFD迭代的有效增殖因子收敛判据。</p>
+<p><em>默认值：2e-7</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="output">
+<span id="id35"></span><h2><span class="section-number">4.34. </span>output 对象<a class="headerlink" href="#output" title="Permalink to this heading">¶</a></h2>
+<p>output对象用于定义输出相关的控制参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="output-type">
+<dt class="field-odd">type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，输出数据的详细程度，[MINIMAL, MEDIUM, MAXIMUM]三选一。</p>
+<p><em>默认值：MEDIUM</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="low-power-physic-tests">
+<span id="id36"></span><h2><span class="section-number">4.35. </span>low_power_physic_tests 对象<a class="headerlink" href="#low-power-physic-tests" title="Permalink to this heading">¶</a></h2>
+<p>low_power_physic_tests对象用来定义低功率物理实验计算序列的相关参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="lppt-criticals">
+<dt class="field-odd">criticals<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#critical"><span class="std std-ref">critical 对象</span></a> 列表，用于定义临界实验计算控制参数。</p>
+<p><em>当开启临界实验计算时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="lppt-temperature-coefficients">
+<dt class="field-odd">temperature_coefficients<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#temperature-coefficient"><span class="std std-ref">temperature_coefficient 对象</span></a> 列表，用于定义温度系数计算序列参数。</p>
+<p><em>当开启温度系数计算序列时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="lppt-control-rod-worths">
+<dt class="field-odd">control_rod_worths<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#control-rod-worth"><span class="std std-ref">control_rod_worth 对象</span></a> 列表，用于定义控制棒价值计算序列参数。</p>
+<p><em>当开启控制棒价值计算序列时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="lppt-control-rod-worths-curve">
+<dt class="field-odd">control_rod_worths_curve<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#control-rod-worth-curve"><span class="std std-ref">control_rod_worth_curve 对象</span></a> 列表，用于定义控制棒价值曲线计算序列参数。</p>
+<p><em>当开启控制棒价值曲线计算序列时不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="critical">
+<span id="id37"></span><h2><span class="section-number">4.36. </span>critical 对象<a class="headerlink" href="#critical" title="Permalink to this heading">¶</a></h2>
+<p>critical对象用于定义临界实验计算的控制参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="critical-description">
+<dt class="field-odd">description<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该临界实验计算的描述。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="critical-boron-concentration">
+<dt class="field-odd">boron_concentration<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该临界实验计算采用的硼浓度，单位ppm。</p>
+<p><em>默认值：初始状态下的硼浓度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="critical-moderator-temperature">
+<dt class="field-odd">moderator_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该临界实验计算采用的慢化剂温度，单位Kelvin。</p>
+<p><em>默认值：初始状态下的慢化剂温度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="critical-fuel-temperature">
+<dt class="field-odd">fuel_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该临界实验计算采用的燃料温度，单位Kelvin。</p>
+<p><em>默认值：初始状态下的燃料温度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="critical-control-rod-position">
+<dt class="field-odd">control_rod_position<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数列表，该临界实验计算采用的控制棒棒位。</p>
+<p><em>默认值：初始状态下的控制棒棒位</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="temperature-coefficient">
+<span id="id38"></span><h2><span class="section-number">4.37. </span>temperature_coefficient 对象<a class="headerlink" href="#temperature-coefficient" title="Permalink to this heading">¶</a></h2>
+<p>temperature_coefficient对象用于定义温度系数计算的控制参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="tc-description">
+<dt class="field-odd">description<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该温度系数计算的描述。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="tc-type">
+<dt class="field-odd">type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串列表，需要计算的温度系数类型，等温温度系数、慢化剂温度系数还是燃料温度系数，分别对应为[ITC, MTC, FTC]，可选一个或多个。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="tc-delta-temperature">
+<dt class="field-odd">delta_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，计算温度系数时温度的变化范围，以基础温度分别加减该值来做两个状态点的计算并产生温度系数。</p>
+<p><em>默认值：2.0</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="tc-boron-concentration">
+<dt class="field-odd">boron_concentration<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该温度系数计算时采用的硼浓度，单位ppm。</p>
+<p><em>默认值：初始状态下的硼浓度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="tc-control-rod-position">
+<dt class="field-odd">control_rod_position<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数列表，该温度系数计算时采用的控制棒棒位。</p>
+<p><em>默认值：初始状态下的控制棒棒位</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="control-rod-worth">
+<span id="id39"></span><h2><span class="section-number">4.38. </span>control_rod_worth 对象<a class="headerlink" href="#control-rod-worth" title="Permalink to this heading">¶</a></h2>
+<p>control_rod_worth对象用于定义控制棒价值（积分价值）计算参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="crw-description">
+<dt class="field-odd">description<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该控制棒价值计算的描述，通过同样描述下的两个状态点来计算棒价值。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>控制棒价值计算是通过同样 <a class="reference internal" href="#crw-description"><span class="std std-ref">description</span></a> 前后两个不同棒位下的状态点计算来产生棒价值的。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><code class="docutils literal notranslate"><span class="pre">ARO</span></code> 是保留字符串，用来自定义棒全提下的状态点参数，见 <a class="reference internal" href="../usersguide/lppt.html#crw-computation"><span class="std std-ref">控制棒组价值计算</span></a>。</p>
+</div>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="crw-boron-concentration">
+<dt class="field-odd">boron_concentration<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该控制棒价值计算时采用的硼浓度，单位ppm。</p>
+<p><em>默认值：初始状态下的硼浓度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="crw-moderator-temperature">
+<dt class="field-odd">moderator_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该控制棒价值计算采用的慢化剂温度，单位Kelvin。</p>
+<p><em>默认值：初始状态下的慢化剂温度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="crw-fuel-temperature">
+<dt class="field-odd">fuel_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该控制棒价值计算采用的燃料温度，单位Kelvin。</p>
+<p><em>默认值：初始状态下的燃料温度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="crw-control-rod-position">
+<dt class="field-odd">control_rod_position<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数列表，该控制棒价值计算时采用的控制棒棒位。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="control-rod-worth-curve">
+<span id="id40"></span><h2><span class="section-number">4.39. </span>control_rod_worth_curve 对象<a class="headerlink" href="#control-rod-worth-curve" title="Permalink to this heading">¶</a></h2>
+<p>control_rod_worth_curve对象用于定义控制棒价值曲线（微分价值）计算参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="crwc-bank">
+<dt class="field-odd">bank<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，计算哪组控制棒，必须是 <span class="xref std std-ref">banks</span> 中定义的控制棒组名称。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="crwc-step-size">
+<dt class="field-odd">step_size<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，该控制棒价值曲线计算时采用的步长。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="crwc-boron-concentration">
+<dt class="field-odd">boron_concentration<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该控制棒价值曲线计算时采用的硼浓度，单位ppm。</p>
+<p><em>默认值：初始状态下的硼浓度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="crwc-moderator-temperature">
+<dt class="field-odd">moderator_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该控制棒价值曲线计算采用的慢化剂温度，单位Kelvin。</p>
+<p><em>默认值：初始状态下的慢化剂温度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="crwc-fuel-temperature">
+<dt class="field-odd">fuel_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，该控制棒价值曲线计算采用的燃料温度，单位Kelvin。</p>
+<p><em>默认值：初始状态下的燃料温度</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="depletion">
+<span id="id41"></span><h2><span class="section-number">4.40. </span>depletion 对象<a class="headerlink" href="#depletion" title="Permalink to this heading">¶</a></h2>
+<p>depletion对象用于定义燃耗计算相关控制参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="dep-time-step-units">
+<dt class="field-odd">time_step_units<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，燃耗计算采用的时间步长单位，[MWd/tU, EFPD, DAY]三选一。</p>
+<p><em>默认值：MWd/tU</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-coupling-strategy">
+<dt class="field-odd">coupling_strategy<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，燃耗计算与输运计算耦合策略，[PREDICTOR, PREDICTOR_CORRECTOR, LINEAR_RATE]三选一。</p>
+<p><em>默认值：LINEAR_RATE</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-states">
+<dt class="field-odd">states<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#depletion-state"><span class="std std-ref">depletion_state 对象</span></a> 列表，用于定义每个燃耗点的状态参数。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="depletion-state">
+<span id="id42"></span><h2><span class="section-number">4.41. </span>depletion_state 对象<a class="headerlink" href="#depletion-state" title="Permalink to this heading">¶</a></h2>
+<p>depletion_state对象用于定义燃耗点的状态参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="dep-state-burnup">
+<dt class="field-odd">burnup<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，当前燃耗点的燃耗值，单位为 <span class="xref std std-ref">time_step_units</span> 中定义的单位。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-delta-time">
+<dt class="field-odd">delta_time<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，衰变时间，当前后两个燃耗值相等，即进行零功率衰变计算时需要输入，单位天。</p>
+<p><em>停堆衰变计算时不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-boron-concentration">
+<dt class="field-odd">boron_concentration<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，可溶硼浓度，单位ppm。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>临界硼搜索功能开启时则采用搜索得到的硼浓度。</p>
+</div>
+<p><em>默认值：初始状态硼浓度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-boron-10-abundance">
+<dt class="field-odd">boron_10_abundance<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，硼10丰度，单位%。</p>
+<p><em>默认值：19.9</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-inlet-temperature">
+<dt class="field-odd">inlet_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，堆芯入口温度，单位Kelvin。</p>
+<p><em>默认值：初始状态的堆芯入口温度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-moderator-temperature">
+<dt class="field-odd">moderator_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，慢化剂温度，仅当未开启热工水力反馈计算时有效，单位Kelvin。</p>
+<p><em>默认值:初始状态的慢化剂温度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-fuel-temperature">
+<dt class="field-odd">fuel_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，燃料温度，仅当未开启热工水力反馈计算时有效，单位Kelvin。</p>
+<p><em>默认值:初始状态的燃料温度</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-relative-power">
+<dt class="field-odd">relative_power<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，相对功率水平，取值范围[0, 1.1]。</p>
+<p><em>默认值：1.0</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-relative-inlet-flow">
+<dt class="field-odd">relative_inlet_flow<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，相对流量水平，取值范围[0, 1.1]。</p>
+<p><em>默认值：1.0</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-control-rod-position">
+<dt class="field-odd">control_rod_position<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数列表，该状态点的控制棒棒位。</p>
+<p><em>默认值：初始状态下的控制棒棒位</em></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该控制棒棒位整数列表的棒组顺序与 <a class="reference internal" href="#control-rod-banks"><span class="std std-ref">banks</span></a> 定义的棒组顺序是一致的。</p>
+</div>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-save-restart-file">
+<dt class="field-odd">save_restart_file<span class="colon">:</span></dt>
+<dd class="field-odd"><p>布尔值，是否保存该燃耗点的再启动文件，燃耗计算最后一个状态点保存的再启动文件名默认为
+<a class="reference internal" href="#core-name"><span class="std std-ref">name</span></a> <code class="docutils literal notranslate"><span class="pre">+.restart.h5</span></code>，其他状态点下保存的再启动文件名默认为
+<a class="reference internal" href="#core-name"><span class="std std-ref">name</span></a> <code class="docutils literal notranslate"><span class="pre">+.restart+燃耗点编号.h5</span></code>。</p>
+<p><em>默认值：仅当:ref:`current_cycle`大于0时最后一个燃耗点时为true，其余为false</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="dep-state-output-type">
+<dt class="field-odd">output_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该状态点输出的结果数据详细程度，[MINIMAL, MEDIUM, MAXIMUM]三选一。</p>
+<p><em>默认值：初始状态点的结果数据输出详细程度</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="output_excel.html" class="btn btn-neutral float-right" title="5. Excel 结果文件" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="input_schema.html" class="btn btn-neutral float-left" title="3. 用户输入规则配置文件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

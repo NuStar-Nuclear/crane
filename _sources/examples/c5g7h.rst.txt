@@ -1,0 +1,50 @@
+.. _examples_c5g7h:
+
+
+========
+C5G7H
+========
+
+C5G7H是C5G7 extension基准题演变而来的六角形版本基准题，其材料截面和C5G7完全一样。
+
+相关参考文献如下:
+
+1. J. Y. CHO, K. S. Kim, H. J. Shim, J. S. Song, C. C. Lee, H. G. Joo. Whole Core Transport 
+   Calculation Employing Hexagonal Modular Ray Tracing and CMFD Formulation [J]. Journal of 
+   Nulcear Science and Technology, 2008, 45:740-751.
+
+该系列基准题问题根据插棒状态分为以下3个基准题：
+
+   #. :ref:`c5g7h_3d_unrodded`
+   #. :ref:`c5g7h_3d_rodded_a`
+   #. :ref:`c5g7h_3d_rodded_b`
+
+
+.. _c5g7h_3d_unrodded:
+
+-----------------
+C5G7H_3D_unrodded
+-----------------
+
+.. literalinclude:: ../../../examples/C5G7H_3D_unrodded.yaml
+    :language: yaml
+
+
+.. _c5g7h_3d_rodded_a:
+
+-----------------
+C5G7H_3D_rodded_A
+-----------------
+
+.. literalinclude:: ../../../examples/C5G7H_3D_rodded_A.yaml
+    :language: yaml
+
+
+.. _c5g7h_3d_rodded_b:
+
+-----------------
+C5G7H_3D_rodded_B
+-----------------
+
+.. literalinclude:: ../../../examples/C5G7H_3D_rodded_B.yaml
+    :language: yaml

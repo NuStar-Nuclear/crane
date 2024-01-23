@@ -1,0 +1,287 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>1. 多群常数库 &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/usersguide/library.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="2. 材料定义" href="materials.html" />
+    <link rel="prev" title="用户指南" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">用户指南</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1. 多群常数库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials.html">2. 材料定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">3. 几何建模</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 堆芯状态参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">5. 计算选项设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html">6. 燃耗跟踪</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lppt.html">7. 低功率物理实验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicycle.html">8. 多循环换料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">9. 启动计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">10. 结果输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">11. 可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compare.html">12. 结果比较</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html">13. 常见错误排查</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">用户指南</a> &raquo;</li>
+        
+      <li><span class="section-number">1. </span>多群常数库</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/usersguide/library.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="usersguide-library">
+<span id="id1"></span><h1><span class="section-number">1. </span>多群常数库<a class="headerlink" href="#usersguide-library" title="Permalink to this heading">¶</a></h1>
+<p>CRANE采用RLIB数据库作为程序的核数据多群常数库，RLIB数据库是基于
+<a class="reference external" href="https://www-pub.iaea.org/MTCD/publications/PDF/Pub1264_web.pdf">The WIMS Library Update Project(WLUP)</a>
+中的 <code class="docutils literal notranslate"><span class="pre">WIMS-D-69</span></code> 格式数据库进行以下二次开发而来：</p>
+<ol class="arabic simple">
+<li><p>U-238共振积分的调整。CRANE采用了传统的等价理论与中子流方法计算空间相关的丹可夫因子相结合的方法进行共振计算，
+该方法在空间自屏效应的处理能力上和子群方法相当。无论是等价理论还是子群方法，在理论上都无法解决不同共振核之间的共振干涉效应，
+为此通常采用本底迭代的方式来近似处理。文献研究表明，本底迭代的方法将高估U-238的共振吸收。因此，按照传统的做法，
+RLIB数据库中对U-238的共振积分进行了适当调整；</p></li>
+<li><p>补充了缓发中子数据。RLIB数据库中给出了10种核素的6组缓发中子数据，这些核素包括钍-232、铀-233、铀-234、铀-235、铀-236、
+铀-238、钚-239、钚-240、钚-241和钚-242。缓发中子数据取自文献。</p></li>
+<li><p>增加了8种裂变核素的裂变谱。原WIMS-D格式多群常数库采用的裂变谱是铀-235、铀-238和钚-239按54%、8%和38%比例权重的混合裂变谱。
+文献[3]的研究表明，采用核素相关的独立裂变谱和采用混合裂变谱相比，反应性偏差随燃耗将从负变正，在数值上达到近百个pcm。为此，
+RLib-1.0数据库在保留混合裂变谱的基础上，增加了8种裂变核素的裂变谱，包括铀-235、铀-236、铀-238、钚-239、钚-238、钚-240、
+钚-241和钚-242，这些核素的裂变谱基于基础评价库ENDFB/VII.1制作。在输运计算时，对这8种核素采用各自的裂变谱，
+其他核素则仍然采用混合裂变谱。</p></li>
+<li><p>增加了钨、铼同位素的截面数据。为考虑钨可燃吸收体的燃耗，RLIB数据库中新增了5种钨、铼同位素的截面参数及燃耗链信息，
+包括W-182、W-183、W-183、W-184、W-186及Re-187。</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>RLIB数据库文件是一个二进制文件，会随程序一起默认安装在 <code class="docutils literal notranslate"><span class="pre">/安装目录/ngm/data_files/</span></code> 下并自动配置好路径，
+用户计算时无需指定。</p>
+</div>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="materials.html" class="btn btn-neutral float-right" title="2. 材料定义" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="用户指南" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

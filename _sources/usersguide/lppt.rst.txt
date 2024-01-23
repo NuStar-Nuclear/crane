@@ -1,0 +1,116 @@
+.. _usersguide_lppt:
+
+
+================
+低功率物理实验
+================
+
+
+低功率物理实验的模拟计算，即 :ref:`low_power_physic_tests`，是用来定义低功率物理实验计算相关内容的，包含临界实验、
+温度系数、控制棒价值等计算。
+
+理论上通过CRANE的单个状态点计算功能，你就可以通过定义多个问题来模拟低功率物理实验，如温度系数可以通过定义两个温度不同、
+其余输入都完全一样的模型分别计算出有效增值因子再编辑出温度系数。
+
+但是这样一方面会有很多重复输入，另一方面由于需要重复进行几何处理及初始化、无法利用上一状态点的通量分布作为初始值等原因使得计算效率较低。
+因此CRANE为用户提供了一些序列计算功能，低功率物理实验就是其中之一。
+
+.. note:: 目前CRANE版本的序列计算功能仅支持低功率物理实验，未来会开放更多序列计算功能。
+
+低功率物理实验计算分为以下四种：
+
+1. :ref:`crit_computation`，通过 :ref:`lppt_criticals` 定义，这是一系列临界状态点计算，每个状态点的都应该是临界状态，
+   即测量的keff等于1.0；
+2. :ref:`tc_computation`，通过 :ref:`lppt_temperature_coefficients` 定义，可计算 ``ITC, MTC, FTC`` 三种类型的温度系数；
+3. :ref:`crw_computation`，通过 :ref:`lppt_control_rod_worths` 定义，可计算不同状态下的各组控制棒价值。
+4. :ref:`crwc_computation`，通过 :ref:`lppt_control_rod_worths_curve` 定义，可计算不同状态下的各组控制棒价值曲线。
+
+
+.. _crit_computation:
+
+临界实验计算
+----------------
+
+临界实验计算通过 :ref:`lppt_criticals` 定义，实际上是一系列单点计算，只是每个状态点的都应该是临界状态，keff的测量值等于1.0。
+每个临界实验状态点通过 :ref:`critical` 定义。
+
+以下是 :ref:`vera_5` 基准题中的临界实验计算输入（对应为case1-case10）：
+
+.. literalinclude:: ../_yamls/criticals_vera5.yaml
+    :language: yaml
+
+这里定义了10个临界状态点，每个状态点都输入了硼浓度、慢化剂温度、燃料温度和控制棒棒位。 
+
+.. note:: 这里只要设置 :ref:`state` 中的 :ref:`inlet_temperature` 为565，则上面的慢化剂温度和燃料温度就可以缺省。
+
+
+.. _tc_computation:
+
+温度系数计算
+-----------------
+
+温度系数计算通过 :ref:`lppt_temperature_coefficients` 定义，每个温度系数的计算参数通过单个 :ref:`temperature_coefficient`
+定义，CRANE支持等温温度系数、慢化剂温度系数和燃料温度系数三种温度系数计算，对应的 :ref:`tc_type` 分别为 ``ITC, MTC, FTC``。
+
+温度系数计算的温度变化范围由 :ref:`tc_delta_temperature` 控制， **默认为基准题温度上加减2K**。
+
+以下是 :ref:`vera_5` 基准题的温度系数计算输入：
+
+.. literalinclude:: ../_yamls/tcs_vera5.yaml
+    :language: yaml
+
+这里只计算了ARO且硼浓度为1291ppm下的等温温度系数，是通过基准温度565K下加减5K来计算获得的。
+
+.. note:: 该问题中的 :ref:`inlet_temperature` 必须为565K，这样加减5K正好是560K和570K。
+
+
+.. _crw_computation:
+
+控制棒组价值计算
+----------------------
+
+控制棒组价值（积分价值）计算通过 :ref:`lppt_control_rod_worths` 定义，默认情况下，控制棒价值计算首先会在初始状态点（ARO）
+下搜索临界硼浓度，然后在该临界硼浓度下根据每个 :ref:`control_rod_worth` （插棒状态）下计算获得keff并编辑出该棒组的棒价值。
+
+如以下是 :ref:`beavrs_c2` 基准题的控制棒组价值计算输入：
+
+.. literalinclude:: ../_yamls/crws_beavrs_c2.yaml
+    :language: yaml
+
+这里初始状态（在 :ref:`core_control_rod` 中设置）是ARO的，首先计算该状态点下的临界硼浓度，
+再分别计算这里的 ``9`` 个插棒状态下的keff来最终获得棒价值，所以一共是计算 ``10`` 个状态点。
+
+另外，你也可以通过将 :ref:`crw_description` 设置成 ``ARO`` 来定义ARO状态点的参数，而不是采用默认情况。
+
+如以下是 :ref:`vera_5` 基准题的控制组价值计算输入：
+
+.. literalinclude:: ../_yamls/crws_vera5.yaml
+    :language: yaml
+
+这里ARO状态点下的硼浓度直接输入为1170ppm，而不进行临界硼搜索，后续所有插棒状态点的硼浓度都会沿用该ARO状态点下的硼浓度。
+
+如果要进行更为任意的棒价值计算，如有些棒价值是其他棒插入情况下获得的，如 :ref:`beavrs_c1` 基准题中的控制棒组价值计算：
+
+.. literalinclude:: ../_yamls/crws_beavrs_c1.yaml
+    :language: yaml
+
+在控制棒价值计算中如果发现有同样的两个 :ref:`crw_description` ，CRANE会认为这两个状态点依次为未插棒与插棒状态，
+而不是以初始ARO状态点作为未插棒状态，因此这里就是计算的是C棒组在D棒组全插下的价值，B棒组在C、D棒组全插下的价值，依次类推。
+
+
+.. _crwc_computation:
+
+控制棒组价值曲线计算
+-----------------------
+
+控制棒组价值曲线（微分价值）计算通过 :ref:`lppt_control_rod_worths_curve` 定义，
+控制棒价值曲线计算通过用户输入的步长等信息自动构建一些列状态点来模拟插棒过程，然后在不同棒位下计算获得keff并编辑出该棒组的棒价值曲线。
+
+如以下是 :ref:`vera_5` 基准题的对D棒组的价值曲线计算输入：
+
+.. literalinclude:: ../_yamls/crwc_vera5.yaml
+    :language: yaml
+
+这里步长 :ref:`crwc_step_size` 设置为 23，硼浓度 :ref:`crwc_boron_concentration` 设置为 1230 ppm。
+
+.. note:: 若这里不输入硼浓度，则会在棒全提时进行临界硼搜索，后续插棒状态点采用该硼浓度进行计算。

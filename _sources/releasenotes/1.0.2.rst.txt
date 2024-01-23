@@ -1,0 +1,33 @@
+===================
+What's New in 1.0.2
+===================
+
+------------
+New Features
+------------
+
+#. 支持双重CMFD加速；
+#. 双重CMFD加速可在GPU上进行；
+
+---------
+Bug Fixes
+---------
+
+#. 076ab6f: incorrect variable type
+#. a9b7161: forget to set device id before create stream
+#. 91f45dd: core2D's sym boundary should be set for generating rotational tracks
+#. 449e742: _control_rod_map and _control_rod_position should be as lenth as _assembly_map
+#. 404d56e: if none grid in input, then do not build grid dict
+#. d8c55ea: use incorrect height to decide whether is reflector
+#. 0c99e9d: lack control rod low boundary in heights
+#. 7ad9c87: crd location should be apply offset when used to construct reflector assembly
+#. 54d8c37: incorrect slice name getting
+#. 42e679e: _control_rod_position should be padded as well as _control_rod_map
+#. d9d0746: control rod map should be padded with assembly map
+#. 6af9f03: miss setting name in fromJson
+#. 4111758: bad ireg calculation in locate_point
+#. a3b35e5: line should be apply offset inplace
+#. 9dffad9: attr meshes of region should use managed memory
+#. f4a0ce6: forget to copy some attrs in method clone; typo
+#. cf0381d: region whose volume > ZERO_VOLUME_THRESH may have none of meshes, this kind of region should be set uneffective
+#. 1798a54: region that has volume > ZERO_VOLUME_THRESH may has none of meshes

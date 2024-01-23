@@ -1,0 +1,1334 @@
+.. _usersguide_visualization:
+
+
+=========
+可视化
+=========
+
+CRANE内建有非常丰富的可视化功能，这些功能根据内容可以分为建模的可视化和计算结果的可视化两类。
+
+.. note:: CRANE内建的可视化功能都是基于两维矢量图的，如果你对堆芯三维可视化有需求，可关注CRANE的进展，
+          我们正在研发基于web的堆芯三维可视化工具。
+
+为了能够方便用户使用，所有可视化命令都采用交互式命令行方式，只要执行 :ref:`crane_visualize` 命令进入到交互式命令行环境，
+按 ``Tab`` 键就可提示出可视化命令及选项。
+
+对于建模可视化，:ref:`crane_visualize` 后面可以是 :ref:`io_file_formats_input`，也可以是
+:ref:`io_file_formats_output_hdf5`。但如果要进行计算结果可视化，:ref:`crane_visualize` 后面必须是
+:ref:`io_file_formats_output_hdf5`。
+
+比如，你可以执行以下命令
+
+.. code-block:: sh
+
+    crane visualize VERA_7.yaml
+
+或者
+
+.. code-block:: sh
+
+    crane visualize VERA_7.h5
+
+进入到 :ref:`vera_7` 问题的交互式可视化环境，前者只支持建模可视化，而后者建模和计算结果可视化都支持。
+
+除此之外，CRANE还支持对不同计算结果的比较可视化功能，如执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_7.h5 VERA_7_another.h5
+
+或者：
+
+.. code-block:: sh
+
+    crane visualize VERA_7.h5 VERA_7_another.xlsx
+
+可进入到 :ref:`vera_7` 问题的两个计算结果比较的可视化环境，结果比较的偏差是前者减去后者，更为详细的说明可参阅
+:ref:`compare_visualization`。
+
+以下我们以 :ref:`vera_7` 基准题为例，对所有可视化功能进行逐一介绍。
+
+
+.. _plot_model:
+
+--------------
+模型可视化
+--------------
+
+模型可视化通过 :ref:`cli_plot_model` 命令实现，是最基本的建模可视化功能，该功能会对不同材料渲染不同颜色来绘制模型两维图，
+支持径向、轴向两种切面。用户可以通过模型可视化来检查几何建模是否正确，材料区输入是否正确等。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-model --direction radial --axial-height 200
+
+.. note:: ``--direction`` 选项用来选择切面类型，默认为径向切面，``--axial-height`` 选项用来选择径向切面的高度。
+
+可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行可视化：
+
+.. figure:: ../_images/plot_model_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+将选项 ``--axial-height`` 设置为 ``422``：
+
+.. code-block:: sh
+
+    plot-model --direction radial --axial-height 422
+
+可对距离堆芯底部（包含反射层）距离422cm处的径向切面进行可视化：
+
+.. figure:: ../_images/plot_model_radial_422.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见这个高度是活性区之外了，没有燃料栅元，但能够看到导向管、以及插入导向管中的可燃毒物棒和控制棒。
+
+.. note:: 这里如果没有 ``--axial-height`` 选项，则会对所有轴向层从底到顶逐一可视化，过程中可以按 ``Ctrl+C`` 终止。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-model --direction axial --axial-slice-coef 1 1 0
+
+.. note:: ``--axial-slice-coef`` 选项用来选择轴向切面的方程系数。
+
+可对方程为 ``x+y=0`` 的轴向切面进行可视化：
+
+.. figure:: ../_images/plot_model_axial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_meshes:
+
+--------------
+网格可视化
+--------------
+
+网格可视化通过 :ref:`cli_plot_meshes` 命令实现，该可视化功能会对不同的网格渲染不同的颜色，支持材料区、MOC、
+CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网格。
+
+所有网格可视化都支持径向、轴向两类切面，以下以径向切面网格可视化为例。
+
+.. _plot_meshes_material:
+
+材料区网格可视化
+-------------------
+
+当 ``--mesh-type`` 设置为 ``material`` 时则是对材料区网格的可视化。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-meshes --mesh-type material --axial-height 200
+
+可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行材料区网格的可视化：
+
+.. figure:: ../_images/plot_meshes_material_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+放大至组件规模：
+
+.. figure:: ../_images/plot_meshes_material_radial_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见材料网格可视化是根据材料区来渲染颜色的。
+
+.. _plot_meshes_moc:
+
+MOC网格可视化
+----------------
+
+当 ``--mesh-type`` 设置为 ``moc`` 时则是对MOC网格的可视化。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-meshes --mesh-type moc --axial-height 200
+
+.. note:: 由于MOC网格数量较多，首次绘制时会需要些时间，后续绘制都会使用缓存，速度不会受到网格数量影响。
+
+可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行MOC网格的可视化：
+
+.. figure:: ../_images/plot_meshes_moc_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+放大至组件规模：
+
+.. figure:: ../_images/plot_meshes_moc_radial_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见MOC网格可视化是根据MOC网格来渲染颜色的，MOC网格是整个模拟计算中最细的网格。
+
+.. _plot_meshes_cmfd:
+
+CMFD网格可视化
+-----------------
+
+当 ``--mesh-type`` 设置为 ``cmfd`` 时则是对CMFD网格（栅元网格）的可视化。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-meshes --mesh-type cmfd --axial-height 200
+
+可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行CMFD网格的可视化：
+
+.. figure:: ../_images/plot_meshes_cmfd_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+放大至组件规模：
+
+.. figure:: ../_images/plot_meshes_cmfd_radial_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见CMFD网格可视化是根据CMFD网格（在CRANE中就是栅元）来渲染颜色的。
+
+.. _plot_meshes_resonance:
+
+共振区网格可视化
+-------------------
+
+当 ``--mesh-type`` 设置为 ``resonance`` 时则是对共振区网格的可视化。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-meshes --mesh-type resonance --axial-height 200
+
+可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行共振区网格的可视化：
+
+.. figure:: ../_images/plot_meshes_resonance_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+放大至组件规模：
+
+.. figure:: ../_images/plot_meshes_resonance_radial_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见共振区网格可视化是根据共振区来渲染颜色的，非共振区不渲染颜色。
+
+.. _plot_meshes_depletion:
+
+燃耗区网格可视化
+--------------------
+
+当 ``--mesh-type`` 设置为 ``depletion`` 时则是对燃耗区网格的可视化。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-meshes --mesh-type depletion --axial-height 200
+
+可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行燃耗区网格的可视化：
+
+.. figure:: ../_images/plot_meshes_depletion_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+放大至组件规模：
+
+.. figure:: ../_images/plot_meshes_depletion_radial_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见燃耗区网格可视化是根据燃耗区来渲染颜色的，非燃耗区不渲染颜色。
+
+热工水力通道网格可视化
+--------------------------
+
+当 ``--mesh-type`` 设置为 ``channel`` 时则是对热工水力通道网格的可视化。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-meshes --mesh-type channel --axial-height 200
+
+可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行热工水力通道网格的可视化：
+
+.. figure:: ../_images/plot_meshes_channel_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+放大至组件规模：
+
+.. figure:: ../_images/plot_meshes_channel_radial_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见热工水力通道网格可视化是根据热工水力计算的通道（在CRANE中是栅元通道）来渲染颜色的，非通道位置不渲染颜色。
+
+
+.. _plot_assembly_map:
+
+--------------------
+组件布置图可视化
+--------------------
+
+组件布置图可视化通过 :ref:`cli_plot_assembly_map` 命令实现，该可视化功能以组件为单位绘制堆芯布置图，支持组件装载、
+组件历史、组件类型、组件编号、控制棒组、分离式可燃毒物、中子测量管共七种。
+
+这里我们用多循环计算基准题 :ref:`beavrs_c2` 作为示例来进行组件布置图的可视化功能。
+
+
+.. _plot_assembly_map_lp:
+
+组件装载布置图
+-----------------
+
+当 ``--map-type`` 设置为 ``loading_pattern`` 时则是组件装载布置图。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-assembly-map --map-type loading_pattern
+
+可绘制出以下组件装载布置图：
+
+.. figure:: ../_images/plot_assembly_map_lp.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+这里有颜色渲染的组件是旧料，且根据燃耗过的循环数来渲染不同颜色。
+
+
+.. _plot_assembly_map_his:
+
+组件历史布置图可视化
+-----------------------
+
+当 ``--map-type`` 设置为 ``assembly_history`` 时则是组件历史布置图。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-assembly-map --map-type assembly_history
+
+可绘制出以下组件历史布置图：
+
+.. figure:: ../_images/plot_assembly_map_his.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见组件历史布置图与组件装载布置图有点类似，主要的区别是旧料组件会把该组件经历的所有循环的详细信息（每个循环所在位置，
+燃耗）都打印出来。
+
+
+.. _plot_assembly_map_type:
+
+组件类型布置图可视化
+----------------------
+
+当 ``--map-type`` 设置为 ``assembly_type`` 时则是组件类型布置图。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-assembly-map --map-type assembly_type
+
+可绘制出以下组件类型布置图：
+
+.. figure:: ../_images/plot_assembly_map_type.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见组件类型布置图是根据组件的类型来渲染不同颜色，而不区分该组件是新料还是旧料。
+
+
+.. _plot_assembly_map_index:
+
+组件编号布置图可视化
+-----------------------
+
+当 ``--map-type`` 设置为 ``assembly_index`` 时则是组件装载布置图。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-assembly-map --map-type assembly_index
+
+可绘制出以下组件编号布置图：
+
+.. figure:: ../_images/plot_assembly_map_index.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+方形组件堆型的组件编号布置图是结合组件行、列编号得到的，而六角形堆型的组件则按从底到顶、
+从左到右的顺序来对组件进行编号，如下图为VVER-1000的组件编号布置图
+
+.. figure:: ../_images/plot_assembly_map_index_vver.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_assembly_map_rcca:
+
+控制棒组布置图可视化
+-----------------------
+
+当 ``--map-type`` 设置为 ``RCCA`` 时则是控制棒组布置图。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-assembly-map --map-type RCCA
+
+可绘制出以下控制棒组布置图：
+
+.. figure:: ../_images/plot_assembly_map_rcca.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见控制棒组件布置图是以棒组名称来进行插棒组件不同颜色的渲染。
+
+
+.. _plot_assembly_map_bp:
+
+分离式可燃毒物布置图可视化
+-----------------------------
+
+当 ``--map-type`` 设置为 ``inserted_BP`` 时则是分离式可燃毒物布置图。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-assembly-map --map-type inserted_BP
+
+可绘制出以下分离式可燃毒物布置图：
+
+.. figure:: ../_images/plot_assembly_map_bp.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见分离式可燃毒物布置图是以分离式可燃毒物在组件内的不同布置来进行不同颜色的渲染。
+
+
+.. _plot_assembly_map_it:
+
+中子测量管布置图可视化
+-------------------------
+
+当 ``--map-type`` 设置为 ``inserted_IT`` 时则是中子测量管布置图。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-assembly-map --map-type inserted_IT
+
+可绘制出以下中子测量管布置图：
+
+.. figure:: ../_images/plot_assembly_map_it.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_tagged_regions:
+
+--------------------
+标记区域可视化
+--------------------
+
+标记区域可视化通过 :ref:`cli_plot_tagged_regions` 命令实现，该可视化功能只对标记区域渲染颜色，
+用来检查用户所标记的区域是否正确，有关标记区域的功能请参阅 :ref:`tally_tagged_regions`。
+
+与模型可视化一样，标记区域可视化也支持径向、轴向两类切面。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-tagged-regions --axial-height 200
+
+可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行标记区域的可视化，这里我们对围板、
+围桶等反射层区域进行了标记：
+
+.. figure:: ../_images/plot_tagged_regions_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_moc_tracks:
+
+-------------------
+MOC特征线可视化
+-------------------
+
+MOC特征线可视化通过 :ref:`cli_plot_moc_tracks` 命令实现，该可视化功能在模型径向切面基础上绘制出不同层级的特征线，
+支持堆芯、组件、特征线段三个层级，其 ``--track-level`` 选项分别为 ``core, assembly, segments``。
+
+.. note:: 层级表示特征线贯穿的区域，如组件特征线指的是一个端点在组件一边，另一个端点在组件另一边上的特征线。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-moc-tracks --axial-height 200 --track-level assembly
+
+.. note:: ``segments`` 层级（贯穿MOC细网）的特征线太多，在大规模问题上绘制该层级特征线会非常耗时。
+
+可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行组件层级的特征线可视化。
+
+.. figure:: ../_images/plot_moc_tracks_assembly.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+由于特征线太密，只看到黑色，当放大至栅元规模时才能看清特征线：
+
+.. figure:: ../_images/plot_moc_tracks_assembly_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_power_distribution:
+
+-------------------
+功率分布可视化
+-------------------
+
+功率分布可视化通过 :ref:`cli_plot_power_distribution` 命令实现，能够对以下 ``8`` 种功率分布进行可视化:
+
+
+.. _plot_power_distribution_assembly_integral:
+
+组件积分功率分布可视化
+------------------------
+
+组件积分功率分布为最常用的功率分布，是对每个组件进行轴向积分后的两维功率分布，其 ``--power-type`` 选项为
+``assembly-integral``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type assembly-integral
+
+可绘制出组件积分功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_assembly_integral.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_power_distribution_assembly_integral_full_core:
+
+全堆组件积分功率分布可视化
+-----------------------------
+
+通常我们会根据对称性做部分堆芯计算，而功率分布图很多时候需要全堆芯的，因此该功能是对组件积分功率分布根据对称性进行补全。
+其 ``--power-type`` 选项为 ``assembly-integral-full-core``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type assembly-integral-full-core
+
+可绘制出全堆组件积分功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_assembly_integral_full_core.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_power_distribution_assembly_axial:
+
+以组件为单位的轴向功率分布可视化
+--------------------------------------
+
+以组件为单位的轴向功率分布，即把每个组件的轴向（层积分）功率分布绘制在一张图上，以比较不同组件轴向功率分布的特点。
+其 ``--power-type`` 选项为 ``assembly-axial``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type assembly-axial
+
+可绘制出以组件为单位的轴向功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_assembly_axial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_power_distribution_assembly_radial_slice:
+
+径向切面的组件功率分布可视化
+----------------------------------
+
+径向切面的组件功率分布是在三维组件功率分布下，选取某径向切面绘制的两维功率分布。其 ``--power-type`` 选项为
+``assembly-radial-slice``。
+
+可通过 ``--map-color-by`` 来选择是以当前层还是全堆的功率数值范围来渲染颜色。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type assembly-radial-slice --axial-height 200
+
+可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的组件功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_assembly_radial_slice.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_power_distribution_pin_integral:
+
+棒积分功率分布可视化
+-------------------------
+
+棒积分功率分布，是对每根燃料棒的进行轴向积分后的两维功率分布，其 ``--power-type`` 选项为 ``pin-integral``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type pin-integral
+
+可绘制出棒积分功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_pin_integral.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_power_distribution_pin_radial_slice:
+
+径向切面的棒功率分布可视化
+----------------------------------
+
+径向切面的棒功率分布是在三维棒功率分布下，选取某径向切面绘制的两维功率分布。其 ``--power-type`` 选项为
+``pin-radial-slice``。
+
+可通过 ``--map-color-by`` 来选择是以当前层还是全堆的功率数值范围来渲染颜色。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type pin-radial-slice --axial-height 200
+
+可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的棒功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_pin_radial_slice.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_power_distribution_pin_axial_slice:
+
+轴向切面的棒功率分布可视化
+-------------------------------
+
+轴向切面的棒功率分布是在三维棒功率分布下，选取某轴向切面绘制的两维功率分布。其 ``--power-type`` 选项为
+``pin-axial-slice``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type pin-axial-slice --axial-slice-coef 1 1 0
+
+可绘制出方程为 ``x+y=0`` 轴向切面的棒功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_pin_axial_slice.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_power_distribution_axial:
+
+堆芯轴向功率分布可视化
+----------------------------
+
+堆芯轴向功率分布，是对层积分后的整个堆芯的轴向功率分布，其 ``--power-type`` 选项为 ``axial``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type axial
+
+可绘制出堆芯轴向功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_axial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+.. note:: 默认会把堆芯轴向切面图绘制在左边，以方便观察功率分布对应的材料区域。
+
+
+.. _plot_flux_distribution:
+
+-------------------
+通量分布可视化
+-------------------
+
+通量分布可视化通过 :ref:`cli_plot_flux_distribution` 命令实现，能够对以下 ``5`` 种功率分布进行可视化：
+
+
+.. _plot_flux_distribution_cell_radial_slice:
+
+径向切面的栅元通量分布可视化
+--------------------------------
+
+径向切面的栅元通量分布是指在三维栅元通量分布下，选取某径向切面绘制的两维通量分布。其 ``--flux-type`` 选项为
+``cell-radial-slice``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-flux-distribution --flux-type cell-radial-slice --axial-height 200 --energy thermal
+
+可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的栅元热通量分布图：
+
+.. figure:: ../_images/plot_flux_distribution_cell_radial_slice_thermal.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+通过 ``--energy`` 选项可以选择中子通量的能量范围，支持 ``thermal|epithermal`` 两个选项，默认为 ``thermal``。
+
+.. note:: ``thermal`` 与 ``epithermal`` 的能量分界线为 ``0.625eV``。
+
+选择绘制非热群通量分布:
+
+.. code-block:: sh
+
+    plot-flux-distribution --flux-type cell-radial-slice --axial-height 200 --energy epithermal
+
+可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的栅元非热通量分布图：
+
+.. figure:: ../_images/plot_flux_distribution_cell_radial_slice_epithermal.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_flux_distribution_cell_axial_slice:
+
+轴向切面的栅元通量分布可视化
+--------------------------------
+
+轴向切面的栅元通量分布是指在三维栅元通量分布下，选取某轴向切面绘制的两维通量分布。其 ``--flux-type`` 选项为
+``cell-axial-slice``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-flux-distribution --flux-type cell-axial-slice --axial-slice-coef 1 1 0 --energy thermal
+
+可绘制出方程为 ``x+y=0`` 轴向切面的栅元热通量分布图：
+
+.. figure:: ../_images/plot_flux_distribution_cell_axial_slice.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_flux_distribution_mesh_radial_slice:
+
+径向切面的细网通量分布可视化
+--------------------------------
+
+径向切面的细网通量分布是指在三维细网（MOC计算网格）通量分布下，选取某径向切面绘制的两维通量分布。其 ``--flux-type`` 选项为
+``mesh-radial-slice``。
+
+.. note:: 绘制细网通量分布的前提是必须保存计算结果文件必须保存MOC计算网格通量数据，由于MOC计算网格通量数据量较大，
+          只有当输出类型 :ref:`output_type` 设置为 ``MAXIMUM`` 才会保存。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-flux-distribution --flux-type mesh-radial-slice --axial-height 200 --energy thermal
+
+可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的细网热群通量分布图：
+
+.. figure:: ../_images/plot_flux_distribution_mesh_radial_slice.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+我们选取一个4x4栅元区域并放大，可以看到细网通量分布是基于MOC计算网格的，比栅元网格更加精细：
+
+.. figure:: ../_images/plot_flux_distribution_mesh_radial_slice_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_flux_distribution_mesh_axial_slice:
+
+轴向切面的细网通量分布可视化
+--------------------------------
+
+轴向切面的细网（MOC计算网格）通量分布是指在三维细网通量分布下，选取某轴向切面绘制的两维通量分布。其 ``--flux-type`` 选项为
+``mesh-axial-slice``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-flux-distribution --flux-type mesh-axial-slice --axial-slice-coef 1 1 0 --energy thermal
+
+可绘制出方程为 ``x+y=0`` 轴向切面的细网热通量分布图：
+
+.. figure:: ../_images/plot_flux_distribution_mesh_axial_slice.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+我们选择有格架且高度为205cm处的一个区域，放大后可以看到比栅元更精细的轴向切面网格热通量分布：
+
+.. figure:: ../_images/plot_flux_distribution_mesh_axial_slice_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_flux_distribution_axial:
+
+堆芯轴向通量分布可视化
+--------------------------
+
+类似于 :ref:`plot_power_distribution_assembly_axial`，堆芯轴向通量分布是指对层积分后的整个堆芯的轴向通量分布。
+其 ``--flux-type`` 选项为 ``axial``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-flux-distribution --flux-type axial --energy thermal
+
+可绘制出堆芯轴向热通量分布图：
+
+.. figure:: ../_images/plot_flux_distribution_axial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+.. note:: 默认会把堆芯轴向切面图绘制在左边，以方便观察功率分布对应的材料区域。
+
+由于格架对热中子的吸收，可以看到在格架位置处，热通量分布曲线有明显凹陷。
+
+
+.. _plot_detector_reaction_distribution:
+
+-------------------------
+探测器活度分布可视化
+-------------------------
+
+探测器活度分布可视化通过 :ref:`cli_plot_detector_reaction_distribution` 命令实现，
+该功能根据组件探测器的活度（反应率）进行颜色渲染产生两维图。
+
+.. note:: 绘制探测器活度分布两维图的前提是要有探测器活度分布的计算结果，也就是用户输入文件中要有对探测器建模的所有数据，
+          如 :ref:`geometries_instrument_bundle`、:ref:`instrument_map` 等。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-detector-reaction-distribution --reaction-type assembly-integral
+
+.. note:: 目前只支持对全堆组件积分的探测器活度分布进行可视化，即 ``--reaction-type`` 只有
+          ``assembly-integral-full-core`` 选项。
+
+可绘制出全堆组件积分的探测器活度分布图：
+
+.. figure:: ../_images/plot_detector_reaction_distribution.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+    
+
+.. _plot_burnup_distribution:
+
+-------------------
+燃耗分布可视化
+-------------------
+
+燃耗分布可视化通过 :ref:`cli_plot_burnup_distribution` 命令实现，能够对以下 ``5`` 种燃耗分布进行可视化:
+
+由于 :ref:`vera_7` 不带燃耗计算，这里我们以 :ref:`vera_9` 基准题为例来进行燃耗分布可视化。
+
+.. _plot_burnup_distribution_assembly_integral:
+
+组件积分燃耗分布可视化
+-------------------------
+
+组件积分燃耗分布为最常用的燃耗分布，是对每个组件进行轴向积分后的两维燃耗分布，其 ``--burnup-type`` 选项为
+``assembly-integral``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-burnup-distribution --burnup-type assembly-integral --efpd 441
+
+可绘制出在441个等效满功率天时的组件积分燃耗分布图：
+
+.. note:: 可以通过 ``--burnup`` 或者 ``--epfd`` 选项来选择哪个状态点，下同。
+
+.. figure:: ../_images/plot_burnup_distribution_assembly_integral.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_burnup_distribution_pin_integral:
+
+棒积分燃耗分布可视化
+-------------------------
+
+棒积分燃耗分布，是对每根燃料棒的进行轴向积分后的两维燃耗分布，其 ``--burnup-type`` 选项为 ``pin-integral``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-burnup-distribution --burnup-type pin-integral --efpd 441
+
+可绘制出在441个等效满功率天时的棒积分燃耗分布图：
+
+.. figure:: ../_images/plot_burnup_distribution_pin_integral.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_burnup_distribution_pin_radial_slice:
+
+径向切面的棒燃耗分布可视化
+------------------------------
+
+径向切面的棒燃耗分布是在三维棒燃耗分布下，选取某径向切面绘制的两维燃耗分布。其 ``--burnup-type`` 选项为
+``pin-radial-slice``。
+
+可通过 ``--map-color-by`` 来选择是以当前层还是全堆的燃耗数值范围来渲染颜色。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-burnup-distribution --burnup-type pin-radial-slice --axial-height 200 --efpd 441
+
+可绘制出在441个等效满功率天时距离堆芯底部（包含反射层）距离200cm处径向切面的棒燃耗分布图：
+
+.. figure:: ../_images/plot_burnup_distribution_pin_radial_slice.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_burnup_distribution_pin_axial_slice:
+
+轴向切面的棒燃耗分布可视化
+------------------------------
+
+轴向切面的棒燃耗分布是在三维棒燃耗分布下，选取某轴向切面绘制的两维燃耗分布。其 ``--burnup-type`` 选项为
+``pin-axial-slice``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-burnup-distribution --burnup-type pin-axial-slice --axial-slice-coef 1 1 0 --efpd 441
+
+可绘制出在441个等效满功率天时方程为 ``x+y=0`` 轴向切面的棒燃耗分布图：
+
+.. figure:: ../_images/plot_burnup_distribution_pin_axial_slice.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_burnup_distribution_axial:
+
+堆芯轴向燃耗分布可视化
+----------------------------
+
+堆芯轴向燃耗分布，是对层积分后的整个堆芯的轴向燃耗分布，其 ``--burnup-type`` 选项为 ``axial``。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-burnup-distribution --burnup-type axial --efpd 441
+
+可绘制出在441个等效满功率天时堆芯轴向燃耗分布图：
+
+.. figure:: ../_images/plot_burnup_distribution_axial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+.. note:: 默认会把堆芯轴向切面图绘制在左边，以方便观察燃耗分布对应的材料区域。
+
+
+.. _plot_number_density_distribution:
+
+-------------------------
+核素核子密度分布可视化
+-------------------------
+
+核素核子密度可视化通过 :ref:`cli_plot_number_density_distribution` 命令实现，
+该功能根据指定核素每个燃耗区的核子密度进行颜色渲染产生两维图，支持径向、轴向两种切面。
+用户可以通过核素核子密度可视化来查看核素成分在堆芯内的空间分布。
+
+.. note:: 绘制核子密度分布的前提是计算结果文件中必须保存各个燃耗区的核素核子密度数据，由于该数据量较大，
+          只有当输出类型 :ref:`output_type` 设置为 ``MAXIMUM`` 才会保存。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-number-density-distribution --nuclide-name Xe-135 --direction radial --axial-height 200
+
+.. note:: 目前支持的核子密度可视化的核素可查看 :ref:`cli_plot_number_density_distribution` 的 ``--nuclide-name`` 选项。
+
+可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的Xe-135核子密度分布图：
+
+.. figure:: ../_images/plot_number_density_distribution_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+或者可以执行：
+
+.. code-block:: sh
+
+    plot-number-density-distribution --nuclide-name Xe-135 --direction axial --axial-slice-coef 1 1 0
+
+绘制出方程为 ``x+y=0`` 轴向切面的Xe-135核子密度分布图：
+
+.. figure:: ../_images/plot_number_density_distribution_axial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_dancoff_factors:
+
+-------------------------
+Dancoff因子分布可视化
+-------------------------
+
+Dancoff因子可视化通过 :ref:`cli_plot_dancoff_factors` 命令实现，该功能以每个共振区的Dancoff因子进行颜色渲染产生两维图，
+支持径向、轴向两种切面。
+
+.. note:: 由于Dancoff因子是能量相关的，如果保存所有共振能群的Dancoff因子会导致存储量较大，
+          因此这里的Dancoff因子是每个共振区不同能群的Dancoff因子的一个平均值。
+
+用户可以通过Dancoff因子分布可视化来查看共振互屏效应，Dancoff因子越小，共振互拼效应越强。
+
+.. note:: 绘制Dancoff因子分布的前提是计算结果文件中必须保存各个共振区的Dancoff因子，由于该数据量较大，
+          只有当输出类型 :ref:`output_type` 设置为 ``MAXIMUM`` 才会保存。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-dancoff-factors --direction radial --axial-height 200
+
+可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的Dancoff因子分布图：
+
+.. figure:: ../_images/plot_dancoff_factors_radial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+选择最外围的一个组件区域放大：
+
+.. figure:: ../_images/plot_dancoff_factors_radial_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见最外围燃料棒的Dancoff因子最大，因为更多慢化剂减弱了燃料棒之间的共振互屏效应。
+
+或者可以执行：
+
+.. code-block:: sh
+
+    plot-dancoff-factors --direction axial --axial-slice-coef 1 1 0
+
+绘制出方程为 ``x+y=0`` 轴向切面的Dancoff因子分布图：
+
+.. figure:: ../_images/plot_dancoff_factors_axial.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+选择高度为205cm左右包含有格架的一个区域放大：
+
+.. figure:: ../_images/plot_dancoff_factors_axial_zoom.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+同样可看到，共振区附近慢化剂越多，其Dancoff因子越大，共振互屏效应越小。
+
+
+.. _plot_result_summary:
+
+---------------------------
+汇总数据随燃耗变化可视化
+---------------------------
+
+汇总数据随燃耗可视化通过 :ref:`cli_plot_result_summary` 命令实现，该功能以燃耗（或时间）为X轴，汇总数据（
+:ref:`statepoint_summary` 中的数据，如Keff、临界硼浓度等）为Y轴绘制折线（或散点图）。
+
+这里我们以 :ref:`vera_9` 基准题为例来进行汇总数据随燃耗可视化。
+
+执行以下交互式命令行：
+
+.. code-block:: sh
+
+    plot-result-summary --x-axis effective_full_power_days --y-axis-first boron_concentration
+
+可绘制出临界硼浓度随等效满功率天的变化折线图：
+
+.. figure:: ../_images/plot_result_summary_efpd_bor.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+也可以通过 ``--plot-type-first`` 设置为 ``scatter`` 将对应的数据绘制成散点图：
+
+.. figure:: ../_images/plot_result_summary_efpd_bor_scatter.png
+    :align: center
+ 
+可支持同时绘制最多 ``3`` 个Y轴的数据，如执行以下交互式命令行：
+
+.. code-block:: sh
+
+    plot-result-summary --y-axis-first boron_concentration --y-axis-second control_rod_withdrawn_steps --rod-bank D --y-axis-third relative_power
+
+.. note:: 这里 ``control_rod_withdrawn_steps`` 需要 ``--rod-bank`` 来指定是哪一组棒，默认为
+          :ref:`control_rod_banks` 中的第一组。
+
+可绘制出临界硼浓度、D棒组棒位和相对功率随燃耗的变化关系：
+
+.. figure:: ../_images/plot_result_summary_multi_y_crd.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+或者把D棒组棒位替换成轴向功率偏移AO：
+
+.. code-block:: sh
+
+    plot-result-summary --y-axis-first boron_concentration --y-axis-second axial_offset --y-axis-third relative_power
+
+可绘制出临界硼浓度、轴向功率偏移和相对功率随燃耗的变化关系：
+
+.. figure:: ../_images/plot_result_summary_multi_y_ao.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_lppt:
+
+---------------------------
+低功率物理实验结果可视化
+---------------------------
+
+.. _plot_criticals:
+
+临界实验结果可视化
+----------------------
+
+临界实验结果可视化通过 :ref:`cli_plot_criticals` 命令实现，该功能将 :ref:`crit_computation` 的 ``keff``
+与 ``1.0`` 的差值绘制成条形图。
+
+这里我们以 :ref:`vera_5` 基准题为例来进行临界实验结果可视化。
+
+执行以下交互式命令行：
+
+.. code-block:: sh
+
+    plot-criticals
+
+可绘制出临界实验结果的条形图：
+
+.. figure:: ../_images/plot_criticals.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_control_rod_worths:
+
+控制棒组价值可视化
+----------------------
+
+控制棒组价值（积分价值）可视化通过 :ref:`cli_plot_control_rod_worths` 命令实现，该功能将
+:ref:`crw_computation` 的结果绘制成条形图。
+
+这里我们以 :ref:`vera_5` 基准题为例来进行控制棒组价值可视化。
+
+执行以下交互式命令行：
+
+.. code-block:: sh
+
+    plot-control-rod-worths
+
+可绘制出控制棒组价值的条形图：
+
+.. figure:: ../_images/plot_control_rod_worths.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_control_rod_worths_curve:
+
+控制棒组价值曲线可视化
+-------------------------
+
+控制棒组价值曲线（微分价值）可视化通过 :ref:`cli_plot_control_rod_worths_curve` 命令实现，该功能将
+:ref:`crwc_computation` 的结果绘制成折线图或条形图。
+
+这里我们以 :ref:`vera_5` 基准题为例来进行控制棒组价值曲线可视化。
+
+执行以下交互式命令行：
+
+.. code-block:: sh
+
+    plot-control-rod-worths-curve --rod-bank D --worth-type IRW(pcm)
+
+可绘制出 ``D`` 棒组的积分价值的曲线：
+
+.. figure:: ../_images/plot_control_rod_worths_curve_IRW.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+将 ``--worth-type`` 选项设置为 ``DRW(pcm)``：
+
+.. code-block:: sh
+
+    plot-control-rod-worths-curve --rod-bank D --worth-type DRW(pcm)
+
+可绘制出 ``D`` 棒组的微分价值的条状图：
+
+.. figure:: ../_images/plot_control_rod_worths_curve_DRW.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+将 ``--worth-type`` 选项设置为 ``DRW(pcm/cm)``：
+
+.. code-block:: sh
+
+    plot-control-rod-worths-curve --rod-bank D --worth-type DRW(pcm/cm)
+
+可绘制出 ``D`` 棒组的微分价值的曲线图，单位为 ``pcm/cm``：
+
+.. figure:: ../_images/plot_control_rod_worths_curve_DRW_1.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_timing_statistics:
+
+-------------------------
+分项耗时统计可视化
+-------------------------
+
+分项耗时统计可视化通过 :ref:`cli_plot_timing_statistics` 命令实现，该功能以各个分项（或者模块）的计算耗时来绘制条状图或者饼图。
+
+这里我们以 :ref:`vera_7` 基准题为例来进行分项耗时统计可视化。
+
+执行以下交互式命令行：
+
+.. code-block:: sh
+
+    plot-timing-statistics --plot-type bar
+
+可绘制出分项耗时统计的条状图：
+
+.. figure:: ../_images/plot_timing_statistics_bar.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+也可以通过 ``--plot-type`` 设置为 ``pie``：
+
+.. code-block:: sh
+
+    plot-timing-statistics --plot-type pie
+
+可绘制成饼图，方便查看各个分项耗时的占比：
+
+.. figure:: ../_images/plot_timing_statistics_pie.png
+    :align: center
+ 
+可见对于 :ref:`vera_7` 基准题，计算耗时占比最大的是热工水力反馈，占20%左右，第二是两维MOC模块，占比17%，
+第三是几何处理，占比10%。

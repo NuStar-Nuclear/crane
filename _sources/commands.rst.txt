@@ -1,0 +1,207 @@
+.. _commands:
+
+
+========
+命令行
+========
+
+CRANE本质上是一个命令行程序，它通过各种命令行来执行计算、绘制可视化图表等，CRANE的命令行可以分为以下两类:
+
+1. 基本命令行，该类命令行形式为 ``crane COMMAND [ARGS]``，是CRANE最基本的命令行，如 :ref:`crane_run`、
+   :ref:`crane_visualize`、:ref:`crane_compare` 等；
+2. 交互式命令行，该类命令行必须通过 :ref:`crane_visualize` 进入交互式命令行界面后执行，为模型及结果可视化相关的命令行工具，
+   如 :ref:`plot_model`、:ref:`plot_power_distribution`、:ref:`print_lppt` 等。
+
+
+.. _base_commands:
+
+--------------
+基本命令行
+--------------
+
+.. _crane_run:
+
+.. click:: ngm.cli:run
+    :prog: crane run
+    :nested: full
+
+.. _crane_check_region_overlap:
+
+.. click:: ngm.cli:check_region_overlap
+    :prog: crane check-region-overlap
+    :nested: full
+
+.. _crane_compare:
+
+.. click:: ngm.cli:compare
+    :prog: crane compare
+    :nested: full
+
+.. _crane_visualize:
+
+.. click:: ngm.cli:visualize
+    :prog: crane visualize
+    :nested: full
+
+
+.. _interactive_commands:
+
+----------------------
+交互式可视化命令行
+----------------------
+
+.. _cli_plot_model:
+
+.. click:: ngm.interactive:plot_model
+    :prog: plot-model
+    :nested: full
+
+.. _cli_plot_meshes:
+
+.. click:: ngm.interactive:plot_meshes
+    :prog: plot-meshes
+    :nested: full
+
+.. _cli_plot_assembly_map:
+
+.. click:: ngm.interactive:plot_assembly_map
+    :prog: plot-assembly-map
+    :nested: full
+
+.. _cli_plot_tagged_regions:
+
+.. click:: ngm.interactive:plot_tagged_regions
+    :prog: plot-tagged-regions
+    :nested: full
+
+.. _cli_plot_moc_tracks:
+
+.. click:: ngm.interactive:plot_moc_tracks
+    :prog: plot-moc-tracks
+    :nested: full
+
+.. _cli_plot_power_distribution:
+
+.. click:: ngm.interactive:plot_power_distribution
+    :prog: plot-power-distribution
+    :nested: full
+
+.. _cli_plot_detector_reaction_distribution:
+
+.. click:: ngm.interactive:plot_detector_reaction_distribution
+    :prog: plot-detector-reaction-distribution
+    :nested: full
+
+.. _cli_plot_burnup_distribution:
+
+.. click:: ngm.interactive:plot_burnup_distribution
+    :prog: plot-burnup-distribution
+    :nested: full
+
+.. _cli_plot_flux_distribution:
+
+.. click:: ngm.interactive:plot_flux_distribution
+    :prog: plot-flux-distribution
+    :nested: full
+
+.. _cli_plot_temperature_distribution:
+
+.. click:: ngm.interactive:plot_temperature_distribution
+    :prog: plot-temperature-distribution
+    :nested: full
+
+.. _cli_plot_mass_flow_distribution:
+
+.. click:: ngm.interactive:plot_mass_flow_distribution
+    :prog: plot-mass-flow-distribution
+    :nested: full
+
+.. _cli_plot_number_density_distribution:
+
+.. click:: ngm.interactive:plot_number_density_distribution
+    :prog: plot-number-density-distribution
+    :nested: full
+
+.. _cli_plot_dancoff_factors:
+
+.. click:: ngm.interactive:plot_dancoff_factors
+    :prog: plot-dancoff-factors
+    :nested: full
+
+.. _cli_plot_cell_neutron_balance_error:
+
+.. click:: ngm.interactive:plot_cell_neutron_balance_error
+    :prog: plot-cell-neutron-balance-error
+    :nested: full
+
+.. _cli_plot_result_summary:
+
+.. click:: ngm.interactive:plot_result_summary
+    :prog: plot-result-summary
+    :nested: full
+
+.. _cli_plot_criticals:
+
+.. click:: ngm.interactive:plot_criticals
+    :prog: plot-criticals
+    :nested: full
+
+.. _cli_plot_control_rod_worths:
+
+.. click:: ngm.interactive:plot_control_rod_worths
+    :prog: plot-control-rod-worths
+    :nested: full
+
+.. _cli_plot_control_rod_worths_curve:
+
+.. click:: ngm.interactive:plot_control_rod_worths_curve
+    :prog: plot-control-rod-worths-curve
+    :nested: full
+
+.. _cli_plot_timing_statistics:
+
+.. click:: ngm.interactive:plot_timing_statistics
+    :prog: plot-timing-statistics
+    :nested: full
+
+.. .. _cli_print_result_summary:
+
+.. .. click:: ngm.interactive:print_result_summary
+..     :prog: print-result-summary
+..     :nested: full
+
+.. .. _cli_print_power_distribution_comparation:
+
+.. .. click:: ngm.interactive:print_power_distribution_comparation
+..     :prog: print-power-distribution-comparation
+..     :nested: full
+
+.. .. _cli_print_lppt:
+
+.. .. click:: ngm.interactive:print_lppt
+..     :prog: print-lppt
+..     :nested: full
+
+.. .. _cli_print_criticals:
+
+.. .. click:: ngm.interactive:print_criticals
+..     :prog: print-criticals
+..     :nested: full
+
+.. .. _cli_print_control_rod_worths:
+
+.. .. click:: ngm.interactive:print_control_rod_worths
+..     :prog: print-control-rod-worths
+..     :nested: full
+
+.. .. _cli_print_control_rod_worths_curve:
+
+.. .. click:: ngm.interactive:print_control_rod_worths_curve
+..     :prog: print-control-rod-worths-curve
+..     :nested: full
+
+.. .. _cli_print_timing_statistics:
+
+.. .. click:: ngm.interactive:print_timing_statistics
+..     :prog: print-timing-statistics
+..     :nested: full

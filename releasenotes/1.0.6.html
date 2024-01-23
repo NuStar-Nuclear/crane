@@ -1,0 +1,309 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>What’s New in 1.0.6 &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/releasenotes/1.0.6.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="What’s New in 1.1.0" href="1.1.0.html" />
+    <link rel="prev" title="What’s New in 1.0.5" href="1.0.5.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersguide/index.html">用户指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Release Notes</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="1.0.0.html">What’s New in 1.0.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.1.html">What’s New in 1.0.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.2.html">What’s New in 1.0.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.3.html">What’s New in 1.0.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.4.html">What’s New in 1.0.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.0.5.html">What’s New in 1.0.5</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">What’s New in 1.0.6</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#new-features">New Features</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bug-fixes">Bug Fixes</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.0.html">What’s New in 1.1.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.1.html">What’s New in 1.1.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.2.html">What’s New in 1.1.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.3.html">What’s New in 1.1.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.4.html">What’s New in 1.1.4</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.5.html">What’s New in 1.1.5</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.1.6.html">What’s New in 1.1.6</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.0.html">What’s New in 1.2.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.1.html">What’s New in 1.2.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.2.html">What’s New in 1.2.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.2.3.html">What’s New in 1.2.3</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.0.html">What’s New in 1.3.0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.1.html">What’s New in 1.3.1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.2.html">What’s New in 1.3.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="1.3.3.html">What’s New in 1.3.3</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">Release Notes</a> &raquo;</li>
+        
+      <li>What’s New in 1.0.6</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/releasenotes/1.0.6.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="what-s-new-in-1-0-6">
+<h1>What’s New in 1.0.6<a class="headerlink" href="#what-s-new-in-1-0-6" title="Permalink to this heading">¶</a></h1>
+<section id="new-features">
+<h2>New Features<a class="headerlink" href="#new-features" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>支持组件间控制棒的定义与几何建模；</p></li>
+<li><p>支持六角形组件未旋转直接放入堆芯中进行建模；</p></li>
+<li><p>采用进度条的方式将几何处理等过程在日志文件中输出；</p></li>
+<li><p>增加重叠区域检查功能；</p></li>
+</ol>
+</section>
+<section id="bug-fixes">
+<h2>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic simple">
+<li><p>7f99e61: numpy array divide zero</p></li>
+<li><p>83a8978: color bar should generated by comparing data in comparing cases</p></li>
+<li><p>623a2a6: nan accurred when computing relative error</p></li>
+<li><p>f18a0b9: deduce contains should consider region larger than cell</p></li>
+<li><p>8742245: error type should be passed to log_and_raise_error</p></li>
+<li><p>7ac36c5: region center do not consider the assembly offset</p></li>
+<li><p>9a08331: _boundary applyed offset but _reg_geos not</p></li>
+<li><p>84f4999: incorrect line[‘in_polygon’] setting</p></li>
+<li><p>c5a71ed: type error const int* – int*</p></li>
+<li><p>334b5d7: incorrect index used to get spherical harmonics</p></li>
+<li><p>3a4ac25: _n_sigs_elements not reset to zero before accumulate</p></li>
+<li><p>551adac: 1.incorrect track_index used in transport_flux_sweep_anisotropic_scattering;
+2.scalar flux accumulation repeated in accumulate_mesh_angular_flux_moment</p></li>
+<li><p>96bbf01: _n_sigs_element not set to zero before accumulating</p></li>
+<li><p>338d2b7: incorrect size of azi_index</p></li>
+<li><p>40ff452: incorrect size to allocate angular flux and source moment, typo</p></li>
+<li><p>d7ba80e: incorrect index order to setup_p1_scatter_matrix</p></li>
+<li><p>3ab2185: incorrect size used to allocate condensed neutron data</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="1.1.0.html" class="btn btn-neutral float-right" title="What’s New in 1.1.0" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="1.0.5.html" class="btn btn-neutral float-left" title="What’s New in 1.0.5" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

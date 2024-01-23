@@ -1,0 +1,32 @@
+===================
+What's New in 1.2.1
+===================
+
+------------
+New Features
+------------
+
+#. 增加换料组件布料图的可视化功能；
+#. 在再启动文件中增加组件历史数据的保存；
+#. 增加输出控制类型的选项以减少计算结果文件的存储；
+
+---------
+Bug Fixes
+---------
+
+#. a997f19: heat and unheated rod order
+#. cdf11f5: deivce id only be 0
+#. 608f3c6: direct flow bug
+#. 7251b3c: incorrect absolute flux normalize factor
+#. 476b75b: do not dump fuel assembly number densities for macro xs cases
+#. d61f2ea: gpus[0]'s dep_regions may be nullptr
+#. 3782cdf: the first statepoint of squence calulation may need rebuilding core
+#. 4f3d83e: axial_offset may not zero despite the condition of top and bottom are reflective
+#. fc5bfd5: EQUI Xe should not be performed in corrector step
+#. a45ff30: incorrect gpu's library using cause unnecessary device-host memory copying
+#. 402a94e: power ratio error
+#. 397cf20: can not exit iteration if negative boron searched
+#. 1c05d00: list index error
+#. 7eda170: incorrect size of inlet_temps\mod_temps\fuel_temps
+#. ae497ab: intialize cell value array
+#. fe9158d: export reflactor cell index wrong

@@ -1,0 +1,178 @@
+.. _io_file_formats_restart:
+
+
+=============
+再启动文件
+=============
+
+
+再启动文件也是 `HDF5 <https://www.hdfgroup.org/solutions/hdf5/>`_ 格式的，该文件用于多循环计算，
+包含了某燃耗点下所有的核素成分数据、组件历史数据以及燃料性能历史信息等。
+
+与HDF5结果文件一样，除包含以上数据外，还保存了用户输入文件数据、程序的版本号以及数据库版本号等信息。
+
+.. note:: 多循环计算时默认会在最后一个燃耗点下保存再启动文件，文件名为堆芯名称 :ref:`core_name` +
+          ``restart.h5``，如 :ref:`BEAVRS_C1` 问题的再启动文件默认为 ``BEAVRS_C1.restart.h5``，
+          若用户在非最后一个点保存再启动文件，则文件名会以 ``restart<state_index>.h5`` 结尾。
+
+以下基于每个 `HDF5 group`_ 来介绍每个部分的数据内容：
+
+
+.. _fuel_assembly_nuclide_number_densities_plane:
+
+--------------------------------------------------
+/fuel_assembly_nuclide_number_densities/plane<i>/
+--------------------------------------------------
+
+该 `HDF5 group`_ 包含以下 `HDF5 dataset`_：
+
+    .. _restart_cell_burnup:
+    
+    :cell_burnup:
+        float[栅元数]，该层所有栅元的燃耗深度，栅元顺序见 :ref:`cell_index`。
+    
+    .. _restart_cell_index:
+    
+    :cell_index:
+        int[燃料栅元数]，该层所有燃料栅元的索引编号。
+
+    .. _restart_region_index:
+    
+    :region_index:
+        int[燃料栅元数]，该层所有燃料栅元区的索引编号。
+
+
+.. _fuel_assembly_nuclide_number_densities_plane_nud:
+
+-------------------------------------------------------------------
+/fuel_assembly_nuclide_number_densities/plane<i>/number_densities/
+-------------------------------------------------------------------
+
+该 `HDF5 group`_ 包含以下 `HDF5 dataset`_：
+
+    .. note:: 这里采用了Compressed Sparse Row（CSR）格式保存了该层的核素核子密度矩阵。
+
+    .. _restart_column_indices:
+    
+    :column_indices:
+        int[核子密度矩阵非零值数]，CSR格式的核子密度矩阵中非零值的列编号。
+    
+    .. _restart_row_offsets:
+    
+    :row_offsets:
+        int[核子密度矩阵的行数]，CSR格式的核子密度矩阵的行偏移号。
+
+    .. _restart_values:
+    
+    :values:
+        float[核子密度矩阵非零值数]，CSR格式的核子密度矩阵的非零值。
+
+
+.. _fuel_assembly_nuclide_number_densities:
+
+--------------------------------------------------
+/fuel_assembly_nuclide_number_densities/
+--------------------------------------------------
+
+该 `HDF5 group`_ 包含以下 `HDF5 dataset`_：
+
+    .. _restart_plane_thickness:
+    
+    :plane_thickness:
+        float[活性区层数]，活性区从底到顶每层的厚度，单位 cm。
+ 
+
+.. _full_core_assembly_cell_index:
+
+-----------------------------------
+/full_core_assembly_cell_index/
+-----------------------------------
+
+该 `HDF5 group`_ 包含以下 `HDF5 dataset`_：
+
+    .. _restart_assembly_index:
+    
+    :<assembly_index>:
+        int[该组件的栅元数]，该组件栅元在全堆芯栅元中的索引编号。
+    
+        .. note:: 这里的 ``assembly_index`` 在方形组件下是组件行编号 + 组件列编号，如B06、C10等，
+                  而在六角形组件下是组件索引编号，如001、049、163等，下同。
+
+
+.. _full_core_assembly_history_assembly_index:
+
+---------------------------------------------
+/full_core_assembly_history/<assembly_index>/
+---------------------------------------------
+
+该 `HDF5 group`_ 包含以下 `HDF5 dataset`_：
+
+    .. _restart_assembly_name:
+    
+    :assembly_name:
+        string，组件名称。
+    
+    .. _restart_cycles:
+    
+    :cycles:
+        int[组件燃耗过的循环数]，组件燃耗过哪些循环。
+    
+    .. _restart_delta_burnups:
+    
+    :delta_burnups:
+        double[组件燃耗过的循环数]，组件在每个循环下增加的燃耗深度。
+    
+    .. _restart_delta_times:
+    
+    :delta_times:
+        double[组件燃耗过的循环数]，组件在每个循环下增加的燃耗时间。
+
+    .. _restart_locations:
+    
+    :locations:
+        string，组件在每个循环下所在的位置。
+    
+
+.. _summary:
+
+----------------------------
+/summary/
+----------------------------
+
+该 `HDF5 group`_ 包含以下 `HDF5 dataset`_：
+
+    .. _restart_compile_info:
+    
+    :compile_info:
+        string，程序编译信息。
+
+    .. _restart_cycle:
+    
+    :cycle:
+        int，当前循环编号。
+
+    .. _restart_git_sha1:
+    
+    :git_sha1:
+        string，程序的Git commit SHA-1 哈希值。
+
+    .. _restart_input_string:
+    
+    :input_string:
+        string，Json格式的用户输入文件内容。
+
+    .. _restart_rlib_used:
+    
+    :restart_used:
+        string，该次计算所用的多群常数库。
+
+    .. _restart_version:
+    
+    :version:
+        string，程序版本号。
+
+
+
+.. _HDF5 group: https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group
+.. _HDF5 dataset: https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset
+.. _HDF5 attribute: https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr

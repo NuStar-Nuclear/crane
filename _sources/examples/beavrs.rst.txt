@@ -1,0 +1,40 @@
+.. _examples_beavrs:
+
+
+=========
+BEAVRS
+=========
+
+BEAVRS基准题是麻省理工学院计算反应堆物理小组于2013年公布的压水堆三维全堆芯基准题。它包括商用压水堆的两循环热态零功率、
+热态满功率和燃耗工况下详细的问题描述和实验测量值。测量值主要包括各工况点下的临界硼浓度、控制棒位置和堆内探测器计数值。
+
+相关参考文献如下:
+
+1. N. Horelik, et al., Benchmark for Evaluation and Validation of Reactor Simulations (BEAVRS),
+   V3.0.1, MIT, 2019, https://github.com/mit-crpg/BEAVRS.
+
+
+该问题分为第一、第二两个循环的基准题，分别为：
+
+   #. :ref:`beavrs_c1`
+   #. :ref:`beavrs_c2`
+
+
+.. _beavrs_c1:
+
+----------------
+BEAVRS_C1
+----------------
+
+.. literalinclude:: ../../../examples/BEAVRS_C1.yaml
+    :language: yaml
+
+
+.. _beavrs_c2:
+
+----------------
+BEAVRS_C2
+----------------
+
+.. literalinclude:: ../../../examples/BEAVRS_C2.yaml
+    :language: yaml

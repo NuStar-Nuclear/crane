@@ -1,0 +1,24 @@
+.. _examples_vver_1000:
+
+
+==============
+X2-VVER-1000
+==============
+
+X2-VVER-1000基准题是由Bilodid等人于2009年第19次AER研讨会上首次提出，后于2020年提出修订版。
+该基准题提供了VVER-1000反应堆热零功率运行数据及蒙卡程序Serpent2的参考解。
+
+相关参考文献如下:
+
+1. Bilodid, Y., Fridman, E., Lotsch, T., 2020. X2 VVER-1000 benchmark revision: Fresh HZP 
+   core state and the reference Monte Carlo solution. Ann. Nucl. Energy 144, 107558.
+
+
+.. .. _VVER_1000:
+
+.. ----------------
+.. VVER_1000
+.. ----------------
+
+.. literalinclude:: ../../../examples/VVER_1000.yaml
+    :language: yaml

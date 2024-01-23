@@ -1,0 +1,33 @@
+===================
+What's New in 1.0.0
+===================
+
+------------
+New Features
+------------
+
+#. 支持宏观截面输入计算；
+#. 支持微观截面输入计算；
+#. 支持共振计算；
+#. 支持基于单GPU加速的2D/1D MOC计算； 
+#. 支持基于单GPU的单重多群三维CMFD加速；
+#. 支持基于单GPU的热工水力反馈计算；
+
+---------
+Bug Fixes
+---------
+
+#. 0fff7e5: incorrect neighbor_cell_idx setting
+#. e738522: incorrect chi_length computation
+#. 82c22f6: getMaterial() return nullptr if is macro xs case
+#. d436fe2: bad index for weights_coef
+#. 40b3ce7: incorrect scatter_start_group accurred
+#. c65689c: dancoff_xs not only for resonance materials but also other material
+#. d980f86: if need_allocate, _scatter_start_group may be not allocated
+#. 6aa2100: misaligned address if not 32-multiple length array used
+#. 197d874: filter Polygon from GEOS GeometryCollection by intersections
+#. 40edf75: incorrect offset accumulation
+#. 6bbda10: volume computation are not consistent
+#. 42a4991: incorrect dimensions to get path info
+#. 92b137a: Some bugs is found when performing verifications for 3D problems and non-square problems
+#. e911829: lack of its own points

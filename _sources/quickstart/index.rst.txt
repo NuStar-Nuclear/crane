@@ -1,0 +1,253 @@
+.. _quickstart:
+
+========
+快速上手
+========
+
+CRANE是一个非常容易上手的程序，其使用过程包含以下三个步骤:
+
+    1.  准备输入文件，在 `YAML`_ 格式的 :ref:`io_file_formats_input` 上定义模型及计算参数;
+    2.  通过 :ref:`commands` 运行CRANE；
+    3.  查看、比较或 :ref:`usersguide_visualization` 结果数据。
+
+接下来我们以 :ref:`vera_2a` 基准题为例来指引用户如何快速上手CRANE，想更详细地了解程序的使用请参阅
+:ref:`usersguide`。
+
+------------------------------------
+准备 :ref:`io_file_formats_input`
+------------------------------------
+
+CRANE的 :ref:`io_file_formats_input` 采用 `YAML`_ 格式，这是一种相较于XML更易于用户读写的标记预言格式，
+非常适合作为程序的输入文件或者配置文件。其具体规则可参阅 `YAML`_ 官方文档。
+
+CRANE输入文件遵循从小到大、从两维到三维、从材料到几何的建模策略，并且利用 `YAML`_ 自带的锚点引用的方式，
+能够让用户简单快速的定义重复结构。
+
+我们首先创建 VERA_2A.yaml 文件，并尝试该文件中对该基准题进行建模。
+
+材料定义
+----------
+
+CRANE建模从 :ref:`usersguide_materials` 开始，:ref:`io_file_formats_input` 中的材料建模通过输入一个包含
+:ref:`material` 的 :ref:`materials` 来完成。
+
+由于 :ref:`vera_2a` 基准题材料都已经直接给定了核子密度，这里我们可以直接 :ref:`by_number_densities` 的方式进行材料建模，
+如该基准题中富集度 ``3.1%`` 的燃料的输入为：
+
+.. literalinclude:: ../_yamls/fuel_31.yaml
+    :language: yaml
+
+:ref:`material_elements` 此时为核素名词列表，CRANE数据库中包含的所有核素名称可参阅 :ref:`io_file_format_material_db`，
+:ref:`material_number_densities` 为对应的核素核子密度列表，单位为 ``/barn-cm``。
+
+.. note:: CRANE输入中大部分对象都包含 ``name`` 属性，该属性是一个大小写相关的字符串，用来索引该对象，因此同对象列表中
+          ``name`` 必须是唯一的，如材料列表中不可包含两个 ``name`` 相同的材料。
+
+为了减少核素数量，CRANE数据库中对大量的同位素以天然成分占比的方式合并成一个核素，因此只要对这里的同位素核子密度相加获得天然核素的核子密度，
+如对于基准题中的 ``Cladding`` 材料建模如下：
+
+.. literalinclude:: ../_yamls/cladding.yaml
+    :language: yaml
+
+包含 :ref:`vera_2a` 基准题中所有材料的 :ref:`materials` 为：
+
+.. literalinclude:: ../_yamls/materials.yaml
+    :language: yaml
+
+.. _VERA_2A_geometry:
+
+几何建模
+----------
+
+材料定义完成后就可进行 :ref:`usersguide_geometry` ，CRANE通过定义 :ref:`geometries` 来进行几何建模，:ref:`geometries` 必须包含
+:ref:`geometries_structures`，:ref:`geometries_lattices`，:ref:`geometries_assemblies` 三个列表和一个的 :ref:`core`
+对象，这里 :ref:`vera_2a` 基准题比较简单，可通过上述内容定义完成。其他复杂的几何构件如格架等通过选填的 :ref:`geometries_grids`
+等实现，具体可参阅 :ref:`geometries`。
+
+:ref:`geometries_structures` 是一系列两维几何结构体 :ref:`structure`，每个 :ref:`structure` 包含 :ref:`structure_name`，
+:ref:`structure_primitives`，:ref:`structure_regions`，:ref:`structure_meshing` 等属性，:ref:`structure_name`
+为索引用的字符串，:ref:`structure_primitives` 为几何基元，CRANE中目前支持圆和任意凸多边形两种几何基元，:ref:`structure_regions`
+为材料区，材料区定义通过对几何基元的布尔运算来实现，:ref:`structure_meshing` 定义输运计算的细网划分信息，该基准题中的燃料棒可如下定义：
+
+.. literalinclude:: ../_yamls/fuel_structure.yaml
+    :language: yaml
+
+.. note:: 这里的第一个材料区的space定义需要输入 ``'1'`` 而不是 ``1``，因为YAML对单个数字 ``1`` 会解析为整数而不是字符串，而
+          ``2-1`` 则自动解析为字符串。
+
+其中 :ref:`structure_primitives` 中定义了半径分别为 ``0.4096，0.4180，0.4750`` 三个圆，并在 :ref:`structure_regions`
+中定义了三个材料区，第一个区空间定义 ``1`` 表示在基元1内，材料为 ``Fuel_31``，第二个区空间定义 ``2-1`` 表示在基元内基元1外基元2内，
+材料为 ``Helium``，第三个区空间定义 ``3-2`` 表示在基元3内基准2外，材料为 ``Cladding``。:ref:`structure_meshing` 定义了一个环状网格，
+周向 ``8`` 个等分，径向在半径 ``0.2365，0.3344，0.5800`` 处进行细分。
+
+除了燃料棒外，另外还需定义导向管和中心测量管，该基准题完整的 :ref:`geometries_structures` 列表为：
+
+.. literalinclude:: ../_yamls/structures.yaml
+    :language: yaml
+
+有了 :ref:`geometries_structures` 列表以后，即可定义 :ref:`geometries_lattices` 列表，:ref:`geometries_lattices` 列表中的
+:ref:`lattice` 用来对各种几何结构体进行排布，组成两维层面上的组件。:ref:`lattice` 对象包含有 :ref:`lattice_name`，
+:ref:`cell_map`，:ref:`structure_location` 等属性，对于 :ref:`vera_2a` 基准题中规则的方形组件，:ref:`lattice`
+只需定义 :ref:`lattice_name` 和 :ref:`cell_map` 即可，如下所示：
+
+.. literalinclude:: ../_yamls/lattices.yaml
+    :language: yaml
+
+这里 :ref:`cell_map` 中将之前定义的 :ref:`structure` 进行方形栅元的规则排布，排布的栅元对边距在 :ref:`core` 中给出，
+六边形及组件内部包含有非规则几何的复杂 :ref:`lattice` 定义可参阅 :ref:`geometries`。
+
+:ref:`geometries_lattices` 是两维层面上组件的栅元排布，而真实的三维组件在 :ref:`geometries_assemblies` 列表中定义，
+:ref:`geometries_assemblies` 列表中包含一系列 :ref:`assembly`，每个 :ref:`assembly` 必须包含 :ref:`assembly_name`，
+:ref:`assembly_axial` 属性，其中 :ref:`assembly_axial` 是一个列表，是对两维的 :ref:`lattice` 在轴向(z方向)上 **从底到顶**
+进行累加。由于 :ref:`vera_2a` 是一个两维单组件基准题，因此在轴向上我们只累加 ``1cm`` 即可：
+
+.. literalinclude:: ../_yamls/assemblies.yaml
+    :language: yaml
+
+基于三维的组件列表，最后我们定义 :ref:`core`，:ref:`core` 内包含 :ref:`core_name`，:ref:`core_type`，:ref:`core_symmetry`，
+:ref:`cell_pitch`，:ref:`assembly_pitch` 和 :ref:`assembly_map` 属性等，由于该基准题为单组件问题，因此 :ref:`assembly_map`
+列表中只有一个组件，且必须将外围反照率 :ref:`outer_albedo` 设置为 ``1.0``，上下都是全反射边界条件，如下所示：
+
+.. literalinclude:: ../_yamls/core.yaml
+    :language: yaml
+
+.. note:: 由于该问题为两维问题，这里轴向分层相关的参数 :ref:`plane_max_thickness` 不会对计算结果产生影响。
+
+状态参数设置
+-------------
+
+至此为止，几何建模就完成了，后续再定义 :ref:`state`，这里输入了系统压力、燃料温度、慢化剂温度和可溶硼浓度：
+
+.. literalinclude:: ../_yamls/state.yaml
+    :language: yaml
+
+.. note:: 由于该基准题问题我们直接定义了 ``MOD`` 材料（即慢化剂材料）的核子密度，因此这里用来计算慢化剂成分的系统压力、
+          硼浓度等数据并不会影响计算结果。
+
+计算控制参数设置
+-----------------
+
+最后通过 :ref:`settings` 进行计算控制参数设置，这部分所有的参数都是有默认值的，如果缺省则采用默认参数,
+针对该基准题我们输入迭代收敛判据以及两维特征线方法控制参数为例：
+
+.. literalinclude:: ../_yamls/settings.yaml
+    :language: yaml
+
+此处采用裂变源收敛判据为 ``1e-4``，有效增殖因子收敛判据为 ``1e-5``，两维特征线方法离散角在一个卦限内方位角 ``12`` 个，极角 ``3``
+个，特征线密度 ``0.05cm``。
+
+最终的输入文件如下：
+
+.. literalinclude:: ../_yamls/VERA_2A.yaml
+    :language: yaml
+
+
+-----------
+运行CRANE
+-----------
+
+输入文件填写完成以后，首先可以用 :ref:`usersguide_visualization` 功能来检查下模型的几何、材料布置是否正确。执行
+:ref:`crane_visualize` 命令进入CRANE的可视化交互式命令行环境:
+
+.. code-block:: sh
+
+    crane visualize VERA_2A.yaml
+
+在该环境下按 ``Tab`` 键可自动提示 :ref:`interactive_commands`，以下我们运行 :ref:`cli_plot_model` 命令来查看模型:
+
+.. figure:: ../_images/plot_model.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+执行上述命令后，会弹出如下可视化窗口:
+
+.. figure:: ../_images/plot_model_window.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+由于CRANE采用基于轨迹点的矢量图进行可视化，因此可在不损失像素的情况下任意缩放该模型图，我们可以点击放大镜按钮，选中一根燃料棒进行放大:
+
+.. figure:: ../_images/scale_pin.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+检查模型无误后，运行 :ref:`crane_run` 命令进行计算:
+
+.. code-block:: sh
+
+    crane run VERA_2A.yaml
+
+启动后CRANE会将整个计算过程信息打印到屏幕上，如下所示
+
+.. figure:: ../_images/crane_run_log.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+同时也会将上述计算过程信息保存至 ``CRANE.log`` 文件中，方便后续查看。
+
+
+--------------------------
+查看、比较及可视化结果数据
+--------------------------
+
+CRANE计算完成后，会将所有结果数据默认保存至以堆芯名称 :ref:`core_name` 命名的
+`HDF5 <https://www.hdfgroup.org/solutions/hdf5/>`_ 文件，关于该文件的详细说明请参阅 :ref:`io_file_formats_output_hdf5`。
+
+另外，CRANE还会产生一个同样命名的 Excel 文件，该文件保存了主要的一些结果数据，如计算状态参数、硼降曲线、
+组件功率分布、轴向功率分布、控制棒价值等，方便用户在windows系统上进行查看编辑。关于该文件的详细说明请参阅
+:ref:`io_file_formats_output_excel`。
+
+和执行 :ref:`crane_visualize` 命令一样，计算完成后CRANE默认会进入可视化交互式命令行环境，执行命令:
+
+.. note:: :ref:`crane_visualize` 命令后面也可以接计算结果文件，如 ``crane visualize VERA_2A.h5``
+          即可进入可视化交互式命令行环境。
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type pin-integral
+
+可绘制出棒积分功率分布图：
+
+.. figure:: ../_images/qs_plot_pin_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+按下 ``Ctrl-D`` 或者输入 ``exit`` 即可退出可视化交互式命令行环境。
+
+如果我们需要比较两个结果的差异，CRANE同样可以很方便的做到，现在我们修改 :ref:`moc2d_track_density` 为 ``0.03`` 并保存,
+运行以下命令:
+
+.. code-block:: sh
+
+    crane run VERA_2A.yaml --output VERA_2A_003 --compare VERA_2A.h5
+
+为防止覆盖原先结果，此处我们通过 ``--output`` 选项设置输出文件名为 ``VERA_2A_003``，并且通过 ``--compare``
+选项来比对原先的计算结果文件 ``VERA_2A.h5``
+
+.. note:: 计算结果完成后执行 ``crane visualize VERA_2A_003.h5 VERA_2A.h5`` 也可以进入交互式可视化环境来比较这两个结果，
+          比较的偏差是 ``VERA_2A_003.h5 - VERA_2A.h5``。
+
+同样我们执行命令：
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type pin-integral
+
+可绘制出棒积分功率偏差分布图：
+
+.. figure:: ../_images/qs_plot_pin_power_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可以看到把特征线密度从 ``0.05`` 改动到 ``0.03`` 对于棒功率分布的影响很小。
+
+以上仅以单组件两维基准题 :ref:`vera_2a` 为例，简单地描述了CRANE程序的使用方法，更为详细的使用说明请参阅 :ref:`usersguide`。
+
+
+.. _YAML: https://yaml.org

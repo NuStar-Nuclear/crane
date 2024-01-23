@@ -1,0 +1,282 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>10. 结果输出 &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/usersguide/results.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="11. 可视化" href="visualization.html" />
+    <link rel="prev" title="9. 启动计算" href="run.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">用户指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library.html">1. 多群常数库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials.html">2. 材料定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">3. 几何建模</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 堆芯状态参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">5. 计算选项设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html">6. 燃耗跟踪</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lppt.html">7. 低功率物理实验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicycle.html">8. 多循环换料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">9. 启动计算</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">10. 结果输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">11. 可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compare.html">12. 结果比较</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html">13. 常见错误排查</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">用户指南</a> &raquo;</li>
+        
+      <li><span class="section-number">10. </span>结果输出</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/usersguide/results.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="usersguide-results">
+<span id="id1"></span><h1><span class="section-number">10. </span>结果输出<a class="headerlink" href="#usersguide-results" title="Permalink to this heading">¶</a></h1>
+<p>作为全堆一步法程序，CRANE能够直接求解精细到燃料棒层级的多物理耦合问题，并获得精细的中子通量、核素分布、温度场等信息。
+如果把以上所有最细层面的数据都存储下来，百万千瓦商用压水堆1/4堆芯规模的问题仅一个状态点就需要上G的存储量，
+所以存储所有数据显然是不合适的。因此，CRANE通过以下几方面来优化结果输出：</p>
+<p>首先，将输出数据的详细程度分为高、中、低三个层次，通过 <a class="reference internal" href="../io_formats/input.html#output-type"><span class="std std-ref">type</span></a> 开放给用户选择，默认采用中等数据量输出，
+数据量最大部分如细网通量等仅在非常必要的时候才输出。</p>
+<p>其次，对于主要输出文件采用 <a class="reference external" href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a> 数据格式，
+该格式是专门用来存储和组织大量数据的一种文件格式，能够在减少存储的同时又有较好的可读性和可扩展性。</p>
+<p>此外，对于数据量较大的比如三维棒层面的功率、通量、温度场等采用单精度甚至半精度浮点数存储，因为实际上对于数据量非常大的结果数据，
+大部分情况下只需要借助于 <a class="reference internal" href="visualization.html#usersguide-visualization"><span class="std std-ref">可视化</span></a> 查看一个分布情况，并不需要非常精确的值。</p>
+<p>最后，由于 <a class="reference external" href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a> 数据格式在Windows系统上进行查看或编辑操作并不方便，
+因此对于用户相对比较关心的数据，如临界硼浓度、控制棒价值、组件功率分布等，CRANE会再输出到一个Excel格式的文件中。</p>
+<p>对于上述两种输出文件的详细说明，请参阅：</p>
+<blockquote>
+<div><ol class="arabic simple">
+<li><p><a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a></p></li>
+<li><p><a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a></p></li>
+</ol>
+</div></blockquote>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="visualization.html" class="btn btn-neutral float-right" title="11. 可视化" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="run.html" class="btn btn-neutral float-left" title="9. 启动计算" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

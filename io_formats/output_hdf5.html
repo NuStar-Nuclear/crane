@@ -1,0 +1,766 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>6. HDF5 结果文件 &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/io_formats/output_hdf5.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="7. 再启动文件" href="restart.html" />
+    <link rel="prev" title="5. Excel 结果文件" href="output_excel.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersguide/index.html">用户指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">文件格式说明</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="nuclear_lib.html">1. 多群常数库文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="material_db.html">2. 材料配置文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input_schema.html">3. 用户输入规则配置文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="input.html">4. 用户输入文件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="output_excel.html">5. Excel 结果文件</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6. HDF5 结果文件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#statepoint-index-burnup-distribution">6.1. /statepoint&lt;index&gt;/burnup_distribution/</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statepoint-index-cmfd">6.2. /statepoint&lt;index&gt;/cmfd/</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statepoint-index-dancoff-factors">6.3. /statepoint&lt;index&gt;/dancoff_factors/</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statepoint-index-flux-distribution">6.4. /statepoint&lt;index&gt;/flux_distribution/</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statepoint-index-nuclide-number-density">6.5. /statepoint&lt;index&gt;/nuclide_number_density/</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statepoint-index-power-distribution">6.6. /statepoint&lt;index&gt;/power_distribution/</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#statepoint-index-summary">6.7. /statepoint&lt;index&gt;/summary/</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary">6.8. /summary/</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#summary-timing-statistics">6.9. /summary/timing_statistics/</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="restart.html">7. 再启动文件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">文件格式说明</a> &raquo;</li>
+        
+      <li><span class="section-number">6. </span>HDF5 结果文件</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/io_formats/output_hdf5.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="hdf5">
+<span id="io-file-formats-output-hdf5"></span><h1><span class="section-number">6. </span>HDF5 结果文件<a class="headerlink" href="#hdf5" title="Permalink to this heading">¶</a></h1>
+<p><a class="reference external" href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a> 是层级数据格式(Hierarchical Data Format: HDF)，
+是用来存储和组织大量数据的一组文件格式。</p>
+<p>CRANE的HDF5结果文件除包含所有计算结果数据外，还保存了用户输入文件数据、程序的版本号以及数据库版本号等信息。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>HDF5结果文件名默认为堆芯名称 <a class="reference internal" href="input.html#core-name"><span class="std std-ref">name</span></a> + <code class="docutils literal notranslate"><span class="pre">.h5</span></code>，如 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 问题的HDF5结果文件为
+<code class="docutils literal notranslate"><span class="pre">VERA_7.h5</span></code>。</p>
+</div>
+<p>以下基于每个 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 来介绍每个部分的数据内容：</p>
+<section id="statepoint-index-burnup-distribution">
+<span id="statepoint-burnup-distribution"></span><h2><span class="section-number">6.1. </span>/statepoint&lt;index&gt;/burnup_distribution/<a class="headerlink" href="#statepoint-index-burnup-distribution" title="Permalink to this heading">¶</a></h2>
+<p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含所有燃耗分布相关的结果数据, 由以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a> 组成：</p>
+<blockquote>
+<div><dl class="field-list" id="h5-assembly-burnup-distribution">
+<dt class="field-odd">assembly_burnup_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数][组件数]，三维组件燃耗分布，层顺序从底到顶，组件顺序： <strong>方形组件堆型为从左到右，从上到下；
+六角形组件堆型为从左到右，从下到上，都只数考虑对称性后的计算区域</strong>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里 <code class="docutils literal notranslate"><span class="pre">float[层数][组件数]</span></code> 表示为两维单精度数组，若在HDF Viewer或者vscode中查看该数组，
+第一维（行）为层编号，第二维（列）为组件编号，下同。</p>
+</div>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，燃耗单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-axial-burnup-distribution">
+<dt class="field-odd">axial_burnup_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数]，堆芯轴向燃耗分布，层顺序从底到顶。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，燃耗单位。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-burnup-distribution-axial"><span class="std std-ref">堆芯轴向燃耗分布可视化</span></a>。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-integral-assembly-burnup-distribution">
+<dt class="field-odd">integral_assembly_burnup_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[组件数]，组件积分燃耗分布，组件顺序同 <a class="reference internal" href="#h5-assembly-burnup-distribution"><span class="std std-ref">assembly_burnup_distribution</span></a>。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，燃耗单位。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-burnup-distribution-assembly-integral"><span class="std std-ref">组件积分燃耗分布可视化</span></a>。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-integral-pin-burnup-distribution">
+<dt class="field-odd">integral_pin_burnup_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[栅元数]，栅元（棒）积分燃耗分布，栅元顺序为： <strong>从左到右从，从上到下先数第一个组件的栅元，
+再同样数第二个组件的栅元，直至数到最后，都只数考虑对称性后的计算区域</strong>。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，燃耗单位。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-burnup-distribution-pin-integral"><span class="std std-ref">棒积分燃耗分布可视化</span></a>。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-pin-burnup-distribution">
+<dt class="field-odd">pin_burnup_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数][栅元数]，三维栅元（棒）燃耗分布，层顺序从底到顶，栅元顺序同
+<a class="reference internal" href="#h5-integral-pin-burnup-distribution"><span class="std std-ref">integral_pin_burnup_distribution</span></a>。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，燃耗单位。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该数组只有当输出类型 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MEDIUM或MAXIMUM</span></code> 时才会输出。</p>
+</div>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-burnup-distribution-pin-radial-slice"><span class="std std-ref">径向切面的棒燃耗分布可视化</span></a> 和
+<a class="reference internal" href="../usersguide/visualization.html#plot-burnup-distribution-pin-axial-slice"><span class="std std-ref">轴向切面的棒燃耗分布可视化</span></a>。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="statepoint-index-cmfd">
+<span id="statepoint-cmfd"></span><h2><span class="section-number">6.2. </span>/statepoint&lt;index&gt;/cmfd/<a class="headerlink" href="#statepoint-index-cmfd" title="Permalink to this heading">¶</a></h2>
+<p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含CMFD栅元的中子平衡偏差数据，由以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a> 组成：</p>
+<blockquote>
+<div><dl class="field-list" id="h5-cell-neutron-balance-error">
+<dt class="field-odd">cell_neutron_balance_error<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数][栅元数][能群数]，三维栅元的中子平衡性偏差，层顺序从底到顶，栅元顺序同
+<a class="reference internal" href="#h5-integral-pin-burnup-distribution"><span class="std std-ref">integral_pin_burnup_distribution</span></a>，能群默认为单群。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里的栅元中子平衡性偏差是： (裂变产生-散射进入-移出-泄漏)/移出。因此该值越小表示栅元中子平衡性关系越好。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该数组只有当输出类型 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 时才会输出。</p>
+</div>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="statepoint-index-dancoff-factors">
+<span id="statepoint-dancoff-factors"></span><h2><span class="section-number">6.3. </span>/statepoint&lt;index&gt;/dancoff_factors/<a class="headerlink" href="#statepoint-index-dancoff-factors" title="Permalink to this heading">¶</a></h2>
+<p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含所有共振区的能群平均的Dancoff因子，由以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a> 组成：</p>
+<blockquote>
+<div><dl class="field-list" id="h5-group-averaged-dancoff-factors">
+<dt class="field-odd">group_averaged_dancoff_factors<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数][共振区数][1]，三维能群平均的共振区Dancoff因子，层顺序从底到顶，共振区顺序同栅元顺序。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该数组只有当输出类型 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MEDIUM或MAXIMUM</span></code> 时才会输出。</p>
+</div>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-dancoff-factors"><span class="std std-ref">Dancoff因子分布可视化</span></a>。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="statepoint-index-flux-distribution">
+<span id="statepoint-flux-distribution"></span><h2><span class="section-number">6.4. </span>/statepoint&lt;index&gt;/flux_distribution/<a class="headerlink" href="#statepoint-index-flux-distribution" title="Permalink to this heading">¶</a></h2>
+<p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含所有通量分布的结果数据，由以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a> 组成：</p>
+<blockquote>
+<div><dl class="field-list" id="h5-cell-flux-distribution">
+<dt class="field-odd">cell_flux_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><blockquote>
+<div><p>float[层数][共振区数][能群数]，三维栅元通量分布，层顺序从底到顶，栅元顺序同
+<a class="reference internal" href="#h5-integral-pin-burnup-distribution"><span class="std std-ref">integral_pin_burnup_distribution</span></a>，能群数为2，
+顺序为 <code class="docutils literal notranslate"><span class="pre">[epithermal,</span> <span class="pre">thermal]</span></code>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该数组只有当输出类型 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MEDIUM或MAXIMUM</span></code> 时才会输出。</p>
+</div>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-flux-distribution-cell-radial-slice"><span class="std std-ref">径向切面的栅元通量分布可视化</span></a> 和
+<a class="reference internal" href="../usersguide/visualization.html#plot-flux-distribution-cell-axial-slice"><span class="std std-ref">轴向切面的栅元通量分布可视化</span></a>。</p>
+</div></blockquote>
+</dd>
+<dt class="field-even">mesh_flux_distribution_in_plane__&lt;i&gt;<span class="colon">:</span></dt>
+<dd class="field-even"><blockquote>
+<div><p>float[MOC网格数][能群数]，第i层的细网（MOC网格）通量分布，能群数为2，
+顺序为 <code class="docutils literal notranslate"><span class="pre">[epithermal,</span> <span class="pre">thermal]</span></code>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该数组只有当输出类型 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 时才会输出。</p>
+</div>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-flux-distribution-mesh-radial-slice"><span class="std std-ref">径向切面的细网通量分布可视化</span></a> 和
+<a class="reference internal" href="../usersguide/visualization.html#plot-flux-distribution-mesh-axial-slice"><span class="std std-ref">轴向切面的细网通量分布可视化</span></a>。</p>
+</div></blockquote>
+</dd>
+<dt class="field-odd">plane_flux_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数][能群数]，堆芯轴向（层积分）通量分布，层顺序从底到顶，能群数为2，顺序为 <code class="docutils literal notranslate"><span class="pre">[epithermal,</span> <span class="pre">thermal]</span></code>。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-flux-distribution-axial"><span class="std std-ref">堆芯轴向通量分布可视化</span></a>。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="statepoint-index-nuclide-number-density">
+<span id="statepoint-nuclide-number-density"></span><h2><span class="section-number">6.5. </span>/statepoint&lt;index&gt;/nuclide_number_density/<a class="headerlink" href="#statepoint-index-nuclide-number-density" title="Permalink to this heading">¶</a></h2>
+<p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含所有燃耗区的重要核素的核子密度信息，由若干个以核素名称命名的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a> 组成：</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当输出类型 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 时，输出I-135, Xe-135, Pm-149, Sm-149,
+U-235, U-238, Pu-239, Pu-241共8种核素；当输出类型 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MEDIUM</span></code> 时，只输出I-135这1种核素；
+当输出类型 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MINIMUM</span></code> 时，整个 <a class="reference internal" href="#statepoint-nuclide-number-density"><span class="std std-ref">/statepoint&lt;index&gt;/nuclide_number_density/</span></a> 都不输出。</p>
+</div>
+<dl class="field-list" id="h5-nuclide-number-density">
+<dt class="field-odd">I-135|Xe-135|Pm-149|Sm-149|U-235|U-238|Pu-239|Pu-241<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[燃耗区数]，对应核素的每个燃耗区的核子密度，燃耗区顺序见同栅元顺序。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，核子密度单位。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-number-density-distribution"><span class="std std-ref">核素核子密度分布可视化</span></a>。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="statepoint-index-power-distribution">
+<span id="statepoint-power-distribution"></span><h2><span class="section-number">6.6. </span>/statepoint&lt;index&gt;/power_distribution/<a class="headerlink" href="#statepoint-index-power-distribution" title="Permalink to this heading">¶</a></h2>
+<p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含所有功率分布相关的结果数据, 由以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a> 组成：</p>
+<blockquote>
+<div><dl class="field-list simple" id="h5-fxy">
+<dt class="field-odd">Fxy<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数]，每层棒功率分布最大值，层顺序从底到顶。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-fxy-fuel-pin-index">
+<dt class="field-odd">Fxy_fuel_pin_index<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int[层数]，每层棒功率分布最大值所在棒的索引编号，层顺序从底到顶。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-assembly-power-distritbution">
+<dt class="field-odd">assembly_power_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数][组件数]，三维组件功率分布，层顺序从底到顶，组件顺序同 <a class="reference internal" href="#h5-assembly-burnup-distribution"><span class="std std-ref">assembly_burnup_distribution</span></a>。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-power-distribution-assembly-radial-slice"><span class="std std-ref">径向切面的组件功率分布可视化</span></a> 和
+<a class="reference internal" href="../usersguide/visualization.html#plot-power-distribution-assembly-axial"><span class="std std-ref">以组件为单位的轴向功率分布可视化</span></a>。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-axial-power-distribution">
+<dt class="field-odd">axial_power_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数]，堆芯轴向功率分布，层顺序从底到顶。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-power-distribution-axial"><span class="std std-ref">堆芯轴向功率分布可视化</span></a>。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-full-core-integral-assembly-power-distribution">
+<dt class="field-odd">full_core_integral_assembly_power_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[全堆组件数]，全堆组件积分燃耗分布，组件顺序同 <a class="reference internal" href="#h5-assembly-burnup-distribution"><span class="std std-ref">assembly_burnup_distribution</span></a>。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-power-distribution-assembly-integral-full-core"><span class="std std-ref">全堆组件积分功率分布可视化</span></a>。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-integral-assembly-power-distribution">
+<dt class="field-odd">integral_assembly_power_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[组件数]，组件积分燃耗分布，组件顺序同 <a class="reference internal" href="#h5-assembly-burnup-distribution"><span class="std std-ref">assembly_burnup_distribution</span></a>。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-power-distribution-assembly-integral"><span class="std std-ref">组件积分功率分布可视化</span></a>。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-integral-pin-power-distribution">
+<dt class="field-odd">integral_pin_power_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[栅元数]，栅元（棒）积分功率分布，栅元顺序同 <a class="reference internal" href="#h5-integral-pin-burnup-distribution"><span class="std std-ref">integral_pin_burnup_distribution</span></a>。</p>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-power-distribution-pin-integral"><span class="std std-ref">棒积分功率分布可视化</span></a>。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-pin-power-distribution">
+<dt class="field-odd">pin_burnup_distribution<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[层数][栅元数]，三维栅元（棒）功率分布，层顺序从底到顶，栅元顺序同 <a class="reference internal" href="#h5-integral-pin-burnup-distribution"><span class="std std-ref">integral_pin_burnup_distribution</span></a>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该数组只有当输出类型 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MEDIUM或MAXIMUM</span></code> 时才会输出。</p>
+</div>
+<p>对该数据可视化请参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-power-distribution-pin-radial-slice"><span class="std std-ref">径向切面的棒功率分布可视化</span></a> 和
+<a class="reference internal" href="../usersguide/visualization.html#plot-power-distribution-pin-axial-slice"><span class="std std-ref">轴向切面的棒功率分布可视化</span></a>。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="statepoint-index-summary">
+<span id="statepoint-summary"></span><h2><span class="section-number">6.7. </span>/statepoint&lt;index&gt;/summary/<a class="headerlink" href="#statepoint-index-summary" title="Permalink to this heading">¶</a></h2>
+<p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含每个状态点汇总的结果数据以及状态参数等，如功率峰因子、有效增值系数、燃耗深度、计算时间等等，
+由以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a> 组成：</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里绝大部分数据随燃耗的变化可通过 <a class="reference internal" href="../usersguide/visualization.html#plot-result-summary"><span class="std std-ref">汇总数据随燃耗变化可视化</span></a> 进行可视化。</p>
+</div>
+<dl class="field-list simple" id="h5-fdh">
+<dt class="field-odd">Fdh<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，积分棒功率分布最大值，即积分棒功率峰因子。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-fdh-fuel-pin-index">
+<dt class="field-odd">h5_Fdh_fuel_pin_index<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，积分棒功率分布最大值所在棒的索引编号。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-fq">
+<dt class="field-odd">Fq<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，三维棒功率分布最大值，即三维棒功率峰因子。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-fq-fuel-pin-index">
+<dt class="field-odd">h5_Fdh_fuel_pin_index<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，三维棒功率分布最大值所在棒的索引编号。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-fq-plane-index">
+<dt class="field-odd">h5_Fdh_plane_index<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，三维棒功率分布最大值所在层的索引编号。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-average-effective-temperature">
+<dt class="field-odd">average_effective_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float，平均燃料有效温度。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，温度单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-average-number-densities">
+<dt class="field-odd">average_number_densities<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float[可燃核素数]，核素平均核子密度，可燃核素清单见 <span class="xref std std-ref">nuclide_names</span>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里的平均指的是对存在相应核素的所有燃耗区进行体积平均。</p>
+</div>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，核子密度单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-average-outlet-temperature">
+<dt class="field-odd">average_outlet_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float，平均冷却剂出口温度。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，温度单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-axial-offset">
+<dt class="field-odd">axial_offset<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，轴向功率偏移。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，%。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-boron-concentration">
+<dt class="field-odd">boron_concentration<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，可溶硼浓度。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，硼浓度单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-burnup">
+<dt class="field-odd">burnup<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，燃耗深度。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，燃耗深度单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-computing-time">
+<dt class="field-odd">computing_time<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，该状态点计算耗时。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，时间单位。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-control-rod-withdrawn-steps">
+<dt class="field-odd">control_rod_withdrawn_steps<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int[控制棒棒组数]，控制棒棒组当前棒位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-differential-boron-worth">
+<dt class="field-odd">differential_boron_worth<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，硼微分价值。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，硼微分价值单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-effective-full-power-days">
+<dt class="field-odd">effective_full_power_days<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，等效满功率天。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，等效满功率天的单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-inlet-temperature">
+<dt class="field-odd">inlet_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，冷却剂入口温度。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，温度单位。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-keff">
+<dt class="field-odd">keff<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，有效增值系数。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-maximal-effective-temperature">
+<dt class="field-odd">maximal_effective_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float，燃料有效温度最大值。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，温度单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-maximal-outlet-temperature">
+<dt class="field-odd">maximal_outlet_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>float，冷却剂出口温度最大值。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，温度单位。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-num-core-rebuildings">
+<dt class="field-odd">num_core_rebuildings<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，堆芯几何重构次数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-num-critical-boron-searchs">
+<dt class="field-odd">num_critical_boron_searchs<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，临界硼搜索次数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-num-dancoff-computations">
+<dt class="field-odd">num_dancoff_computations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，Dancoff因子计算次数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-num-depletion-computations">
+<dt class="field-odd">num_depletion_computations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，燃耗计算次数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-num-macro-xs-updatings">
+<dt class="field-odd">num_macro_xs_updatings<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，宏观截面更新次数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-num-outer-iterations">
+<dt class="field-odd">num_outer_iterations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，外迭代次数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-num-resonance-computations">
+<dt class="field-odd">num_resonance_computations<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，共振计算次数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-num-thermal-feedbacks">
+<dt class="field-odd">num_thermal_feedbacks<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，热工水力反馈次数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-num-xe-sm-transients">
+<dt class="field-odd">num_xe_sm_transients<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，Xe、Sm瞬态计算次数。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-output-type">
+<dt class="field-odd">output_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string，输出类型，即 <a class="reference internal" href="input.html#output-type"><span class="std std-ref">type</span></a>。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-relative-inlet-flows">
+<dt class="field-odd">relative_inlet_flows<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，相对流量水平。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，%。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-relative-power">
+<dt class="field-odd">relative_power<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，相对功率水平。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，%。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-squence-name">
+<dt class="field-odd">squence_name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string，计算序列名称。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-squence-type">
+<dt class="field-odd">squence_type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string，计算序列类型，[CRIT, ITC, IRW, IRWC, DEP]五选一。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-state-index">
+<dt class="field-odd">state_index<span class="colon">:</span></dt>
+<dd class="field-odd"><p>int，该状态点索引编号。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-system-pressure">
+<dt class="field-odd">system_pressure<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，系统压力。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，系统压力单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-time">
+<dt class="field-odd">time<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，燃耗时间。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，时间单位。</p>
+</dd>
+</dl>
+<dl class="field-list" id="h5-total-heavy-metal-weight">
+<dt class="field-odd">total_heavy_metal_weight<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，初始重核素总装量。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，初始重核素总装量单位。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-which-rod-bank">
+<dt class="field-odd">which_rod_bank<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string，控制棒状态。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="summary">
+<span id="h5-summary"></span><h2><span class="section-number">6.8. </span>/summary/<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
+<p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含该次计算的一些总体信息，如用户输入文件、多群常数库、程序版本号等，
+由以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a> 组成：</p>
+<blockquote>
+<div><dl class="field-list simple" id="h5-compile-info">
+<dt class="field-odd">compile_info<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string，程序编译信息。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-fuel-plane-thickness">
+<dt class="field-odd">fuel_plane_thickness<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double[层数]，从底到顶轴向燃料层的厚度，单位 cm。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-git-sha1">
+<dt class="field-odd">git_sha1<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string，程序的Git commit SHA-1 哈希值。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-input-string">
+<dt class="field-odd">input_string<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string，Json格式的用户输入文件内容。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-nuclide-names">
+<dt class="field-odd">nuclide_names<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string[数据库核素数量]，数据中每个核素的名称。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-plane-thickness">
+<dt class="field-odd">plane_thickness<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double[层数]，从底到顶轴向层的厚度，单位 cm。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-rlib-used">
+<dt class="field-odd">rlib_used<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string，该次计算所用的多群常数库。</p>
+</dd>
+</dl>
+<dl class="field-list simple" id="h5-version">
+<dt class="field-odd">version<span class="colon">:</span></dt>
+<dd class="field-odd"><p>string，程序版本号。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="summary-timing-statistics">
+<span id="h5-summary-timing-statistic"></span><h2><span class="section-number">6.9. </span>/summary/timing_statistics/<a class="headerlink" href="#summary-timing-statistics" title="Permalink to this heading">¶</a></h2>
+<p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含该次计算不同模块（部分）的计算耗时信息，由以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a> 组成：</p>
+<blockquote>
+<div><div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对该数据的可视化可参阅 <a class="reference internal" href="../usersguide/visualization.html#plot-timing-statistics"><span class="std std-ref">分项耗时统计可视化</span></a>。</p>
+</div>
+<dl class="field-list" id="h5-time-split">
+<dt class="field-odd">time_splits_description<span class="colon">:</span></dt>
+<dd class="field-odd"><p>double，该模块（部分）计算耗时。</p>
+<p>包含的 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_attr">HDF5 attribute</a>：<code class="docutils literal notranslate"><span class="pre">unit</span></code>，字符串，时间单位 seconds。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="restart.html" class="btn btn-neutral float-right" title="7. 再启动文件" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="output_excel.html" class="btn btn-neutral float-left" title="5. Excel 结果文件" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

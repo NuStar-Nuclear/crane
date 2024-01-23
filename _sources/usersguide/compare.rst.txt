@@ -1,0 +1,637 @@
+.. _usersguide_compare:
+
+
+==========
+结果比较
+==========
+
+.. _compare_visualization:
+
+------------------
+结果比较可视化
+------------------
+
+CRANE自带丰富的 :ref:`usersguide_visualization` 功能，不仅有针对输入模型可视化，更有详细的结果可视化。
+而对于结果的可视化，除了支持对某一个计算结果的可视化外，CRANE还可以将两个结果放在一起进行比较可视化。
+
+例如，执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_7.h5 VERA_7_another.h5
+
+或者：
+
+.. code-block:: sh
+
+    crane visualize VERA_7.h5 VERA_7_another.xlsx
+
+就可进入到 :ref:`vera_7` 问题两个计算结果比较的可视化界面，结果比较的偏差是前者减去后者，这里是
+``VERA_7 - VERA_7_another``。
+
+.. note:: 第一个文件是需要比较的结果，必须是 :ref:`io_file_formats_output_hdf5`，而后一个文件是比较的对象，
+          可以是 :ref:`io_file_formats_output_hdf5`，也可以是 :ref:`io_file_formats_output_excel`。如果是
+          :ref:`io_file_formats_output_excel`，则只支持比较 :ref:`io_file_formats_output_excel`
+          中存储的结果数据，如全堆组件功率分布、探测器活度分布、控制棒价值等。
+
+接下来我们就以 :ref:`vera_7` 等基准题为例来展示如何使用CRANE的结果比较可视化功能。
+
+
+.. _plot_power_distribution_compare:
+
+功率分布比较可视化
+---------------------
+
+这里我们介绍如何使用 :ref:`plot_power_distribution` 功能进行结果比较。
+
+:ref:`plot_power_distribution` 中所有功能都支持比较可视化，这里我们仅以
+:ref:`plot_power_distribution_assembly_integral`、:ref:`plot_power_distribution_assembly_axial`
+和 :ref:`plot_power_distribution_axial` 为示例。
+
+我们尝试与一个更高收敛判据的结果进行比较，来查看提高裂变源收敛判据对功率分布的影响。我们将 :ref:`vera_7` 中的
+:ref:`pi_fission_converge_criterion` 改为 ``1e-4``，算得的结果保存为 ``VERA_7_tighter_converged.h5``，
+并执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_7.h5 VERA_7_tighter_converged.h5
+
+然后在交互式命令行界面中执行：
+    
+.. code-block:: sh
+
+    plot-power-distribution --power-type assembly-integral
+
+可绘制出两个结果比较的组件积分功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_assembly_integral_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见将裂变源收敛判据由 ``5e-4`` 提高至 ``1e-4``，对组件积分功率分布几乎没有影响。
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type assembly-axial
+
+可绘制出两个结果比较的以组件为单位的轴向功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_assembly_axial_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+执行以下交互式命令行:
+
+.. code-block:: sh
+
+    plot-power-distribution --power-type axial
+
+可绘制出两个结果比较的堆芯轴向功率分布图：
+
+.. figure:: ../_images/plot_power_distribution_axial_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见对于 :ref:`vera_7` 问题，无论是径向功率分布还是轴向功率分布，提高裂变源收敛判据至 ``1e-4``
+对其影响都非常小。:ref:`pi_fission_converge_criterion` 设置成 ``5e-4`` 已足够精确。
+
+
+.. _plot_flux_distribution_compare:
+
+通量分布比较可视化
+---------------------
+
+这里我们介绍如何使用 :ref:`plot_flux_distribution` 功能进行结果比较。
+
+:ref:`plot_flux_distribution` 中所有功能都支持比较可视化，这里我们仅以
+:ref:`plot_flux_distribution_cell_radial_slice` 为示例。
+
+.. note:: 如果对细网通量进行比较，则需要两个结果的细网网格划分是一致的。如下面将围板厚度变化后，细网划分将会变化，
+          则无法比较细网通量分布。
+
+我们想了解围板厚度变化对于径向通量分布的影响，我们将 :ref:`vera_5a_2d` 中的 :ref:`baffle`
+厚度减小1毫米，由 ``2.85`` 改为 ``2.75``，重新计算获得的结果保存为 ``VERA_5A_2D_thinner_baffle.h5``，并执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_5A_2D_thinner_baffle.h5 VERA_5A_2D.h5
+
+然后在交互式命令行界面中执行：
+    
+.. code-block:: sh
+
+    plot-flux-distribution --flux-type cell-radial-slice --energy thermal
+
+.. note:: 由于 :ref:`vera_5a_2d` 问题为两维问题，轴向只有一层，因此这里无需通过 ``--axial-height`` 选项指定高度。
+
+可绘制出两个结果比较的径向切面的栅元热通量分布图：
+
+.. figure:: ../_images/plot_flux_distribution_cell_radial_slice_thermal_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见，围板厚度减少后，在围板区域由于慢化剂占比增多，该处的热通量是增大的。
+
+你也可以通过 ``--difference-type`` 选项来选择是相对偏差还是绝对偏差（默认是相对偏差）。
+
+.. note:: 在有些情况下，尤其是通量分布比较时，离活性区较远的地方本身绝对值就比较小，相对偏差就很大，
+          还会导致整个分布颜色渲染过于集中，此时比较绝对偏差更为合理。
+
+增加 ``--difference-type absolute`` 以选择绝对偏差：
+
+.. code-block:: sh
+
+    plot-flux-distribution --flux-type cell-radial-slice --energy thermal --difference-type absolute
+
+可绘制出径向切面的栅元热通量绝对偏差分布图：
+
+.. figure:: ../_images/plot_flux_distribution_cell_radial_slice_thermal_compare_abs.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+将 ``--energy`` 设置为 ``epithermal`` 以选择非热通量：
+
+.. code-block:: sh
+
+    plot-flux-distribution --flux-type cell-radial-slice --energy epithermal --difference-type absolute
+
+可绘制出径向切面的栅元非热通量绝对偏差分布图：
+
+.. figure:: ../_images/plot_flux_distribution_cell_radial_slice_epithermal_compare_abs.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+与热通量相反，围板厚度减小后该处非热通量是增加的。
+
+
+.. _plot_detector_reaction_distribution_compare:
+
+探测器活度分布比较可视化
+---------------------------
+
+这里我们介绍如何使用 :ref:`plot_detector_reaction_distribution` 功能进行结果比较。
+
+我们采用 :ref:`plot_power_distribution_compare` 中的例子来比较探测器活度分布。
+执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_7.h5 VERA_7_tighter_converged.h5
+
+然后在交互式命令行界面中执行：
+    
+.. code-block:: sh
+
+    plot-detector-reaction-distribution
+
+可绘制出两个结果比较的探测器活度分布图：
+
+.. figure:: ../_images/plot_detector_reaction_distribution_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+和组件功率分布比较是一致的，两个结果偏差极小。
+
+
+.. _plot_burnup_distribution_compare:
+
+燃耗分布比较可视化
+---------------------
+
+这里我们介绍如何使用 :ref:`plot_burnup_distribution` 功能进行结果比较。
+
+:ref:`plot_burnup_distribution` 中所有功能都支持比较可视化，这里我们仅以
+:ref:`plot_burnup_distribution_pin_integral`、:ref:`plot_burnup_distribution_pin_axial_slice`、
+:ref:`plot_burnup_distribution_axial` 为示例。
+
+:ref:`vera_9` 问题燃耗过程中D棒组有极小一部分插入堆芯，现在我们以D棒组全提（即将
+:ref:`dep_state_control_rod_position` 中D棒棒位全部设置为230）再进行计算，保存计算结果文件名为
+``VERA_9_ARO.h5``，并执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_9_ARO.h5 VERA_9.h5
+
+在交互式命令行界面中执行：
+    
+.. code-block:: sh
+
+    plot-burnup-distribution --burnup-type pin-integral --burnup 16939
+
+可绘制出两个结果比较的寿期末棒积分燃耗分布图：
+
+.. figure:: ../_images/plot_burnup_distribution_pin_integral_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见，相比于D棒组部分插入情况，完全ARO情况下D棒组位置附近的燃耗要深一些。
+
+执行交互式命令行：
+
+.. code-block:: sh
+
+   plot-burnup-distribution --burnup-type pin-axial-slice --axial-slice-coef 1 1 0 --burnup 16939
+
+可绘制出两个结果比较的寿期末方程为 ``x+y=0`` 轴向切面的棒燃耗分布图：
+
+.. figure:: ../_images/plot_burnup_distribution_pin_axial_slice_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+或执行轴向燃耗可视化命令：
+
+.. code-block:: sh
+
+    plot-burnup-distribution --burnup-type axial --burnup 16939
+
+查看两个结果轴向燃耗分布的比较情况：
+
+.. figure:: ../_images/plot_burnup_distribution_axial_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+无论是轴向切面燃耗分布还是堆芯轴向燃耗分布，都可以看到，这种正常运行工况下D棒组少量插入堆芯，
+只对接近顶部位置的燃料燃耗有影响。
+
+
+.. _plot_number_density_distribution_compare:
+
+核素核子密度分布比较可视化
+-----------------------------
+
+这里我们介绍如何使用 :ref:`plot_number_density_distribution` 功能进行结果比较。
+
+:ref:`vera_7` 是满功率平衡氙问题，这里我们计算一个 ``95%`` 功率状态，并与满功率状态下 ``Xe-135``
+的核子密度分布进行比较。对 :ref:`vera_7` 的 :ref:`relative_power` 设置为 ``0.95``，计算结果保存为
+``VERA_7_FP95.h5``，执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_7_FP95.h5 VERA_7.h5
+
+然后在交互式命令行界面中执行：
+    
+.. code-block:: sh
+
+    plot-number-density-distribution --nuclide-name Xe-135 --direction axial --axial-slice-coef 1 1 0
+
+可绘制出两个结果比较的方程为 ``x+y=0`` 轴向切面的Xe-135核子密度分布图：
+
+.. figure:: ../_images/plot_number_density_distribution_axial_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见功率降为 ``95%`` 时，不同位置的Xe-135浓度减少在0.67%~6.07%之间。
+
+
+.. _plot_dancoff_factors_compare:
+
+Dancoff因子分布比较可视化
+-----------------------------
+
+这里我们介绍如何使用 :ref:`plot_dancoff_factors` 功能进行结果比较。
+
+我们采用 :ref:`plot_number_density_distribution_compare` 中的例子来比较Dancoff因子分布。
+执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_7_FP95.h5 VERA_7.h5 
+
+然后在交互式命令行界面中分别执行：
+    
+.. code-block:: sh
+
+    plot-dancoff-factors --direction radial --axial-height 100
+
+.. code-block:: sh
+    
+    plot-dancoff-factors --direction radial --axial-height 400
+
+可绘制出两个结果比较的距离堆芯底部（包含反射层）距离分别为 ``100cm、400cm`` 处径向切面的Dancoff因子分布图：
+
+.. figure:: ../_images/plot_dancoff_factors_radial_100_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+.. figure:: ../_images/plot_dancoff_factors_radial_400_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可以看到，堆芯功率降低导致上部的水密度相比下部减少更多，从而上部比下部的Dancoff因子相差更大。
+
+
+.. _plot_result_summary_compare:
+
+汇总数据随燃耗变化比较可视化
+-------------------------------
+
+这里我们介绍如何使用 :ref:`plot_result_summary` 功能进行结果比较。
+
+我们采用 :ref:`plot_burnup_distribution_compare` 中的算例，但是反过来比较，执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_9.h5 VERA_9_ARO.h5
+
+然后在交互式命令行界面中执行：
+ 
+.. code-block:: sh
+
+    plot-result-summary --x-axis burnup --y-axis-first boron_concentration --y-axis-third control_rod_withdrawn_steps --rod-bank D
+
+.. note:: 这里除了画出了两个结果的硼降曲线比较外，还将D棒组的棒位作为第三个Y坐标值同时显示，需要注意的是，
+          第三个坐标的数据是来自于第一个结果的。
+
+可绘制出两个结果比较的硼降曲线：
+
+.. figure:: ../_images/plot_result_summary_bor_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可以看到，在燃耗深度~15000MWd/tU左右，D棒插入最多，与ARO结果相比硼浓度偏差也达到最大，但也不到20ppm。
+
+.. note:: 硼浓度比较会显示 ``±50`` 两条红色虚线，表示工程验收限值。
+
+
+.. _plot_criticals_compare:
+
+临界实验结果比较可视化
+-------------------------------
+
+这里我们介绍如何使用 :ref:`plot_criticals` 功能进行结果比较。
+
+我们采用 :ref:`vera_5` 基准题CRANE计算结果与KENO-VI的结果比较，在 :ref:`criticals`
+中把KENO-VI的结果替换进去并保存为 ``KENO-VI.xlsx``，执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_5.h5 KENO-VI.xlsx
+
+然后在交互式命令行界面中执行：
+ 
+.. code-block:: sh
+
+    plot-criticals
+
+可绘制出CRANE与KENO-VI的临界实验结果比较的条状图：
+
+.. figure:: ../_images/plot_criticals_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_control_rod_worths_compare:
+
+控制棒组价值比较可视化
+-------------------------------
+
+这里我们介绍如何使用 :ref:`plot_control_rod_worths` 功能进行结果比较。
+
+我们采用 :ref:`vera_5` 基准题CRANE计算结果与KENO-VI的结果比较，在 :ref:`control_rod_worths`
+中把KENO-VI的结果替换进去并保存为 ``KENO-VI.xlsx``，执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_5.h5 KENO-VI.xlsx
+
+然后在交互式命令行界面中执行：
+ 
+.. code-block:: sh
+
+    plot-control-rod-worths
+
+可绘制出CRANE与KENO-VI的控制棒组价值比较的条状图：
+
+.. figure:: ../_images/plot_control_rod_worths_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_control_rod_worths_curve_compare:
+
+控制棒组价值曲线比较可视化
+-------------------------------
+
+这里我们介绍如何使用 :ref:`plot_control_rod_worths_curve` 功能进行结果比较。
+
+我们采用 :ref:`vera_5` 基准题CRANE计算结果与KENO-VI的结果比较，在 :ref:`control_rod_worths_curve`
+中把KENO-VI的结果替换进去并保存为 ``KENO-VI.xlsx``，执行以下命令：
+
+.. code-block:: sh
+
+    crane visualize VERA_5.h5 KENO-VI.xlsx
+
+然后在交互式命令行界面中执行：
+ 
+.. code-block:: sh
+
+    plot-control-rod-worths-curve --rod-bank D --worth-type IRW(pcm)
+
+可绘制出CRANE与KENO-VI的控制棒组积分价值曲线比较图：
+
+.. figure:: ../_images/plot_control_rod_worths_curve_IRW_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+设置 ``--worth-type`` 为 ``DRW(pcm)``，并通过 ``--difference-type`` 选择绝对误差：
+ 
+.. code-block:: sh
+
+    plot-control-rod-worths-curve --rod-bank D --worth-type DRW(pcm) --difference-type absolute
+
+可绘制出CRANE与KENO-VI的控制棒组积分价值比较的条状图：
+
+.. figure:: ../_images/plot_control_rod_worths_curve_DRW_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _plot_timing_statistics_compare:
+
+分项耗时统计比较可视化
+-------------------------
+
+这里我们介绍如何使用 :ref:`plot_timing_statistics` 功能进行计算耗时比较。
+
+以下我们有两个计算结果：计算对象都是某CNP650机组第一循环1/4堆芯跟踪计算，但计算平台不同，
+分别为配备 ``RTX 4090`` 显卡的服务器和配备 ``RTX 3090`` 显卡的服务器，显卡数量都是 ``8`` 张。
+:ref:`io_file_formats_output_hdf5` 名分别为 ``QS2_U1C1_4090.h5`` 和 ``QS2_U1C1_3090.h5``。
+
+首先执行命令：
+
+.. code-block:: sh
+
+    crane visualize QS2_U1C1_4090.h5 QS2_U1C1_3090.h5 
+
+然后在交互式命令行界面中执行：
+ 
+.. code-block:: sh
+
+    plot-timing-statistics --plot-type bar
+
+.. note:: 分项耗时统计比较不支持饼图，即选项 ``--plot-type`` 不能为 ``pie``。
+
+可绘制出分项耗时统计比较的条状图：
+
+.. figure:: ../_images/plot_timing_statistics_bar_compare.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+可见对于该问题，采用 ``RTX 4090`` 显卡对计算效率提升非常显著，比起 ``RTX 3090``
+耗时占比最大的 ``MOC2D Solving`` 模块减少一半以上时间，而总耗时也减少 ``45%`` 左右。
+
+
+.. _compare_command:
+
+------------------
+compare 命令
+------------------
+
+在真实的堆芯启动物理实验和功率历史跟踪计算中，除了比较低功率物理实验计算结果外，
+还需要比较硼降曲线以及多个燃耗点的组功率分布、活度分布等。
+
+为了将结果比较批量化，CRANE提供了 :ref:`crane_compare` 命令，该命令能够自动比较
+:ref:`io_file_formats_output_excel` 中的以下四类数据并生成相关图表：
+
+    #. 低功率物理实验计算的汇总信息，即 :ref:`lppt_summary`，生成 ``1`` 张表；
+    #. 跟踪计算的硼浓度，即 :ref:`excel_summary_boron_concentration`，生成 ``1`` 张图；
+    #. 跟踪计算的组件积分功率分布，即 :ref:`assembly_power`，:ref:`io_file_formats_output_excel`
+       中有几个状态点的数据就生成几张图；
+    #. 跟踪计算的探测器活度分布，即 :ref:`detector_reaction`，:ref:`io_file_formats_output_excel`
+       中有几个状态点的数据就生成几张图。
+
+这里我们以 :ref:`beavrs_c1` 为例来比较CRANE计算结果与测量结果。
+
+首先将测量值输入到 :ref:`io_file_formats_output_excel` 中的相应位置。
+
+将低功率物理实验测量值填入 :ref:`lppt_summary` （下图黄色部分）：
+
+.. figure:: ../_images/beavrs_c1_lppt_summary.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+将跟踪计算的硼浓度测量值填入 :ref:`excel_summary_boron_concentration` （下图黄色部分）：
+
+.. figure:: ../_images/beavrs_c1_summary_boron.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+将 ``4587 MWd/tU`` 燃耗点的组件积分功率分布及燃耗填入 :ref:`assembly_power` （下图黄色部分）：
+
+.. note:: 若计算值中没有 ``4587 MWd/tU`` 这个燃耗的状态点，则会寻找最接近该燃耗值的状态点进行比较，下同。
+
+.. note:: ``beavrs_c1`` 基准题并没有组件功率分布测量值，这里为演示功能而输入了一个功率分布“测量值”。
+
+.. figure:: ../_images/beavrs_c1_assembly_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+将 ``1043, 4587, 12525.6 MWd/tU`` 3个燃耗点的探测器活度分布及燃耗值填入 :ref:`detector_reaction` （下图黄色部分）：
+
+.. note:: 这3个燃耗点的探测器活度分布数据来至 `参考文献`_ [1]。
+
+.. figure:: ../_images/beavrs_c1_detector_reaction.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+.. note:: 对于有探测器布置但该次测量无有效值的位置，需要输入一个极小值，如图中蓝色部分的 ``1E-20``。
+
+以上测量值输入完成后，保存该 :ref:`io_file_formats_output_excel` 名为 ``MEASURE.xlsx``，
+并执行以下命令：
+
+.. code-block:: sh
+
+    crane compare BEAVRS_C1.h5 MEASURE.xlsx -a -d
+
+.. note:: ``-a`` 选项为开启组件功率分布比较，``-d`` 选项为开启探测器活度分布比较，
+          而低功率物理实验和硼降曲线比较默认就是开启。
+
+即可自动创建名为 ``CRANE_vs_Measure_of_BEAVRS_C1`` 的文件夹，包含有以下图表：
+
+.. note:: 这里的文件夹命名规则为：CRANE_vs_<比较对象的文件名>_of_<堆芯名称>。
+
+低功率物理实验结果比较的汇总表：
+
+.. figure:: ../_images/beavrs_c1_compare_lppt.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+跟踪计算硼降曲线比较图：
+
+.. figure:: ../_images/beavrs_c1_compare_boron.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+``4587 MWd/tU`` 燃耗点的组件功率分布比较图：
+
+.. figure:: ../_images/beavrs_c1_compare_assembly_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+``1043 MWd/tU`` 燃耗点的探测器活度分布比较图：
+
+.. figure:: ../_images/beavrs_c1_compare_detector_reaction_1043.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+``4587 MWd/tU`` 燃耗点的探测器活度分布比较图：
+
+.. figure:: ../_images/beavrs_c1_compare_detector_reaction_4587.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+``12525.6 MWd/tU`` 燃耗点的探测器活度分布比较图：
+
+.. figure:: ../_images/beavrs_c1_compare_detector_reaction_12525.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+.. _参考文献:
+
+参考文献：
+
+1. Kan Wang, et al. 2017, Analysis of BEAVRS two-cycle benchmark using RMC based on full core detailed model,
+   Progress in Nuclear Energy, (2017) 1-12.

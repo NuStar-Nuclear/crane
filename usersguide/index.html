@@ -1,0 +1,342 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>用户指南 &mdash; CRANE Documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  
+
+  
+  
+
+  
+    <link rel="canonical" href="/crane/usersguide/index.html" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="1. 多群常数库" href="library.html" />
+    <link rel="prev" title="快速上手" href="../quickstart/index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> CRANE
+          
+
+          
+            
+            <img src="../_static/crane_logo.png" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">用户指南</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="library.html">1. 多群常数库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials.html">2. 材料定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">3. 几何建模</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 堆芯状态参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">5. 计算选项设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html">6. 燃耗跟踪</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lppt.html">7. 低功率物理实验</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicycle.html">8. 多循环换料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">9. 启动计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">10. 结果输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">11. 可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compare.html">12. 结果比较</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html">13. 常见错误排查</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">基准题示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../license.html">License Agreement</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>用户指南</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/usersguide/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <section id="usersguide">
+<span id="id1"></span><h1>用户指南<a class="headerlink" href="#usersguide" title="Permalink to this heading">¶</a></h1>
+<p>欢迎来到CRANE用户指南，这部分文档将指引你如何使用CRANE，它包含与CRANE程序使用相关的方方面面，
+如果你想通过一个简单的例子快速入门，可参阅 <a class="reference internal" href="../quickstart/index.html#quickstart"><span class="std std-ref">快速上手</span></a>。</p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="library.html">1. 多群常数库</a></li>
+<li class="toctree-l1"><a class="reference internal" href="materials.html">2. 材料定义</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="materials.html#macro-xs">2.1. 宏观截面给定材料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials.html#micro-xs">2.2. 微观材料</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">3. 几何建模</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#id2">3.1. 两维几何结构体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#structure-baffle">3.2. 两维围板结构体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#id9">3.3. 两维组件栅格</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#id13">3.4. 两维格架栅格</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#id16">3.5. 三维组件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#inserted-rods">3.6. 三维可插入式结构体</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#id18">3.7. 中子测量管束</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#id19">3.8. 分离式可燃毒物棒束</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#id20">3.9. 控制棒束</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#id23">3.10. 三维堆芯</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="state.html">4. 堆芯状态参数</a></li>
+<li class="toctree-l1"><a class="reference internal" href="settings.html">5. 计算选项设置</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#id2">5.1. 功率迭代</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#moc">5.2. 两维MOC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#cmfd">5.3. CMFD加速</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#id3">5.4. 临界硼搜索</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#id4">5.5. 氙瞬态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#id5">5.6. 能量沉积方式</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#id6">5.7. 热工水力反馈</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html#id7">5.8. 输出数据控制</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="depletion.html">6. 燃耗跟踪</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html#id2">6.1. 燃耗基准题</a></li>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html#id3">6.2. 真实堆芯燃耗跟踪</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="lppt.html">7. 低功率物理实验</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lppt.html#crit-computation">7.1. 临界实验计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lppt.html#tc-computation">7.2. 温度系数计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lppt.html#crw-computation">7.3. 控制棒组价值计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lppt.html#crwc-computation">7.4. 控制棒组价值曲线计算</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="multicycle.html">8. 多循环换料</a></li>
+<li class="toctree-l1"><a class="reference internal" href="run.html">9. 启动计算</a></li>
+<li class="toctree-l1"><a class="reference internal" href="results.html">10. 结果输出</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">11. 可视化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-model">11.1. 模型可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-meshes">11.2. 网格可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-assembly-map">11.3. 组件布置图可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-tagged-regions">11.4. 标记区域可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-moc-tracks">11.5. MOC特征线可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-power-distribution">11.6. 功率分布可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-flux-distribution">11.7. 通量分布可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-detector-reaction-distribution">11.8. 探测器活度分布可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-burnup-distribution">11.9. 燃耗分布可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-number-density-distribution">11.10. 核素核子密度分布可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#dancoff">11.11. Dancoff因子分布可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-result-summary">11.12. 汇总数据随燃耗变化可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-lppt">11.13. 低功率物理实验结果可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html#plot-timing-statistics">11.14. 分项耗时统计可视化</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compare.html">12. 结果比较</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compare.html#compare-visualization">12.1. 结果比较可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compare.html#compare">12.2. compare 命令</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="troubleshoot.html">13. 常见错误排查</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html#yaml">13.1. YAML 格式错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html#input-schema-error">13.2. 输入内容规则错误</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html#runtime-error">13.3. 运行时错误</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="library.html" class="btn btn-neutral float-right" title="1. 多群常数库" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../quickstart/index.html" class="btn btn-neutral float-left" title="快速上手" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+  
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

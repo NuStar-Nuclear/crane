@@ -1,0 +1,36 @@
+===================
+What's New in 1.1.3
+===================
+
+------------
+New Features
+------------
+
+#. 能够考虑俘获释热的功率分布编辑；
+#. 增加compare命令行功能；
+#. 多群常数库更新至RLIB-1.0.8；
+
+---------
+Bug Fixes
+---------
+
+#. 6491fbb: exclude non fuel plane in get_main_core2d_slice
+#. caf18d3: no variable returned for method computePinLinearHeatRate
+#. 3321e5d: MOD material name error
+#. 4d59bab: _reg_stru should be updated if the assembly's geometry is copyed from another 
+   to avoid openmc converter's 'same material error'
+#. 13f1e99: incorrect min_thickness if user defined grid but not used
+#. 03d10dd: incorrect min_thickness if user defined grid but not used
+#. 52fdb9e: copy assembly geometry should not copy grid name
+#. 13c10d6: incorrect inserting rods height set generating in reflector
+#. de56d68: segment fault when assign weights_coef_h
+#. 5ba03b0: end grid material error
+#. dac04c3: incorrect active fuel height used to compare the fully withdrawn height
+#. d28b6ff: incorrect cell map of VERA_2K problem
+#. 7e0924d: segmentfault accurred in parallel generating pin channel index
+#. cb2a396: segmentfault accurred in parallel generating pin channel index
+#. 5c6deab: forget to add assembly gap
+#. 7101edb: forget to add assembly gap
+#. eac0e41: thread not safe in GEOSDifference
+#. 124f23d: incorrect coolant perimeter and gaps
+#. 82b302e: thread not safe in GEOSDifference

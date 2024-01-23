@@ -1,0 +1,97 @@
+.. CRANE documentation master file，created by
+   sphinx-quickstart on Fri Jul 10 14:51:14 2020.
+   You can adapt this file completely to your liking，but it should at least
+   contain the root `toctree` directive.
+
+欢迎查阅CRANE中文文档!
+=======================
+
+CRANE程序是上海核星核电科技有限公司自主研发的基于CPU-GPU异构平台两维/一维数值反应堆物理计算程序，
+是核星公司十余年来围绕水堆开展的计算方法研究和软件研发工作的最新成果。
+
+该程序能够对真实反应堆内部几何材料结构进行精确建模，通过耦合求解三维中子输运方程、核素燃耗方程及热工水力方程，
+直接获得反应堆内部的中子通量场分布、温度场分布、核素成分分布等各种物理参数，并且将这些参数进行可视化。
+
+.. figure:: _images/BEAVRS_VVER.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+    BEAVRS and VVER simulation by CRANE
+
+不像传统的两步法程序，需要进行组件计算来获得均匀化截面等参数，然后再进行三维堆芯计算，
+CRANE能够基于第一性原理直接开展精细到燃料棒层面的三维堆芯多物理耦合计算，因此CRANE具有非常高的计算精度。
+从C5G7、VERA、BEAVRS、VVER-1000等系列国际基准题的验证结果来看，CRANE能够达到国际上同类一步法计算软件的先进水平。
+
+更值得一提的是，CRANE已经通过超过120堆年的商用压水堆实测数据的确认，涵盖CNP650、CNP1000、VVER-1000、EPR等多种堆型。
+总体计算精度显著优于传统两步法程序。
+
+.. figure:: _images/boron_letdown_errors.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+    Boron concentration error of 120+ core years following simulations
+
+.. figure:: _images/detector_reactions.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+    Detector activities error of 1149 flux maps at >50%FP in 120+ core years, CRANE vs. SCIENCE
+
+除了具备非常高的计算精度以外，CRANE还有非常高效的计算效率以及低廉的使用成本。
+CRANE采用与人工智能框架相同的开发架构，通过CUDA/C++/Python混合编程，实现了所有计算模块基于Unified
+Memory的多GPU并行及性能优化，能够将原先需要基于超算平台才能开展的精细数值反应堆模拟可以在单台GPU服务器上完成。
+
+.. figure:: _images/CRANE_flow_chart.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+    CRANE's flow chart, green means perform on GPU
+
+目前CRANE能够在单台配备有10张RTX4090显卡的服务器上实现平均 **30秒/状态点** 的百万千万级商用压水堆1/4堆芯跟踪模拟计算，
+计算耗电低至平均 **0.04千瓦时/状态点**，完全具备了一步法程序在实际工程中应用的条件。
+
+----------
+主要特征
+----------
+
+#. 支持真实的几何建模，既能支持方形燃料组件堆型，也能够支持六角形燃料组件堆型建模，
+   几乎可对所有采用轴向拉伸设计的反应堆堆内构件进行精确建模;
+#. 具备换料功能，支持多循环计算;
+#. 内部耦合EAGLE程序，能够支持多种模式的热工水力反馈计算以及燃料性能分析计算;
+#. 内建多种序列计算功能，可支持单状态点计算、燃耗跟踪计算、临界硼搜索、控制棒微积分价值计算、反应性温度系数计算等;
+#. 保留宏观截面直接输入功能，能够让用户方便的耦合前端截面计算程序或者用于宏观截面给定的基准题计算;
+#. 采用YAML格式输入文件，方便用户读写，采用HDF5及excel文件输出结果，方便用户查看比较;
+#. 自带丰富的可视化功能，能够通过矢量图的形式对几何模型、材料布置、功率分布、通量分布、温度分布、
+   燃耗分布等等多种建模数据或者计算结果数据进行可视化。
+
+--------------
+主要技术路线
+--------------
+
+#. 69群能群结构的多群常数库;
+#. 强化中子流方法(ENCM)、共振干涉因子表修正及等价原理相结合的共振计算方法;
+#. 构造实体几何(CSG)建模;
+#. 基于线性源近似的两维/一维耦合特征线方法(MOC);
+#. 组件模块化特征线，基于GPU并发的特征线产生及扫描;
+#. 基于任意凸多边形网格的三维多重粗网有限差分(CMFD)加速;
+#. 基于切比雪夫有理近似(CRAM)及隐式梯形法的燃耗方程求解;
+#. 基于对数线性反应率方法(LLR)的输运燃耗耦合策略;
+
+.. toctree::
+    :maxdepth: 1
+    :caption: 文档内容:
+    
+    install
+    quickstart/index
+    usersguide/index
+    methods/index
+    v_and_v/index
+    examples/index
+    io_formats/index
+    commands
+    releasenotes/index
+    license
