@@ -309,7 +309,7 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <section id="vera-1a">
 <span id="id1"></span><h2><span class="section-number">3.1. </span>VERA_1A<a class="headerlink" href="#vera-1a" title="Permalink to this heading">¶</a></h2>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">materials</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">ndame</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fuel_31</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Fuel_31</span>
 <span class="w">  </span><span class="nt">elements</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">O-nat</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">U-234</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">U-235</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">U-236</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">U-238</span><span class="p p-Indicator">]</span>
 <span class="w">  </span><span class="nt">number_densities</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">4.57642e-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6.11864e-06</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">7.18132e-04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.29861E-06</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.21546e-02</span><span class="p p-Indicator">]</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Helium</span>
@@ -325,7 +325,7 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="nt">geometries</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">structures</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Pin</span>
-<span class="w">    </span><span class="nt">primiitives</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">primitives</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4096</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4180</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4750</span><span class="p p-Indicator">}</span>
@@ -371,17 +371,8 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-5</span>
 <span class="w">  </span><span class="nt">moc_2d</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 <span class="w">    </span><span class="nt">track_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.03</span>
-<span class="w">  </span><span class="nt">moc_1d</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
-<span class="w">    </span><span class="nt">max_fine_mesh_thickness</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">  </span><span class="nt">cmfd</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-6</span>
-<span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-7</span>
-<span class="w">    </span><span class="c1"># num_iterations_oscillated: 20</span>
-<span class="w">    </span><span class="c1"># use_partial_current: false</span>
-<span class="w">    </span><span class="c1"># relaxation_factor: 0.7</span>
 
 <span class="nt">to_openmc</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">openmc_settings</span><span class="p">:</span>
