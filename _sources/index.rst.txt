@@ -38,7 +38,7 @@ CRANE能够基于第一性原理直接开展精细到燃料棒层面的三维堆
     :figclass: align-center
     :width: 800px
 
-    Detector activities error of 1149 flux maps at >50%FP in 120+ core years, CRANE vs. SCIENCE
+    Detector activities error of 1149 flux maps at >50%FP in 120+ core years, CRANE vs. Design code
 
 除了具备非常高的计算精度以外，CRANE还有非常高效的计算效率以及低廉的使用成本。
 CRANE采用与人工智能框架相同的开发架构，通过CUDA/C++/Python混合编程，实现了所有计算模块基于Unified
