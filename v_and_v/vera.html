@@ -467,7 +467,7 @@ CRANE与KENO-VI的 <strong>keff</strong> 比较如下表：</p>
 </section>
 <section id="vera-4">
 <span id="vv-vera-4"></span><h2><span class="section-number">3.4. </span>VERA_4<a class="headerlink" href="#vera-4" title="Permalink to this heading">¶</a></h2>
-<p>VERA_4系列基准题是三維3x3组件问题，可燃毒物棒组件交替布置，中心组件插有控制棒，需要计算控制棒的微分价值曲线。
+<p>VERA_4系列基准题是三维3x3组件问题，可燃毒物棒组件交替布置，中心组件插有控制棒，需要计算控制棒的微分价值曲线。
 主要考察程序对于不同棒位情况下组件反应性、组件功率分布和轴向功率分布的计算精度。
 该基准问题计算条件如下：</p>
 <ol class="arabic simple">
@@ -573,7 +573,7 @@ CRANE与KENO-VI的 <strong>keff</strong> 比较如下表：</p>
 </tr>
 </tbody>
 </table>
-<p>CRANE与KENO-VI的计算结果比较如下表：</p>
+<p>CRANE与KENO-VI的计算结果偏差如下表：</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Rod Position</p></th>
@@ -671,11 +671,19 @@ CRANE与KENO-VI的 <strong>keff</strong> 比较如下表：</p>
 </tr>
 </tbody>
 </table>
-<p>该问题中棒位 <strong>257.9cm</strong> 状态点CRANE与KENO-VI的组件功率分布偏差如下：</p>
+<p>CRANE与KENO-VI的棒积分价值曲线比较：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/vv_VERA_4_IRW.png"><img alt="../_images/vv_VERA_4_IRW.png" src="../_images/vv_VERA_4_IRW.png" style="width: 800px;" /></a>
+</figure>
+<p>CRANE与KENO-VI的棒积分微分价值比较：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/vv_VERA_4_DRW.png"><img alt="../_images/vv_VERA_4_DRW.png" src="../_images/vv_VERA_4_DRW.png" style="width: 800px;" /></a>
+</figure>
+<p>棒位 <strong>257.9cm</strong> 状态点下CRANE与KENO-VI的组件功率分布偏差如下：</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_4_assembly_power.png"><img alt="../_images/vv_VERA_4_assembly_power.png" src="../_images/vv_VERA_4_assembly_power.png" style="width: 800px;" /></a>
 </figure>
-<p>该问题中棒位 <strong>257.9cm</strong> 状态点CRANE与KENO-VI的轴向功率分布偏差如下：</p>
+<p>棒位 <strong>257.9cm</strong> 状态点下CRANE与KENO-VI的轴向功率分布偏差如下：</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_4_axial_power.png"><img alt="../_images/vv_VERA_4_axial_power.png" src="../_images/vv_VERA_4_axial_power.png" style="width: 800px;" /></a>
 </figure>

@@ -286,7 +286,7 @@ VERA_3B
 VERA_4
 -----------------
 
-VERA_4系列基准题是三維3x3组件问题，可燃毒物棒组件交替布置，中心组件插有控制棒，需要计算控制棒的微分价值曲线。
+VERA_4系列基准题是三维3x3组件问题，可燃毒物棒组件交替布置，中心组件插有控制棒，需要计算控制棒的微分价值曲线。
 主要考察程序对于不同棒位情况下组件反应性、组件功率分布和轴向功率分布的计算精度。
 该基准问题计算条件如下：
 
@@ -328,7 +328,7 @@ CRANE的计算结果如下表：
 | 230 steps    | 100%      | 1.001584    | --        | --        |  0.0             | 
 +--------------+-----------+-------------+-----------+-----------+------------------+
 
-CRANE与KENO-VI的计算结果比较如下表：
+CRANE与KENO-VI的计算结果偏差如下表：
 
 .. table:: VERA_4 deviation of CRANE vs. KENO-VI
     :align: center
@@ -361,15 +361,28 @@ CRANE与KENO-VI的计算结果比较如下表：
 | 230 steps    | 100%      | 20                |  --       | --        | 0                | 
 +--------------+-----------+-------------------+-----------+-----------+------------------+
 
+CRANE与KENO-VI的棒积分价值曲线比较：
 
-该问题中棒位 **257.9cm** 状态点CRANE与KENO-VI的组件功率分布偏差如下：
+.. figure:: ../_images/vv_VERA_4_IRW.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+CRANE与KENO-VI的棒积分微分价值比较：
+
+.. figure:: ../_images/vv_VERA_4_DRW.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+棒位 **257.9cm** 状态点下CRANE与KENO-VI的组件功率分布偏差如下：
 
 .. figure:: ../_images/vv_VERA_4_assembly_power.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-该问题中棒位 **257.9cm** 状态点CRANE与KENO-VI的轴向功率分布偏差如下：
+棒位 **257.9cm** 状态点下CRANE与KENO-VI的轴向功率分布偏差如下：
 
 .. figure:: ../_images/vv_VERA_4_axial_power.png
     :align: center
