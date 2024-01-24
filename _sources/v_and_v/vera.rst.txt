@@ -368,7 +368,7 @@ CRANE与KENO-VI的棒积分价值曲线比较：
     :figclass: align-center
     :width: 800px
 
-CRANE与KENO-VI的棒积分微分价值比较：
+CRANE与KENO-VI的棒微分价值比较：
 
 .. figure:: ../_images/vv_VERA_4_DRW.png
     :align: center
