@@ -212,3 +212,70 @@ CRANE与KENO-VI的 **keff** 比较如下表：
     :align: center
     :figclass: align-center
     :width: 800px
+
+
+.. _vv_vera_3:
+
+-----------------
+VERA_3
+-----------------
+
+VERA_3系列基准题包含3A、3B两个三维单组件问题，两个问题最大的差别是有无Pyrex可燃毒物棒，
+主要考察程序对于典型压水堆组件反应性、棒功率分布和轴向功率分布的计算精度。
+该基准问题计算条件如下：
+
+#. CRANE用户输入文件与 :ref:`examples_vera` 基准题示例中一致；
+#. CRANE版本号 ``1.3.3``；
+
+该基准问题参考解取至 :ref:`vera_reference`，由蒙卡程序KENO-VI计算获得。
+
+VERA_3A
+-----------
+
+:ref:`vera_3a` 问题CRANE与KENO-VI计算结果的比较如下：
+
+.. figure:: ../_images/vv_VERA_3A_summary.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+|
+
+其中棒功率分布偏差如下图：
+
+.. figure:: ../_images/vv_VERA_3A_pin_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+其中轴向功率分布偏差如下图：
+
+.. figure:: ../_images/vv_VERA_3A_axial_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+VERA_3B
+-----------
+
+:ref:`vera_3b` 问题CRANE与KENO-VI计算结果的比较如下：
+
+.. figure:: ../_images/vv_VERA_3B_summary.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+|
+
+其中棒功率分布偏差如下图：
+
+.. figure:: ../_images/vv_VERA_3B_pin_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+其中轴向功率分布偏差如下图：
+
+.. figure:: ../_images/vv_VERA_3B_axial_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+    
