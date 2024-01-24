@@ -409,7 +409,6 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Fuel_31</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1&#39;</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">3-2</span><span class="p p-Indicator">}</span>
-<span class="w">    </span><span class="c1"># meshing: {type: SECTORS, num_azimuths: 8, radii: [0.2365, 0.3344, 0.55, 0.66]}</span>
 <span class="w">    </span><span class="nt">meshing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3344</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.4750</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
 
 <span class="w">  </span><span class="nt">lattices</span><span class="p">:</span>
@@ -447,17 +446,8 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-5</span>
 <span class="w">  </span><span class="nt">moc_2d</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 <span class="w">    </span><span class="nt">track_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.03</span>
-<span class="w">  </span><span class="nt">moc_1d</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
-<span class="w">    </span><span class="nt">max_fine_mesh_thickness</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">  </span><span class="nt">cmfd</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-6</span>
-<span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-7</span>
-<span class="w">    </span><span class="c1"># num_iterations_oscillated: 20</span>
-<span class="w">    </span><span class="c1"># use_partial_current: false</span>
-<span class="w">    </span><span class="c1"># relaxation_factor: 0.7</span>
 
 <span class="nt">to_openmc</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">openmc_settings</span><span class="p">:</span>
@@ -494,7 +484,6 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Fuel_31</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1&#39;</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">3-2</span><span class="p p-Indicator">}</span>
-<span class="w">    </span><span class="c1"># meshing: {type: SECTORS, num_azimuths: 8, radii: [0.2365, 0.3344, 0.55, 0.66]}</span>
 <span class="w">    </span><span class="nt">meshing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3344</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.4750</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
 
 <span class="w">  </span><span class="nt">lattices</span><span class="p">:</span>
@@ -532,17 +521,8 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-5</span>
 <span class="w">  </span><span class="nt">moc_2d</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 <span class="w">    </span><span class="nt">track_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.03</span>
-<span class="w">  </span><span class="nt">moc_1d</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
-<span class="w">    </span><span class="nt">max_fine_mesh_thickness</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">  </span><span class="nt">cmfd</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-6</span>
-<span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-7</span>
-<span class="w">    </span><span class="c1"># num_iterations_oscillated: 20</span>
-<span class="w">    </span><span class="c1"># use_partial_current: false</span>
-<span class="w">    </span><span class="c1"># relaxation_factor: 0.7</span>
 
 <span class="nt">to_openmc</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">openmc_settings</span><span class="p">:</span>
@@ -579,7 +559,6 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Fuel_31</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1&#39;</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">3-2</span><span class="p p-Indicator">}</span>
-<span class="w">    </span><span class="c1"># meshing: {type: SECTORS, num_azimuths: 8, radii: [0.2365, 0.3344, 0.55, 0.66]}</span>
 <span class="w">    </span><span class="nt">meshing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3344</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.4750</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
 
 <span class="w">  </span><span class="nt">lattices</span><span class="p">:</span>
@@ -617,17 +596,8 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-5</span>
 <span class="w">  </span><span class="nt">moc_2d</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 <span class="w">    </span><span class="nt">track_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.03</span>
-<span class="w">  </span><span class="nt">moc_1d</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
-<span class="w">    </span><span class="nt">max_fine_mesh_thickness</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">  </span><span class="nt">cmfd</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-6</span>
-<span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-7</span>
-<span class="w">    </span><span class="c1"># num_iterations_oscillated: 20</span>
-<span class="w">    </span><span class="c1"># use_partial_current: false</span>
-<span class="w">    </span><span class="c1"># relaxation_factor: 0.7</span>
 
 <span class="nt">to_openmc</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">openmc_settings</span><span class="p">:</span>
@@ -669,7 +639,6 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">ZRB2</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">3-2</span><span class="p p-Indicator">}</span>
 <span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">4-3</span><span class="p p-Indicator">}</span>
-<span class="w">    </span><span class="c1"># meshing: {type: SECTORS, num_azimuths: 8, radii: [0.2365, 0.3344, 0.55, 0.66]}</span>
 <span class="w">    </span><span class="nt">meshing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3344</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.4750</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
 
 <span class="w">  </span><span class="nt">lattices</span><span class="p">:</span>
@@ -706,18 +675,9 @@ CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/s
 <span class="w">    </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-4</span>
 <span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-5</span>
 <span class="w">  </span><span class="nt">moc_2d</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2</span>
+<span class="w">    </span><span class="nt">num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
 <span class="w">    </span><span class="nt">track_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.005</span>
-<span class="w">  </span><span class="nt">moc_1d</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">4</span>
-<span class="w">    </span><span class="nt">max_fine_mesh_thickness</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.5</span>
-<span class="w">  </span><span class="nt">cmfd</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-6</span>
-<span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-7</span>
-<span class="w">    </span><span class="c1"># num_iterations_oscillated: 20</span>
-<span class="w">    </span><span class="c1"># use_partial_current: false</span>
-<span class="w">    </span><span class="c1"># relaxation_factor: 0.7</span>
 
 <span class="nt">to_openmc</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">openmc_settings</span><span class="p">:</span>
