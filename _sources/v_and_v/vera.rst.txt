@@ -94,119 +94,119 @@ CRANE与KENO-VI的 **keff** 比较如下表：
 |     2Q     | 1.171940 ± 0.000016 |     1.171953     |       1           |
 +------------+---------------------+------------------+-------------------+
 
-:ref:`vera_2a` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2a` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2A.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2b` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2b` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2B.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2c` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2c` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2C.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2d` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2d` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2D.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2e` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2e` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2E.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2f` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2f` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2F.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2g` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2g` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2G.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2h` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2h` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2H.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2i` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2i` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2I.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2j` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2j` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2J.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2k` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2k` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2K.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2l` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2l` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2L.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2m` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2m` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2M.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2n` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2n` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2N.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2o` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2o` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2O.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2p` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2p` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2P.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-:ref:`vera_2q` 问题CRANE与KENO-VI的 **棒功率分布** 比较如下：
+:ref:`vera_2q` 问题CRANE与KENO-VI的棒功率分布比较如下：
 
 .. figure:: ../_images/vv_VERA_2Q.png
     :align: center
@@ -279,3 +279,100 @@ VERA_3B
     :figclass: align-center
     :width: 800px
     
+
+.. _vv_vera_4:
+
+-----------------
+VERA_4
+-----------------
+
+VERA_4系列基准题是三維3x3组件问题，可燃毒物棒组件交替布置，中心组件插有控制棒，需要计算控制棒的微分价值曲线。
+主要考察程序对于不同棒位情况下组件反应性、组件功率分布和轴向功率分布的计算精度。
+该基准问题计算条件如下：
+
+#. CRANE用户输入文件与 :ref:`vera_4` 基准题示例中一致；
+#. CRANE版本号 ``1.3.3``；
+
+该基准问题参考解取至 :ref:`vera_reference`，由蒙卡程序KENO-VI计算获得。
+
+CRANE的计算结果如下表：
+
+.. table:: VERA_4 result of CRANE
+    :align: center
+
++--------------+-----------+-------------+-----------+-----------+------------------+
+| Rod Position | Withdrawn | k-effective | DRW (pcm) | IRW (pcm) | Axial Offset (%) |            
++==============+===========+=============+===========+===========+==================+
+| 257.9 cm     | --        | 0.999247    | --        | -233      | -35.1            |  
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 0   steps    | 0%        | 0.972772    | -114      | -2957     | -6.0             | 
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 23  steps    | 10%       | 0.973847    | -526      | -2844     | -18.1            |  
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 46  steps    | 20%       | 0.978861    | -807      | -2318     | -53.2            |  
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 69  steps    | 30%       | 0.986652    | -569      | -1511     | -71.2            |  
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 92  steps    | 40%       | 0.992226    | -357      | -942      | -71.8            |  
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 115 steps    | 50%       | 0.995757    | -234      | -584      | -63.6            |  
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 138 steps    | 60%       | 0.998081    | -156      | -350      | -47.8            |  
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 161 steps    | 70%       | 0.999639    | -107      | -194      | -30.5            |  
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 184 steps    | 80%       | 1.000709    | -66       | -87       | -15.3            |  
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 207 steps    | 90%       | 1.001371    | -21       | -21       | -4.4             | 
++--------------+-----------+-------------+-----------+-----------+------------------+
+| 230 steps    | 100%      | 1.001584    | --        | --        |  0.0             | 
++--------------+-----------+-------------+-----------+-----------+------------------+
+
+CRANE与KENO-VI的计算结果比较如下表：
+
+.. table:: VERA_4 deviation of CRANE vs. KENO-VI
+    :align: center
+
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| Rod Position | Withdrawn | k-effective (pcm) | DRW (pcm) | IRW (pcm) | Axial Offset (%) |            
++==============+===========+===================+===========+===========+==================+
+| 257.9 cm     | --        | 27                |  --       | 7         | 0.2              |    
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 0 steps      | 0%        | 36                |  20       | 18        | 0.9              |    
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 23 steps     | 10%       | 17                |  70       | -2        | 2.8              |    
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 46 steps     | 20%       | -50               | -13       | -73       | 3.3              |    
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 69 steps     | 30%       | -39               | -28       | -60       | 0.4              |    
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 92 steps     | 40%       | -12               | -13       | -32       | -0.9             |     
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 115 steps    | 50%       | 1                 |  -4       | -18       | -1.6             |     
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 138 steps    | 60%       | 5                 |  -3       | -14       | -2.0             |     
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 161 steps    | 70%       | 9                 |  -4       | -11       | -2.0             |     
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 184 steps    | 80%       | 12                |  -8       | -7        | -1.7             |     
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 207 steps    | 90%       | 20                |  1        | 1         | -1.4             |     
++--------------+-----------+-------------------+-----------+-----------+------------------+
+| 230 steps    | 100%      | 20                |  --       | --        | 0                | 
++--------------+-----------+-------------------+-----------+-----------+------------------+
+
+
+该问题中棒位 **257.9cm** 状态点CRANE与KENO-VI的组件功率分布偏差如下：
+
+.. figure:: ../_images/vv_VERA_4_assembly_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+该问题中棒位 **257.9cm** 状态点CRANE与KENO-VI的轴向功率分布偏差如下：
+
+.. figure:: ../_images/vv_VERA_4_axial_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
