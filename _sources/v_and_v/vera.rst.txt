@@ -21,7 +21,7 @@ VERA_1系列基准题包含1A-1E总共5个两维单栅元问题，用来考察�
 
 
 .. table:: VERA_1 keff deviation of CRANE vs. KENO-VI
-   :align: center
+    :align: center
 
 +------------+---------------------+------------------+-------------------+
 |   Problem  |       KENO-VI       |       CRANE      |  Deviation (pcm)  |
