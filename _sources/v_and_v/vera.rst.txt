@@ -410,7 +410,7 @@ VERA_5A_2D
 
 其中组件功率分布偏差如下图：
 
-.. figure:: ../_images/vv_VERA_5A_assembly_power.png
+.. figure:: ../_images/vv_VERA_5A_2D_assembly_power.png
     :align: center
     :figclass: align-center
     :width: 800px
@@ -428,7 +428,7 @@ VERA_5B_2D
 
 其中组件功率分布偏差如下图：
 
-.. figure:: ../_images/vv_VERA_5B_assembly_power.png
+.. figure:: ../_images/vv_VERA_5B_2D_assembly_power.png
     :align: center
     :figclass: align-center
     :width: 800px
@@ -446,7 +446,7 @@ VERA_5C_2D
 
 其中组件功率分布偏差如下图：
 
-.. figure:: ../_images/vv_VERA_5C_assembly_power.png
+.. figure:: ../_images/vv_VERA_5C_2D_assembly_power.png
     :align: center
     :figclass: align-center
     :width: 800px
