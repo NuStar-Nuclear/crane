@@ -1,0 +1,168 @@
+.. _v_and_v_cnp650:
+
+
+=============
+CNP650 堆型
+=============
+
+CRANE针对CNP650堆型的确认数据总共包含53个循环，60个堆年，包含启动物理实验的临界硼浓度、控制棒价值、温度系数、
+不同功率平台的组件功率分布和探测器活度分布，以及运行跟踪一天一个点的硼浓度、定期通量图测量的组件功率分布和探测器活度分布。
+
+1. CRANE用户输入文件与 :ref:`examples_c5g7` 基准题示例中一致；
+2. CRANE版本号 ``1.3.3``；
+
+.. _vv_c5g7_2d:
+
+------------
+C5G7_2D
+------------
+
+该基准问题 :ref:`io_file_formats_input` 见 :ref:`c5g7_2d`，参考解由 `OpenMC`_ 提供，总共投入粒子
+``2000`` 代，每代 ``100000`` 个粒子，前 ``500`` 代不计入统计。
+
+CRANE与 `OpenMC`_ 计算结果的比较如下：
+
+.. figure:: ../_images/vv_C5G7_2D_summary.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+|
+
+棒功率分布偏差如下图：
+
+.. figure:: ../_images/vv_C5G7_2D_pin_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+
+.. _vv_c5g7_3d:
+
+--------
+C5G7_3D
+--------
+
+该基准问题 :ref:`io_file_formats_input` 见 :ref:`c5g7_3d`，参考解由 `OpenMC`_ 提供，总共投入粒子
+``2000`` 代，每代 ``200000`` 个粒子，前 ``500`` 代不计入统计。
+
+CRANE与 `OpenMC`_ 计算结果的比较如下：
+
+.. figure:: ../_images/vv_C5G7_3D_summary.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+|
+
+其中棒功率分布偏差如下图：
+
+.. figure:: ../_images/vv_C5G7_3D_pin_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+其中轴向功率分布偏差如下图：
+
+.. figure:: ../_images/vv_C5G7_3D_axial_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+    
+
+.. _vv_c5g7_3d_unrodded:
+
+-----------------
+C5G7_3D_unrodded
+-----------------
+
+该基准问题 :ref:`io_file_formats_input` 见 :ref:`c5g7_3d_unrodded`，参考解由 `OpenMC`_ 提供，总共投入粒子
+``2000`` 代，每代 ``200000`` 个粒子，前 ``500`` 代不计入统计。
+
+CRANE与 `OpenMC`_ 计算结果的比较如下：
+
+.. figure:: ../_images/vv_C5G7_3D_unrodded_summary.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+|
+
+其中棒功率分布偏差如下图：
+
+.. figure:: ../_images/vv_C5G7_3D_unrodded_pin_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+其中轴向功率分布偏差如下图：
+
+.. figure:: ../_images/vv_C5G7_3D_unrodded_axial_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+    
+
+.. _vv_c5g7_3d_rodded_a:
+
+-----------------
+C5G7_3D_rodded_A
+-----------------
+
+该基准问题 :ref:`io_file_formats_input` 见 :ref:`c5g7_3d_rodded_a`，参考解由 `OpenMC`_ 提供，总共投入粒子
+``2000`` 代，每代 ``200000`` 个粒子，前 ``500`` 代不计入统计。
+
+CRANE与 `OpenMC`_ 计算结果的比较如下：
+
+.. figure:: ../_images/vv_C5G7_3D_rodded_A_summary.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+|
+
+其中棒功率分布偏差如下图：
+
+.. figure:: ../_images/vv_C5G7_3D_rodded_A_pin_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+其中轴向功率分布偏差如下图：
+
+.. figure:: ../_images/vv_C5G7_3D_rodded_A_axial_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+    
+
+.. _vv_c5g7_3d_rodded_b:
+
+-----------------
+C5G7_3D_rodded_B
+-----------------
+
+该基准问题 :ref:`io_file_formats_input` 见 :ref:`c5g7_3d_rodded_b`，参考解由 `OpenMC`_ 提供，总共投入粒子
+``2000`` 代，每代 ``200000`` 个粒子，前 ``500`` 代不计入统计。
+
+CRANE与 `OpenMC`_ 计算结果的比较如下：
+
+.. figure:: ../_images/vv_C5G7_3D_rodded_B_summary.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+|
+
+其中棒功率分布偏差如下图：
+
+.. figure:: ../_images/vv_C5G7_3D_rodded_B_pin_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+其中轴向功率分布偏差如下图：
+
+.. figure:: ../_images/vv_C5G7_3D_rodded_B_axial_power.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+    
+
+
+.. _OpenMC: https://docs.openmc.org/en/stable/
