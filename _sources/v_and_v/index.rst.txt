@@ -28,7 +28,7 @@
 
 .. toctree::
     :numbered:
-    :maxdepth: 2
+    :maxdepth: 3
 
     cnp650
     cnp1000
