@@ -59,6 +59,7 @@ VERA系列基准题是美国国家橡树岭实验室为验证CASL计划中开发
 
    #. :ref:`vera_5a_2d`
    #. :ref:`vera_5b_2d`
+   #. :ref:`vera_5c_2d`
 
 真实堆芯低功率物理实验问题：
 
@@ -344,6 +345,16 @@ VERA_5B_2D
 ----------------
 
 .. literalinclude:: ../../../examples/VERA_5B_2D.yaml
+    :language: yaml
+
+
+.. _vera_5c_2d:
+
+----------------
+VERA_5C_2D
+----------------
+
+.. literalinclude:: ../../../examples/VERA_5C_2D.yaml
     :language: yaml
 
 
