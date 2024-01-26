@@ -190,7 +190,7 @@
             
   <section id="io-file-formats-input-schema">
 <span id="id1"></span><h1><span class="section-number">3. </span>用户输入规则配置文件<a class="headerlink" href="#io-file-formats-input-schema" title="Permalink to this heading">¶</a></h1>
-<p>该文件为一个Python配置文件，会随程序一起默认安装在 <code class="docutils literal notranslate"><span class="pre">/安装目录/ngm/</span></code> 下， <strong>用户无需修改</strong>。</p>
+<p>该文件为一个Python配置文件，会随程序一起默认安装在 <code class="docutils literal notranslate"><span class="pre">/&lt;安装目录&gt;/ngm/</span></code> 下， <strong>用户无需修改</strong>。</p>
 <p>文件中定义了一个Python dict <code class="docutils literal notranslate"><span class="pre">INPUT_SCHEMA</span></code>，CRANE在启动计算之前会基于该文件定义的输入内容规则，调用
 <a class="reference external" href="https://python-jsonschema.readthedocs.io/en/stable/">python-jsonschema</a> 库，来排查 <a class="reference internal" href="input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 中的输入内容错误。</p>
 <p>文件详细内容如下：</p>

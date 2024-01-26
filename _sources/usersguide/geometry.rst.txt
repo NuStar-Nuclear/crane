@@ -7,7 +7,7 @@
 
 CRANE是一个三维（两维耦合一维）数值反应堆物理程序，其几何建模方式在不同方向上采用策略是不同的：
 
-1. 径向（XY平面）上采用构造实体几何（CSG）的几何建模方式，可以很好的描述堆芯各种复杂几何结构；
+1. 径向（XY平面）上采用构造实体几何（CSG）的几何建模方式，可描述堆芯各种复杂几何结构；
 2. 轴向（Z方向）上采用简单的堆叠累加，非常适合真实反应堆拉伸几何的构造特点。
 
 在径向上，CRANE目前支持两种最基本的几何基本单元（几何基元）：圆和任意凸多边形。
@@ -182,10 +182,10 @@ CRANE通过定义 :ref:`geometries` 来进行几何建模，:ref:`geometries` �
 
 .. _structure_reflector:
 
-围桶、中子屏蔽板、压力容器等
+吊篮、中子屏蔽板、压力容器等
 -------------------------------
 
-以下定义了包含有围桶、中子屏蔽板和压力容器的 :ref:`structure`：
+以下定义了包含有吊篮、中子屏蔽板和压力容器的 :ref:`structure`：
 
 .. literalinclude:: ../_yamls/structure_reflector.yaml
     :language: yaml
@@ -198,7 +198,7 @@ CRANE通过定义 :ref:`geometries` 来进行几何建模，:ref:`geometries` �
     :figclass: align-center
     :width: 800px
 
-这里的围桶、中子屏蔽板和压力容器一起定义成一个 :ref:`structure`。然后将其用于 :ref:`reflector_middle`、
+这里的吊篮、中子屏蔽板和压力容器一起定义成一个 :ref:`structure`。然后将其用于 :ref:`reflector_middle`、
 :ref:`reflector_top`、:ref:`reflector_bottom` 中即可定义堆芯三维的围板反射层。
 
 通过这样的方式，可以定义非常复杂的围板反射层构件，如VVER堆型的重反射层，该输入文件可参阅 :ref:`vver_1000`：
@@ -293,7 +293,7 @@ CRANE通过两种方式将 :ref:`structure` 布置到组件中：
 .. literalinclude:: ../_yamls/lattice_vver.yaml
     :language: yaml
 
-这里通过 :ref:`structure_locations` 方式布置了一个组件的支撑构件 ``plate``，他是一个通过凸多边形定义的 :ref:`structure`。
+这里通过 :ref:`structure_locations` 方式布置了一个组件的支撑构件 ``plate``，是一个通过凸多边形定义的 :ref:`structure`。
 它看起来是这样的：
 
 .. figure:: ../_images/lattice_vver.png
@@ -582,7 +582,10 @@ CRANE通过两种方式将 :ref:`structure` 布置到组件中：
 -------------------------
 
 通过 :ref:`burnable_absorber_map` 可将之前定义的 :ref:`geometries_burnable_absorber_bundle`
-列表中的分离式可燃毒物棒束布置到堆芯中，再通过 :ref:`burnable_absorber_position` 来调整每个棒束的高度，
+列表中的分离式可燃毒物棒束布置到堆芯中，再通过 :ref:`burnable_absorber_position` 来调整每个棒束的高度。
+
+.. note:: 这里的高度是指可燃毒物棒底部距离组件底部（不包含轴向反射层）的距离。
+
 如 :ref:`vera_5` 基准题中的堆内分离式可燃毒物棒布置图如下：
 
 .. literalinclude:: ../_yamls/core_burnable_absorber_vera5.yaml

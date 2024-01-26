@@ -200,10 +200,8 @@
 <a class="reference external" href="https://www-pub.iaea.org/MTCD/publications/PDF/Pub1264_web.pdf">The WIMS Library Update Project(WLUP)</a>
 中的 <code class="docutils literal notranslate"><span class="pre">WIMS-D-69</span></code> 格式数据库进行以下二次开发而来：</p>
 <ol class="arabic simple">
-<li><p>U-238共振积分的调整。CRANE采用了传统的等价理论与中子流方法计算空间相关的丹可夫因子相结合的方法进行共振计算，
-该方法在空间自屏效应的处理能力上和子群方法相当。无论是等价理论还是子群方法，在理论上都无法解决不同共振核之间的共振干涉效应，
-为此通常采用本底迭代的方式来近似处理。文献研究表明，本底迭代的方法将高估U-238的共振吸收。因此，按照传统的做法，
-RLIB数据库中对U-238的共振积分进行了适当调整；</p></li>
+<li><p>补充了主要重核素与U238之间的两两共振干涉表；</p></li>
+<li><p>基于ENDFB/VII.1重新制作了主要重核的截面参数，覆盖更高的温度以及更高的燃料富集度（最高到80%WO）；</p></li>
 <li><p>补充了缓发中子数据。RLIB数据库中给出了10种核素的6组缓发中子数据，这些核素包括钍-232、铀-233、铀-234、铀-235、铀-236、
 铀-238、钚-239、钚-240、钚-241和钚-242。缓发中子数据取自文献。</p></li>
 <li><p>增加了8种裂变核素的裂变谱。原WIMS-D格式多群常数库采用的裂变谱是铀-235、铀-238和钚-239按54%、8%和38%比例权重的混合裂变谱。
@@ -216,7 +214,7 @@ RLib-1.0数据库在保留混合裂变谱的基础上，增加了8种裂变核�
 </ol>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>RLIB数据库文件是一个二进制文件，会随程序一起默认安装在 <code class="docutils literal notranslate"><span class="pre">/安装目录/ngm/data_files/</span></code> 下并自动配置好路径，
+<p>RLIB数据库文件是一个二进制文件，会随程序一起默认安装在 <code class="docutils literal notranslate"><span class="pre">/&lt;安装目录&gt;/ngm/data_files/</span></code> 下并自动配置好路径，
 用户计算时无需指定。</p>
 </div>
 </section>

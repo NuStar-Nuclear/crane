@@ -108,7 +108,7 @@
 <li class="toctree-l2"><a class="reference internal" href="geometry.html">3. 几何建模</a></li>
 <li class="toctree-l2"><a class="reference internal" href="state.html">4. 堆芯状态参数</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">5. 计算选项设置</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 功率迭代</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 源迭代</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#moc">5.2. 两维MOC</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#cmfd">5.3. CMFD加速</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#id3">5.4. 临界硼搜索</a></li>
@@ -206,11 +206,11 @@
             
   <section id="usersguide-settings">
 <span id="id1"></span><h1><span class="section-number">5. </span>计算选项设置<a class="headerlink" href="#usersguide-settings" title="Permalink to this heading">¶</a></h1>
-<p>计算选项设置，即 <a class="reference internal" href="../io_formats/input.html#settings"><span class="std std-ref">settings 对象</span></a>，是用来定义CRANE各部分计算模块的控制参数，如功率迭代（外迭代）、两维MOC、
+<p>计算选项设置，即 <a class="reference internal" href="../io_formats/input.html#settings"><span class="std std-ref">settings 对象</span></a>，是用来定义CRANE各部分计算模块的控制参数，如源迭代（外迭代）、两维MOC、
 CMFD加速、临界硼搜索、氙瞬态、能量沉积方式、热工水力反馈以及输出数据控制等。</p>
 <section id="id2">
-<h2><span class="section-number">5.1. </span>功率迭代<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
-<p>功率迭代（外迭代）控制参数通过 <a class="reference internal" href="../io_formats/input.html#power-iteration"><span class="std std-ref">power_iteration 对象</span></a> 设置，它包含迭代收敛判据、最大迭代次数等控制参数。</p>
+<h2><span class="section-number">5.1. </span>源迭代<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<p>源迭代（外迭代）控制参数通过 <a class="reference internal" href="../io_formats/input.html#power-iteration"><span class="std std-ref">power_iteration 对象</span></a> 设置，它包含迭代收敛判据、最大迭代次数等控制参数。</p>
 <p>如对于 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题我们设置如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">power_iteration</span><span class="p">:</span>
@@ -288,8 +288,9 @@ CMFD加速、临界硼搜索、氙瞬态、能量沉积方式、热工水力反�
 </section>
 <section id="id5">
 <h2><span class="section-number">5.6. </span>能量沉积方式<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
-<p>能量沉积方式通过 <span class="xref std std-ref">energy_deposition</span> 设置，分为只统计裂变释能和裂变释能、俘获释能都统计两种情况，
-对应为 <code class="docutils literal notranslate"><span class="pre">KAPPA_FISSION</span></code> 和 <code class="docutils literal notranslate"><span class="pre">HEATING_LOCAL</span></code>。</p>
+<p>能量沉积方式通过 <span class="xref std std-ref">energy_deposition</span> 设置，有 <code class="docutils literal notranslate"><span class="pre">KAPPA_FISSION</span></code> 和 <code class="docutils literal notranslate"><span class="pre">HEATING_LOCAL</span></code> 这两种方式可选。在
+<code class="docutils literal notranslate"><span class="pre">KAPPA_FISSION</span></code> 中，俘获反应释热以隐式方式考虑（等效在裂变核的 <code class="docutils literal notranslate"><span class="pre">KAPPA</span></code> 值中）；在 <code class="docutils literal notranslate"><span class="pre">HEATING_LOCAL</span></code> 中，
+俘获反应释热以显式方式考虑，每一个核都有独立的俘获释热值。</p>
 <p>对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题我们设置如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">energy_deposition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HEATING_LOCAL</span>

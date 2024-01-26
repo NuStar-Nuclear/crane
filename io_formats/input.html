@@ -1178,7 +1178,9 @@
 <blockquote>
 <div><dl class="field-list" id="settings-energy-deposition">
 <dt class="field-odd">energy_deposition<span class="colon">:</span></dt>
-<dd class="field-odd"><p>字符串，能量沉积方式，是通过裂变直接释放还是考虑当地的俘获释热，[KAPPA_FISSION, HEATING_LOCAL]二选一。</p>
+<dd class="field-odd"><p>字符串，能量沉积方式，[KAPPA_FISSION, HEATING_LOCAL]二选一，KAPPA_FISSION
+指的是俘获反应释热以隐式方式考虑（等效在裂变核的 <code class="docutils literal notranslate"><span class="pre">KAPPA</span></code> 值中）；HEATING_LOCAL
+指的是俘获反应释热以显式方式考虑，每一个核都有独立的俘获释热值。</p>
 <p><em>默认值：KAPPA_FISSION</em></p>
 </dd>
 </dl>
@@ -1196,7 +1198,7 @@
 </dl>
 <dl class="field-list simple" id="settings-power-iteration">
 <dt class="field-odd">power_iteration<span class="colon">:</span></dt>
-<dd class="field-odd"><p><a class="reference internal" href="#power-iteration"><span class="std std-ref">power_iteration 对象</span></a>，用于定义功率迭代（外迭代）的收敛判据等信息。</p>
+<dd class="field-odd"><p><a class="reference internal" href="#power-iteration"><span class="std std-ref">power_iteration 对象</span></a>，用于定义源迭代（外迭代）的收敛判据等信息。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="settings-moc-2d">
@@ -1236,7 +1238,7 @@
 </section>
 <section id="power-iteration">
 <span id="id32"></span><h2><span class="section-number">4.31. </span>power_iteration 对象<a class="headerlink" href="#power-iteration" title="Permalink to this heading">¶</a></h2>
-<p>power_iteration对象用于定义功率迭代（外迭代）控制参数，其包含以下属性：</p>
+<p>power_iteration对象用于定义源迭代（外迭代）控制参数，其包含以下属性：</p>
 <blockquote>
 <div><dl class="field-list" id="pi-fission-converge-criterion">
 <dt class="field-odd">fission_converge_criterion<span class="colon">:</span></dt>

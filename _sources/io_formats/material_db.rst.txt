@@ -7,7 +7,7 @@
 
 为了方便用户定义材料，CRANE会提供一个 `YAML <https://yaml.org>`_ 格式的材料配置文件。
 该文件名为 ``material_db.yaml``，并与 :ref:`io_file_formats_nuclear_lib` 一样，
-会随程序一起默认安装在 ``/安装目录/ngm/data_files/`` 下。
+会随程序一起默认安装在 ``/<安装目录>/ngm/data_files/`` 下。
 
 其中该材料配置文件的内容包含以下三部分：
 

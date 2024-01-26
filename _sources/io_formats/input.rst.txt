@@ -1117,7 +1117,9 @@ settings对象用于设置计算参数，该对象包含以下属性：
     .. _settings_energy_deposition:
 
     :energy_deposition:
-        字符串，能量沉积方式，是通过裂变直接释放还是考虑当地的俘获释热，[KAPPA_FISSION, HEATING_LOCAL]二选一。
+        字符串，能量沉积方式，[KAPPA_FISSION, HEATING_LOCAL]二选一，KAPPA_FISSION
+        指的是俘获反应释热以隐式方式考虑（等效在裂变核的 ``KAPPA`` 值中）；HEATING_LOCAL
+        指的是俘获反应释热以显式方式考虑，每一个核都有独立的俘获释热值。
 
         *默认值：KAPPA_FISSION*
 
@@ -1138,7 +1140,7 @@ settings对象用于设置计算参数，该对象包含以下属性：
     .. _settings_power_iteration:
 
     :power_iteration:
-        :ref:`power_iteration`，用于定义功率迭代（外迭代）的收敛判据等信息。
+        :ref:`power_iteration`，用于定义源迭代（外迭代）的收敛判据等信息。
 
     .. _settings_moc_2d:
 
@@ -1183,7 +1185,7 @@ critical_boron_search对象用于定义临界硼搜索相关参数，其包含�
 power_iteration 对象
 ----------------------
 
-power_iteration对象用于定义功率迭代（外迭代）控制参数，其包含以下属性：
+power_iteration对象用于定义源迭代（外迭代）控制参数，其包含以下属性：
 
     .. _pi_fission_converge_criterion:
 

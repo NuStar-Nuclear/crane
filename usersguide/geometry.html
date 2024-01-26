@@ -111,7 +111,7 @@
 <li class="toctree-l4"><a class="reference internal" href="#structure-gt">3.1.2. 导向管</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#id5">3.1.3. 含钆燃料棒</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#box-grid">3.1.4. 格架“盒子”</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#structure-reflector">3.1.5. 围桶、中子屏蔽板、压力容器等</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#structure-reflector">3.1.5. 吊篮、中子屏蔽板、压力容器等</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#structure-baffle">3.2. 两维围板结构体</a></li>
@@ -239,7 +239,7 @@
 <span id="id1"></span><h1><span class="section-number">3. </span>几何建模<a class="headerlink" href="#usersguide-geometry" title="Permalink to this heading">¶</a></h1>
 <p>CRANE是一个三维（两维耦合一维）数值反应堆物理程序，其几何建模方式在不同方向上采用策略是不同的：</p>
 <ol class="arabic simple">
-<li><p>径向（XY平面）上采用构造实体几何（CSG）的几何建模方式，可以很好的描述堆芯各种复杂几何结构；</p></li>
+<li><p>径向（XY平面）上采用构造实体几何（CSG）的几何建模方式，可描述堆芯各种复杂几何结构；</p></li>
 <li><p>轴向（Z方向）上采用简单的堆叠累加，非常适合真实反应堆拉伸几何的构造特点。</p></li>
 </ol>
 <p>在径向上，CRANE目前支持两种最基本的几何基本单元（几何基元）：圆和任意凸多边形。
@@ -434,8 +434,8 @@
 </figure>
 </section>
 <section id="structure-reflector">
-<span id="id7"></span><h3><span class="section-number">3.1.5. </span>围桶、中子屏蔽板、压力容器等<a class="headerlink" href="#structure-reflector" title="Permalink to this heading">¶</a></h3>
-<p>以下定义了包含有围桶、中子屏蔽板和压力容器的 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a>：</p>
+<span id="id7"></span><h3><span class="section-number">3.1.5. </span>吊篮、中子屏蔽板、压力容器等<a class="headerlink" href="#structure-reflector" title="Permalink to this heading">¶</a></h3>
+<p>以下定义了包含有吊篮、中子屏蔽板和压力容器的 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a>：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">structures</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Reflector</span>
 <span class="w">  </span><span class="nt">primitives</span><span class="p">:</span>
@@ -476,7 +476,7 @@
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/structure_reflector.png"><img alt="../_images/structure_reflector.png" src="../_images/structure_reflector.png" style="width: 800px;" /></a>
 </figure>
-<p>这里的围桶、中子屏蔽板和压力容器一起定义成一个 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a>。然后将其用于 <a class="reference internal" href="../io_formats/input.html#reflector-middle"><span class="std std-ref">reflector_middle</span></a>、
+<p>这里的吊篮、中子屏蔽板和压力容器一起定义成一个 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a>。然后将其用于 <a class="reference internal" href="../io_formats/input.html#reflector-middle"><span class="std std-ref">reflector_middle</span></a>、
 <a class="reference internal" href="../io_formats/input.html#reflector-top"><span class="std std-ref">reflector_top</span></a>、<a class="reference internal" href="../io_formats/input.html#reflector-bottom"><span class="std std-ref">reflector_bottom</span></a> 中即可定义堆芯三维的围板反射层。</p>
 <p>通过这样的方式，可以定义非常复杂的围板反射层构件，如VVER堆型的重反射层，该输入文件可参阅 <span class="xref std std-ref">vver_1000</span>：</p>
 <figure class="align-center">
@@ -589,7 +589,7 @@
 <span class="w">                                </span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">,</span><span class="nv">F13</span><span class="p p-Indicator">]</span><span class="w">   </span>
 </pre></div>
 </div>
-<p>这里通过 <a class="reference internal" href="../io_formats/input.html#structure-locations"><span class="std std-ref">structure_locations</span></a> 方式布置了一个组件的支撑构件 <code class="docutils literal notranslate"><span class="pre">plate</span></code>，他是一个通过凸多边形定义的 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a>。
+<p>这里通过 <a class="reference internal" href="../io_formats/input.html#structure-locations"><span class="std std-ref">structure_locations</span></a> 方式布置了一个组件的支撑构件 <code class="docutils literal notranslate"><span class="pre">plate</span></code>，是一个通过凸多边形定义的 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a>。
 它看起来是这样的：</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/lattice_vver.png"><img alt="../_images/lattice_vver.png" src="../_images/lattice_vver.png" style="width: 800px;" /></a>
@@ -1094,7 +1094,7 @@
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>中间反射层所用到的结构体必须“空心的”，如 <a class="reference internal" href="#structure-reflector"><span class="std std-ref">围桶、中子屏蔽板、压力容器等</span></a> 中的基元1内是没有定义的，
+<p>中间反射层所用到的结构体必须“空心的”，如 <a class="reference internal" href="#structure-reflector"><span class="std std-ref">吊篮、中子屏蔽板、压力容器等</span></a> 中的基元1内是没有定义的，
 以留空间给活性区以及围板。</p>
 </div>
 </section>
@@ -1129,8 +1129,12 @@
 <section id="id27">
 <h3><span class="section-number">3.10.4. </span>堆内分离式可燃毒物棒<a class="headerlink" href="#id27" title="Permalink to this heading">¶</a></h3>
 <p>通过 <a class="reference internal" href="../io_formats/input.html#burnable-absorber-map"><span class="std std-ref">burnable_absorber_map</span></a> 可将之前定义的 <a class="reference internal" href="../io_formats/input.html#geometries-burnable-absorber-bundle"><span class="std std-ref">burnable_absorber_bundle</span></a>
-列表中的分离式可燃毒物棒束布置到堆芯中，再通过 <a class="reference internal" href="../io_formats/input.html#burnable-absorber-position"><span class="std std-ref">burnable_absorber_position</span></a> 来调整每个棒束的高度，
-如 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题中的堆内分离式可燃毒物棒布置图如下：</p>
+列表中的分离式可燃毒物棒束布置到堆芯中，再通过 <a class="reference internal" href="../io_formats/input.html#burnable-absorber-position"><span class="std std-ref">burnable_absorber_position</span></a> 来调整每个棒束的高度。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这里的高度是指可燃毒物棒底部距离组件底部（不包含轴向反射层）的距离。</p>
+</div>
+<p>如 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题中的堆内分离式可燃毒物棒布置图如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">core</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">burnable_absorber_map</span><span class="p">:</span>
 <span class="w">    </span><span class="p p-Indicator">[</span><span class="w"> </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">8P</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">12P</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="nv">8P</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span><span class="w">  </span><span class="s">&#39;&#39;</span><span class="p p-Indicator">,</span>
