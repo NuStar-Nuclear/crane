@@ -185,8 +185,8 @@
 核素成分分布等各种物理参数，并且将这些参数进行可视化。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>CRANE本身是物理程序，但可与GPU子通道程序EAGLE及燃料性能分析程序FUSPAC进行联合编译，
-形成支持多物理耦合计算的版本。</p>
+<p>CRANE本身是物理程序，但可与基于CPU-GPU异构平台堆芯热工分析程序 <a class="reference external" href="https://www.nustarnuclear.com/products/software/eagle">EAGLE</a>
+及燃料性能分析程序 <a class="reference external" href="https://www.nustarnuclear.com/products/software/fuspac">FUSPAC</a> 进行联合编译，形成支持多物理耦合计算的版本。</p>
 </div>
 <figure class="align-center" id="id3">
 <a class="reference internal image-reference" href="_images/BEAVRS_VVER.png"><img alt="_images/BEAVRS_VVER.png" src="_images/BEAVRS_VVER.png" style="width: 800px;" /></a>
@@ -227,7 +227,7 @@ Memory的多GPU并行及性能优化，能够将原先需要基于超算平台�
 <ol class="arabic simple">
 <li><p>支持真实的几何建模，既能支持方形燃料组件堆型，也能够支持六角形燃料组件堆型建模，
 几乎可对所有采用轴向拉伸设计的反应堆堆内构件进行精确建模;</p></li>
-<li><p>通过联合编译EAGLE、FUSPAC程序，能够支持多种模式的热工水力反馈计算以及燃料性能分析计算;</p></li>
+<li><p>通过联合编译 <a class="reference external" href="https://www.nustarnuclear.com/products/software/eagle">EAGLE</a>、<a class="reference external" href="https://www.nustarnuclear.com/products/software/fuspac">FUSPAC</a> 程序，能够支持多种模式的热工水力反馈计算以及燃料性能分析计算;</p></li>
 <li><p>具备换料功能，支持多循环计算;</p></li>
 <li><p>内建多种序列计算功能，可支持单状态点计算、燃耗跟踪计算、临界硼搜索、控制棒微积分价值计算、反应性温度系数计算等;</p></li>
 <li><p>保留宏观截面直接输入功能，能够让用户方便的耦合前端截面计算程序或者用于宏观截面给定的基准题计算;</p></li>
