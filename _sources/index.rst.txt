@@ -13,8 +13,8 @@ CRANE程序是上海核星核电科技有限公司自主研发的基于CPU-GPU�
 核素燃耗方程、热工水力方程以及燃料性能分析模型，直接获得反应堆内部的中子通量场分布、温度场分布、
 核素成分分布等各种物理参数，并且将这些参数进行可视化。
 
-.. note:: CRANE本身是物理程序，但可与基于CPU-GPU异构平台堆芯热工分析程序 `EAGLE`_
-          及燃料性能分析程序 `FUSPAC`_ 进行联合编译，形成支持多物理耦合计算的版本。
+.. note:: CRANE本身是物理程序，但可与热工分析程序 `EAGLE`_ 及燃料性能分析程序 `FuSPAC`_
+          进行联合编译，形成支持多物理耦合计算的版本。
 
 .. figure:: _images/BEAVRS_VVER.png
     :align: center
@@ -64,7 +64,7 @@ Memory的多GPU并行及性能优化，能够将原先需要基于超算平台�
 
 #. 支持真实的几何建模，既能支持方形燃料组件堆型，也能够支持六角形燃料组件堆型建模，
    几乎可对所有采用轴向拉伸设计的反应堆堆内构件进行精确建模;
-#. 通过联合编译 `EAGLE`_、`FUSPAC`_ 程序，能够支持多种模式的热工水力反馈计算以及燃料性能分析计算;
+#. 通过联合编译 `EAGLE`_、`FuSPAC`_ 程序，能够支持多种模式的热工水力反馈计算以及燃料性能分析计算;
 #. 具备换料功能，支持多循环计算;
 #. 内建多种序列计算功能，可支持单状态点计算、燃耗跟踪计算、临界硼搜索、控制棒微积分价值计算、反应性温度系数计算等;
 #. 保留宏观截面直接输入功能，能够让用户方便的耦合前端截面计算程序或者用于宏观截面给定的基准题计算;
@@ -103,4 +103,4 @@ Memory的多GPU并行及性能优化，能够将原先需要基于超算平台�
 
 
 .. _EAGLE: https://www.nustarnuclear.com/products/software/eagle
-.. _FUSPAC: https://www.nustarnuclear.com/products/software/fuspac
+.. _FuSPAC: https://www.nustarnuclear.com/products/software/fuspac
