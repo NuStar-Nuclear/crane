@@ -32,14 +32,14 @@ CNP600、CNP650、M310、CNP1000、CNP1000+、VVER-1000、EPR 等多种堆型。
     :figclass: align-center
     :width: 800px
 
-    Boron concentration error of 120+ core years following simulations
+    Boron concentration error of 120 core years following simulations
 
 .. figure:: _images/detector_reactions.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-    Detector activities error of 1149 flux maps at >50%FP in 120+ core years, CRANE vs. Design code
+    Detector activities error of 1149 flux maps at >50%FP in 120 core years which have detector data, CRANE vs. Design code
 
 除了具备非常高的计算精度以外，CRANE还有非常高效的计算效率以及低廉的使用成本。
 CRANE采用与人工智能框架相同的开发架构，通过CUDA/C++/Python混合编程，实现了所有计算模块基于Unified
