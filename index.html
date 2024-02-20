@@ -178,8 +178,8 @@
             
   <section id="crane">
 <h1>欢迎查阅CRANE中文文档!<a class="headerlink" href="#crane" title="Permalink to this heading">¶</a></h1>
-<p>CRANE程序是上海核星核电科技有限公司自主研发的基于CPU-GPU异构平台两维/一维数值反应堆物理计算程序，
-是核星公司十余年来围绕水堆开展的计算方法研究和软件研发工作的最新成果。</p>
+<p>CRANE程序是 <a class="reference external" href="https://www.nustarnuclear.com/">上海核星核电科技有限公司</a>
+自主研发的基于CPU-GPU异构平台两维/一维数值反应堆物理计算程序，是核星公司十余年来围绕水堆开展的计算方法研究和软件研发工作的最新成果。</p>
 <p>该程序能够在对真实反应堆内部结合材料结构高精度建模基础上，耦合求解三维中子输运方程、
 核素燃耗方程、热工水力方程以及燃料性能分析模型，直接获得反应堆内部的中子通量场分布、温度场分布、
 核素成分分布等各种物理参数，并且将这些参数进行可视化。</p>
@@ -188,10 +188,10 @@
 <p>CRANE本身是物理程序，但支持与热工分析程序 <a class="reference external" href="https://www.nustarnuclear.com/products/software/eagle">EAGLE</a> 及燃料性能分析程序 <a class="reference external" href="https://www.nustarnuclear.com/products/software/fuspac">FuSPAC</a>
 进行联合编译，形成支持多物理耦合计算的版本。</p>
 </div>
-<figure class="align-center" id="id3">
+<figure class="align-center" id="id4">
 <a class="reference internal image-reference" href="_images/BEAVRS_VVER.png"><img alt="_images/BEAVRS_VVER.png" src="_images/BEAVRS_VVER.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-text">BEAVRS and VVER simulation by CRANE</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">BEAVRS and VVER simulation by CRANE</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>不同于传统的两步法程序，需要先进行组件计算来获得均匀化截面等参数后再进行三维堆芯计算，
@@ -199,31 +199,31 @@ CRANE是基于第一性原理直接开展精细到燃料棒层面的三维堆芯
 从C5G7、VERA、BEAVRS、VVER-1000等系列国际基准题的验证结果来看，CRANE能够达到国际上同类一步法计算软件的先进水平。</p>
 <p>更值得一提的是，CRANE已经通过超过120堆年的商用压水堆实测数据的确认，涵盖
 CNP600、CNP650、M310、CNP1000、CNP1000+、VVER-1000、EPR 等多种堆型。总体计算精度显著优于传统两步法程序。</p>
-<figure class="align-center" id="id4">
+<figure class="align-center" id="id5">
 <a class="reference internal image-reference" href="_images/boron_letdown_errors.png"><img alt="_images/boron_letdown_errors.png" src="_images/boron_letdown_errors.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-text">Boron concentration error of 120 core years following simulations</span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Boron concentration error of 120 core years following simulations</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
-<figure class="align-center" id="id5">
+<figure class="align-center" id="id6">
 <a class="reference internal image-reference" href="_images/detector_reactions.png"><img alt="_images/detector_reactions.png" src="_images/detector_reactions.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-text">Detector activities error of 1131 flux maps at &gt;50%FP in 120 core years which have detector data, CRANE vs. Design code</span><a class="headerlink" href="#id5" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">Detector activities error of 1131 flux maps at &gt;50%FP in 120 core years which have detector data, CRANE vs. Design code</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>除了具备非常高的计算精度以外，CRANE还有非常高效的计算效率以及低廉的使用成本。
 CRANE采用与人工智能框架相同的开发架构，通过CUDA/C++/Python混合编程，实现了所有计算模块基于Unified
 Memory的多GPU并行及性能优化，能够将原先需要基于超算平台才能开展的精细数值反应堆模拟可以在单台GPU服务器上完成。</p>
-<figure class="align-center" id="id6">
+<figure class="align-center" id="id7">
 <a class="reference internal image-reference" href="_images/CRANE_flow_chart.png"><img alt="_images/CRANE_flow_chart.png" src="_images/CRANE_flow_chart.png" style="width: 800px;" /></a>
 <figcaption>
-<p><span class="caption-text">CRANE’s flow chart, green means perform on GPU</span><a class="headerlink" href="#id6" title="Permalink to this image">¶</a></p>
+<p><span class="caption-text">CRANE’s flow chart, green means perform on GPU</span><a class="headerlink" href="#id7" title="Permalink to this image">¶</a></p>
 </figcaption>
 </figure>
 <p>目前CRANE能够在单台配备有10张RTX4090显卡的服务器上实现平均 <strong>30秒/状态点</strong> 的百万千万级商用压水堆1/4堆芯跟踪模拟计算，
 计算耗电低至平均 <strong>0.04千瓦时/状态点</strong>，完全具备了一步法程序在实际工程中应用的条件。</p>
-<section id="id1">
-<h2>主要特征<a class="headerlink" href="#id1" title="Permalink to this heading">¶</a></h2>
+<section id="id2">
+<h2>主要特征<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>支持真实的几何建模，既能支持方形燃料组件堆型，也能够支持六角形燃料组件堆型建模，
 几乎可对所有采用轴向拉伸设计的反应堆堆内构件进行精确建模;</p></li>
@@ -236,8 +236,8 @@ Memory的多GPU并行及性能优化，能够将原先需要基于超算平台�
 燃耗分布等等多种建模数据或者计算结果数据进行可视化。</p></li>
 </ol>
 </section>
-<section id="id2">
-<h2>主要技术路线<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+<section id="id3">
+<h2>主要技术路线<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>69群能群结构的多群常数库;</p></li>
 <li><p>强化中子流方法(ENCM)、共振干涉因子表修正及等价原理相结合的共振计算方法;</p></li>
