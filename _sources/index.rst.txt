@@ -39,7 +39,7 @@ CNP300、CNP600、CNP650、M310、CNP1000、CNP1000+、VVER-1000、EPR-1750 等�
     :figclass: align-center
     :width: 800px
 
-    Detector activities error of total 1439 flux maps of 145 core years which have detector data, CRANE vs. Design code
+    Detector activities error of total 1439 flux maps of 145 core years, CRANE vs. Design code
 
 除了具备非常高的计算精度以外，CRANE还有非常高效的计算效率以及低廉的使用成本。
 CRANE采用与人工智能框架相同的开发架构，通过CUDA/C++/Python混合编程，实现了所有计算模块基于Unified
