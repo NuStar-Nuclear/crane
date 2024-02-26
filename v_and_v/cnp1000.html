@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>3. M310/CNP1000/CNP1000+ 堆型 &mdash; CRANE Documentation</title>
@@ -14,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -36,13 +33,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -98,7 +95,7 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+              <p class="caption"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -192,8 +189,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="m310-cnp1000-cnp1000">
-<span id="v-and-v-cnp1000"></span><h1><span class="section-number">3. </span>M310/CNP1000/CNP1000+ 堆型<a class="headerlink" href="#m310-cnp1000-cnp1000" title="Permalink to this heading">¶</a></h1>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="m310-cnp1000-cnp1000">
+<span id="v-and-v-cnp1000"></span><h1><span class="section-number">3. </span>M310/CNP1000/CNP1000+ 堆型<a class="headerlink" href="#m310-cnp1000-cnp1000" title="Permalink to this headline">¶</a></h1>
 <p>CRANE针对 M310/CNP1000/CNP1000+ 堆型的确认数据总共包含8个机组，31个循环，38个堆年，涵盖启动物理试验的临界硼浓度、
 控制棒价值、温度系数、不同功率平台的组件功率分布，以及功率运行跟踪一天一个点的临界硼浓度、定期通量图测量的组件功率分布。</p>
 <p>另外，由于组件功率分布的“测量值”是通过探测器活度测量值结合设计程序计算值恢复而来，在一定程度上受到设计程序计算精度的影响，
@@ -205,97 +226,97 @@
 除此之外我们并未做其他筛选。而事实上，低功率平台下的通量图以及实施堆内外核测互校试验所测量的部分通量图，
 本身就存在较大的测量不确定性。</p>
 </div>
-<section id="vv-cnp1000-lppt">
-<span id="id1"></span><h2><span class="section-number">3.1. </span>启动物理试验<a class="headerlink" href="#vv-cnp1000-lppt" title="Permalink to this heading">¶</a></h2>
-<section id="id2">
-<h3><span class="section-number">3.1.1. </span>临界硼浓度<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="vv-cnp1000-lppt">
+<span id="id1"></span><h2><span class="section-number">3.1. </span>启动物理试验<a class="headerlink" href="#vv-cnp1000-lppt" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id2">
+<h3><span class="section-number">3.1.1. </span>临界硼浓度<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h3>
 <p>启动物理试验的临界硼浓度测量数据包含ARO以及不同棒组插入情况下总共43个，CRANE计算偏差平均值-0.78ppm，均方根值11.92ppm，
 工业限值±50ppm，CRANE计算值43个都在工业限值内，100%满足验收准则，偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_cb.png"><img alt="../_images/vv_cnp1000_cb.png" src="../_images/vv_cnp1000_cb.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="id3">
-<h3><span class="section-number">3.1.2. </span>温度系数<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id3">
+<h3><span class="section-number">3.1.2. </span>温度系数<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h3>
 <p>启动物理试验的温度系数测量数据包含ARO以及不同棒组插入情况下总共64个，CRANE计算偏差平均值-1.64pcm/C°，均方根值0.72pcm/C°，
 工业限值±3.6pcm/C°，CRANE计算值64个都在工业限值内，100%满足验收准则，偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_tc.png"><img alt="../_images/vv_cnp1000_tc.png" src="../_images/vv_cnp1000_tc.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="id4">
-<h3><span class="section-number">3.1.3. </span>控制棒价值<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id4">
+<h3><span class="section-number">3.1.3. </span>控制棒价值<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h3>
 <p>启动物理试验的控制棒价值测量数据包含不同棒组总共283个，CRANE计算偏差平均值0.63%，均方根值3.09%，
 工业限值±10%，CRANE计算值282个在工业限值内，99.65%满足验收准则，偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_crw.png"><img alt="../_images/vv_cnp1000_crw.png" src="../_images/vv_cnp1000_crw.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="id5">
-<h3><span class="section-number">3.1.4. </span>组件功率分布<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id5">
+<h3><span class="section-number">3.1.4. </span>组件功率分布<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h3>
 <p>启动物理试验（50%功率平台以下）功率分布测量数据包含总共40张通量图。</p>
 <p>组件功率大于0.9的有4588个，CRANE计算偏差平均值-0.16%，均方根值1.83%，工业限值±10%，CRANE计算值4584个在工业限值内，
 99.91%满足验收准则，偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_h09_l50.png"><img alt="../_images/vv_cnp1000_h09_l50.png" src="../_images/vv_cnp1000_h09_l50.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>组件功率小于0.9的有1692个，CRANE计算偏差平均值0.55%，均方根值2.69%，工业限值±15%，CRANE计算值1691个在工业限值内，
 99.94%满足验收准则，偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_l09_l50.png"><img alt="../_images/vv_cnp1000_l09_l50.png" src="../_images/vv_cnp1000_l09_l50.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="id6">
-<h3><span class="section-number">3.1.5. </span>探测器活度分布<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id6">
+<h3><span class="section-number">3.1.5. </span>探测器活度分布<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h3>
 <p>启动物理试验的探测器活度分布测量数据包含总共40张通量图，1969个有效数据，CRANE计算值偏差平均值0.01%，
 均方根值2.08%，99.70%在±5%偏差内。而设计程序计算偏差平均值0.17%，均方根值2.62%，99.75%在±5%偏差内，
 偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_det_l50.png"><img alt="../_images/vv_cnp1000_det_l50.png" src="../_images/vv_cnp1000_det_l50.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见CRANE计算精度高于设计程序。</p>
-</section>
-</section>
-<section id="vv-cnp1000-follow">
-<span id="id7"></span><h2><span class="section-number">3.2. </span>运行跟踪<a class="headerlink" href="#vv-cnp1000-follow" title="Permalink to this heading">¶</a></h2>
-<section id="id8">
-<h3><span class="section-number">3.2.1. </span>临界硼浓度<a class="headerlink" href="#id8" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="vv-cnp1000-follow">
+<span id="id7"></span><h2><span class="section-number">3.2. </span>运行跟踪<a class="headerlink" href="#vv-cnp1000-follow" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="id8">
+<h3><span class="section-number">3.2.1. </span>临界硼浓度<a class="headerlink" href="#id8" title="Permalink to this headline">¶</a></h3>
 <p>运行跟踪的临界硼浓度测量数据是一天一个点，总计31个循环11062个点（剔除工况不稳定的点），临界硼浓度随燃耗的偏差（未考虑硼燃耗效应）图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_boron_letdown.png"><img alt="../_images/vv_cnp1000_boron_letdown.png" src="../_images/vv_cnp1000_boron_letdown.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>针对以上运行跟踪的临界硼浓度总共11062个点，CRANE的计算偏差平均值-22.24ppcm，均方根值16.95，工业限值±50ppm，
 CRANE计算值10594个在工业限值内，95.77%满足验收准则，偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_cb_follow.png"><img alt="../_images/vv_cnp1000_cb_follow.png" src="../_images/vv_cnp1000_cb_follow.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="id9">
-<h3><span class="section-number">3.2.2. </span>组件功率分布<a class="headerlink" href="#id9" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id9">
+<h3><span class="section-number">3.2.2. </span>组件功率分布<a class="headerlink" href="#id9" title="Permalink to this headline">¶</a></h3>
 <p>运行跟踪（50%功率平台以上）功率分布测量数据包含总共443张通量图。</p>
 <p>组件功率大于0.9的有52153个，CRANE计算偏差平均值-0.21%，均方根值0.93%，工业限值±5%，CRANE计算值52129个在工业限值内，
 99.95%满足验收准则，偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_h09_h50.png"><img alt="../_images/vv_cnp1000_h09_h50.png" src="../_images/vv_cnp1000_h09_h50.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>组件功率小于0.9的有17398个，CRANE计算偏差平均值1.06%，均方根值1.74%，工业限值±8%，CRANE计算值17365个在工业限值内，
 99.81%满足验收准则，偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_l09_h50.png"><img alt="../_images/vv_cnp1000_l09_h50.png" src="../_images/vv_cnp1000_l09_h50.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="id10">
-<h3><span class="section-number">3.2.3. </span>探测器活度分布<a class="headerlink" href="#id10" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="id10">
+<h3><span class="section-number">3.2.3. </span>探测器活度分布<a class="headerlink" href="#id10" title="Permalink to this headline">¶</a></h3>
 <p>运行跟踪的探测器活度分布测量数据包含总共443张通量图，21405个有效数据，CRANE计算值偏差平均值0.07%，
 均方根值1.04%，99.87%在±5%偏差内。而设计程序计算偏差平均值0.17%，均方根值1.70%，99.47%在±5%偏差内，
 偏差统计图如下：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/vv_cnp1000_det_h50.png"><img alt="../_images/vv_cnp1000_det_h50.png" src="../_images/vv_cnp1000_det_h50.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见CRANE精度显著高于设计程序。</p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>

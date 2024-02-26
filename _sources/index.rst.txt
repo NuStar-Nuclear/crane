@@ -25,7 +25,7 @@ CRANE是基于第一性原理直接开展精细到燃料棒层面的三维堆芯
 从C5G7、VERA、BEAVRS、VVER-1000等系列国际基准题的验证结果来看，CRANE能够达到国际上同类一步法计算软件的先进水平。
 
 更值得一提的是，CRANE已经通过超过140堆年的商用压水堆实测数据的确认，涵盖
-CNP300、CNP600、CNP650、M310、CNP1000、CNP1000+、VVER-1000、EPR 等各种堆型。总体计算精度显著优于传统两步法程序。
+CNP300、CNP600、CNP650、M310、CNP1000、CNP1000+、VVER-1000、EPR-1750 等各种堆型。总体计算精度显著优于传统两步法程序。
 
 .. figure:: _images/boron_letdown_errors.png
     :align: center

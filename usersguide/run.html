@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>9. 启动计算 &mdash; CRANE Documentation</title>
@@ -14,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -36,13 +33,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -98,7 +95,7 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+              <p class="caption"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -194,20 +191,44 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="usersguide-run">
-<span id="id1"></span><h1><span class="section-number">9. </span>启动计算<a class="headerlink" href="#usersguide-run" title="Permalink to this heading">¶</a></h1>
-<p>当输入文件准备好以后，首先可以通过命令行 <a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 对模型进行可视化，检查建模是否正确。有关可视化的详细介绍可参阅
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="usersguide-run">
+<span id="id1"></span><h1><span class="section-number">9. </span>启动计算<a class="headerlink" href="#usersguide-run" title="Permalink to this headline">¶</a></h1>
+<p>当输入文件准备好以后，首先可以通过命令行 <span class="xref std std-ref">crane_visualize</span> 对模型进行可视化，检查建模是否正确。有关可视化的详细介绍可参阅
 <a class="reference internal" href="visualization.html#usersguide-visualization"><span class="std std-ref">可视化</span></a>。</p>
-<p>如果建模一切正常，就可以通过命令行 <a class="reference internal" href="../commands.html#crane-run"><span class="std std-ref">crane run</span></a> 来启动计算。</p>
+<p>如果建模一切正常，就可以通过命令行 <span class="xref std std-ref">crane_run</span> 来启动计算。</p>
 <p>以C5G7基准题为例，假设你准备好了基准问题 <a class="reference internal" href="../examples/c5g7.html#c5g7-3d"><span class="std std-ref">C5G7_3D</span></a> 输入文件，名为 <code class="docutils literal notranslate"><span class="pre">C5G7_3D.yaml</span></code>，
 你就可以在该输入文件目录下执行以下命令来启动计算：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>run<span class="w"> </span>C5G7_3D.yaml
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane run C5G7_3D.yaml
 </pre></div>
 </div>
 <p>启动计算后，屏幕会打印出以下信息：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/run_c5g7_3d.png"><img alt="../_images/run_c5g7_3d.png" src="../_images/run_c5g7_3d.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>这些都是CRANE运行时的日志信息，除了屏幕输出外，还会默认保存在名为 <code class="docutils literal notranslate"><span class="pre">CRANE.log</span></code> 的日志文件中。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -218,22 +239,22 @@
 </pre></div>
 </div>
 <p>如以下是在配备有两张RTX3090显卡的服务器上计算 <a class="reference internal" href="../examples/c5g7.html#c5g7-3d"><span class="std std-ref">C5G7_3D</span></a> 执行上述命令后的屏幕输出：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/run_nvidia_smi.png"><img alt="../_images/run_nvidia_smi.png" src="../_images/run_nvidia_smi.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>你可以通过 <code class="docutils literal notranslate"><span class="pre">-d</span></code> 或 <code class="docutils literal notranslate"><span class="pre">--deivices-ids</span></code> 选项来指定计算采用哪些显卡：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>run<span class="w"> </span>C5G7_3D.yaml<span class="w"> </span>--deivices-ids<span class="w"> </span><span class="m">0</span>,1,2,3
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane run C5G7_3D.yaml --deivices-ids <span class="m">0</span>,1,2,3
 </pre></div>
 </div>
 <p>以上则是采用编号为0,1,2,3的4张显卡来进行计算，前提是计算平台需要至少配备4张显卡。</p>
 <p>CRANE计算完成后默认会保存 <a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a> 和 <a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>，
 并进入交互式可视化命令行界面，如下图所示：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/visualization_shell.png"><img alt="../_images/visualization_shell.png" src="../_images/visualization_shell.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>在该界面下可运行 <a class="reference internal" href="../commands.html#interactive-commands"><span class="std std-ref">交互式可视化命令行</span></a> 来进行各种模型和结果的可视化，详见
 <a class="reference internal" href="visualization.html#usersguide-visualization"><span class="std std-ref">可视化</span></a>。</p>
-</section>
+</div>
 
 
            </div>

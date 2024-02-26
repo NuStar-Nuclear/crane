@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>11. 可视化 &mdash; CRANE Documentation</title>
@@ -14,8 +13,6 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -36,13 +33,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -98,7 +95,7 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+              <p class="caption"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -256,45 +253,69 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="usersguide-visualization">
-<span id="id1"></span><h1><span class="section-number">11. </span>可视化<a class="headerlink" href="#usersguide-visualization" title="Permalink to this heading">¶</a></h1>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="usersguide-visualization">
+<span id="id1"></span><h1><span class="section-number">11. </span>可视化<a class="headerlink" href="#usersguide-visualization" title="Permalink to this headline">¶</a></h1>
 <p>CRANE内建有非常丰富的可视化功能，这些功能根据内容可以分为建模的可视化和计算结果的可视化两类。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>CRANE内建的可视化功能都是基于两维矢量图的，如果你对堆芯三维可视化有需求，可关注CRANE的进展，
 我们正在研发基于web的堆芯三维可视化工具。</p>
 </div>
-<p>为了能够方便用户使用，所有可视化命令都采用交互式命令行方式，只要执行 <a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 命令进入到交互式命令行环境，
+<p>为了能够方便用户使用，所有可视化命令都采用交互式命令行方式，只要执行 <span class="xref std std-ref">crane_visualize</span> 命令进入到交互式命令行环境，
 按 <code class="docutils literal notranslate"><span class="pre">Tab</span></code> 键就可提示出可视化命令及选项。</p>
-<p>对于建模可视化，<a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 后面可以是 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a>，也可以是
-<a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>。但如果要进行计算结果可视化，<a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 后面必须是
+<p>对于建模可视化，<span class="xref std std-ref">crane_visualize</span> 后面可以是 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a>，也可以是
+<a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>。但如果要进行计算结果可视化，<span class="xref std std-ref">crane_visualize</span> 后面必须是
 <a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>。</p>
 <p>比如，你可以执行以下命令</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7.yaml
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane visualize VERA_7.yaml
 </pre></div>
 </div>
 <p>或者</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7.h5
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane visualize VERA_7.h5
 </pre></div>
 </div>
 <p>进入到 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 问题的交互式可视化环境，前者只支持建模可视化，而后者建模和计算结果可视化都支持。</p>
 <p>除此之外，CRANE还支持对不同计算结果的比较可视化功能，如执行以下命令：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7.h5<span class="w"> </span>VERA_7_another.h5
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane visualize VERA_7.h5 VERA_7_another.h5
 </pre></div>
 </div>
 <p>或者：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7.h5<span class="w"> </span>VERA_7_another.xlsx
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane visualize VERA_7.h5 VERA_7_another.xlsx
 </pre></div>
 </div>
 <p>可进入到 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 问题的两个计算结果比较的可视化环境，结果比较的偏差是前者减去后者，更为详细的说明可参阅
 <a class="reference internal" href="compare.html#compare-visualization"><span class="std std-ref">结果比较可视化</span></a>。</p>
 <p>以下我们以 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题为例，对所有可视化功能进行逐一介绍。</p>
-<section id="plot-model">
-<span id="id2"></span><h2><span class="section-number">11.1. </span>模型可视化<a class="headerlink" href="#plot-model" title="Permalink to this heading">¶</a></h2>
-<p>模型可视化通过 <a class="reference internal" href="../commands.html#cli-plot-model"><span class="std std-ref">plot-model</span></a> 命令实现，是最基本的建模可视化功能，该功能会对不同材料渲染不同颜色来绘制模型两维图，
+<div class="section" id="plot-model">
+<span id="id2"></span><h2><span class="section-number">11.1. </span>模型可视化<a class="headerlink" href="#plot-model" title="Permalink to this headline">¶</a></h2>
+<p>模型可视化通过 <span class="xref std std-ref">cli_plot_model</span> 命令实现，是最基本的建模可视化功能，该功能会对不同材料渲染不同颜色来绘制模型两维图，
 支持径向、轴向两种切面。用户可以通过模型可视化来检查几何建模是否正确，材料区输入是否正确等。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-model<span class="w"> </span>--direction<span class="w"> </span>radial<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-model --direction radial --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -302,24 +323,24 @@
 <p><code class="docutils literal notranslate"><span class="pre">--direction</span></code> 选项用来选择切面类型，默认为径向切面，<code class="docutils literal notranslate"><span class="pre">--axial-height</span></code> 选项用来选择径向切面的高度。</p>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行可视化：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_model_radial.png"><img alt="../_images/plot_model_radial.png" src="../_images/plot_model_radial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>将选项 <code class="docutils literal notranslate"><span class="pre">--axial-height</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">422</span></code>：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-model<span class="w"> </span>--direction<span class="w"> </span>radial<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">422</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-model --direction radial --axial-height <span class="m">422</span>
 </pre></div>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离422cm处的径向切面进行可视化：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_model_radial_422.png"><img alt="../_images/plot_model_radial_422.png" src="../_images/plot_model_radial_422.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见这个高度是活性区之外了，没有燃料栅元，但能够看到导向管、以及插入导向管中的可燃毒物棒和控制棒。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>这里如果没有 <code class="docutils literal notranslate"><span class="pre">--axial-height</span></code> 选项，则会对所有轴向层从底到顶逐一可视化，过程中可以按 <code class="docutils literal notranslate"><span class="pre">Ctrl+C</span></code> 终止。</p>
 </div>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-model<span class="w"> </span>--direction<span class="w"> </span>axial<span class="w"> </span>--axial-slice-coef<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-model --direction axial --axial-slice-coef <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -327,37 +348,37 @@
 <p><code class="docutils literal notranslate"><span class="pre">--axial-slice-coef</span></code> 选项用来选择轴向切面的方程系数。</p>
 </div>
 <p>可对方程为 <code class="docutils literal notranslate"><span class="pre">x+y=0</span></code> 的轴向切面进行可视化：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_model_axial.png"><img alt="../_images/plot_model_axial.png" src="../_images/plot_model_axial.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-meshes">
-<span id="id3"></span><h2><span class="section-number">11.2. </span>网格可视化<a class="headerlink" href="#plot-meshes" title="Permalink to this heading">¶</a></h2>
-<p>网格可视化通过 <a class="reference internal" href="../commands.html#cli-plot-meshes"><span class="std std-ref">plot-meshes</span></a> 命令实现，该可视化功能会对不同的网格渲染不同的颜色，支持材料区、MOC、
+</div>
+</div>
+<div class="section" id="plot-meshes">
+<span id="id3"></span><h2><span class="section-number">11.2. </span>网格可视化<a class="headerlink" href="#plot-meshes" title="Permalink to this headline">¶</a></h2>
+<p>网格可视化通过 <span class="xref std std-ref">cli_plot_meshes</span> 命令实现，该可视化功能会对不同的网格渲染不同的颜色，支持材料区、MOC、
 CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网格。</p>
 <p>所有网格可视化都支持径向、轴向两类切面，以下以径向切面网格可视化为例。</p>
-<section id="plot-meshes-material">
-<span id="id4"></span><h3><span class="section-number">11.2.1. </span>材料区网格可视化<a class="headerlink" href="#plot-meshes-material" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="plot-meshes-material">
+<span id="id4"></span><h3><span class="section-number">11.2.1. </span>材料区网格可视化<a class="headerlink" href="#plot-meshes-material" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--mesh-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">material</span></code> 时则是对材料区网格的可视化。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes<span class="w"> </span>--mesh-type<span class="w"> </span>material<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes --mesh-type material --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行材料区网格的可视化：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_material_radial.png"><img alt="../_images/plot_meshes_material_radial.png" src="../_images/plot_meshes_material_radial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>放大至组件规模：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_material_radial_zoom.png"><img alt="../_images/plot_meshes_material_radial_zoom.png" src="../_images/plot_meshes_material_radial_zoom.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见材料网格可视化是根据材料区来渲染颜色的。</p>
-</section>
-<section id="moc">
-<span id="plot-meshes-moc"></span><h3><span class="section-number">11.2.2. </span>MOC网格可视化<a class="headerlink" href="#moc" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="moc">
+<span id="plot-meshes-moc"></span><h3><span class="section-number">11.2.2. </span>MOC网格可视化<a class="headerlink" href="#moc" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--mesh-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">moc</span></code> 时则是对MOC网格的可视化。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes<span class="w"> </span>--mesh-type<span class="w"> </span>moc<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes --mesh-type moc --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -365,210 +386,210 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 <p>由于MOC网格数量较多，首次绘制时会需要些时间，后续绘制都会使用缓存，速度不会受到网格数量影响。</p>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行MOC网格的可视化：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_moc_radial.png"><img alt="../_images/plot_meshes_moc_radial.png" src="../_images/plot_meshes_moc_radial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>放大至组件规模：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_moc_radial_zoom.png"><img alt="../_images/plot_meshes_moc_radial_zoom.png" src="../_images/plot_meshes_moc_radial_zoom.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见MOC网格可视化是根据MOC网格来渲染颜色的，MOC网格是整个模拟计算中最细的网格。</p>
-</section>
-<section id="cmfd">
-<span id="plot-meshes-cmfd"></span><h3><span class="section-number">11.2.3. </span>CMFD网格可视化<a class="headerlink" href="#cmfd" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="cmfd">
+<span id="plot-meshes-cmfd"></span><h3><span class="section-number">11.2.3. </span>CMFD网格可视化<a class="headerlink" href="#cmfd" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--mesh-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">cmfd</span></code> 时则是对CMFD网格（栅元网格）的可视化。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes<span class="w"> </span>--mesh-type<span class="w"> </span>cmfd<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes --mesh-type cmfd --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行CMFD网格的可视化：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_cmfd_radial.png"><img alt="../_images/plot_meshes_cmfd_radial.png" src="../_images/plot_meshes_cmfd_radial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>放大至组件规模：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_cmfd_radial_zoom.png"><img alt="../_images/plot_meshes_cmfd_radial_zoom.png" src="../_images/plot_meshes_cmfd_radial_zoom.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见CMFD网格可视化是根据CMFD网格（在CRANE中就是栅元）来渲染颜色的。</p>
-</section>
-<section id="plot-meshes-resonance">
-<span id="id5"></span><h3><span class="section-number">11.2.4. </span>共振区网格可视化<a class="headerlink" href="#plot-meshes-resonance" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="plot-meshes-resonance">
+<span id="id5"></span><h3><span class="section-number">11.2.4. </span>共振区网格可视化<a class="headerlink" href="#plot-meshes-resonance" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--mesh-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">resonance</span></code> 时则是对共振区网格的可视化。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes<span class="w"> </span>--mesh-type<span class="w"> </span>resonance<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes --mesh-type resonance --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行共振区网格的可视化：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_resonance_radial.png"><img alt="../_images/plot_meshes_resonance_radial.png" src="../_images/plot_meshes_resonance_radial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>放大至组件规模：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_resonance_radial_zoom.png"><img alt="../_images/plot_meshes_resonance_radial_zoom.png" src="../_images/plot_meshes_resonance_radial_zoom.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见共振区网格可视化是根据共振区来渲染颜色的，非共振区不渲染颜色。</p>
-</section>
-<section id="plot-meshes-depletion">
-<span id="id6"></span><h3><span class="section-number">11.2.5. </span>燃耗区网格可视化<a class="headerlink" href="#plot-meshes-depletion" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="plot-meshes-depletion">
+<span id="id6"></span><h3><span class="section-number">11.2.5. </span>燃耗区网格可视化<a class="headerlink" href="#plot-meshes-depletion" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--mesh-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">depletion</span></code> 时则是对燃耗区网格的可视化。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes<span class="w"> </span>--mesh-type<span class="w"> </span>depletion<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes --mesh-type depletion --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行燃耗区网格的可视化：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_depletion_radial.png"><img alt="../_images/plot_meshes_depletion_radial.png" src="../_images/plot_meshes_depletion_radial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>放大至组件规模：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_depletion_radial_zoom.png"><img alt="../_images/plot_meshes_depletion_radial_zoom.png" src="../_images/plot_meshes_depletion_radial_zoom.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见燃耗区网格可视化是根据燃耗区来渲染颜色的，非燃耗区不渲染颜色。</p>
-</section>
-<section id="id7">
-<h3><span class="section-number">11.2.6. </span>热工水力通道网格可视化<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="id7">
+<h3><span class="section-number">11.2.6. </span>热工水力通道网格可视化<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--mesh-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">channel</span></code> 时则是对热工水力通道网格的可视化。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes<span class="w"> </span>--mesh-type<span class="w"> </span>channel<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-meshes --mesh-type channel --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行热工水力通道网格的可视化：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_channel_radial.png"><img alt="../_images/plot_meshes_channel_radial.png" src="../_images/plot_meshes_channel_radial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>放大至组件规模：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_meshes_channel_radial_zoom.png"><img alt="../_images/plot_meshes_channel_radial_zoom.png" src="../_images/plot_meshes_channel_radial_zoom.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见热工水力通道网格可视化是根据热工水力计算的通道（在CRANE中是栅元通道）来渲染颜色的，非通道位置不渲染颜色。</p>
-</section>
-</section>
-<section id="plot-assembly-map">
-<span id="id8"></span><h2><span class="section-number">11.3. </span>组件布置图可视化<a class="headerlink" href="#plot-assembly-map" title="Permalink to this heading">¶</a></h2>
-<p>组件布置图可视化通过 <a class="reference internal" href="../commands.html#cli-plot-assembly-map"><span class="std std-ref">plot-assembly-map</span></a> 命令实现，该可视化功能以组件为单位绘制堆芯布置图，支持组件装载、
+</div>
+</div>
+<div class="section" id="plot-assembly-map">
+<span id="id8"></span><h2><span class="section-number">11.3. </span>组件布置图可视化<a class="headerlink" href="#plot-assembly-map" title="Permalink to this headline">¶</a></h2>
+<p>组件布置图可视化通过 <span class="xref std std-ref">cli_plot_assembly_map</span> 命令实现，该可视化功能以组件为单位绘制堆芯布置图，支持组件装载、
 组件历史、组件类型、组件编号、控制棒组、分离式可燃毒物、中子测量管共七种。</p>
 <p>这里我们用多循环计算基准题 <a class="reference internal" href="../examples/beavrs.html#beavrs-c2"><span class="std std-ref">BEAVRS_C2</span></a> 作为示例来进行组件布置图的可视化功能。</p>
-<section id="plot-assembly-map-lp">
-<span id="id9"></span><h3><span class="section-number">11.3.1. </span>组件装载布置图<a class="headerlink" href="#plot-assembly-map-lp" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="plot-assembly-map-lp">
+<span id="id9"></span><h3><span class="section-number">11.3.1. </span>组件装载布置图<a class="headerlink" href="#plot-assembly-map-lp" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--map-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">loading_pattern</span></code> 时则是组件装载布置图。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map<span class="w"> </span>--map-type<span class="w"> </span>loading_pattern
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map --map-type loading_pattern
 </pre></div>
 </div>
 <p>可绘制出以下组件装载布置图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_assembly_map_lp.png"><img alt="../_images/plot_assembly_map_lp.png" src="../_images/plot_assembly_map_lp.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>这里有颜色渲染的组件是旧料，且根据燃耗过的循环数来渲染不同颜色。</p>
-</section>
-<section id="plot-assembly-map-his">
-<span id="id10"></span><h3><span class="section-number">11.3.2. </span>组件历史布置图可视化<a class="headerlink" href="#plot-assembly-map-his" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="plot-assembly-map-his">
+<span id="id10"></span><h3><span class="section-number">11.3.2. </span>组件历史布置图可视化<a class="headerlink" href="#plot-assembly-map-his" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--map-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">assembly_history</span></code> 时则是组件历史布置图。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map<span class="w"> </span>--map-type<span class="w"> </span>assembly_history
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map --map-type assembly_history
 </pre></div>
 </div>
 <p>可绘制出以下组件历史布置图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_assembly_map_his.png"><img alt="../_images/plot_assembly_map_his.png" src="../_images/plot_assembly_map_his.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见组件历史布置图与组件装载布置图有点类似，主要的区别是旧料组件会把该组件经历的所有循环的详细信息（每个循环所在位置，
 燃耗）都打印出来。</p>
-</section>
-<section id="plot-assembly-map-type">
-<span id="id11"></span><h3><span class="section-number">11.3.3. </span>组件类型布置图可视化<a class="headerlink" href="#plot-assembly-map-type" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="plot-assembly-map-type">
+<span id="id11"></span><h3><span class="section-number">11.3.3. </span>组件类型布置图可视化<a class="headerlink" href="#plot-assembly-map-type" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--map-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">assembly_type</span></code> 时则是组件类型布置图。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map<span class="w"> </span>--map-type<span class="w"> </span>assembly_type
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map --map-type assembly_type
 </pre></div>
 </div>
 <p>可绘制出以下组件类型布置图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_assembly_map_type.png"><img alt="../_images/plot_assembly_map_type.png" src="../_images/plot_assembly_map_type.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见组件类型布置图是根据组件的类型来渲染不同颜色，而不区分该组件是新料还是旧料。</p>
-</section>
-<section id="plot-assembly-map-index">
-<span id="id12"></span><h3><span class="section-number">11.3.4. </span>组件编号布置图可视化<a class="headerlink" href="#plot-assembly-map-index" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="plot-assembly-map-index">
+<span id="id12"></span><h3><span class="section-number">11.3.4. </span>组件编号布置图可视化<a class="headerlink" href="#plot-assembly-map-index" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--map-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">assembly_index</span></code> 时则是组件装载布置图。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map<span class="w"> </span>--map-type<span class="w"> </span>assembly_index
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map --map-type assembly_index
 </pre></div>
 </div>
 <p>可绘制出以下组件编号布置图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_assembly_map_index.png"><img alt="../_images/plot_assembly_map_index.png" src="../_images/plot_assembly_map_index.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>方形组件堆型的组件编号布置图是结合组件行、列编号得到的，而六角形堆型的组件则按从底到顶、
 从左到右的顺序来对组件进行编号，如下图为VVER-1000的组件编号布置图</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_assembly_map_index_vver.png"><img alt="../_images/plot_assembly_map_index_vver.png" src="../_images/plot_assembly_map_index_vver.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-assembly-map-rcca">
-<span id="id13"></span><h3><span class="section-number">11.3.5. </span>控制棒组布置图可视化<a class="headerlink" href="#plot-assembly-map-rcca" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-assembly-map-rcca">
+<span id="id13"></span><h3><span class="section-number">11.3.5. </span>控制棒组布置图可视化<a class="headerlink" href="#plot-assembly-map-rcca" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--map-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">RCCA</span></code> 时则是控制棒组布置图。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map<span class="w"> </span>--map-type<span class="w"> </span>RCCA
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map --map-type RCCA
 </pre></div>
 </div>
 <p>可绘制出以下控制棒组布置图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_assembly_map_rcca.png"><img alt="../_images/plot_assembly_map_rcca.png" src="../_images/plot_assembly_map_rcca.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见控制棒组件布置图是以棒组名称来进行插棒组件不同颜色的渲染。</p>
-</section>
-<section id="plot-assembly-map-bp">
-<span id="id14"></span><h3><span class="section-number">11.3.6. </span>分离式可燃毒物布置图可视化<a class="headerlink" href="#plot-assembly-map-bp" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="plot-assembly-map-bp">
+<span id="id14"></span><h3><span class="section-number">11.3.6. </span>分离式可燃毒物布置图可视化<a class="headerlink" href="#plot-assembly-map-bp" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--map-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">inserted_BP</span></code> 时则是分离式可燃毒物布置图。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map<span class="w"> </span>--map-type<span class="w"> </span>inserted_BP
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map --map-type inserted_BP
 </pre></div>
 </div>
 <p>可绘制出以下分离式可燃毒物布置图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_assembly_map_bp.png"><img alt="../_images/plot_assembly_map_bp.png" src="../_images/plot_assembly_map_bp.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见分离式可燃毒物布置图是以分离式可燃毒物在组件内的不同布置来进行不同颜色的渲染。</p>
-</section>
-<section id="plot-assembly-map-it">
-<span id="id15"></span><h3><span class="section-number">11.3.7. </span>中子测量管布置图可视化<a class="headerlink" href="#plot-assembly-map-it" title="Permalink to this heading">¶</a></h3>
+</div>
+<div class="section" id="plot-assembly-map-it">
+<span id="id15"></span><h3><span class="section-number">11.3.7. </span>中子测量管布置图可视化<a class="headerlink" href="#plot-assembly-map-it" title="Permalink to this headline">¶</a></h3>
 <p>当 <code class="docutils literal notranslate"><span class="pre">--map-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">inserted_IT</span></code> 时则是中子测量管布置图。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map<span class="w"> </span>--map-type<span class="w"> </span>inserted_IT
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-assembly-map --map-type inserted_IT
 </pre></div>
 </div>
 <p>可绘制出以下中子测量管布置图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_assembly_map_it.png"><img alt="../_images/plot_assembly_map_it.png" src="../_images/plot_assembly_map_it.png" style="width: 800px;" /></a>
-</figure>
-</section>
-</section>
-<section id="plot-tagged-regions">
-<span id="id16"></span><h2><span class="section-number">11.4. </span>标记区域可视化<a class="headerlink" href="#plot-tagged-regions" title="Permalink to this heading">¶</a></h2>
-<p>标记区域可视化通过 <a class="reference internal" href="../commands.html#cli-plot-tagged-regions"><span class="std std-ref">plot-tagged-regions</span></a> 命令实现，该可视化功能只对标记区域渲染颜色，
+</div>
+</div>
+</div>
+<div class="section" id="plot-tagged-regions">
+<span id="id16"></span><h2><span class="section-number">11.4. </span>标记区域可视化<a class="headerlink" href="#plot-tagged-regions" title="Permalink to this headline">¶</a></h2>
+<p>标记区域可视化通过 <span class="xref std std-ref">cli_plot_tagged_regions</span> 命令实现，该可视化功能只对标记区域渲染颜色，
 用来检查用户所标记的区域是否正确，有关标记区域的功能请参阅 <span class="xref std std-ref">tally_tagged_regions</span>。</p>
 <p>与模型可视化一样，标记区域可视化也支持径向、轴向两类切面。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-tagged-regions<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-tagged-regions --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行标记区域的可视化，这里我们对围板、
 围桶等反射层区域进行了标记：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_tagged_regions_radial.png"><img alt="../_images/plot_tagged_regions_radial.png" src="../_images/plot_tagged_regions_radial.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-moc-tracks">
-<span id="id17"></span><h2><span class="section-number">11.5. </span>MOC特征线可视化<a class="headerlink" href="#plot-moc-tracks" title="Permalink to this heading">¶</a></h2>
-<p>MOC特征线可视化通过 <a class="reference internal" href="../commands.html#cli-plot-moc-tracks"><span class="std std-ref">plot-moc-tracks</span></a> 命令实现，该可视化功能在模型径向切面基础上绘制出不同层级的特征线，
+</div>
+</div>
+<div class="section" id="plot-moc-tracks">
+<span id="id17"></span><h2><span class="section-number">11.5. </span>MOC特征线可视化<a class="headerlink" href="#plot-moc-tracks" title="Permalink to this headline">¶</a></h2>
+<p>MOC特征线可视化通过 <span class="xref std std-ref">cli_plot_moc_tracks</span> 命令实现，该可视化功能在模型径向切面基础上绘制出不同层级的特征线，
 支持堆芯、组件、特征线段三个层级，其 <code class="docutils literal notranslate"><span class="pre">--track-level</span></code> 选项分别为 <code class="docutils literal notranslate"><span class="pre">core,</span> <span class="pre">assembly,</span> <span class="pre">segments</span></code>。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>层级表示特征线贯穿的区域，如组件特征线指的是一个端点在组件一边，另一个端点在组件另一边上的特征线。</p>
 </div>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-moc-tracks<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span><span class="w"> </span>--track-level<span class="w"> </span>assembly
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-moc-tracks --axial-height <span class="m">200</span> --track-level assembly
 </pre></div>
 </div>
 <div class="admonition note">
@@ -576,237 +597,237 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 <p><code class="docutils literal notranslate"><span class="pre">segments</span></code> 层级（贯穿MOC细网）的特征线太多，在大规模问题上绘制该层级特征线会非常耗时。</p>
 </div>
 <p>可对距离堆芯底部（包含反射层）距离200cm处的径向切面进行组件层级的特征线可视化。</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_moc_tracks_assembly.png"><img alt="../_images/plot_moc_tracks_assembly.png" src="../_images/plot_moc_tracks_assembly.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>由于特征线太密，只看到黑色，当放大至栅元规模时才能看清特征线：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_moc_tracks_assembly_zoom.png"><img alt="../_images/plot_moc_tracks_assembly_zoom.png" src="../_images/plot_moc_tracks_assembly_zoom.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-power-distribution">
-<span id="id18"></span><h2><span class="section-number">11.6. </span>功率分布可视化<a class="headerlink" href="#plot-power-distribution" title="Permalink to this heading">¶</a></h2>
-<p>功率分布可视化通过 <a class="reference internal" href="../commands.html#cli-plot-power-distribution"><span class="std std-ref">plot-power-distribution</span></a> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">8</span></code> 种功率分布进行可视化:</p>
-<section id="plot-power-distribution-assembly-integral">
-<span id="id19"></span><h3><span class="section-number">11.6.1. </span>组件积分功率分布可视化<a class="headerlink" href="#plot-power-distribution-assembly-integral" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-power-distribution">
+<span id="id18"></span><h2><span class="section-number">11.6. </span>功率分布可视化<a class="headerlink" href="#plot-power-distribution" title="Permalink to this headline">¶</a></h2>
+<p>功率分布可视化通过 <span class="xref std std-ref">cli_plot_power_distribution</span> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">8</span></code> 种功率分布进行可视化:</p>
+<div class="section" id="plot-power-distribution-assembly-integral">
+<span id="id19"></span><h3><span class="section-number">11.6.1. </span>组件积分功率分布可视化<a class="headerlink" href="#plot-power-distribution-assembly-integral" title="Permalink to this headline">¶</a></h3>
 <p>组件积分功率分布为最常用的功率分布，是对每个组件进行轴向积分后的两维功率分布，其 <code class="docutils literal notranslate"><span class="pre">--power-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">assembly-integral</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>assembly-integral
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution --power-type assembly-integral
 </pre></div>
 </div>
 <p>可绘制出组件积分功率分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_power_distribution_assembly_integral.png"><img alt="../_images/plot_power_distribution_assembly_integral.png" src="../_images/plot_power_distribution_assembly_integral.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-power-distribution-assembly-integral-full-core">
-<span id="id20"></span><h3><span class="section-number">11.6.2. </span>全堆组件积分功率分布可视化<a class="headerlink" href="#plot-power-distribution-assembly-integral-full-core" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-power-distribution-assembly-integral-full-core">
+<span id="id20"></span><h3><span class="section-number">11.6.2. </span>全堆组件积分功率分布可视化<a class="headerlink" href="#plot-power-distribution-assembly-integral-full-core" title="Permalink to this headline">¶</a></h3>
 <p>通常我们会根据对称性做部分堆芯计算，而功率分布图很多时候需要全堆芯的，因此该功能是对组件积分功率分布根据对称性进行补全。
 其 <code class="docutils literal notranslate"><span class="pre">--power-type</span></code> 选项为 <code class="docutils literal notranslate"><span class="pre">assembly-integral-full-core</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>assembly-integral-full-core
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution --power-type assembly-integral-full-core
 </pre></div>
 </div>
 <p>可绘制出全堆组件积分功率分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_power_distribution_assembly_integral_full_core.png"><img alt="../_images/plot_power_distribution_assembly_integral_full_core.png" src="../_images/plot_power_distribution_assembly_integral_full_core.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-power-distribution-assembly-axial">
-<span id="id21"></span><h3><span class="section-number">11.6.3. </span>以组件为单位的轴向功率分布可视化<a class="headerlink" href="#plot-power-distribution-assembly-axial" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-power-distribution-assembly-axial">
+<span id="id21"></span><h3><span class="section-number">11.6.3. </span>以组件为单位的轴向功率分布可视化<a class="headerlink" href="#plot-power-distribution-assembly-axial" title="Permalink to this headline">¶</a></h3>
 <p>以组件为单位的轴向功率分布，即把每个组件的轴向（层积分）功率分布绘制在一张图上，以比较不同组件轴向功率分布的特点。
 其 <code class="docutils literal notranslate"><span class="pre">--power-type</span></code> 选项为 <code class="docutils literal notranslate"><span class="pre">assembly-axial</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>assembly-axial
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution --power-type assembly-axial
 </pre></div>
 </div>
 <p>可绘制出以组件为单位的轴向功率分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_power_distribution_assembly_axial.png"><img alt="../_images/plot_power_distribution_assembly_axial.png" src="../_images/plot_power_distribution_assembly_axial.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-power-distribution-assembly-radial-slice">
-<span id="id22"></span><h3><span class="section-number">11.6.4. </span>径向切面的组件功率分布可视化<a class="headerlink" href="#plot-power-distribution-assembly-radial-slice" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-power-distribution-assembly-radial-slice">
+<span id="id22"></span><h3><span class="section-number">11.6.4. </span>径向切面的组件功率分布可视化<a class="headerlink" href="#plot-power-distribution-assembly-radial-slice" title="Permalink to this headline">¶</a></h3>
 <p>径向切面的组件功率分布是在三维组件功率分布下，选取某径向切面绘制的两维功率分布。其 <code class="docutils literal notranslate"><span class="pre">--power-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">assembly-radial-slice</span></code>。</p>
 <p>可通过 <code class="docutils literal notranslate"><span class="pre">--map-color-by</span></code> 来选择是以当前层还是全堆的功率数值范围来渲染颜色。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>assembly-radial-slice<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution --power-type assembly-radial-slice --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <p>可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的组件功率分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_power_distribution_assembly_radial_slice.png"><img alt="../_images/plot_power_distribution_assembly_radial_slice.png" src="../_images/plot_power_distribution_assembly_radial_slice.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-power-distribution-pin-integral">
-<span id="id23"></span><h3><span class="section-number">11.6.5. </span>棒积分功率分布可视化<a class="headerlink" href="#plot-power-distribution-pin-integral" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-power-distribution-pin-integral">
+<span id="id23"></span><h3><span class="section-number">11.6.5. </span>棒积分功率分布可视化<a class="headerlink" href="#plot-power-distribution-pin-integral" title="Permalink to this headline">¶</a></h3>
 <p>棒积分功率分布，是对每根燃料棒的进行轴向积分后的两维功率分布，其 <code class="docutils literal notranslate"><span class="pre">--power-type</span></code> 选项为 <code class="docutils literal notranslate"><span class="pre">pin-integral</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>pin-integral
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution --power-type pin-integral
 </pre></div>
 </div>
 <p>可绘制出棒积分功率分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_power_distribution_pin_integral.png"><img alt="../_images/plot_power_distribution_pin_integral.png" src="../_images/plot_power_distribution_pin_integral.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-power-distribution-pin-radial-slice">
-<span id="id24"></span><h3><span class="section-number">11.6.6. </span>径向切面的棒功率分布可视化<a class="headerlink" href="#plot-power-distribution-pin-radial-slice" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-power-distribution-pin-radial-slice">
+<span id="id24"></span><h3><span class="section-number">11.6.6. </span>径向切面的棒功率分布可视化<a class="headerlink" href="#plot-power-distribution-pin-radial-slice" title="Permalink to this headline">¶</a></h3>
 <p>径向切面的棒功率分布是在三维棒功率分布下，选取某径向切面绘制的两维功率分布。其 <code class="docutils literal notranslate"><span class="pre">--power-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">pin-radial-slice</span></code>。</p>
 <p>可通过 <code class="docutils literal notranslate"><span class="pre">--map-color-by</span></code> 来选择是以当前层还是全堆的功率数值范围来渲染颜色。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>pin-radial-slice<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution --power-type pin-radial-slice --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <p>可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的棒功率分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_power_distribution_pin_radial_slice.png"><img alt="../_images/plot_power_distribution_pin_radial_slice.png" src="../_images/plot_power_distribution_pin_radial_slice.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-power-distribution-pin-axial-slice">
-<span id="id25"></span><h3><span class="section-number">11.6.7. </span>轴向切面的棒功率分布可视化<a class="headerlink" href="#plot-power-distribution-pin-axial-slice" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-power-distribution-pin-axial-slice">
+<span id="id25"></span><h3><span class="section-number">11.6.7. </span>轴向切面的棒功率分布可视化<a class="headerlink" href="#plot-power-distribution-pin-axial-slice" title="Permalink to this headline">¶</a></h3>
 <p>轴向切面的棒功率分布是在三维棒功率分布下，选取某轴向切面绘制的两维功率分布。其 <code class="docutils literal notranslate"><span class="pre">--power-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">pin-axial-slice</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>pin-axial-slice<span class="w"> </span>--axial-slice-coef<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution --power-type pin-axial-slice --axial-slice-coef <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
 </pre></div>
 </div>
 <p>可绘制出方程为 <code class="docutils literal notranslate"><span class="pre">x+y=0</span></code> 轴向切面的棒功率分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_power_distribution_pin_axial_slice.png"><img alt="../_images/plot_power_distribution_pin_axial_slice.png" src="../_images/plot_power_distribution_pin_axial_slice.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-power-distribution-axial">
-<span id="id26"></span><h3><span class="section-number">11.6.8. </span>堆芯轴向功率分布可视化<a class="headerlink" href="#plot-power-distribution-axial" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-power-distribution-axial">
+<span id="id26"></span><h3><span class="section-number">11.6.8. </span>堆芯轴向功率分布可视化<a class="headerlink" href="#plot-power-distribution-axial" title="Permalink to this headline">¶</a></h3>
 <p>堆芯轴向功率分布，是对层积分后的整个堆芯的轴向功率分布，其 <code class="docutils literal notranslate"><span class="pre">--power-type</span></code> 选项为 <code class="docutils literal notranslate"><span class="pre">axial</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>axial
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution --power-type axial
 </pre></div>
 </div>
 <p>可绘制出堆芯轴向功率分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_power_distribution_axial.png"><img alt="../_images/plot_power_distribution_axial.png" src="../_images/plot_power_distribution_axial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>默认会把堆芯轴向切面图绘制在左边，以方便观察功率分布对应的材料区域。</p>
 </div>
-</section>
-</section>
-<section id="plot-flux-distribution">
-<span id="id27"></span><h2><span class="section-number">11.7. </span>通量分布可视化<a class="headerlink" href="#plot-flux-distribution" title="Permalink to this heading">¶</a></h2>
-<p>通量分布可视化通过 <a class="reference internal" href="../commands.html#cli-plot-flux-distribution"><span class="std std-ref">plot-flux-distribution</span></a> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">5</span></code> 种功率分布进行可视化：</p>
-<section id="plot-flux-distribution-cell-radial-slice">
-<span id="id28"></span><h3><span class="section-number">11.7.1. </span>径向切面的栅元通量分布可视化<a class="headerlink" href="#plot-flux-distribution-cell-radial-slice" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-flux-distribution">
+<span id="id27"></span><h2><span class="section-number">11.7. </span>通量分布可视化<a class="headerlink" href="#plot-flux-distribution" title="Permalink to this headline">¶</a></h2>
+<p>通量分布可视化通过 <span class="xref std std-ref">cli_plot_flux_distribution</span> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">5</span></code> 种功率分布进行可视化：</p>
+<div class="section" id="plot-flux-distribution-cell-radial-slice">
+<span id="id28"></span><h3><span class="section-number">11.7.1. </span>径向切面的栅元通量分布可视化<a class="headerlink" href="#plot-flux-distribution-cell-radial-slice" title="Permalink to this headline">¶</a></h3>
 <p>径向切面的栅元通量分布是指在三维栅元通量分布下，选取某径向切面绘制的两维通量分布。其 <code class="docutils literal notranslate"><span class="pre">--flux-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">cell-radial-slice</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span>--flux-type<span class="w"> </span>cell-radial-slice<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span><span class="w"> </span>--energy<span class="w"> </span>thermal
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution --flux-type cell-radial-slice --axial-height <span class="m">200</span> --energy thermal
 </pre></div>
 </div>
 <p>可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的栅元热通量分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_flux_distribution_cell_radial_slice_thermal.png"><img alt="../_images/plot_flux_distribution_cell_radial_slice_thermal.png" src="../_images/plot_flux_distribution_cell_radial_slice_thermal.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>通过 <code class="docutils literal notranslate"><span class="pre">--energy</span></code> 选项可以选择中子通量的能量范围，支持 <code class="docutils literal notranslate"><span class="pre">thermal|epithermal</span></code> 两个选项，默认为 <code class="docutils literal notranslate"><span class="pre">thermal</span></code>。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><code class="docutils literal notranslate"><span class="pre">thermal</span></code> 与 <code class="docutils literal notranslate"><span class="pre">epithermal</span></code> 的能量分界线为 <code class="docutils literal notranslate"><span class="pre">0.625eV</span></code>。</p>
 </div>
 <p>选择绘制非热群通量分布:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span>--flux-type<span class="w"> </span>cell-radial-slice<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span><span class="w"> </span>--energy<span class="w"> </span>epithermal
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution --flux-type cell-radial-slice --axial-height <span class="m">200</span> --energy epithermal
 </pre></div>
 </div>
 <p>可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的栅元非热通量分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_flux_distribution_cell_radial_slice_epithermal.png"><img alt="../_images/plot_flux_distribution_cell_radial_slice_epithermal.png" src="../_images/plot_flux_distribution_cell_radial_slice_epithermal.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-flux-distribution-cell-axial-slice">
-<span id="id29"></span><h3><span class="section-number">11.7.2. </span>轴向切面的栅元通量分布可视化<a class="headerlink" href="#plot-flux-distribution-cell-axial-slice" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-flux-distribution-cell-axial-slice">
+<span id="id29"></span><h3><span class="section-number">11.7.2. </span>轴向切面的栅元通量分布可视化<a class="headerlink" href="#plot-flux-distribution-cell-axial-slice" title="Permalink to this headline">¶</a></h3>
 <p>轴向切面的栅元通量分布是指在三维栅元通量分布下，选取某轴向切面绘制的两维通量分布。其 <code class="docutils literal notranslate"><span class="pre">--flux-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">cell-axial-slice</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span>--flux-type<span class="w"> </span>cell-axial-slice<span class="w"> </span>--axial-slice-coef<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>--energy<span class="w"> </span>thermal
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution --flux-type cell-axial-slice --axial-slice-coef <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> --energy thermal
 </pre></div>
 </div>
 <p>可绘制出方程为 <code class="docutils literal notranslate"><span class="pre">x+y=0</span></code> 轴向切面的栅元热通量分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_flux_distribution_cell_axial_slice.png"><img alt="../_images/plot_flux_distribution_cell_axial_slice.png" src="../_images/plot_flux_distribution_cell_axial_slice.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-flux-distribution-mesh-radial-slice">
-<span id="id30"></span><h3><span class="section-number">11.7.3. </span>径向切面的细网通量分布可视化<a class="headerlink" href="#plot-flux-distribution-mesh-radial-slice" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-flux-distribution-mesh-radial-slice">
+<span id="id30"></span><h3><span class="section-number">11.7.3. </span>径向切面的细网通量分布可视化<a class="headerlink" href="#plot-flux-distribution-mesh-radial-slice" title="Permalink to this headline">¶</a></h3>
 <p>径向切面的细网通量分布是指在三维细网（MOC计算网格）通量分布下，选取某径向切面绘制的两维通量分布。其 <code class="docutils literal notranslate"><span class="pre">--flux-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">mesh-radial-slice</span></code>。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>绘制细网通量分布的前提是必须保存计算结果文件必须保存MOC计算网格通量数据，由于MOC计算网格通量数据量较大，
-只有当输出类型 <a class="reference internal" href="../io_formats/input.html#output-type"><span class="std std-ref">type</span></a> 设置为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 才会保存。</p>
+只有当输出类型 <span class="xref std std-ref">output_type</span> 设置为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 才会保存。</p>
 </div>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span>--flux-type<span class="w"> </span>mesh-radial-slice<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span><span class="w"> </span>--energy<span class="w"> </span>thermal
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution --flux-type mesh-radial-slice --axial-height <span class="m">200</span> --energy thermal
 </pre></div>
 </div>
 <p>可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的细网热群通量分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_flux_distribution_mesh_radial_slice.png"><img alt="../_images/plot_flux_distribution_mesh_radial_slice.png" src="../_images/plot_flux_distribution_mesh_radial_slice.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>我们选取一个4x4栅元区域并放大，可以看到细网通量分布是基于MOC计算网格的，比栅元网格更加精细：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_flux_distribution_mesh_radial_slice_zoom.png"><img alt="../_images/plot_flux_distribution_mesh_radial_slice_zoom.png" src="../_images/plot_flux_distribution_mesh_radial_slice_zoom.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-flux-distribution-mesh-axial-slice">
-<span id="id31"></span><h3><span class="section-number">11.7.4. </span>轴向切面的细网通量分布可视化<a class="headerlink" href="#plot-flux-distribution-mesh-axial-slice" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-flux-distribution-mesh-axial-slice">
+<span id="id31"></span><h3><span class="section-number">11.7.4. </span>轴向切面的细网通量分布可视化<a class="headerlink" href="#plot-flux-distribution-mesh-axial-slice" title="Permalink to this headline">¶</a></h3>
 <p>轴向切面的细网（MOC计算网格）通量分布是指在三维细网通量分布下，选取某轴向切面绘制的两维通量分布。其 <code class="docutils literal notranslate"><span class="pre">--flux-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">mesh-axial-slice</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span>--flux-type<span class="w"> </span>mesh-axial-slice<span class="w"> </span>--axial-slice-coef<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>--energy<span class="w"> </span>thermal
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution --flux-type mesh-axial-slice --axial-slice-coef <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> --energy thermal
 </pre></div>
 </div>
 <p>可绘制出方程为 <code class="docutils literal notranslate"><span class="pre">x+y=0</span></code> 轴向切面的细网热通量分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_flux_distribution_mesh_axial_slice.png"><img alt="../_images/plot_flux_distribution_mesh_axial_slice.png" src="../_images/plot_flux_distribution_mesh_axial_slice.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>我们选择有格架且高度为205cm处的一个区域，放大后可以看到比栅元更精细的轴向切面网格热通量分布：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_flux_distribution_mesh_axial_slice_zoom.png"><img alt="../_images/plot_flux_distribution_mesh_axial_slice_zoom.png" src="../_images/plot_flux_distribution_mesh_axial_slice_zoom.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-flux-distribution-axial">
-<span id="id32"></span><h3><span class="section-number">11.7.5. </span>堆芯轴向通量分布可视化<a class="headerlink" href="#plot-flux-distribution-axial" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-flux-distribution-axial">
+<span id="id32"></span><h3><span class="section-number">11.7.5. </span>堆芯轴向通量分布可视化<a class="headerlink" href="#plot-flux-distribution-axial" title="Permalink to this headline">¶</a></h3>
 <p>类似于 <a class="reference internal" href="#plot-power-distribution-assembly-axial"><span class="std std-ref">以组件为单位的轴向功率分布可视化</span></a>，堆芯轴向通量分布是指对层积分后的整个堆芯的轴向通量分布。
 其 <code class="docutils literal notranslate"><span class="pre">--flux-type</span></code> 选项为 <code class="docutils literal notranslate"><span class="pre">axial</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span>--flux-type<span class="w"> </span>axial<span class="w"> </span>--energy<span class="w"> </span>thermal
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution --flux-type axial --energy thermal
 </pre></div>
 </div>
 <p>可绘制出堆芯轴向热通量分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_flux_distribution_axial.png"><img alt="../_images/plot_flux_distribution_axial.png" src="../_images/plot_flux_distribution_axial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>默认会把堆芯轴向切面图绘制在左边，以方便观察功率分布对应的材料区域。</p>
 </div>
 <p>由于格架对热中子的吸收，可以看到在格架位置处，热通量分布曲线有明显凹陷。</p>
-</section>
-</section>
-<section id="plot-detector-reaction-distribution">
-<span id="id33"></span><h2><span class="section-number">11.8. </span>探测器活度分布可视化<a class="headerlink" href="#plot-detector-reaction-distribution" title="Permalink to this heading">¶</a></h2>
-<p>探测器活度分布可视化通过 <a class="reference internal" href="../commands.html#cli-plot-detector-reaction-distribution"><span class="std std-ref">plot-detector-reaction-distribution</span></a> 命令实现，
+</div>
+</div>
+<div class="section" id="plot-detector-reaction-distribution">
+<span id="id33"></span><h2><span class="section-number">11.8. </span>探测器活度分布可视化<a class="headerlink" href="#plot-detector-reaction-distribution" title="Permalink to this headline">¶</a></h2>
+<p>探测器活度分布可视化通过 <span class="xref std std-ref">cli_plot_detector_reaction_distribution</span> 命令实现，
 该功能根据组件探测器的活度（反应率）进行颜色渲染产生两维图。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>绘制探测器活度分布两维图的前提是要有探测器活度分布的计算结果，也就是用户输入文件中要有对探测器建模的所有数据，
-如 <a class="reference internal" href="../io_formats/input.html#geometries-instrument-bundle"><span class="std std-ref">instrument_bundle</span></a>、<a class="reference internal" href="../io_formats/input.html#instrument-map"><span class="std std-ref">instrument_map</span></a> 等。</p>
+如 <span class="xref std std-ref">geometries_instrument_bundle</span>、<span class="xref std std-ref">instrument_map</span> 等。</p>
 </div>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-detector-reaction-distribution<span class="w"> </span>--reaction-type<span class="w"> </span>assembly-integral
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-detector-reaction-distribution --reaction-type assembly-integral
 </pre></div>
 </div>
 <div class="admonition note">
@@ -815,20 +836,20 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 <code class="docutils literal notranslate"><span class="pre">assembly-integral-full-core</span></code> 选项。</p>
 </div>
 <p>可绘制出全堆组件积分的探测器活度分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_detector_reaction_distribution.png"><img alt="../_images/plot_detector_reaction_distribution.png" src="../_images/plot_detector_reaction_distribution.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-burnup-distribution">
-<span id="id34"></span><h2><span class="section-number">11.9. </span>燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution" title="Permalink to this heading">¶</a></h2>
-<p>燃耗分布可视化通过 <a class="reference internal" href="../commands.html#cli-plot-burnup-distribution"><span class="std std-ref">plot-burnup-distribution</span></a> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">5</span></code> 种燃耗分布进行可视化:</p>
+</div>
+</div>
+<div class="section" id="plot-burnup-distribution">
+<span id="id34"></span><h2><span class="section-number">11.9. </span>燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution" title="Permalink to this headline">¶</a></h2>
+<p>燃耗分布可视化通过 <span class="xref std std-ref">cli_plot_burnup_distribution</span> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">5</span></code> 种燃耗分布进行可视化:</p>
 <p>由于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 不带燃耗计算，这里我们以 <a class="reference internal" href="../examples/vera.html#vera-9"><span class="std std-ref">VERA_9</span></a> 基准题为例来进行燃耗分布可视化。</p>
-<section id="plot-burnup-distribution-assembly-integral">
-<span id="id35"></span><h3><span class="section-number">11.9.1. </span>组件积分燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-assembly-integral" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="plot-burnup-distribution-assembly-integral">
+<span id="id35"></span><h3><span class="section-number">11.9.1. </span>组件积分燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-assembly-integral" title="Permalink to this headline">¶</a></h3>
 <p>组件积分燃耗分布为最常用的燃耗分布，是对每个组件进行轴向积分后的两维燃耗分布，其 <code class="docutils literal notranslate"><span class="pre">--burnup-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">assembly-integral</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution<span class="w"> </span>--burnup-type<span class="w"> </span>assembly-integral<span class="w"> </span>--efpd<span class="w"> </span><span class="m">441</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution --burnup-type assembly-integral --efpd <span class="m">441</span>
 </pre></div>
 </div>
 <p>可绘制出在441个等效满功率天时的组件积分燃耗分布图：</p>
@@ -836,100 +857,100 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 <p class="admonition-title">Note</p>
 <p>可以通过 <code class="docutils literal notranslate"><span class="pre">--burnup</span></code> 或者 <code class="docutils literal notranslate"><span class="pre">--epfd</span></code> 选项来选择哪个状态点，下同。</p>
 </div>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_burnup_distribution_assembly_integral.png"><img alt="../_images/plot_burnup_distribution_assembly_integral.png" src="../_images/plot_burnup_distribution_assembly_integral.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-burnup-distribution-pin-integral">
-<span id="id36"></span><h3><span class="section-number">11.9.2. </span>棒积分燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-pin-integral" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-burnup-distribution-pin-integral">
+<span id="id36"></span><h3><span class="section-number">11.9.2. </span>棒积分燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-pin-integral" title="Permalink to this headline">¶</a></h3>
 <p>棒积分燃耗分布，是对每根燃料棒的进行轴向积分后的两维燃耗分布，其 <code class="docutils literal notranslate"><span class="pre">--burnup-type</span></code> 选项为 <code class="docutils literal notranslate"><span class="pre">pin-integral</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution<span class="w"> </span>--burnup-type<span class="w"> </span>pin-integral<span class="w"> </span>--efpd<span class="w"> </span><span class="m">441</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution --burnup-type pin-integral --efpd <span class="m">441</span>
 </pre></div>
 </div>
 <p>可绘制出在441个等效满功率天时的棒积分燃耗分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_burnup_distribution_pin_integral.png"><img alt="../_images/plot_burnup_distribution_pin_integral.png" src="../_images/plot_burnup_distribution_pin_integral.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-burnup-distribution-pin-radial-slice">
-<span id="id37"></span><h3><span class="section-number">11.9.3. </span>径向切面的棒燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-pin-radial-slice" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-burnup-distribution-pin-radial-slice">
+<span id="id37"></span><h3><span class="section-number">11.9.3. </span>径向切面的棒燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-pin-radial-slice" title="Permalink to this headline">¶</a></h3>
 <p>径向切面的棒燃耗分布是在三维棒燃耗分布下，选取某径向切面绘制的两维燃耗分布。其 <code class="docutils literal notranslate"><span class="pre">--burnup-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">pin-radial-slice</span></code>。</p>
 <p>可通过 <code class="docutils literal notranslate"><span class="pre">--map-color-by</span></code> 来选择是以当前层还是全堆的燃耗数值范围来渲染颜色。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution<span class="w"> </span>--burnup-type<span class="w"> </span>pin-radial-slice<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span><span class="w"> </span>--efpd<span class="w"> </span><span class="m">441</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution --burnup-type pin-radial-slice --axial-height <span class="m">200</span> --efpd <span class="m">441</span>
 </pre></div>
 </div>
 <p>可绘制出在441个等效满功率天时距离堆芯底部（包含反射层）距离200cm处径向切面的棒燃耗分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_burnup_distribution_pin_radial_slice.png"><img alt="../_images/plot_burnup_distribution_pin_radial_slice.png" src="../_images/plot_burnup_distribution_pin_radial_slice.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-burnup-distribution-pin-axial-slice">
-<span id="id38"></span><h3><span class="section-number">11.9.4. </span>轴向切面的棒燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-pin-axial-slice" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-burnup-distribution-pin-axial-slice">
+<span id="id38"></span><h3><span class="section-number">11.9.4. </span>轴向切面的棒燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-pin-axial-slice" title="Permalink to this headline">¶</a></h3>
 <p>轴向切面的棒燃耗分布是在三维棒燃耗分布下，选取某轴向切面绘制的两维燃耗分布。其 <code class="docutils literal notranslate"><span class="pre">--burnup-type</span></code> 选项为
 <code class="docutils literal notranslate"><span class="pre">pin-axial-slice</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution<span class="w"> </span>--burnup-type<span class="w"> </span>pin-axial-slice<span class="w"> </span>--axial-slice-coef<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span><span class="w"> </span>--efpd<span class="w"> </span><span class="m">441</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution --burnup-type pin-axial-slice --axial-slice-coef <span class="m">1</span> <span class="m">1</span> <span class="m">0</span> --efpd <span class="m">441</span>
 </pre></div>
 </div>
 <p>可绘制出在441个等效满功率天时方程为 <code class="docutils literal notranslate"><span class="pre">x+y=0</span></code> 轴向切面的棒燃耗分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_burnup_distribution_pin_axial_slice.png"><img alt="../_images/plot_burnup_distribution_pin_axial_slice.png" src="../_images/plot_burnup_distribution_pin_axial_slice.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-burnup-distribution-axial">
-<span id="id39"></span><h3><span class="section-number">11.9.5. </span>堆芯轴向燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-axial" title="Permalink to this heading">¶</a></h3>
+</div>
+</div>
+<div class="section" id="plot-burnup-distribution-axial">
+<span id="id39"></span><h3><span class="section-number">11.9.5. </span>堆芯轴向燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-axial" title="Permalink to this headline">¶</a></h3>
 <p>堆芯轴向燃耗分布，是对层积分后的整个堆芯的轴向燃耗分布，其 <code class="docutils literal notranslate"><span class="pre">--burnup-type</span></code> 选项为 <code class="docutils literal notranslate"><span class="pre">axial</span></code>。</p>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution<span class="w"> </span>--burnup-type<span class="w"> </span>axial<span class="w"> </span>--efpd<span class="w"> </span><span class="m">441</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution --burnup-type axial --efpd <span class="m">441</span>
 </pre></div>
 </div>
 <p>可绘制出在441个等效满功率天时堆芯轴向燃耗分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_burnup_distribution_axial.png"><img alt="../_images/plot_burnup_distribution_axial.png" src="../_images/plot_burnup_distribution_axial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>默认会把堆芯轴向切面图绘制在左边，以方便观察燃耗分布对应的材料区域。</p>
 </div>
-</section>
-</section>
-<section id="plot-number-density-distribution">
-<span id="id40"></span><h2><span class="section-number">11.10. </span>核素核子密度分布可视化<a class="headerlink" href="#plot-number-density-distribution" title="Permalink to this heading">¶</a></h2>
-<p>核素核子密度可视化通过 <a class="reference internal" href="../commands.html#cli-plot-number-density-distribution"><span class="std std-ref">plot-number-density-distribution</span></a> 命令实现，
+</div>
+</div>
+<div class="section" id="plot-number-density-distribution">
+<span id="id40"></span><h2><span class="section-number">11.10. </span>核素核子密度分布可视化<a class="headerlink" href="#plot-number-density-distribution" title="Permalink to this headline">¶</a></h2>
+<p>核素核子密度可视化通过 <span class="xref std std-ref">cli_plot_number_density_distribution</span> 命令实现，
 该功能根据指定核素每个燃耗区的核子密度进行颜色渲染产生两维图，支持径向、轴向两种切面。
 用户可以通过核素核子密度可视化来查看核素成分在堆芯内的空间分布。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>绘制核子密度分布的前提是计算结果文件中必须保存各个燃耗区的核素核子密度数据，由于该数据量较大，
-只有当输出类型 <a class="reference internal" href="../io_formats/input.html#output-type"><span class="std std-ref">type</span></a> 设置为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 才会保存。</p>
+只有当输出类型 <span class="xref std std-ref">output_type</span> 设置为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 才会保存。</p>
 </div>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-number-density-distribution<span class="w"> </span>--nuclide-name<span class="w"> </span>Xe-135<span class="w"> </span>--direction<span class="w"> </span>radial<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-number-density-distribution --nuclide-name Xe-135 --direction radial --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>目前支持的核子密度可视化的核素可查看 <a class="reference internal" href="../commands.html#cli-plot-number-density-distribution"><span class="std std-ref">plot-number-density-distribution</span></a> 的 <code class="docutils literal notranslate"><span class="pre">--nuclide-name</span></code> 选项。</p>
+<p>目前支持的核子密度可视化的核素可查看 <span class="xref std std-ref">cli_plot_number_density_distribution</span> 的 <code class="docutils literal notranslate"><span class="pre">--nuclide-name</span></code> 选项。</p>
 </div>
 <p>可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的Xe-135核子密度分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_number_density_distribution_radial.png"><img alt="../_images/plot_number_density_distribution_radial.png" src="../_images/plot_number_density_distribution_radial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>或者可以执行：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-number-density-distribution<span class="w"> </span>--nuclide-name<span class="w"> </span>Xe-135<span class="w"> </span>--direction<span class="w"> </span>axial<span class="w"> </span>--axial-slice-coef<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-number-density-distribution --nuclide-name Xe-135 --direction axial --axial-slice-coef <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
 </pre></div>
 </div>
 <p>绘制出方程为 <code class="docutils literal notranslate"><span class="pre">x+y=0</span></code> 轴向切面的Xe-135核子密度分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_number_density_distribution_axial.png"><img alt="../_images/plot_number_density_distribution_axial.png" src="../_images/plot_number_density_distribution_axial.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="dancoff">
-<span id="plot-dancoff-factors"></span><h2><span class="section-number">11.11. </span>Dancoff因子分布可视化<a class="headerlink" href="#dancoff" title="Permalink to this heading">¶</a></h2>
-<p>Dancoff因子可视化通过 <a class="reference internal" href="../commands.html#cli-plot-dancoff-factors"><span class="std std-ref">plot-dancoff-factors</span></a> 命令实现，该功能以每个共振区的Dancoff因子进行颜色渲染产生两维图，
+</div>
+</div>
+<div class="section" id="dancoff">
+<span id="plot-dancoff-factors"></span><h2><span class="section-number">11.11. </span>Dancoff因子分布可视化<a class="headerlink" href="#dancoff" title="Permalink to this headline">¶</a></h2>
+<p>Dancoff因子可视化通过 <span class="xref std std-ref">cli_plot_dancoff_factors</span> 命令实现，该功能以每个共振区的Dancoff因子进行颜色渲染产生两维图，
 支持径向、轴向两种切面。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -940,79 +961,79 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>绘制Dancoff因子分布的前提是计算结果文件中必须保存各个共振区的Dancoff因子，由于该数据量较大，
-只有当输出类型 <a class="reference internal" href="../io_formats/input.html#output-type"><span class="std std-ref">type</span></a> 设置为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 才会保存。</p>
+只有当输出类型 <span class="xref std std-ref">output_type</span> 设置为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 才会保存。</p>
 </div>
 <p>执行以下交互式命令行:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-dancoff-factors<span class="w"> </span>--direction<span class="w"> </span>radial<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-dancoff-factors --direction radial --axial-height <span class="m">200</span>
 </pre></div>
 </div>
 <p>可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的Dancoff因子分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_dancoff_factors_radial.png"><img alt="../_images/plot_dancoff_factors_radial.png" src="../_images/plot_dancoff_factors_radial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>选择最外围的一个组件区域放大：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_dancoff_factors_radial_zoom.png"><img alt="../_images/plot_dancoff_factors_radial_zoom.png" src="../_images/plot_dancoff_factors_radial_zoom.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>可见最外围燃料棒的Dancoff因子最大，因为更多慢化剂减弱了燃料棒之间的共振互屏效应。</p>
 <p>或者可以执行：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-dancoff-factors<span class="w"> </span>--direction<span class="w"> </span>axial<span class="w"> </span>--axial-slice-coef<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">0</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-dancoff-factors --direction axial --axial-slice-coef <span class="m">1</span> <span class="m">1</span> <span class="m">0</span>
 </pre></div>
 </div>
 <p>绘制出方程为 <code class="docutils literal notranslate"><span class="pre">x+y=0</span></code> 轴向切面的Dancoff因子分布图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_dancoff_factors_axial.png"><img alt="../_images/plot_dancoff_factors_axial.png" src="../_images/plot_dancoff_factors_axial.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>选择高度为205cm左右包含有格架的一个区域放大：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_dancoff_factors_axial_zoom.png"><img alt="../_images/plot_dancoff_factors_axial_zoom.png" src="../_images/plot_dancoff_factors_axial_zoom.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>同样可看到，共振区附近慢化剂越多，其Dancoff因子越大，共振互屏效应越小。</p>
-</section>
-<section id="plot-result-summary">
-<span id="id41"></span><h2><span class="section-number">11.12. </span>汇总数据随燃耗变化可视化<a class="headerlink" href="#plot-result-summary" title="Permalink to this heading">¶</a></h2>
-<p>汇总数据随燃耗可视化通过 <a class="reference internal" href="../commands.html#cli-plot-result-summary"><span class="std std-ref">plot-result-summary</span></a> 命令实现，该功能以燃耗（或时间）为X轴，汇总数据（
+</div>
+<div class="section" id="plot-result-summary">
+<span id="id41"></span><h2><span class="section-number">11.12. </span>汇总数据随燃耗变化可视化<a class="headerlink" href="#plot-result-summary" title="Permalink to this headline">¶</a></h2>
+<p>汇总数据随燃耗可视化通过 <span class="xref std std-ref">cli_plot_result_summary</span> 命令实现，该功能以燃耗（或时间）为X轴，汇总数据（
 <a class="reference internal" href="../io_formats/output_hdf5.html#statepoint-summary"><span class="std std-ref">/statepoint&lt;index&gt;/summary/</span></a> 中的数据，如Keff、临界硼浓度等）为Y轴绘制折线（或散点图）。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-9"><span class="std std-ref">VERA_9</span></a> 基准题为例来进行汇总数据随燃耗可视化。</p>
 <p>执行以下交互式命令行：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-result-summary<span class="w"> </span>--x-axis<span class="w"> </span>effective_full_power_days<span class="w"> </span>--y-axis-first<span class="w"> </span>boron_concentration
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-result-summary --x-axis effective_full_power_days --y-axis-first boron_concentration
 </pre></div>
 </div>
 <p>可绘制出临界硼浓度随等效满功率天的变化折线图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_result_summary_efpd_bor.png"><img alt="../_images/plot_result_summary_efpd_bor.png" src="../_images/plot_result_summary_efpd_bor.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>也可以通过 <code class="docutils literal notranslate"><span class="pre">--plot-type-first</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">scatter</span></code> 将对应的数据绘制成散点图：</p>
-<figure class="align-center">
+<div class="figure align-center">
 <img alt="../_images/plot_result_summary_efpd_bor_scatter.png" src="../_images/plot_result_summary_efpd_bor_scatter.png" />
-</figure>
+</div>
 <p>可支持同时绘制最多 <code class="docutils literal notranslate"><span class="pre">3</span></code> 个Y轴的数据，如执行以下交互式命令行：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-result-summary<span class="w"> </span>--y-axis-first<span class="w"> </span>boron_concentration<span class="w"> </span>--y-axis-second<span class="w"> </span>control_rod_withdrawn_steps<span class="w"> </span>--rod-bank<span class="w"> </span>D<span class="w"> </span>--y-axis-third<span class="w"> </span>relative_power
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-result-summary --y-axis-first boron_concentration --y-axis-second control_rod_withdrawn_steps --rod-bank D --y-axis-third relative_power
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>这里 <code class="docutils literal notranslate"><span class="pre">control_rod_withdrawn_steps</span></code> 需要 <code class="docutils literal notranslate"><span class="pre">--rod-bank</span></code> 来指定是哪一组棒，默认为
-<a class="reference internal" href="../io_formats/input.html#control-rod-banks"><span class="std std-ref">banks</span></a> 中的第一组。</p>
+<span class="xref std std-ref">control_rod_banks</span> 中的第一组。</p>
 </div>
 <p>可绘制出临界硼浓度、D棒组棒位和相对功率随燃耗的变化关系：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_result_summary_multi_y_crd.png"><img alt="../_images/plot_result_summary_multi_y_crd.png" src="../_images/plot_result_summary_multi_y_crd.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>或者把D棒组棒位替换成轴向功率偏移AO：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-result-summary<span class="w"> </span>--y-axis-first<span class="w"> </span>boron_concentration<span class="w"> </span>--y-axis-second<span class="w"> </span>axial_offset<span class="w"> </span>--y-axis-third<span class="w"> </span>relative_power
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-result-summary --y-axis-first boron_concentration --y-axis-second axial_offset --y-axis-third relative_power
 </pre></div>
 </div>
 <p>可绘制出临界硼浓度、轴向功率偏移和相对功率随燃耗的变化关系：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_result_summary_multi_y_ao.png"><img alt="../_images/plot_result_summary_multi_y_ao.png" src="../_images/plot_result_summary_multi_y_ao.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-lppt">
-<span id="id42"></span><h2><span class="section-number">11.13. </span>低功率物理实验结果可视化<a class="headerlink" href="#plot-lppt" title="Permalink to this heading">¶</a></h2>
-<section id="plot-criticals">
-<span id="id43"></span><h3><span class="section-number">11.13.1. </span>临界实验结果可视化<a class="headerlink" href="#plot-criticals" title="Permalink to this heading">¶</a></h3>
-<p>临界实验结果可视化通过 <a class="reference internal" href="../commands.html#cli-plot-criticals"><span class="std std-ref">plot-criticals</span></a> 命令实现，该功能将 <a class="reference internal" href="lppt.html#crit-computation"><span class="std std-ref">临界实验计算</span></a> 的 <code class="docutils literal notranslate"><span class="pre">keff</span></code>
+</div>
+</div>
+<div class="section" id="plot-lppt">
+<span id="id42"></span><h2><span class="section-number">11.13. </span>低功率物理实验结果可视化<a class="headerlink" href="#plot-lppt" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="plot-criticals">
+<span id="id43"></span><h3><span class="section-number">11.13.1. </span>临界实验结果可视化<a class="headerlink" href="#plot-criticals" title="Permalink to this headline">¶</a></h3>
+<p>临界实验结果可视化通过 <span class="xref std std-ref">cli_plot_criticals</span> 命令实现，该功能将 <a class="reference internal" href="lppt.html#crit-computation"><span class="std std-ref">临界实验计算</span></a> 的 <code class="docutils literal notranslate"><span class="pre">keff</span></code>
 与 <code class="docutils literal notranslate"><span class="pre">1.0</span></code> 的差值绘制成条形图。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题为例来进行临界实验结果可视化。</p>
 <p>执行以下交互式命令行：</p>
@@ -1020,13 +1041,13 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </pre></div>
 </div>
 <p>可绘制出临界实验结果的条形图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_criticals.png"><img alt="../_images/plot_criticals.png" src="../_images/plot_criticals.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-control-rod-worths">
-<span id="id44"></span><h3><span class="section-number">11.13.2. </span>控制棒组价值可视化<a class="headerlink" href="#plot-control-rod-worths" title="Permalink to this heading">¶</a></h3>
-<p>控制棒组价值（积分价值）可视化通过 <a class="reference internal" href="../commands.html#cli-plot-control-rod-worths"><span class="std std-ref">plot-control-rod-worths</span></a> 命令实现，该功能将
+</div>
+</div>
+<div class="section" id="plot-control-rod-worths">
+<span id="id44"></span><h3><span class="section-number">11.13.2. </span>控制棒组价值可视化<a class="headerlink" href="#plot-control-rod-worths" title="Permalink to this headline">¶</a></h3>
+<p>控制棒组价值（积分价值）可视化通过 <span class="xref std std-ref">cli_plot_control_rod_worths</span> 命令实现，该功能将
 <a class="reference internal" href="lppt.html#crw-computation"><span class="std std-ref">控制棒组价值计算</span></a> 的结果绘制成条形图。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题为例来进行控制棒组价值可视化。</p>
 <p>执行以下交互式命令行：</p>
@@ -1034,65 +1055,65 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </pre></div>
 </div>
 <p>可绘制出控制棒组价值的条形图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_control_rod_worths.png"><img alt="../_images/plot_control_rod_worths.png" src="../_images/plot_control_rod_worths.png" style="width: 800px;" /></a>
-</figure>
-</section>
-<section id="plot-control-rod-worths-curve">
-<span id="id45"></span><h3><span class="section-number">11.13.3. </span>控制棒组价值曲线可视化<a class="headerlink" href="#plot-control-rod-worths-curve" title="Permalink to this heading">¶</a></h3>
-<p>控制棒组价值曲线（微分价值）可视化通过 <a class="reference internal" href="../commands.html#cli-plot-control-rod-worths-curve"><span class="std std-ref">plot-control-rod-worths-curve</span></a> 命令实现，该功能将
+</div>
+</div>
+<div class="section" id="plot-control-rod-worths-curve">
+<span id="id45"></span><h3><span class="section-number">11.13.3. </span>控制棒组价值曲线可视化<a class="headerlink" href="#plot-control-rod-worths-curve" title="Permalink to this headline">¶</a></h3>
+<p>控制棒组价值曲线（微分价值）可视化通过 <span class="xref std std-ref">cli_plot_control_rod_worths_curve</span> 命令实现，该功能将
 <a class="reference internal" href="lppt.html#crwc-computation"><span class="std std-ref">控制棒组价值曲线计算</span></a> 的结果绘制成折线图或条形图。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题为例来进行控制棒组价值曲线可视化。</p>
 <p>执行以下交互式命令行：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths-curve<span class="w"> </span>--rod-bank<span class="w"> </span>D<span class="w"> </span>--worth-type<span class="w"> </span>IRW<span class="o">(</span>pcm<span class="o">)</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths-curve --rod-bank D --worth-type IRW<span class="o">(</span>pcm<span class="o">)</span>
 </pre></div>
 </div>
 <p>可绘制出 <code class="docutils literal notranslate"><span class="pre">D</span></code> 棒组的积分价值的曲线：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_control_rod_worths_curve_IRW.png"><img alt="../_images/plot_control_rod_worths_curve_IRW.png" src="../_images/plot_control_rod_worths_curve_IRW.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>将 <code class="docutils literal notranslate"><span class="pre">--worth-type</span></code> 选项设置为 <code class="docutils literal notranslate"><span class="pre">DRW(pcm)</span></code>：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths-curve<span class="w"> </span>--rod-bank<span class="w"> </span>D<span class="w"> </span>--worth-type<span class="w"> </span>DRW<span class="o">(</span>pcm<span class="o">)</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths-curve --rod-bank D --worth-type DRW<span class="o">(</span>pcm<span class="o">)</span>
 </pre></div>
 </div>
 <p>可绘制出 <code class="docutils literal notranslate"><span class="pre">D</span></code> 棒组的微分价值的条状图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_control_rod_worths_curve_DRW.png"><img alt="../_images/plot_control_rod_worths_curve_DRW.png" src="../_images/plot_control_rod_worths_curve_DRW.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>将 <code class="docutils literal notranslate"><span class="pre">--worth-type</span></code> 选项设置为 <code class="docutils literal notranslate"><span class="pre">DRW(pcm/cm)</span></code>：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths-curve<span class="w"> </span>--rod-bank<span class="w"> </span>D<span class="w"> </span>--worth-type<span class="w"> </span>DRW<span class="o">(</span>pcm/cm<span class="o">)</span>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths-curve --rod-bank D --worth-type DRW<span class="o">(</span>pcm/cm<span class="o">)</span>
 </pre></div>
 </div>
 <p>可绘制出 <code class="docutils literal notranslate"><span class="pre">D</span></code> 棒组的微分价值的曲线图，单位为 <code class="docutils literal notranslate"><span class="pre">pcm/cm</span></code>：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_control_rod_worths_curve_DRW_1.png"><img alt="../_images/plot_control_rod_worths_curve_DRW_1.png" src="../_images/plot_control_rod_worths_curve_DRW_1.png" style="width: 800px;" /></a>
-</figure>
-</section>
-</section>
-<section id="plot-timing-statistics">
-<span id="id46"></span><h2><span class="section-number">11.14. </span>分项耗时统计可视化<a class="headerlink" href="#plot-timing-statistics" title="Permalink to this heading">¶</a></h2>
-<p>分项耗时统计可视化通过 <a class="reference internal" href="../commands.html#cli-plot-timing-statistics"><span class="std std-ref">plot-timing-statistics</span></a> 命令实现，该功能以各个分项（或者模块）的计算耗时来绘制条状图或者饼图。</p>
+</div>
+</div>
+</div>
+<div class="section" id="plot-timing-statistics">
+<span id="id46"></span><h2><span class="section-number">11.14. </span>分项耗时统计可视化<a class="headerlink" href="#plot-timing-statistics" title="Permalink to this headline">¶</a></h2>
+<p>分项耗时统计可视化通过 <span class="xref std std-ref">cli_plot_timing_statistics</span> 命令实现，该功能以各个分项（或者模块）的计算耗时来绘制条状图或者饼图。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题为例来进行分项耗时统计可视化。</p>
 <p>执行以下交互式命令行：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-timing-statistics<span class="w"> </span>--plot-type<span class="w"> </span>bar
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-timing-statistics --plot-type bar
 </pre></div>
 </div>
 <p>可绘制出分项耗时统计的条状图：</p>
-<figure class="align-center">
+<div class="align-center figure">
 <a class="reference internal image-reference" href="../_images/plot_timing_statistics_bar.png"><img alt="../_images/plot_timing_statistics_bar.png" src="../_images/plot_timing_statistics_bar.png" style="width: 800px;" /></a>
-</figure>
+</div>
 <p>也可以通过 <code class="docutils literal notranslate"><span class="pre">--plot-type</span></code> 设置为 <code class="docutils literal notranslate"><span class="pre">pie</span></code>：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-timing-statistics<span class="w"> </span>--plot-type<span class="w"> </span>pie
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-timing-statistics --plot-type pie
 </pre></div>
 </div>
 <p>可绘制成饼图，方便查看各个分项耗时的占比：</p>
-<figure class="align-center">
+<div class="figure align-center">
 <img alt="../_images/plot_timing_statistics_pie.png" src="../_images/plot_timing_statistics_pie.png" />
-</figure>
+</div>
 <p>可见对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题，计算耗时占比最大的是热工水力反馈，占20%左右，第二是两维MOC模块，占比17%，
 第三是几何处理，占比10%。</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>

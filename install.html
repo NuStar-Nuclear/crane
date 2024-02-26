@@ -4,8 +4,7 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
-
+  
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>安装指引 &mdash; CRANE Documentation</title>
@@ -14,8 +13,6 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
 
   
@@ -36,13 +33,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/language_data.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -98,7 +95,7 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+              <p class="caption"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">安装指引</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#singularity">安装 Singularity</a></li>
@@ -182,14 +179,38 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="install">
-<span id="id1"></span><h1>安装指引<a class="headerlink" href="#install" title="Permalink to this heading">¶</a></h1>
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<div class="section" id="install">
+<span id="id1"></span><h1>安装指引<a class="headerlink" href="#install" title="Permalink to this headline">¶</a></h1>
 <p>这部分文档将指引你如何快速的”安装”CRANE。</p>
 <p>和很多在高性能计算(HPC)服务器上的应用类似，CRANE也采用了基于 <a class="reference external" href="https://docs.sylabs.io/guides/latest/user-guide/">Singularity</a> 的容器化部署方式，因此
 用户仅需要在服务器上安装配置好 <a class="reference external" href="https://docs.sylabs.io/guides/latest/user-guide/">Singularity</a> 即可，并不需要真正的安装CRANE及其所有依赖环境。另外，
 由于CRANE需要使用Nvidia的GPU，因此服务器上还需要安装好Nvidia的显卡驱动。</p>
-<section id="singularity">
-<h2>安装 <a class="reference external" href="https://docs.sylabs.io/guides/latest/user-guide/">Singularity</a><a class="headerlink" href="#singularity" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="singularity">
+<h2>安装 <a class="reference external" href="https://docs.sylabs.io/guides/latest/user-guide/">Singularity</a><a class="headerlink" href="#singularity" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference external" href="https://docs.sylabs.io/guides/latest/user-guide/">Singularity</a> 是一个用于在Linux操作系统上运行高度自定义的、可移植的、隔离的、可重复的计算环境的容器平台。
 它可以用于在超级计算机上运行高性能计算 (HPC) 应用程序，也可以用于在云计算环境和科学Gateways中部署可重
 复的计算环境。</p>
@@ -197,20 +218,20 @@
 如何安装CRANE所需的所有软件，而只需要学会Singularity基本的使用方式即可。其社区免费版SingularityCE
 的安装及使用说明可参考其
 <a class="reference external" href="https://docs.sylabs.io/guides/latest/user-guide/quick_start.html#quick-installation-steps">官方文档</a>。</p>
-</section>
-<section id="cuda-toolkit">
-<h2>安装 <a class="reference external" href="https://developer.nvidia.com/cuda-toolkit/">CUDA-Toolkit</a><a class="headerlink" href="#cuda-toolkit" title="Permalink to this heading">¶</a></h2>
+</div>
+<div class="section" id="cuda-toolkit">
+<h2>安装 <a class="reference external" href="https://developer.nvidia.com/cuda-toolkit/">CUDA-Toolkit</a><a class="headerlink" href="#cuda-toolkit" title="Permalink to this headline">¶</a></h2>
 <p>CRANE采用了容器化部署方式，因此理论上只需要安装好Nvidia显卡驱动即可在容器中调用Nvidia的GPU进行计算，但
 是我们还是建议安装 <a class="reference external" href="https://developer.nvidia.com/cuda-toolkit/">CUDA-Toolkit</a> 。因为它包含了一切CRANE运行需要的GPU加速动态链接库及GPU资源使用查看工具等。</p>
 <p><a class="reference external" href="https://developer.nvidia.com/cuda-toolkit/">CUDA-Toolkit</a> 可以从 <a class="reference external" href="https://developer.nvidia.com/cuda-downloads">NVIDIA官网</a> 下载安装。
 通常在Unbuntu20.04系统上安装CUDA-Toolkit-11.1包含以下几个步骤:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wget<span class="w"> </span>https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
-sudo<span class="w"> </span>mv<span class="w"> </span>cuda-ubuntu2004.pin<span class="w"> </span>/etc/apt/preferences.d/cuda-repository-pin-600
-wget<span class="w"> </span>https://developer.download.nvidia.com/compute/cuda/11.1.0/local_installers/cuda-repo-ubuntu2004-11-1-local_11.1.0-455.23.05-1_amd64.deb
-sudo<span class="w"> </span>dpkg<span class="w"> </span>-i<span class="w"> </span>cuda-repo-ubuntu2004-11-1-local_11.1.0-455.23.05-1_amd64.deb
-sudo<span class="w"> </span>apt-key<span class="w"> </span>add<span class="w"> </span>/var/cuda-repo-ubuntu2004-11-1-local/7fa2af80.pub
-sudo<span class="w"> </span>apt-get<span class="w"> </span>update
-sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>cuda
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2004/x86_64/cuda-ubuntu2004.pin
+sudo mv cuda-ubuntu2004.pin /etc/apt/preferences.d/cuda-repository-pin-600
+wget https://developer.download.nvidia.com/compute/cuda/11.1.0/local_installers/cuda-repo-ubuntu2004-11-1-local_11.1.0-455.23.05-1_amd64.deb
+sudo dpkg -i cuda-repo-ubuntu2004-11-1-local_11.1.0-455.23.05-1_amd64.deb
+sudo apt-key add /var/cuda-repo-ubuntu2004-11-1-local/7fa2af80.pub
+sudo apt-get update
+sudo apt-get -y install cuda
 </pre></div>
 </div>
 <div class="admonition note">
@@ -218,15 +239,15 @@ sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </
 <p>为了使CRANE都能够达到更高的计算效率，我们强烈推荐使用Nvidia的 <code class="docutils literal notranslate"><span class="pre">RTX</span> <span class="pre">4090</span></code> 显卡，而 <code class="docutils literal notranslate"><span class="pre">RTX</span> <span class="pre">4090</span></code> 显卡需要
 <a class="reference external" href="https://developer.nvidia.com/cuda-toolkit/">CUDA-Toolkit</a> 的版本号至少 <code class="docutils literal notranslate"><span class="pre">11.1</span></code> 及以上。</p>
 </div>
-</section>
-<section id="crane">
-<h2>尝试运行 CRANE<a class="headerlink" href="#crane" title="Permalink to this heading">¶</a></h2>
+</div>
+<div class="section" id="crane">
+<h2>尝试运行 CRANE<a class="headerlink" href="#crane" title="Permalink to this headline">¶</a></h2>
 <p>当完成 <a class="reference external" href="https://docs.sylabs.io/guides/latest/user-guide/">Singularity</a> 以及 <a class="reference external" href="https://developer.nvidia.com/cuda-toolkit/">CUDA-Toolkit</a> 的安装以后，便可尝试运行CRANE。</p>
 <p>如果是通过SSH远程登陆服务器来使用CRANE，我们强烈推荐在本地安装 <a class="reference external" href="https://mobaxterm.mobatek.net">MobaXterm</a> 的免费开源版，
 它提供了远程使用CRANE所有的网络工具包括SSH，X11，FTP等，SSH用来登陆服务器以运行CRANE命令行工具，
 X11可以进行CRANE的远程可视化，FTP又可以很方便的把CRANE的输入输出文件拷贝至本地进行编辑查看等操作。</p>
 <p>登陆服务器后，首先执行以下命令来进入CRANE容器：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>singularity<span class="w"> </span>--nv<span class="w"> </span>shell<span class="w"> </span>crane_&lt;version&gt;.sif
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>singularity --nv shell crane_&lt;version&gt;.sif
 </pre></div>
 </div>
 <div class="admonition note">
@@ -234,16 +255,16 @@ X11可以进行CRANE的远程可视化，FTP又可以很方便的把CRANE的输�
 <p>通常CRANE的镜像文件名会带有该CRANE的版本号，如crane_1.3.1.sif。</p>
 </div>
 <p>进入CRANE容器后，用户即可运行CRANE的命令行工具来使用CRANE了，如运行以下命令查看CRANE当前版本信息:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>--version
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane --version
 </pre></div>
 </div>
 <p>或者查看CRANE的命令行帮助信息:</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>--help
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane --help
 </pre></div>
 </div>
 <p>CRANE的所有与命令行相关的详细功能可查阅 <a class="reference internal" href="commands.html#commands"><span class="std std-ref">命令行</span></a>。</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
