@@ -24,22 +24,22 @@ CRANE除了支持堆芯物理计算外，还可以与热工分析程序 `EAGLE`_
 CRANE是基于第一性原理直接开展精细到燃料棒层面的三维堆芯计算，因此具有非常高的计算精度。
 从C5G7、VERA、BEAVRS、VVER-1000等系列国际基准题的验证结果来看，CRANE能够达到国际上同类一步法计算软件的先进水平。
 
-更值得一提的是，CRANE已经通过超过120堆年的商用压水堆实测数据的确认，涵盖
-CNP600、CNP650、M310、CNP1000、CNP1000+、VVER-1000、EPR 等多种堆型。总体计算精度显著优于传统两步法程序。
+更值得一提的是，CRANE已经通过超过140堆年的商用压水堆实测数据的确认，涵盖
+CNP300、CNP600、CNP650、M310、CNP1000、CNP1000+、VVER-1000、EPR 等各种堆型。总体计算精度显著优于传统两步法程序。
 
 .. figure:: _images/boron_letdown_errors.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-    Boron concentration error of 120 core years following simulations
+    Boron concentration error of 140 core years following simulations
 
 .. figure:: _images/detector_reactions.png
     :align: center
     :figclass: align-center
     :width: 800px
 
-    Detector activities error of 1131 flux maps at >50%FP in 120 core years which have detector data, CRANE vs. Design code
+    Detector activities error of 1346 flux maps at >50%FP of 113 core years which have detector data, CRANE vs. Design code
 
 除了具备非常高的计算精度以外，CRANE还有非常高效的计算效率以及低廉的使用成本。
 CRANE采用与人工智能框架相同的开发架构，通过CUDA/C++/Python混合编程，实现了所有计算模块基于Unified

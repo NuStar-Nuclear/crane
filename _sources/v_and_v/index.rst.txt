@@ -30,6 +30,7 @@
     :numbered:
     :maxdepth: 3
 
+    cnp300
     cnp650
     cnp1000
     vver1000
