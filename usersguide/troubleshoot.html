@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>13. 常见错误排查 &mdash; CRANE Documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -33,13 +36,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,7 +98,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">文档内容:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -200,32 +203,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="usersguide-troubleshoot">
-<span id="id1"></span><h1><span class="section-number">13. </span>常见错误排查<a class="headerlink" href="#usersguide-troubleshoot" title="Permalink to this headline">¶</a></h1>
+  <section id="usersguide-troubleshoot">
+<span id="id1"></span><h1><span class="section-number">13. </span>常见错误排查<a class="headerlink" href="#usersguide-troubleshoot" title="Permalink to this heading">¶</a></h1>
 <p>CRANE有一套非常完善的错误排查机制，该机制由外向内分为以下三层：</p>
 <ol class="arabic simple">
 <li><p>基于 <a class="reference external" href="https://pyyaml.org/wiki/PyYAMLDocumentation/">PyYAML</a> 库，直接排查 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 中的 <a class="reference external" href="https://yaml.org/">YAML</a> 格式错误；</p></li>
@@ -233,8 +212,8 @@
 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 中的输入内容规则错误；</p></li>
 <li><p>基于CRANE的C++错误处理模块，排查几何建模及计算过程中出现的运行时错误，如几何区域重叠错误等。</p></li>
 </ol>
-<div class="section" id="yaml">
-<span id="yaml-format-error"></span><h2><span class="section-number">13.1. </span><a class="reference external" href="https://yaml.org/">YAML</a> 格式错误<a class="headerlink" href="#yaml" title="Permalink to this headline">¶</a></h2>
+<section id="yaml">
+<span id="yaml-format-error"></span><h2><span class="section-number">13.1. </span><a class="reference external" href="https://yaml.org/">YAML</a> 格式错误<a class="headerlink" href="#yaml" title="Permalink to this heading">¶</a></h2>
 <p><a class="reference external" href="https://yaml.org/">YAML</a> 格式错误是由于在 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 中的内容不满足 <a class="reference external" href="https://yaml.org/">YAML</a> 格式要求，比较常见的问题有：</p>
 <ol class="arabic simple">
 <li><p>缩进错误： <a class="reference external" href="https://yaml.org/">YAML</a> 是通过缩进来表示层级关系的，因此在编写时需要确保正确的缩进。使用空格或者制表符缩进，
@@ -250,137 +229,137 @@
 <p>如果在专业的文本编辑工具上编辑 <a class="reference external" href="https://yaml.org/">YAML</a> 文件，许多格式错误本身就可以通过内容的颜色来区分，
 我们推荐使用 <a class="reference external" href="https://code.visualstudio.com/">VScode</a> 作为 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 的编辑器。</p>
 </div>
-<p>这里以缩进错误为示例，若我们在 <a class="reference internal" href="../examples/c5g7.html#c5g7-2d"><span class="std std-ref">C5G7_2D</span></a> 基准题中第一个材料的 <span class="xref std std-ref">sigma_tr</span> 输入时缩进没有对齐：</p>
+<p>这里以缩进错误为示例，若我们在 <a class="reference internal" href="../examples/c5g7.html#c5g7-2d"><span class="std std-ref">C5G7_2D</span></a> 基准题中第一个材料的 <a class="reference internal" href="../io_formats/input.html#sigma-tr"><span class="std std-ref">sigma_tr</span></a> 输入时缩进没有对齐：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">materials</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">UO2</span>                             
-      <span class="l l-Scalar l-Scalar-Plain">sigma_tr</span><span class="p p-Indicator">:</span> <span class="p p-Indicator">[</span><span class="nv">1.77949E-01</span><span class="p p-Indicator">,</span> <span class="nv">3.29805E-01</span><span class="p p-Indicator">,</span> <span class="nv">4.80388E-01</span><span class="p p-Indicator">,</span> <span class="nv">5.54367E-01</span><span class="p p-Indicator">,</span> <span class="nv">3.11801E-01</span><span class="p p-Indicator">,</span> <span class="nv">3.95168E-01</span><span class="p p-Indicator">,</span> <span class="nv">5.64406E-01</span><span class="p p-Indicator">,]</span>
-    <span class="nt">sigma_f</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">7.21206E-03</span><span class="p p-Indicator">,</span> <span class="nv">8.19301E-04</span><span class="p p-Indicator">,</span> <span class="nv">6.45320E-03</span><span class="p p-Indicator">,</span> <span class="nv">1.85648E-02</span><span class="p p-Indicator">,</span> <span class="nv">1.78084E-02</span><span class="p p-Indicator">,</span> <span class="nv">8.30348E-02</span><span class="p p-Indicator">,</span> <span class="nv">2.16004E-01</span><span class="p p-Indicator">,]</span>
-    <span class="nt">nu_sigma_f</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">2.00600E-02</span><span class="p p-Indicator">,</span> <span class="nv">2.02730E-03</span><span class="p p-Indicator">,</span> <span class="nv">1.57060E-02</span><span class="p p-Indicator">,</span> <span class="nv">4.51830E-02</span><span class="p p-Indicator">,</span> <span class="nv">4.33420E-02</span><span class="p p-Indicator">,</span> <span class="nv">2.02090E-01</span><span class="p p-Indicator">,</span> <span class="nv">5.25710E-01</span><span class="p p-Indicator">,]</span>
-    <span class="nt">kappa_sigma_f</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">7.21206E-03</span><span class="p p-Indicator">,</span> <span class="nv">8.19301E-04</span><span class="p p-Indicator">,</span> <span class="nv">6.45320E-03</span><span class="p p-Indicator">,</span> <span class="nv">1.85648E-02</span><span class="p p-Indicator">,</span> <span class="nv">1.78084E-02</span><span class="p p-Indicator">,</span> <span class="nv">8.30348E-02</span><span class="p p-Indicator">,</span> <span class="nv">2.16004E-01</span><span class="p p-Indicator">,]</span>
-    <span class="nt">chi</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">5.87910E-01</span><span class="p p-Indicator">,</span> <span class="nv">4.11760E-01</span><span class="p p-Indicator">,</span> <span class="nv">3.39060E-04</span><span class="p p-Indicator">,</span> <span class="nv">1.17610E-07</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,]</span>
-    <span class="nt">sigma_s</span><span class="p">:</span> <span class="p p-Indicator">[</span>
-      <span class="nv">1.27537E-01</span><span class="p p-Indicator">,</span> <span class="nv">4.23780E-02</span><span class="p p-Indicator">,</span> <span class="nv">9.43740E-06</span><span class="p p-Indicator">,</span> <span class="nv">5.51630E-09</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span>
-      <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">3.24456E-01</span><span class="p p-Indicator">,</span> <span class="nv">1.63140E-03</span><span class="p p-Indicator">,</span> <span class="nv">3.14270E-09</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span>
-      <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">4.50940E-01</span><span class="p p-Indicator">,</span> <span class="nv">2.67920E-03</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span>
-      <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">4.52565E-01</span><span class="p p-Indicator">,</span> <span class="nv">5.56640E-03</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span>
-      <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">1.25250E-04</span><span class="p p-Indicator">,</span> <span class="nv">2.71401E-01</span><span class="p p-Indicator">,</span> <span class="nv">1.02550E-02</span><span class="p p-Indicator">,</span> <span class="nv">1.00210E-08</span><span class="p p-Indicator">,</span>
-      <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">1.29680E-03</span><span class="p p-Indicator">,</span> <span class="nv">2.65802E-01</span><span class="p p-Indicator">,</span> <span class="nv">1.68090E-02</span><span class="p p-Indicator">,</span>
-      <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span> <span class="nv">8.54580E-03</span><span class="p p-Indicator">,</span> <span class="nv">2.73080E-01</span><span class="p p-Indicator">,</span>
-    <span class="p p-Indicator">]</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">UO2</span><span class="w">                             </span>
+<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">sigma_tr</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">1.77949E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.29805E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.80388E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5.54367E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.11801E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.95168E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5.64406E-01</span><span class="p p-Indicator">,]</span>
+<span class="w">    </span><span class="nt">sigma_f</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">7.21206E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">8.19301E-04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6.45320E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.85648E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.78084E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">8.30348E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.16004E-01</span><span class="p p-Indicator">,]</span>
+<span class="w">    </span><span class="nt">nu_sigma_f</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">2.00600E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.02730E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.57060E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.51830E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.33420E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.02090E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5.25710E-01</span><span class="p p-Indicator">,]</span>
+<span class="w">    </span><span class="nt">kappa_sigma_f</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">7.21206E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">8.19301E-04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">6.45320E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.85648E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.78084E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">8.30348E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.16004E-01</span><span class="p p-Indicator">,]</span>
+<span class="w">    </span><span class="nt">chi</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">5.87910E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.11760E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.39060E-04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.17610E-07</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,]</span>
+<span class="w">    </span><span class="nt">sigma_s</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">      </span><span class="nv">1.27537E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.23780E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">9.43740E-06</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5.51630E-09</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.24456E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.63140E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">3.14270E-09</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.50940E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.67920E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">4.52565E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">5.56640E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.25250E-04</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.71401E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.02550E-02</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.00210E-08</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.29680E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.65802E-01</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">1.68090E-02</span><span class="p p-Indicator">,</span>
+<span class="w">      </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.00000E+00</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">8.54580E-03</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">2.73080E-01</span><span class="p p-Indicator">,</span>
+<span class="w">    </span><span class="p p-Indicator">]</span>
 </pre></div>
 </div>
 <p>这时我们运行CRANE会出现以下错误：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/error_indent.png"><img alt="../_images/error_indent.png" src="../_images/error_indent.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p>错误的详细信息会在最后显示（图中白色背景部分），对于 <a class="reference external" href="https://yaml.org/">YAML</a> 格式错误，除了提示是什么错误，
 还会给出错误发生的位置，几行几列。</p>
-</div>
-<div class="section" id="input-schema-error">
-<span id="id2"></span><h2><span class="section-number">13.2. </span>输入内容规则错误<a class="headerlink" href="#input-schema-error" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="input-schema-error">
+<span id="id2"></span><h2><span class="section-number">13.2. </span>输入内容规则错误<a class="headerlink" href="#input-schema-error" title="Permalink to this heading">¶</a></h2>
 <p>输入内容规则错误是由于 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 中的内容不满足 <a class="reference internal" href="../io_formats/input_schema.html#io-file-formats-input-schema"><span class="std std-ref">用户输入规则配置文件</span></a>
 中定义的规则。</p>
-<p>比如 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a> 必须要包含 <span class="xref std std-ref">structure_primitives</span>，若不满足该规则程序就会报错。</p>
+<p>比如 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a> 必须要包含 <a class="reference internal" href="../io_formats/input.html#structure-primitives"><span class="std std-ref">primitives</span></a>，若不满足该规则程序就会报错。</p>
 <p>这里我们在 <a class="reference internal" href="../examples/vera.html#vera-2a"><span class="std std-ref">VERA_2A</span></a> 基准题中把 <code class="docutils literal notranslate"><span class="pre">primitives</span></code> 的 <code class="docutils literal notranslate"><span class="pre">p</span></code> 改成大写：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometries</span><span class="p">:</span>
-  <span class="nt">structures</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">F31</span>
-    <span class="nt">Primitives</span><span class="p">:</span>  <span class="c1"># primitives --&gt; Primitives</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.4096</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.4180</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.4750</span><span class="p p-Indicator">}</span>
-    <span class="nt">regions</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Fuel_31</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="s">&#39;1&#39;</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="nv">2-1</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="nv">3-2</span><span class="p p-Indicator">}</span>
-    <span class="nt">meshing</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span> <span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span> <span class="nv">0.3344</span><span class="p p-Indicator">,</span> <span class="nv">-0.4750</span><span class="p p-Indicator">,</span> <span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="nt">structures</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">F31</span>
+<span class="w">    </span><span class="nt">Primitives</span><span class="p">:</span><span class="w">  </span><span class="c1"># primitives --&gt; Primitives</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4096</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4180</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4750</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">regions</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Fuel_31</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1&#39;</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">3-2</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">meshing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3344</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.4750</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
 </pre></div>
 </div>
 <p>这时我们运行CRANE会出现以下错误：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/error_no_primitives.png"><img alt="../_images/error_no_primitives.png" src="../_images/error_no_primitives.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>除了给出是什么错误的信息外，还会以 <a class="reference external" href="https://apifox.com/help/reference/json-path">JSON Path</a>
 的形式给出错误发生的具体位置。如上图中错误信息中给出的是在根目录下的 <a class="reference internal" href="../io_formats/input.html#geometries"><span class="std std-ref">geometries 对象</span></a> 下的第1个（0是最开头）
-<a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a> 中缺少 <span class="xref std std-ref">structure_primitives</span>，因为我们把 <code class="docutils literal notranslate"><span class="pre">primitives</span></code> 改成了 <code class="docutils literal notranslate"><span class="pre">Primitives</span></code>。</p>
+<a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a> 中缺少 <a class="reference internal" href="../io_formats/input.html#structure-primitives"><span class="std std-ref">primitives</span></a>，因为我们把 <code class="docutils literal notranslate"><span class="pre">primitives</span></code> 改成了 <code class="docutils literal notranslate"><span class="pre">Primitives</span></code>。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p><a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 中所有的内容都是大小写相关的。</p>
 </div>
-</div>
-<div class="section" id="runtime-error">
-<span id="id3"></span><h2><span class="section-number">13.3. </span>运行时错误<a class="headerlink" href="#runtime-error" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="runtime-error">
+<span id="id3"></span><h2><span class="section-number">13.3. </span>运行时错误<a class="headerlink" href="#runtime-error" title="Permalink to this heading">¶</a></h2>
 <p>若 <a class="reference internal" href="#yaml-format-error"><span class="std std-ref">YAML 格式错误</span></a> 和 <a class="reference internal" href="#input-schema-error"><span class="std std-ref">输入内容规则错误</span></a> 都没有发生，才会进入到CRANE运行，如进行几何建模、
 输运计算等等。此时若再出现错误，则为运行时错误。</p>
-<div class="section" id="region-overlap-in-structure-error">
-<span id="id4"></span><h3><span class="section-number">13.3.1. </span>单个几何结构体内区域重叠错误<a class="headerlink" href="#region-overlap-in-structure-error" title="Permalink to this headline">¶</a></h3>
-<p>在定义 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a> 时，其材料区是通过 <span class="xref std std-ref">structure_regions</span> 来定义的，如果几个材料区之间存在区域重叠，
+<section id="region-overlap-in-structure-error">
+<span id="id4"></span><h3><span class="section-number">13.3.1. </span>单个几何结构体内区域重叠错误<a class="headerlink" href="#region-overlap-in-structure-error" title="Permalink to this heading">¶</a></h3>
+<p>在定义 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a> 时，其材料区是通过 <a class="reference internal" href="../io_formats/input.html#structure-regions"><span class="std std-ref">regions</span></a> 来定义的，如果几个材料区之间存在区域重叠，
 则会给出几何结构体内的区域重叠错误。</p>
 <p>如我们在 <a class="reference internal" href="../examples/vera.html#vera-2a"><span class="std std-ref">VERA_2A</span></a> 基准题中，将燃料棒定义两个重复的气隙区域 <code class="docutils literal notranslate"><span class="pre">2-1</span></code>：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometries</span><span class="p">:</span>
-  <span class="nt">structures</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">F31</span>
-    <span class="nt">primitives</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.4096</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.4180</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.4750</span><span class="p p-Indicator">}</span>
-    <span class="nt">regions</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Fuel_31</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="s">&#39;1&#39;</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="nv">2-1</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="nv">2-1</span><span class="p p-Indicator">}</span>  <span class="c1"># add another gap region</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="nv">3-2</span><span class="p p-Indicator">}</span>
-    <span class="nt">meshing</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span> <span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span> <span class="nv">0.3344</span><span class="p p-Indicator">,</span> <span class="nv">-0.4750</span><span class="p p-Indicator">,</span> <span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="nt">structures</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">F31</span>
+<span class="w">    </span><span class="nt">primitives</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4096</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4180</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4750</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">regions</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Fuel_31</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1&#39;</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># add another gap region</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">3-2</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">meshing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3344</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.4750</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
 </pre></div>
 </div>
 <p>这时我们运行CRANE会出现以下错误：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/error_region_overlap_in_structure.png"><img alt="../_images/error_region_overlap_in_structure.png" src="../_images/error_region_overlap_in_structure.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>该错误信息会给出哪个 <a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure 对象</span></a> 发生了区域重叠，重叠的是哪些区域。</p>
-</div>
-<div class="section" id="region-overlap-between-structure-error">
-<span id="id5"></span><h3><span class="section-number">13.3.2. </span>几何结构体之间区域重叠错误<a class="headerlink" href="#region-overlap-between-structure-error" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="region-overlap-between-structure-error">
+<span id="id5"></span><h3><span class="section-number">13.3.2. </span>几何结构体之间区域重叠错误<a class="headerlink" href="#region-overlap-between-structure-error" title="Permalink to this heading">¶</a></h3>
 <p>不同的几何结构体定义好了之后，CRANE会根据 <a class="reference internal" href="../io_formats/input.html#lattice"><span class="std std-ref">lattice 对象</span></a>、<a class="reference internal" href="../io_formats/input.html#grid"><span class="std std-ref">grid 对象</span></a> 等包含的布置图信息或者
 <a class="reference internal" href="../io_formats/input.html#structure-location"><span class="std std-ref">structure_location 对象</span></a> 来排布不同的几何结构体，如果这时发生不同几何结构体之间的区域重叠，也会报错。</p>
 <p>如我们在 <a class="reference internal" href="../examples/vera.html#vera-2a"><span class="std std-ref">VERA_2A</span></a> 基准题中，将中心测量管的外径由 <code class="docutils literal notranslate"><span class="pre">0.605</span></code> 改为 <code class="docutils literal notranslate"><span class="pre">0.905</span></code>：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">geometries</span><span class="p">:</span>
-  <span class="nt">structures</span><span class="p">:</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">F31</span>
-    <span class="nt">primitives</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.4096</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.4180</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.4750</span><span class="p p-Indicator">}</span>
-    <span class="nt">regions</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Fuel_31</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="s">&#39;1&#39;</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="nv">2-1</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="nv">3-1</span><span class="p p-Indicator">}</span>
-    <span class="nt">meshing</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span> <span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span> <span class="nv">0.3344</span><span class="p p-Indicator">,</span> <span class="nv">-0.4750</span><span class="p p-Indicator">,</span> <span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">GT</span>
-    <span class="nt">primitives</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.561</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.602</span><span class="p p-Indicator">}</span>
-    <span class="nt">regions</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="nv">2-1</span><span class="p p-Indicator">}</span>
-    <span class="nt">meshing</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span> <span class="nv">8</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0.3239</span><span class="p p-Indicator">,</span> <span class="nv">0.4581</span><span class="p p-Indicator">]}</span>
-  <span class="p p-Indicator">-</span> <span class="nt">name</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">IT</span>
-    <span class="nt">primitives</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.559</span><span class="p p-Indicator">}</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span> <span class="nv">0.905</span><span class="p p-Indicator">}</span>  <span class="c1"># 0.605 --&gt; 0.905</span>
-    <span class="nt">regions</span><span class="p">:</span>
-    <span class="p p-Indicator">-</span> <span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span> <span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span> <span class="nv">2-1</span><span class="p p-Indicator">}</span>
-    <span class="nt">meshing</span><span class="p">:</span> <span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span> <span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span> <span class="nv">8</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">0.3227</span><span class="p p-Indicator">,</span> <span class="nv">0.4564</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="nt">structures</span><span class="p">:</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">F31</span>
+<span class="w">    </span><span class="nt">primitives</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4096</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4180</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.4750</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">regions</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Fuel_31</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;1&#39;</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Helium</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">3-1</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">meshing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.2365</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.3344</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">-0.4750</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.5800</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GT</span>
+<span class="w">    </span><span class="nt">primitives</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.561</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.602</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">regions</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">meshing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="nv">8</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.3239</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.4581</span><span class="p p-Indicator">]}</span>
+<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">IT</span>
+<span class="w">    </span><span class="nt">primitives</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.559</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">CIRCLE</span><span class="p p-Indicator">,</span><span class="nt"> radius</span><span class="p">:</span><span class="w"> </span><span class="nv">0.905</span><span class="p p-Indicator">}</span><span class="w">  </span><span class="c1"># 0.605 --&gt; 0.905</span>
+<span class="w">    </span><span class="nt">regions</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">material</span><span class="p">:</span><span class="w"> </span><span class="nv">Zircaloy-4</span><span class="p p-Indicator">,</span><span class="nt"> space</span><span class="p">:</span><span class="w"> </span><span class="nv">2-1</span><span class="p p-Indicator">}</span>
+<span class="w">    </span><span class="nt">meshing</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">type</span><span class="p">:</span><span class="w"> </span><span class="nv">SECTORS</span><span class="p p-Indicator">,</span><span class="nt"> num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="nv">8</span><span class="p p-Indicator">,</span><span class="nt"> radii</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.3227</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.4564</span><span class="p p-Indicator">]}</span>
 </pre></div>
 </div>
 <p>这时我们运行CRANE会出现以下错误：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/error_region_overlap_between_structure.png"><img alt="../_images/error_region_overlap_between_structure.png" src="../_images/error_region_overlap_between_structure.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -388,38 +367,38 @@
 中的哪些区域，重叠区域的面积是多少，重叠发生在哪个组件。</p>
 <p>虽然错误信息非常详细，但是很多情况下由于结构体重复排列，出现结构体之间重叠区域会非常多，会报出大量的区域重叠错误。
 另外通过文字信息去寻找到底哪些位置出现了重叠确实比较费力。</p>
-<p>为此，CRANE提供了 <span class="xref std std-ref">crane_check_region_overlap</span> 命令，能够将结构体之间的区域重叠错误变为警告以防止程序中断，
+<p>为此，CRANE提供了 <a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">crane check-region-overlap</span></a> 命令，能够将结构体之间的区域重叠错误变为警告以防止程序中断，
 并在几何处理完毕后绘制出区域重叠的可视化图。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><span class="xref std std-ref">crane_check_region_overlap</span> 命令只支持结构体之间的区域重叠可视化，
+<p><a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">crane check-region-overlap</span></a> 命令只支持结构体之间的区域重叠可视化，
 并不支持单个结构体内部的区域重叠可视化。</p>
 </div>
 <p>如对以上 <a class="reference internal" href="../examples/vera.html#vera-2a"><span class="std std-ref">VERA_2A</span></a> 问题执行：</p>
-<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane check-region-overlap VERA_2A.yaml
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>check-region-overlap<span class="w"> </span>VERA_2A.yaml
 </pre></div>
 </div>
 <p>在几何处理过程中会出现以下警告信息：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/warn_region_overlap_between_structure.png"><img alt="../_images/warn_region_overlap_between_structure.png" src="../_images/warn_region_overlap_between_structure.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>运行结束后绘制出区域重叠的可视化图：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/region_overlap_between_structure.png"><img alt="../_images/region_overlap_between_structure.png" src="../_images/region_overlap_between_structure.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p>该图只会对区域重叠的材料区进行颜色渲染，以方便用户迅速定位区域重叠位置。
 由图可见中心测量管与周围的燃料棒结构体发生了区域重叠。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>对于三维问题，<span class="xref std std-ref">crane_check_region_overlap</span> 命令会从底到顶逐层产生区域重叠可视化图，
+<p>对于三维问题，<a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">crane check-region-overlap</span></a> 命令会从底到顶逐层产生区域重叠可视化图，
 中间取消可按 <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code>。</p>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>

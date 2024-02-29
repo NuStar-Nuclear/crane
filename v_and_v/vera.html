@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>3. VERA &mdash; CRANE Documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -33,13 +36,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,7 +98,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">文档内容:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -193,50 +196,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="vera">
-<span id="v-and-v-vera"></span><h1><span class="section-number">3. </span>VERA<a class="headerlink" href="#vera" title="Permalink to this headline">¶</a></h1>
+  <section id="vera">
+<span id="v-and-v-vera"></span><h1><span class="section-number">3. </span>VERA<a class="headerlink" href="#vera" title="Permalink to this heading">¶</a></h1>
 <p>VERA系列基准问题计算条件如下：</p>
 <ol class="arabic simple">
 <li><p>CRANE用户输入文件与 <a class="reference internal" href="../examples/vera.html#examples-vera"><span class="std std-ref">VERA</span></a> 基准题示例中一致；</p></li>
 <li><p>CRANE版本号 <code class="docutils literal notranslate"><span class="pre">1.3.3</span></code>；</p></li>
 </ol>
-<div class="section" id="vera-1">
-<span id="vv-vera-1"></span><h2><span class="section-number">3.1. </span>VERA_1<a class="headerlink" href="#vera-1" title="Permalink to this headline">¶</a></h2>
+<section id="vera-1">
+<span id="vv-vera-1"></span><h2><span class="section-number">3.1. </span>VERA_1<a class="headerlink" href="#vera-1" title="Permalink to this heading">¶</a></h2>
 <p>VERA_1系列基准题包含1A-1E总共5个不同类型的两维单栅元问题，主要考察程序对于典型压水堆栅元反应性的计算精度。</p>
 <p>该系列基准问题 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 见 <a class="reference internal" href="../examples/vera.html#vera-1a"><span class="std std-ref">VERA_1A</span></a> 至 <a class="reference internal" href="../examples/vera.html#vera-1e"><span class="std std-ref">VERA_1E</span></a>。参考解取至
 <a class="reference internal" href="#id1">参考文献</a> [1]，由蒙卡程序KENO-VI计算获得。</p>
 <p>CRANE与KENO-VI的 <strong>keff</strong> 比较如下表：</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 30%" />
-<col style="width: 26%" />
-<col style="width: 27%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Problem</p></th>
 <th class="head"><p>KENO-VI</p></th>
@@ -272,20 +245,14 @@
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="vera-2">
-<span id="vv-vera-2"></span><h2><span class="section-number">3.2. </span>VERA_2<a class="headerlink" href="#vera-2" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="vera-2">
+<span id="vv-vera-2"></span><h2><span class="section-number">3.2. </span>VERA_2<a class="headerlink" href="#vera-2" title="Permalink to this heading">¶</a></h2>
 <p>VERA_2系列基准题包含2A-2Q总共17个不同类型的两维单组件问题，主要考察程序对于典型压水堆组件反应性和棒功率分布的计算精度。</p>
 <p>该系列基准问题 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 见 <a class="reference internal" href="../examples/vera.html#vera-2a"><span class="std std-ref">VERA_2A</span></a> 至 <a class="reference internal" href="../examples/vera.html#vera-2q"><span class="std std-ref">VERA_2Q</span></a>。参考解取至
 <a class="reference internal" href="#id1">参考文献</a> [1]，由蒙卡程序KENO-VI计算获得。</p>
 <p>CRANE与KENO-VI的 <strong>keff</strong> 比较如下表：</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 30%" />
-<col style="width: 26%" />
-<col style="width: 27%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Problem</p></th>
 <th class="head"><p>KENO-VI</p></th>
@@ -382,133 +349,125 @@
 </tbody>
 </table>
 <p><a class="reference internal" href="../examples/vera.html#vera-2a"><span class="std std-ref">VERA_2A</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2A.png"><img alt="../_images/vv_VERA_2A.png" src="../_images/vv_VERA_2A.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2b"><span class="std std-ref">VERA_2B</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2B.png"><img alt="../_images/vv_VERA_2B.png" src="../_images/vv_VERA_2B.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2c"><span class="std std-ref">VERA_2C</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2C.png"><img alt="../_images/vv_VERA_2C.png" src="../_images/vv_VERA_2C.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2d"><span class="std std-ref">VERA_2D</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2D.png"><img alt="../_images/vv_VERA_2D.png" src="../_images/vv_VERA_2D.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2e"><span class="std std-ref">VERA_2E</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2E.png"><img alt="../_images/vv_VERA_2E.png" src="../_images/vv_VERA_2E.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2f"><span class="std std-ref">VERA_2F</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2F.png"><img alt="../_images/vv_VERA_2F.png" src="../_images/vv_VERA_2F.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2g"><span class="std std-ref">VERA_2G</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2G.png"><img alt="../_images/vv_VERA_2G.png" src="../_images/vv_VERA_2G.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2h"><span class="std std-ref">VERA_2H</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2H.png"><img alt="../_images/vv_VERA_2H.png" src="../_images/vv_VERA_2H.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2i"><span class="std std-ref">VERA_2I</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2I.png"><img alt="../_images/vv_VERA_2I.png" src="../_images/vv_VERA_2I.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2j"><span class="std std-ref">VERA_2J</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2J.png"><img alt="../_images/vv_VERA_2J.png" src="../_images/vv_VERA_2J.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2k"><span class="std std-ref">VERA_2K</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2K.png"><img alt="../_images/vv_VERA_2K.png" src="../_images/vv_VERA_2K.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2l"><span class="std std-ref">VERA_2L</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2L.png"><img alt="../_images/vv_VERA_2L.png" src="../_images/vv_VERA_2L.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2m"><span class="std std-ref">VERA_2M</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2M.png"><img alt="../_images/vv_VERA_2M.png" src="../_images/vv_VERA_2M.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2n"><span class="std std-ref">VERA_2N</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2N.png"><img alt="../_images/vv_VERA_2N.png" src="../_images/vv_VERA_2N.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2o"><span class="std std-ref">VERA_2O</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2O.png"><img alt="../_images/vv_VERA_2O.png" src="../_images/vv_VERA_2O.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2p"><span class="std std-ref">VERA_2P</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2P.png"><img alt="../_images/vv_VERA_2P.png" src="../_images/vv_VERA_2P.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p><a class="reference internal" href="../examples/vera.html#vera-2q"><span class="std std-ref">VERA_2Q</span></a> 问题CRANE与KENO-VI的棒功率分布比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_2Q.png"><img alt="../_images/vv_VERA_2Q.png" src="../_images/vv_VERA_2Q.png" style="width: 800px;" /></a>
-</div>
-</div>
-<div class="section" id="vera-3">
-<span id="vv-vera-3"></span><h2><span class="section-number">3.3. </span>VERA_3<a class="headerlink" href="#vera-3" title="Permalink to this headline">¶</a></h2>
+</figure>
+</section>
+<section id="vera-3">
+<span id="vv-vera-3"></span><h2><span class="section-number">3.3. </span>VERA_3<a class="headerlink" href="#vera-3" title="Permalink to this heading">¶</a></h2>
 <p>VERA_3系列基准题包含3A、3B两个三维单组件问题，两个问题最大的差别是有无Pyrex可燃毒物棒，
 主要考察程序对于典型压水堆组件反应性、棒功率分布和轴向功率分布的计算精度。</p>
 <p>该系列基准问题 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 见 <a class="reference internal" href="../examples/vera.html#vera-3a"><span class="std std-ref">VERA_3A</span></a>、<a class="reference internal" href="../examples/vera.html#vera-3b"><span class="std std-ref">VERA_3B</span></a>。参考解取至
 <a class="reference internal" href="#id1">参考文献</a> [1]，由蒙卡程序KENO-VI计算获得。</p>
-<div class="section" id="vera-3a">
-<h3><span class="section-number">3.3.1. </span>VERA_3A<a class="headerlink" href="#vera-3a" title="Permalink to this headline">¶</a></h3>
+<section id="vera-3a">
+<h3><span class="section-number">3.3.1. </span>VERA_3A<a class="headerlink" href="#vera-3a" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference internal" href="../examples/vera.html#vera-3a"><span class="std std-ref">VERA_3A</span></a> 问题CRANE与KENO-VI计算结果的比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_3A_summary.png"><img alt="../_images/vv_VERA_3A_summary.png" src="../_images/vv_VERA_3A_summary.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>其中棒功率分布偏差如下图：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_3A_pin_power.png"><img alt="../_images/vv_VERA_3A_pin_power.png" src="../_images/vv_VERA_3A_pin_power.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p>其中轴向功率分布偏差如下图：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_3A_axial_power.png"><img alt="../_images/vv_VERA_3A_axial_power.png" src="../_images/vv_VERA_3A_axial_power.png" style="width: 800px;" /></a>
-</div>
-</div>
-<div class="section" id="vera-3b">
-<h3><span class="section-number">3.3.2. </span>VERA_3B<a class="headerlink" href="#vera-3b" title="Permalink to this headline">¶</a></h3>
+</figure>
+</section>
+<section id="vera-3b">
+<h3><span class="section-number">3.3.2. </span>VERA_3B<a class="headerlink" href="#vera-3b" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference internal" href="../examples/vera.html#vera-3b"><span class="std std-ref">VERA_3B</span></a> 问题CRANE与KENO-VI计算结果的比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_3B_summary.png"><img alt="../_images/vv_VERA_3B_summary.png" src="../_images/vv_VERA_3B_summary.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>其中棒功率分布偏差如下图：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_3B_pin_power.png"><img alt="../_images/vv_VERA_3B_pin_power.png" src="../_images/vv_VERA_3B_pin_power.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p>其中轴向功率分布偏差如下图：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_3B_axial_power.png"><img alt="../_images/vv_VERA_3B_axial_power.png" src="../_images/vv_VERA_3B_axial_power.png" style="width: 800px;" /></a>
-</div>
-</div>
-</div>
-<div class="section" id="vera-4">
-<span id="vv-vera-4"></span><h2><span class="section-number">3.4. </span>VERA_4<a class="headerlink" href="#vera-4" title="Permalink to this headline">¶</a></h2>
+</figure>
+</section>
+</section>
+<section id="vera-4">
+<span id="vv-vera-4"></span><h2><span class="section-number">3.4. </span>VERA_4<a class="headerlink" href="#vera-4" title="Permalink to this heading">¶</a></h2>
 <p>VERA_4系列基准题是三维3x3组件问题，可燃毒物棒组件交替布置，中心组件插有控制棒，需要计算控制棒的微分价值曲线。
 主要考察程序对于不同棒位情况下组件反应性、组件功率分布和轴向功率分布的计算精度。</p>
 <p>该系列基准问题 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 见 <a class="reference internal" href="../examples/vera.html#vera-4"><span class="std std-ref">VERA_4</span></a>。参考解取至
 <a class="reference internal" href="#id1">参考文献</a> [1]，由蒙卡程序KENO-VI计算获得。</p>
 <p>CRANE的计算结果如下表：</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 18%" />
-<col style="width: 14%" />
-<col style="width: 17%" />
-<col style="width: 14%" />
-<col style="width: 14%" />
-<col style="width: 23%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Rod Position</p></th>
 <th class="head"><p>Withdrawn</p></th>
@@ -607,14 +566,6 @@
 </table>
 <p>CRANE与KENO-VI的计算结果偏差如下表：</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 13%" />
-<col style="width: 23%" />
-<col style="width: 13%" />
-<col style="width: 13%" />
-<col style="width: 21%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Rod Position</p></th>
 <th class="head"><p>Withdrawn</p></th>
@@ -712,93 +663,79 @@
 </tbody>
 </table>
 <p>CRANE与KENO-VI的棒积分价值曲线比较：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_4_IRW.png"><img alt="../_images/vv_VERA_4_IRW.png" src="../_images/vv_VERA_4_IRW.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p>CRANE与KENO-VI的棒微分价值比较：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_4_DRW.png"><img alt="../_images/vv_VERA_4_DRW.png" src="../_images/vv_VERA_4_DRW.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p>棒位 <strong>257.9cm</strong> 状态点下CRANE与KENO-VI的组件功率分布偏差如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_4_assembly_power.png"><img alt="../_images/vv_VERA_4_assembly_power.png" src="../_images/vv_VERA_4_assembly_power.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p>棒位 <strong>257.9cm</strong> 状态点下CRANE与KENO-VI的轴向功率分布偏差如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_4_axial_power.png"><img alt="../_images/vv_VERA_4_axial_power.png" src="../_images/vv_VERA_4_axial_power.png" style="width: 800px;" /></a>
-</div>
-</div>
-<div class="section" id="vera-5-2d">
-<span id="vv-vera-5-2d"></span><h2><span class="section-number">3.5. </span>VERA_5_2D<a class="headerlink" href="#vera-5-2d" title="Permalink to this headline">¶</a></h2>
+</figure>
+</section>
+<section id="vera-5-2d">
+<span id="vv-vera-5-2d"></span><h2><span class="section-number">3.5. </span>VERA_5_2D<a class="headerlink" href="#vera-5-2d" title="Permalink to this heading">¶</a></h2>
 <p>VERA_5_2D系列基准题是两维堆芯问题，是WBN1机组热态零功率的两维问题，该堆芯可燃毒物组件交替布置，有插棒和不插棒等不同情况。
 主要考察程序对于带有反射层的真实堆芯两维问题反应性、组件功率分布的计算精度。</p>
 <p>该系列基准问题 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 见 <a class="reference internal" href="../examples/vera.html#vera-5a-2d"><span class="std std-ref">VERA_5A_2D</span></a>、<a class="reference internal" href="../examples/vera.html#vera-5b-2d"><span class="std std-ref">VERA_5B_2D</span></a>、<a class="reference internal" href="../examples/vera.html#vera-5c-2d"><span class="std std-ref">VERA_5C_2D</span></a>。参考解取至
 <a class="reference internal" href="#id1">参考文献</a> [1]，由蒙卡程序KENO-VI计算获得。</p>
-<div class="section" id="vera-5a-2d">
-<h3><span class="section-number">3.5.1. </span>VERA_5A_2D<a class="headerlink" href="#vera-5a-2d" title="Permalink to this headline">¶</a></h3>
+<section id="vera-5a-2d">
+<h3><span class="section-number">3.5.1. </span>VERA_5A_2D<a class="headerlink" href="#vera-5a-2d" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference internal" href="../examples/vera.html#vera-5a-2d"><span class="std std-ref">VERA_5A_2D</span></a> 问题CRANE与KENO-VI计算结果的比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_5A_2D_summary.png"><img alt="../_images/vv_VERA_5A_2D_summary.png" src="../_images/vv_VERA_5A_2D_summary.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>其中组件功率分布偏差如下图：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_5A_2D_assembly_power.png"><img alt="../_images/vv_VERA_5A_2D_assembly_power.png" src="../_images/vv_VERA_5A_2D_assembly_power.png" style="width: 800px;" /></a>
-</div>
-</div>
-<div class="section" id="vera-5b-2d">
-<h3><span class="section-number">3.5.2. </span>VERA_5B_2D<a class="headerlink" href="#vera-5b-2d" title="Permalink to this headline">¶</a></h3>
+</figure>
+</section>
+<section id="vera-5b-2d">
+<h3><span class="section-number">3.5.2. </span>VERA_5B_2D<a class="headerlink" href="#vera-5b-2d" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference internal" href="../examples/vera.html#vera-5b-2d"><span class="std std-ref">VERA_5B_2D</span></a> 问题CRANE与KENO-VI计算结果的比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_5B_2D_summary.png"><img alt="../_images/vv_VERA_5B_2D_summary.png" src="../_images/vv_VERA_5B_2D_summary.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>其中组件功率分布偏差如下图：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_5B_2D_assembly_power.png"><img alt="../_images/vv_VERA_5B_2D_assembly_power.png" src="../_images/vv_VERA_5B_2D_assembly_power.png" style="width: 800px;" /></a>
-</div>
-</div>
-<div class="section" id="vera-5c-2d">
-<h3><span class="section-number">3.5.3. </span>VERA_5C_2D<a class="headerlink" href="#vera-5c-2d" title="Permalink to this headline">¶</a></h3>
+</figure>
+</section>
+<section id="vera-5c-2d">
+<h3><span class="section-number">3.5.3. </span>VERA_5C_2D<a class="headerlink" href="#vera-5c-2d" title="Permalink to this heading">¶</a></h3>
 <p><a class="reference internal" href="../examples/vera.html#vera-5c-2d"><span class="std std-ref">VERA_5C_2D</span></a> 问题CRANE与KENO-VI计算结果的比较如下：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_5C_2D_summary.png"><img alt="../_images/vv_VERA_5C_2D_summary.png" src="../_images/vv_VERA_5C_2D_summary.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
 <p>其中组件功率分布偏差如下图：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_5C_2D_assembly_power.png"><img alt="../_images/vv_VERA_5C_2D_assembly_power.png" src="../_images/vv_VERA_5C_2D_assembly_power.png" style="width: 800px;" /></a>
-</div>
-</div>
-</div>
-<div class="section" id="vera-5">
-<span id="vv-vera-5"></span><h2><span class="section-number">3.6. </span>VERA_5<a class="headerlink" href="#vera-5" title="Permalink to this headline">¶</a></h2>
+</figure>
+</section>
+</section>
+<section id="vera-5">
+<span id="vv-vera-5"></span><h2><span class="section-number">3.6. </span>VERA_5<a class="headerlink" href="#vera-5" title="Permalink to this heading">¶</a></h2>
 <p>VERA_5系列基准题是WBN1机组热态零功率启动物理试验问题，需要计算临界状态反应性、控制棒组积分价值、D棒组微分价值、
 温度系数、硼微分价值等。主要考察程序对于真实堆芯热态零功率启动物理试验的计算精度。</p>
 <p>该系列基准问题 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a> 见 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a>。参考解取至
 <a class="reference internal" href="#id1">参考文献</a> [1]，除了蒙卡程序KENO-VI的计算值，也有测量值。</p>
 <p>CRANE计算的每个状态点的 k-effective 如下表：</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 7%" />
-<col style="width: 16%" />
-<col style="width: 12%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 6%" />
-<col style="width: 16%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Case</p></th>
 <th class="head"><p>Boron (ppm)</p></th>
@@ -1900,20 +1837,11 @@
 </tbody>
 </table>
 <p>CRANE与KENO-VI计算的临界物理实验反应性与测量值的偏差：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_5_criticals.png"><img alt="../_images/vv_VERA_5_criticals.png" src="../_images/vv_VERA_5_criticals.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p>CRANE计算的控制棒组价值、温度系数、硼微分价值与测量值、KENO-VI的比较如下表：</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 16%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 9%" />
-<col style="width: 20%" />
-<col style="width: 18%" />
-<col style="width: 18%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"></th>
 <th class="head"><p>MEASURE</p></th>
@@ -2024,17 +1952,17 @@
 </tbody>
 </table>
 <p>CRANE与KENO-VI计算的D棒组微分价值偏差：</p>
-<div class="align-center figure">
+<figure class="align-center">
 <a class="reference internal image-reference" href="../_images/vv_VERA_5_DRW.png"><img alt="../_images/vv_VERA_5_DRW.png" src="../_images/vv_VERA_5_DRW.png" style="width: 800px;" /></a>
-</div>
+</figure>
 <p id="id1">参考文献:</p>
 <ol class="arabic simple">
 <li><p>Godfrey, A.T., 2014. VERA core physics benchmark progression problem
 specifications. Oak Ridge National Laboratory, Oak Ridge, TN, Report No.
 CASL-U-2012-0131-004. <a class="reference external" href="https://www.casl.gov/sites/default/files/docs/CASL-U-2012-0131-004.pdf">https://www.casl.gov/sites/default/files/docs/CASL-U-2012-0131-004.pdf</a>.</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>7. 再启动文件 &mdash; CRANE Documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -33,13 +36,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,7 +98,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">文档内容:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -193,65 +196,41 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="io-file-formats-restart">
-<span id="id1"></span><h1><span class="section-number">7. </span>再启动文件<a class="headerlink" href="#io-file-formats-restart" title="Permalink to this headline">¶</a></h1>
+  <section id="io-file-formats-restart">
+<span id="id1"></span><h1><span class="section-number">7. </span>再启动文件<a class="headerlink" href="#io-file-formats-restart" title="Permalink to this heading">¶</a></h1>
 <p>再启动文件也是 <a class="reference external" href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a> 格式的，该文件用于多循环计算，
 包含了某燃耗点下所有的核素成分数据、组件历史数据以及燃料性能历史信息等。</p>
 <p>与HDF5结果文件一样，除包含以上数据外，还保存了用户输入文件数据、程序的版本号以及数据库版本号等信息。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>多循环计算时默认会在最后一个燃耗点下保存再启动文件，文件名为堆芯名称 <span class="xref std std-ref">core_name</span> +
+<p>多循环计算时默认会在最后一个燃耗点下保存再启动文件，文件名为堆芯名称 <a class="reference internal" href="input.html#core-name"><span class="std std-ref">name</span></a> +
 <code class="docutils literal notranslate"><span class="pre">restart.h5</span></code>，如 <a class="reference internal" href="../examples/beavrs.html#beavrs-c1"><span class="std std-ref">BEAVRS_C1</span></a> 问题的再启动文件默认为 <code class="docutils literal notranslate"><span class="pre">BEAVRS_C1.restart.h5</span></code>，
 若用户在非最后一个点保存再启动文件，则文件名会以 <code class="docutils literal notranslate"><span class="pre">restart&lt;state_index&gt;.h5</span></code> 结尾。</p>
 </div>
 <p>以下基于每个 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 来介绍每个部分的数据内容：</p>
-<div class="section" id="fuel-assembly-nuclide-number-densities-plane-i">
-<span id="fuel-assembly-nuclide-number-densities-plane"></span><h2><span class="section-number">7.1. </span>/fuel_assembly_nuclide_number_densities/plane&lt;i&gt;/<a class="headerlink" href="#fuel-assembly-nuclide-number-densities-plane-i" title="Permalink to this headline">¶</a></h2>
+<section id="fuel-assembly-nuclide-number-densities-plane-i">
+<span id="fuel-assembly-nuclide-number-densities-plane"></span><h2><span class="section-number">7.1. </span>/fuel_assembly_nuclide_number_densities/plane&lt;i&gt;/<a class="headerlink" href="#fuel-assembly-nuclide-number-densities-plane-i" title="Permalink to this heading">¶</a></h2>
 <p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a>：</p>
 <blockquote>
 <div><dl class="field-list simple" id="restart-cell-burnup">
-<dt class="field-odd">cell_burnup</dt>
+<dt class="field-odd">cell_burnup<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float[栅元数]，该层所有栅元的燃耗深度，栅元顺序见 <span class="xref std std-ref">cell_index</span>。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-cell-index">
-<dt class="field-odd">cell_index</dt>
+<dt class="field-odd">cell_index<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int[燃料栅元数]，该层所有燃料栅元的索引编号。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-region-index">
-<dt class="field-odd">region_index</dt>
+<dt class="field-odd">region_index<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int[燃料栅元数]，该层所有燃料栅元区的索引编号。</p>
 </dd>
 </dl>
 </div></blockquote>
-</div>
-<div class="section" id="fuel-assembly-nuclide-number-densities-plane-i-number-densities">
-<span id="fuel-assembly-nuclide-number-densities-plane-nud"></span><h2><span class="section-number">7.2. </span>/fuel_assembly_nuclide_number_densities/plane&lt;i&gt;/number_densities/<a class="headerlink" href="#fuel-assembly-nuclide-number-densities-plane-i-number-densities" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="fuel-assembly-nuclide-number-densities-plane-i-number-densities">
+<span id="fuel-assembly-nuclide-number-densities-plane-nud"></span><h2><span class="section-number">7.2. </span>/fuel_assembly_nuclide_number_densities/plane&lt;i&gt;/number_densities/<a class="headerlink" href="#fuel-assembly-nuclide-number-densities-plane-i-number-densities" title="Permalink to this heading">¶</a></h2>
 <p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a>：</p>
 <blockquote>
 <div><div class="admonition note">
@@ -259,39 +238,39 @@
 <p>这里采用了Compressed Sparse Row（CSR）格式保存了该层的核素核子密度矩阵。</p>
 </div>
 <dl class="field-list simple" id="restart-column-indices">
-<dt class="field-odd">column_indices</dt>
+<dt class="field-odd">column_indices<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int[核子密度矩阵非零值数]，CSR格式的核子密度矩阵中非零值的列编号。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-row-offsets">
-<dt class="field-odd">row_offsets</dt>
+<dt class="field-odd">row_offsets<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int[核子密度矩阵的行数]，CSR格式的核子密度矩阵的行偏移号。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-values">
-<dt class="field-odd">values</dt>
+<dt class="field-odd">values<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float[核子密度矩阵非零值数]，CSR格式的核子密度矩阵的非零值。</p>
 </dd>
 </dl>
 </div></blockquote>
-</div>
-<div class="section" id="fuel-assembly-nuclide-number-densities">
-<span id="id2"></span><h2><span class="section-number">7.3. </span>/fuel_assembly_nuclide_number_densities/<a class="headerlink" href="#fuel-assembly-nuclide-number-densities" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="fuel-assembly-nuclide-number-densities">
+<span id="id2"></span><h2><span class="section-number">7.3. </span>/fuel_assembly_nuclide_number_densities/<a class="headerlink" href="#fuel-assembly-nuclide-number-densities" title="Permalink to this heading">¶</a></h2>
 <p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a>：</p>
 <blockquote>
 <div><dl class="field-list simple" id="restart-plane-thickness">
-<dt class="field-odd">plane_thickness</dt>
+<dt class="field-odd">plane_thickness<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float[活性区层数]，活性区从底到顶每层的厚度，单位 cm。</p>
 </dd>
 </dl>
 </div></blockquote>
-</div>
-<div class="section" id="full-core-assembly-cell-index">
-<span id="id3"></span><h2><span class="section-number">7.4. </span>/full_core_assembly_cell_index/<a class="headerlink" href="#full-core-assembly-cell-index" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="full-core-assembly-cell-index">
+<span id="id3"></span><h2><span class="section-number">7.4. </span>/full_core_assembly_cell_index/<a class="headerlink" href="#full-core-assembly-cell-index" title="Permalink to this heading">¶</a></h2>
 <p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a>：</p>
 <blockquote>
 <div><dl class="field-list" id="restart-assembly-index">
-<dt class="field-odd">&lt;assembly_index&gt;</dt>
+<dt class="field-odd">&lt;assembly_index&gt;<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int[该组件的栅元数]，该组件栅元在全堆芯栅元中的索引编号。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -301,75 +280,75 @@
 </dd>
 </dl>
 </div></blockquote>
-</div>
-<div class="section" id="full-core-assembly-history-assembly-index">
-<span id="id4"></span><h2><span class="section-number">7.5. </span>/full_core_assembly_history/&lt;assembly_index&gt;/<a class="headerlink" href="#full-core-assembly-history-assembly-index" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="full-core-assembly-history-assembly-index">
+<span id="id4"></span><h2><span class="section-number">7.5. </span>/full_core_assembly_history/&lt;assembly_index&gt;/<a class="headerlink" href="#full-core-assembly-history-assembly-index" title="Permalink to this heading">¶</a></h2>
 <p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a>：</p>
 <blockquote>
 <div><dl class="field-list simple" id="restart-assembly-name">
-<dt class="field-odd">assembly_name</dt>
+<dt class="field-odd">assembly_name<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string，组件名称。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-cycles">
-<dt class="field-odd">cycles</dt>
+<dt class="field-odd">cycles<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int[组件燃耗过的循环数]，组件燃耗过哪些循环。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-delta-burnups">
-<dt class="field-odd">delta_burnups</dt>
+<dt class="field-odd">delta_burnups<span class="colon">:</span></dt>
 <dd class="field-odd"><p>double[组件燃耗过的循环数]，组件在每个循环下增加的燃耗深度。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-delta-times">
-<dt class="field-odd">delta_times</dt>
+<dt class="field-odd">delta_times<span class="colon">:</span></dt>
 <dd class="field-odd"><p>double[组件燃耗过的循环数]，组件在每个循环下增加的燃耗时间。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-locations">
-<dt class="field-odd">locations</dt>
+<dt class="field-odd">locations<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string，组件在每个循环下所在的位置。</p>
 </dd>
 </dl>
 </div></blockquote>
-</div>
-<div class="section" id="summary">
-<span id="id5"></span><h2><span class="section-number">7.6. </span>/summary/<a class="headerlink" href="#summary" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="summary">
+<span id="id5"></span><h2><span class="section-number">7.6. </span>/summary/<a class="headerlink" href="#summary" title="Permalink to this heading">¶</a></h2>
 <p>该 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_group">HDF5 group</a> 包含以下 <a class="reference external" href="https://docs.hdfgroup.org/hdf5/v1_14/_h5_d_m__u_g.html#subsubsec_data_model_abstract_dataset">HDF5 dataset</a>：</p>
 <blockquote>
 <div><dl class="field-list simple" id="restart-compile-info">
-<dt class="field-odd">compile_info</dt>
+<dt class="field-odd">compile_info<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string，程序编译信息。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-cycle">
-<dt class="field-odd">cycle</dt>
+<dt class="field-odd">cycle<span class="colon">:</span></dt>
 <dd class="field-odd"><p>int，当前循环编号。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-git-sha1">
-<dt class="field-odd">git_sha1</dt>
+<dt class="field-odd">git_sha1<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string，程序的Git commit SHA-1 哈希值。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-input-string">
-<dt class="field-odd">input_string</dt>
+<dt class="field-odd">input_string<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string，Json格式的用户输入文件内容。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-rlib-used">
-<dt class="field-odd">restart_used</dt>
+<dt class="field-odd">restart_used<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string，该次计算所用的多群常数库。</p>
 </dd>
 </dl>
 <dl class="field-list simple" id="restart-version">
-<dt class="field-odd">version</dt>
+<dt class="field-odd">version<span class="colon">:</span></dt>
 <dd class="field-odd"><p>string，程序版本号。</p>
 </dd>
 </dl>
 </div></blockquote>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

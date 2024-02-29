@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>10. 结果输出 &mdash; CRANE Documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -33,13 +36,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,7 +98,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">文档内容:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -191,36 +194,12 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="usersguide-results">
-<span id="id1"></span><h1><span class="section-number">10. </span>结果输出<a class="headerlink" href="#usersguide-results" title="Permalink to this headline">¶</a></h1>
+  <section id="usersguide-results">
+<span id="id1"></span><h1><span class="section-number">10. </span>结果输出<a class="headerlink" href="#usersguide-results" title="Permalink to this heading">¶</a></h1>
 <p>作为全堆一步法程序，CRANE能够直接求解精细到燃料棒层级的多物理耦合问题，并获得精细的中子通量、核素分布、温度场等信息。
 如果把以上所有最细层面的数据都存储下来，百万千瓦商用压水堆1/4堆芯规模的问题仅一个状态点就需要上G的存储量，
 所以存储所有数据显然是不合适的。因此，CRANE通过以下几方面来优化结果输出：</p>
-<p>首先，将输出数据的详细程度分为高、中、低三个层次，通过 <span class="xref std std-ref">output_type</span> 开放给用户选择，默认采用中等数据量输出，
+<p>首先，将输出数据的详细程度分为高、中、低三个层次，通过 <a class="reference internal" href="../io_formats/input.html#output-type"><span class="std std-ref">type</span></a> 开放给用户选择，默认采用中等数据量输出，
 数据量最大部分如细网通量等仅在非常必要的时候才输出。</p>
 <p>其次，对于主要输出文件采用 <a class="reference external" href="https://www.hdfgroup.org/solutions/hdf5/">HDF5</a> 数据格式，
 该格式是专门用来存储和组织大量数据的一种文件格式，能够在减少存储的同时又有较好的可读性和可扩展性。</p>
@@ -235,7 +214,7 @@
 <li><p><a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a></p></li>
 </ol>
 </div></blockquote>
-</div>
+</section>
 
 
            </div>

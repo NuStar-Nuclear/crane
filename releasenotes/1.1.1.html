@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>What’s New in 1.1.1 &mdash; CRANE Documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -33,13 +36,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,7 +98,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">文档内容:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -204,34 +207,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="what-s-new-in-1-1-1">
-<h1>What’s New in 1.1.1<a class="headerlink" href="#what-s-new-in-1-1-1" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="new-features">
-<h2>New Features<a class="headerlink" href="#new-features" title="Permalink to this headline">¶</a></h2>
+  <section id="what-s-new-in-1-1-1">
+<h1>What’s New in 1.1.1<a class="headerlink" href="#what-s-new-in-1-1-1" title="Permalink to this heading">¶</a></h1>
+<section id="new-features">
+<h2>New Features<a class="headerlink" href="#new-features" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>支持以体积打混的方式进行材料定义；</p></li>
 <li><p>增加预测修正、预测两种方式的输运-燃耗耦合计算策略；</p></li>
@@ -239,9 +218,9 @@
 <li><p>增加燃耗分布编辑输出及可视化功能；</p></li>
 <li><p>多群常数库更新至RLIB-1.0.7；</p></li>
 </ol>
-</div>
-<div class="section" id="bug-fixes">
-<h2>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="bug-fixes">
+<h2>Bug Fixes<a class="headerlink" href="#bug-fixes" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic simple">
 <li><p>25306b1: length used to compute flux slope should be the xy-plane-projected length</p></li>
 <li><p>ec3973c: bad reflector name got if _reflector_middle is empty</p></li>
@@ -257,8 +236,8 @@
 <li><p>1adb1ea: top plane may be erased by float round error</p></li>
 <li><p>64ca6a4: incorrect negtive linear source correction</p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

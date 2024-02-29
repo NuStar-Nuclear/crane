@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>4. 堆芯状态参数 &mdash; CRANE Documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -33,13 +36,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,7 +98,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">文档内容:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -191,40 +194,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="usersguide-state">
-<span id="id1"></span><h1><span class="section-number">4. </span>堆芯状态参数<a class="headerlink" href="#usersguide-state" title="Permalink to this headline">¶</a></h1>
+  <section id="usersguide-state">
+<span id="id1"></span><h1><span class="section-number">4. </span>堆芯状态参数<a class="headerlink" href="#usersguide-state" title="Permalink to this heading">¶</a></h1>
 <p>顾名思义，堆芯状态参数，即 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a>，是定义堆芯状态的一些物理参数，如系统压力、堆芯总功率、堆芯入口温度等等。</p>
 <p>根据计算问题需求可分为以下三种情况来定义堆芯状态参数：</p>
 <ol class="arabic simple">
 <li><p>宏观截面给定的基准题，如 <a class="reference internal" href="../examples/c5g7.html#c5g7-3d"><span class="std std-ref">C5G7_3D</span></a> 基准题等，该类问题直接给定了材料的宏观截面，也不会有热工水力反馈，
 因此不需要定义 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a>。</p></li>
-<li><p>给定材料温度或堆芯冷态问题，如 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题，该类问题可通过 <span class="xref std std-ref">moderator_temperature</span> 和
-<span class="xref std std-ref">fuel_temperature</span> 分别设置慢化剂与燃料温度，或只定义 <span class="xref std std-ref">inlet_temperature</span>，不需要进行热工水力反馈计算，
-与热工水力反馈相关的状态参数如 <span class="xref std std-ref">total_power</span>、<span class="xref std std-ref">inlet_temperature</span>、<span class="xref std std-ref">inlet_mass_flow_rate</span>
+<li><p>给定材料温度或堆芯冷态问题，如 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题，该类问题可通过 <a class="reference internal" href="../io_formats/input.html#moderator-temperature"><span class="std std-ref">moderator_temperature</span></a> 和
+<a class="reference internal" href="../io_formats/input.html#fuel-temperature"><span class="std std-ref">fuel_temperature</span></a> 分别设置慢化剂与燃料温度，或只定义 <a class="reference internal" href="../io_formats/input.html#inlet-temperature"><span class="std std-ref">inlet_temperature</span></a>，不需要进行热工水力反馈计算，
+与热工水力反馈相关的状态参数如 <a class="reference internal" href="../io_formats/input.html#total-power"><span class="std std-ref">total_power</span></a>、<a class="reference internal" href="../io_formats/input.html#inlet-temperature"><span class="std std-ref">inlet_temperature</span></a>、<a class="reference internal" href="../io_formats/input.html#inlet-mass-flow-rate"><span class="std std-ref">inlet_mass_flow_rate</span></a>
 等等都可缺省。</p></li>
 <li><p>堆芯热态问题，如 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题，该类问题需要进行热工水力反馈计算，因此与热工水力反馈相关的所有参数都不可缺省。</p></li>
 </ol>
@@ -234,41 +213,41 @@
 </div>
 <p>以下为 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题的 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a> 输入：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">state</span><span class="p">:</span>
-  <span class="nt">system_pressure</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15.516</span>
-  <span class="nt">inlet_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">565</span>
-  <span class="nt">boron_concentration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1285</span>
+<span class="w">  </span><span class="nt">system_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15.516</span>
+<span class="w">  </span><span class="nt">inlet_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">565</span>
+<span class="w">  </span><span class="nt">boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1285</span>
 </pre></div>
 </div>
 <p>该问题为堆芯冷态问题，只定义了系统压力、入口温度和硼浓度。</p>
 <p>以下为 <a class="reference internal" href="../examples/vera_dep.html#vera-dep-2c"><span class="std std-ref">VERA_DEP_2C</span></a> 基准题的 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a> 输入：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">state</span><span class="p">:</span>
-  <span class="nt">system_pressure</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15.516</span>
-  <span class="nt">power_density</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">40.0</span>
-  <span class="nt">moderator_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">600</span>
-  <span class="nt">fuel_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">900</span>
-  <span class="nt">boron_concentration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1300</span>
+<span class="w">  </span><span class="nt">system_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15.516</span>
+<span class="w">  </span><span class="nt">power_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">40.0</span>
+<span class="w">  </span><span class="nt">moderator_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">600</span>
+<span class="w">  </span><span class="nt">fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">900</span>
+<span class="w">  </span><span class="nt">boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1300</span>
 </pre></div>
 </div>
 <p>该问题为给定温度的单组件燃耗问题，因此定义了慢化剂和燃料温度，以及燃耗计算需要的功率密度。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>当进行燃耗计算时，<span class="xref std std-ref">total_power</span> 和 <span class="xref std std-ref">power_density</span> 必须至少定义一个。</p>
+<p>当进行燃耗计算时，<a class="reference internal" href="../io_formats/input.html#total-power"><span class="std std-ref">total_power</span></a> 和 <a class="reference internal" href="../io_formats/input.html#power-density"><span class="std std-ref">power_density</span></a> 必须至少定义一个。</p>
 </div>
 <p>以下为 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题的 <a class="reference internal" href="../io_formats/input.html#state"><span class="std std-ref">state 对象</span></a> 输入：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">state</span><span class="p">:</span>
-  <span class="nt">system_pressure</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">15.516</span>
-  <span class="nt">total_power</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3411</span>
-  <span class="nt">inlet_temperature</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">565.0</span>
-  <span class="nt">boron_concentration</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1285</span>
-  <span class="nt">inlet_mass_flow_rate</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">16593.92</span>
+<span class="w">  </span><span class="nt">system_pressure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">15.516</span>
+<span class="w">  </span><span class="nt">total_power</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3411</span>
+<span class="w">  </span><span class="nt">inlet_temperature</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">565.0</span>
+<span class="w">  </span><span class="nt">boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1285</span>
+<span class="w">  </span><span class="nt">inlet_mass_flow_rate</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">16593.92</span>
 </pre></div>
 </div>
 <p>该问题为堆芯热态问题，因此该处定义了热工水力反馈计算不可缺省的堆芯总功率、入口温度、入口流量等。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>当开启临界硼搜索时，<span class="xref std std-ref">boron_concentration</span> 只会作为初始硼浓度，最终的硼浓度是搜索计算得到的。</p>
+<p>当开启临界硼搜索时，<a class="reference internal" href="../io_formats/input.html#boron-concentration"><span class="std std-ref">boron_concentration</span></a> 只会作为初始硼浓度，最终的硼浓度是搜索计算得到的。</p>
 </div>
-</div>
+</section>
 
 
            </div>

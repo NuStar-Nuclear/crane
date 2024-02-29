@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>5. 计算选项设置 &mdash; CRANE Documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
 
   
@@ -33,13 +36,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
         <script src="../_static/jquery.js"></script>
         <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
-        <script src="../_static/language_data.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="../_static/js/theme.js"></script>
 
@@ -95,7 +98,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">文档内容:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
@@ -201,74 +204,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="usersguide-settings">
-<span id="id1"></span><h1><span class="section-number">5. </span>计算选项设置<a class="headerlink" href="#usersguide-settings" title="Permalink to this headline">¶</a></h1>
+  <section id="usersguide-settings">
+<span id="id1"></span><h1><span class="section-number">5. </span>计算选项设置<a class="headerlink" href="#usersguide-settings" title="Permalink to this heading">¶</a></h1>
 <p>计算选项设置，即 <a class="reference internal" href="../io_formats/input.html#settings"><span class="std std-ref">settings 对象</span></a>，是用来定义CRANE各部分计算模块的控制参数，如源迭代（外迭代）、两维MOC、
 CMFD加速、临界硼搜索、氙瞬态、能量沉积方式、热工水力反馈以及输出数据控制等。</p>
-<div class="section" id="id2">
-<h2><span class="section-number">5.1. </span>源迭代<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<section id="id2">
+<h2><span class="section-number">5.1. </span>源迭代<a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
 <p>源迭代（外迭代）控制参数通过 <a class="reference internal" href="../io_formats/input.html#power-iteration"><span class="std std-ref">power_iteration 对象</span></a> 设置，它包含迭代收敛判据、最大迭代次数等控制参数。</p>
 <p>如对于 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题我们设置如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
-  <span class="nt">power_iteration</span><span class="p">:</span>
-    <span class="nt">fission_converge_criterion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">5.0e-4</span>
-    <span class="nt">keff_converge_criterion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">1.0e-5</span>
- 
+<span class="w">  </span><span class="nt">power_iteration</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0e-4</span>
+<span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-5</span>
+<span class="w"> </span>
 </pre></div>
 </div>
 <p>由于真正起到全局耦合作用的CMFD加速设置的收敛判据远高于此，因此这里的裂变源收敛判据设置到 <code class="docutils literal notranslate"><span class="pre">5e-4</span></code> 精度也足够了。</p>
-<p>如果需要快速计算调试，可以通过 <span class="xref std std-ref">pi_max_num_outer_iterations</span> 来减少迭代次数。</p>
+<p>如果需要快速计算调试，可以通过 <a class="reference internal" href="../io_formats/input.html#pi-max-num-outer-iterations"><span class="std std-ref">max_num_outer_iterations</span></a> 来减少迭代次数。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>当 <span class="xref std std-ref">pi_max_num_outer_iterations</span> 设置太小，跳出迭代时并未达到收敛判据的标准时，CRANE会给出警告信息。</p>
+<p>当 <a class="reference internal" href="../io_formats/input.html#pi-max-num-outer-iterations"><span class="std std-ref">max_num_outer_iterations</span></a> 设置太小，跳出迭代时并未达到收敛判据的标准时，CRANE会给出警告信息。</p>
 </div>
-</div>
-<div class="section" id="moc">
-<h2><span class="section-number">5.2. </span>两维MOC<a class="headerlink" href="#moc" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="moc">
+<h2><span class="section-number">5.2. </span>两维MOC<a class="headerlink" href="#moc" title="Permalink to this heading">¶</a></h2>
 <p>两维MOC计算控制参数通过 <a class="reference internal" href="../io_formats/input.html#moc-2d"><span class="std std-ref">moc_2d 对象</span></a> 设置，它包含MOC计算采用的离散角度数量、特征线密度及源项近似类型等。</p>
 <p>如对于 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题我们设置如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
-  <span class="nt">moc_2d</span><span class="p">:</span>
-    <span class="nt">num_azimuths</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">12</span>
-    <span class="nt">num_polars</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">3</span>
-    <span class="nt">track_density</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.05</span>
+<span class="w">  </span><span class="nt">moc_2d</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">track_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
 </pre></div>
 </div>
 <p>以上MOC计算离散方位角总共是 <code class="docutils literal notranslate"><span class="pre">12</span> <span class="pre">x</span> <span class="pre">3</span> <span class="pre">x</span> <span class="pre">8</span> <span class="pre">=</span> <span class="pre">288</span></code> 个，这对于热中子谱的压水堆来说足够精确了。
 该设置也是程序的默认值, 即缺省整个 <a class="reference internal" href="../io_formats/input.html#moc-2d"><span class="std std-ref">moc_2d 对象</span></a> 下程序的设置。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>对于六角形组件堆型，<span class="xref std std-ref">moc2d_num_azimuths</span> 是 <code class="docutils literal notranslate"><span class="pre">0~60°</span></code> 的离散角度数量，因此设置为 <code class="docutils literal notranslate"><span class="pre">8</span></code> 即可。</p>
+<p>对于六角形组件堆型，<a class="reference internal" href="../io_formats/input.html#moc2d-num-azimuths"><span class="std std-ref">num_azimuths</span></a> 是 <code class="docutils literal notranslate"><span class="pre">0~60°</span></code> 的离散角度数量，因此设置为 <code class="docutils literal notranslate"><span class="pre">8</span></code> 即可。</p>
 </div>
-<p>至于 <span class="xref std std-ref">moc2d_source_type</span>，即是否采用线性源近似，我们建议大型压水堆采用平源近似（默认值）即可，
+<p>至于 <a class="reference internal" href="../io_formats/input.html#moc2d-source-type"><span class="std std-ref">source_type</span></a>，即是否采用线性源近似，我们建议大型压水堆采用平源近似（默认值）即可，
 因为采用线性源近似计算量会大很多。而对于精度要求较高，而规模较小的问题，如 <a class="reference internal" href="../examples/c5g7.html#c5g7-3d"><span class="std std-ref">C5G7_3D</span></a>，则可以采用线性源近似。</p>
-</div>
-<div class="section" id="cmfd">
-<h2><span class="section-number">5.3. </span>CMFD加速<a class="headerlink" href="#cmfd" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="cmfd">
+<h2><span class="section-number">5.3. </span>CMFD加速<a class="headerlink" href="#cmfd" title="Permalink to this heading">¶</a></h2>
 <p>CMFD加速计算控制参数通过 <a class="reference internal" href="../io_formats/input.html#cmfd"><span class="std std-ref">cmfd 对象</span></a> 设置，它包含CMFD加速开关及其收敛判据。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -277,62 +256,62 @@ CMFD加速、临界硼搜索、氙瞬态、能量沉积方式、热工水力反�
 </div>
 <p>如对于 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题我们设置如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
- <span class="nt">cmfd</span><span class="p">:</span>
-   <span class="nt">cmfd_on</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
-   <span class="nt">fission_converge_criterion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2.0e-6</span>
-   <span class="nt">keff_converge_criterion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">2.0e-7</span>
+<span class="w"> </span><span class="nt">cmfd</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">cmfd_on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">   </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0e-6</span>
+<span class="w">   </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0e-7</span>
 </pre></div>
 </div>
 <p>以上设置也是程序的默认值, 即缺省整个 <a class="reference internal" href="../io_formats/input.html#cmfd"><span class="std std-ref">cmfd 对象</span></a> 下程序的设置。</p>
-</div>
-<div class="section" id="id3">
-<h2><span class="section-number">5.4. </span>临界硼搜索<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id3">
+<h2><span class="section-number">5.4. </span>临界硼搜索<a class="headerlink" href="#id3" title="Permalink to this heading">¶</a></h2>
 <p>临界硼搜索控制参数通过 <a class="reference internal" href="../io_formats/input.html#critical-boron-search"><span class="std std-ref">critical_boron_search 对象</span></a> 设置，它包含临界硼搜索开关及其收敛判据。</p>
 <p>如对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题我们设置如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
-  <span class="nt">critical_boron_search</span><span class="p">:</span> 
-    <span class="nt">boron_converge_criterion</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">0.1</span>
- 
+<span class="w">  </span><span class="nt">critical_boron_search</span><span class="p">:</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">boron_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w"> </span>
 </pre></div>
 </div>
-<p>这里的 <span class="xref std std-ref">boron_converge_criterion</span> 为 <code class="docutils literal notranslate"><span class="pre">0.1</span></code> ppm，是比较高的收敛判据，默认值为 <code class="docutils literal notranslate"><span class="pre">0.5</span></code> ppm。</p>
+<p>这里的 <a class="reference internal" href="../io_formats/input.html#boron-converge-criterion"><span class="std std-ref">boron_converge_criterion</span></a> 为 <code class="docutils literal notranslate"><span class="pre">0.1</span></code> ppm，是比较高的收敛判据，默认值为 <code class="docutils literal notranslate"><span class="pre">0.5</span></code> ppm。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>当开启临界硼搜索时，硼浓度收敛标准优先级高于keff，因此当硼浓度收敛时，keff哪怕没有达到收敛判据也认为是收敛的。</p>
 </div>
-<p><span class="xref std std-ref">cb_search_on</span> 默认为 <code class="docutils literal notranslate"><span class="pre">false</span></code>，因此缺省整个 <a class="reference internal" href="../io_formats/input.html#critical-boron-search"><span class="std std-ref">critical_boron_search 对象</span></a> 则不进行临界硼搜索。</p>
-</div>
-<div class="section" id="id4">
-<h2><span class="section-number">5.5. </span>氙瞬态<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p><a class="reference internal" href="../io_formats/input.html#cb-search-on"><span class="std std-ref">cb_search_on</span></a> 默认为 <code class="docutils literal notranslate"><span class="pre">false</span></code>，因此缺省整个 <a class="reference internal" href="../io_formats/input.html#critical-boron-search"><span class="std std-ref">critical_boron_search 对象</span></a> 则不进行临界硼搜索。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">5.5. </span>氙瞬态<a class="headerlink" href="#id4" title="Permalink to this heading">¶</a></h2>
 <p>氙瞬态控制参数通过 <span class="xref std std-ref">xe_transients</span> 设置，分为真实燃耗跟踪、平衡氙、零氙三种情况，对应为 <code class="docutils literal notranslate"><span class="pre">TRAN、EQUI、ZERO</span></code>。</p>
 <p>如对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题我们设置如下：</p>
-</div>
-<div class="section" id="id5">
-<h2><span class="section-number">5.6. </span>能量沉积方式<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id5">
+<h2><span class="section-number">5.6. </span>能量沉积方式<a class="headerlink" href="#id5" title="Permalink to this heading">¶</a></h2>
 <p>能量沉积方式通过 <span class="xref std std-ref">energy_deposition</span> 设置，有 <code class="docutils literal notranslate"><span class="pre">KAPPA_FISSION</span></code> 和 <code class="docutils literal notranslate"><span class="pre">HEATING_LOCAL</span></code> 这两种方式可选。在
 <code class="docutils literal notranslate"><span class="pre">KAPPA_FISSION</span></code> 中，俘获反应释热以隐式方式考虑（等效在裂变核的 <code class="docutils literal notranslate"><span class="pre">KAPPA</span></code> 值中）；在 <code class="docutils literal notranslate"><span class="pre">HEATING_LOCAL</span></code> 中，
 俘获反应释热以显式方式考虑，每一个核都有独立的俘获释热值。</p>
 <p>对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题我们设置如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
-  <span class="nt">energy_deposition</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">HEATING_LOCAL</span>
+<span class="w">  </span><span class="nt">energy_deposition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HEATING_LOCAL</span>
 </pre></div>
 </div>
 <p>该问题为真实堆芯问题，考虑俘获释能是更加符合实际的，特别对于俘获反应较多的可燃毒物棒位置的功率有较显著影响。</p>
 <p>而对于 <a class="reference internal" href="../examples/c5g7.html#c5g7-3d"><span class="std std-ref">C5G7_3D</span></a> 基准题我们设置如下：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
-  <span class="nt">energy_deposition</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">KAPPA_FISSION</span>
+<span class="w">  </span><span class="nt">energy_deposition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KAPPA_FISSION</span>
 </pre></div>
 </div>
 <p>宏观截面给定问题的功率只能通过裂变能量产生截面来统计，因此设置为 <code class="docutils literal notranslate"><span class="pre">KAPPA_FISSION</span></code>。</p>
-</div>
-<div class="section" id="id6">
-<h2><span class="section-number">5.7. </span>热工水力反馈<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id6">
+<h2><span class="section-number">5.7. </span>热工水力反馈<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
 <p>热工水力反馈控制参数通过 <span class="xref std std-ref">thermal</span> 设置。</p>
-</div>
-<div class="section" id="id7">
-<h2><span class="section-number">5.8. </span>输出数据控制<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="id7">
+<h2><span class="section-number">5.8. </span>输出数据控制<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>
 <p>输出数据控制通过 <a class="reference internal" href="../io_formats/input.html#output"><span class="std std-ref">output 对象</span></a> 设置，用来定义输出数据的详细程度，或者指定哪些数据需要额外输出。</p>
-<p>CRANE定义了最小、中等、最大三种详细程度的输出，对应的 <span class="xref std std-ref">output_type</span> 分别为：</p>
+<p>CRANE定义了最小、中等、最大三种详细程度的输出，对应的 <a class="reference internal" href="../io_formats/input.html#output-type"><span class="std std-ref">type</span></a> 分别为：</p>
 <ol class="arabic simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code>，程序会输出所有计算结果数据，该模式下输出数据存储会比较庞大；</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">MEDIUM</span></code>，除去MOC细网少群通量分布外其他所有计算结果数据，也是默认的输出设置；</p></li>
@@ -342,8 +321,8 @@ CMFD加速、临界硼搜索、氙瞬态、能量沉积方式、热工水力反�
 <p class="admonition-title">Note</p>
 <p>采用 <code class="docutils literal notranslate"><span class="pre">MEDIUM</span></code> 情况下， <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题的输出数据量约在 <code class="docutils literal notranslate"><span class="pre">16M</span></code> 左右。</p>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>

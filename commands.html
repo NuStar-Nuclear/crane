@@ -4,7 +4,8 @@
 <html class="writer-html5" lang="en" >
 <head>
   <meta charset="utf-8" />
-  
+  <meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <title>命令行 &mdash; CRANE Documentation</title>
@@ -13,6 +14,8 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/theme_overrides.css" type="text/css" />
 
   
@@ -33,13 +36,13 @@
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/language_data.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
         <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-        <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-        <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true, "ignoreClass": "tex2jax_ignore|mathjax_ignore|document", "processClass": "tex2jax_process|mathjax_process|math|output_area"}})</script>
     
     <script type="text/javascript" src="_static/js/theme.js"></script>
 
@@ -95,7 +98,7 @@
               
             
             
-              <p class="caption"><span class="caption-text">文档内容:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="install.html">安装指引</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart/index.html">快速上手</a></li>
@@ -105,8 +108,35 @@
 <li class="toctree-l1"><a class="reference internal" href="examples/index.html">基准题示例</a></li>
 <li class="toctree-l1"><a class="reference internal" href="io_formats/index.html">文件格式说明</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">命令行</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#base-commands">基本命令行</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#interactive-commands">交互式可视化命令行</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#base-commands">基本命令行</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#crane-run">crane run</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crane-check-region-overlap">crane check-region-overlap</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crane-compare">crane compare</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#crane-visualize">crane visualize</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#interactive-commands">交互式可视化命令行</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plot-model">plot-model</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-meshes">plot-meshes</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-assembly-map">plot-assembly-map</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-tagged-regions">plot-tagged-regions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-moc-tracks">plot-moc-tracks</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-power-distribution">plot-power-distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-detector-reaction-distribution">plot-detector-reaction-distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-burnup-distribution">plot-burnup-distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-flux-distribution">plot-flux-distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-temperature-distribution">plot-temperature-distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-mass-flow-distribution">plot-mass-flow-distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-number-density-distribution">plot-number-density-distribution</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-dancoff-factors">plot-dancoff-factors</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-cell-neutron-balance-error">plot-cell-neutron-balance-error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-result-summary">plot-result-summary</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-criticals">plot-criticals</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-control-rod-worths">plot-control-rod-worths</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-control-rod-worths-curve">plot-control-rod-worths-curve</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#plot-timing-statistics">plot-timing-statistics</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="releasenotes/index.html">Release Notes</a></li>
@@ -178,46 +208,1917 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  
-<style>
-/* CSS overrides for sphinx_rtd_theme */
-
-/* 24px margin */
-.nbinput.nblast.container,
-.nboutput.nblast.container {
-    margin-bottom: 19px;  /* padding has already 5px */
-}
-
-/* ... except between code cells! */
-.nblast.container + .nbinput.container {
-    margin-top: -19px;
-}
-
-.admonition > p:before {
-    margin-right: 4px;  /* make room for the exclamation icon */
-}
-
-/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
-.math {
-    text-align: unset;
-}
-</style>
-<div class="section" id="commands">
-<span id="id1"></span><h1>命令行<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h1>
+  <section id="commands">
+<span id="id1"></span><h1>命令行<a class="headerlink" href="#commands" title="Permalink to this heading">¶</a></h1>
 <p>CRANE本质上是一个命令行程序，它通过各种命令行来执行计算、绘制可视化图表等，CRANE的命令行可以分为以下两类:</p>
 <ol class="arabic simple">
-<li><p>基本命令行，该类命令行形式为 <code class="docutils literal notranslate"><span class="pre">crane</span> <span class="pre">COMMAND</span> <span class="pre">[ARGS]</span></code>，是CRANE最基本的命令行，如 <span class="xref std std-ref">crane_run</span>、
-<span class="xref std std-ref">crane_visualize</span>、<span class="xref std std-ref">crane_compare</span> 等；</p></li>
-<li><p>交互式命令行，该类命令行必须通过 <span class="xref std std-ref">crane_visualize</span> 进入交互式命令行界面后执行，为模型及结果可视化相关的命令行工具，
+<li><p>基本命令行，该类命令行形式为 <code class="docutils literal notranslate"><span class="pre">crane</span> <span class="pre">COMMAND</span> <span class="pre">[ARGS]</span></code>，是CRANE最基本的命令行，如 <a class="reference internal" href="#crane-run"><span class="std std-ref">crane run</span></a>、
+<a class="reference internal" href="#crane-visualize"><span class="std std-ref">crane visualize</span></a>、<a class="reference internal" href="#crane-compare"><span class="std std-ref">crane compare</span></a> 等；</p></li>
+<li><p>交互式命令行，该类命令行必须通过 <a class="reference internal" href="#crane-visualize"><span class="std std-ref">crane visualize</span></a> 进入交互式命令行界面后执行，为模型及结果可视化相关的命令行工具，
 如 <a class="reference internal" href="usersguide/visualization.html#plot-model"><span class="std std-ref">模型可视化</span></a>、<a class="reference internal" href="usersguide/visualization.html#plot-power-distribution"><span class="std std-ref">功率分布可视化</span></a>、<span class="xref std std-ref">print_lppt</span> 等。</p></li>
 </ol>
-<div class="section" id="base-commands">
-<span id="id2"></span><h2>基本命令行<a class="headerlink" href="#base-commands" title="Permalink to this headline">¶</a></h2>
+<section id="base-commands">
+<span id="id2"></span><h2>基本命令行<a class="headerlink" href="#base-commands" title="Permalink to this heading">¶</a></h2>
+<section id="crane-run">
+<span id="crane-run"></span><h3>crane run<a class="headerlink" href="#crane-run" title="Permalink to this heading">¶</a></h3>
+<p>Main command of CRANE. Run a CRANE simulation.</p>
+<p>INPUT_FILE is the name of file with path in which the model defined, both
+yaml or json format are acceptable.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>run<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>INPUT_FILE
+</pre></div>
 </div>
-<div class="section" id="interactive-commands">
-<span id="id3"></span><h2>交互式可视化命令行<a class="headerlink" href="#interactive-commands" title="Permalink to this headline">¶</a></h2>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-run-l">
+<span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--library</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;library&gt;</span></span><a class="headerlink" href="#cmdoption-crane-run-l" title="Permalink to this definition">¶</a></dt>
+<dd><p>The nuclear data library file name with path, only used by micro-xs cases. Nuclear data library file installed in package will be used as default.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-run-d">
+<span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--device-ids</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;device_ids&gt;</span></span><a class="headerlink" href="#cmdoption-crane-run-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>The device ids of which GPU used, multi device ids should be linked with comma, such as ‘0,1,2’. Device ids of GPU available on this platform used if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-run-visualize">
+<span class="sig-name descname"><span class="pre">--visualize</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">-V</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-visualize</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-run-visualize" title="Permalink to this definition">¶</a></dt>
+<dd><p>Enter the visualize shell or not after simulation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-run-o">
+<span class="sig-name descname"><span class="pre">-o</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--output-file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;output_file&gt;</span></span><a class="headerlink" href="#cmdoption-crane-run-o" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of output file with path, the model name (name defined in core object) with current directory will be used as default.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-run-c">
+<span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--compare-to</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;compare_to&gt;</span></span><a class="headerlink" href="#cmdoption-crane-run-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>The reference file which has the results you want to compare to. Both HDF5 and yaml file are acceptable.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-run-b">
+<span class="sig-name descname"><span class="pre">-b</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--burnup-interval</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup_interval&gt;</span></span><a class="headerlink" href="#cmdoption-crane-run-b" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup interval used to perform less-statepoints depletion calculation.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-run-r">
+<span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--reference-file</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;reference_file&gt;</span></span><a class="headerlink" href="#cmdoption-crane-run-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>Use the burnup point from this file if it defined.</p>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-run-arg-INPUT_FILE">
+<span class="sig-name descname"><span class="pre">INPUT_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-run-arg-INPUT_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="crane-check-region-overlap">
+<span id="crane-check-region-overlap"></span><h3>crane check-region-overlap<a class="headerlink" href="#crane-check-region-overlap" title="Permalink to this heading">¶</a></h3>
+<p>Check whether the input model have overlapped regions, plotting planes
+which have overlapped regions, pass the checking if none overlapped region
+found in all planes.</p>
+<p>FILENAME is the name of file with path in which the model defined, both yaml
+and json format are acceptable.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>check-region-overlap<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>FILENAME
+</pre></div>
 </div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-check-region-overlap-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">-S</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-check-region-overlap-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-check-region-overlap-arg-FILENAME">
+<span class="sig-name descname"><span class="pre">FILENAME</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-check-region-overlap-arg-FILENAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+</section>
+<section id="crane-compare">
+<span id="crane-compare"></span><h3>crane compare<a class="headerlink" href="#crane-compare" title="Permalink to this heading">¶</a></h3>
+<p>Compare results of two files and generating chart and figures of the comparation.</p>
+<p>FILENAME is the name of file with path in which the model defined. Only HDF5 result file acceptable for
+The first file while the both HDF5 and excel file are acceptable for the second file.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>compare<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>FILENAME<span class="w"> </span><span class="o">[</span>REFERENCE_FILE<span class="o">]</span>...
+</pre></div>
 </div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-dpi">
+<span class="sig-name descname"><span class="pre">--dpi</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;dpi&gt;</span></span><a class="headerlink" href="#cmdoption-crane-compare-dpi" title="Permalink to this definition">¶</a></dt>
+<dd><p>The DPI used to save figures.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">200</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-r">
+<span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--reference-name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;reference_name&gt;</span></span><a class="headerlink" href="#cmdoption-crane-compare-r" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the reference result with which we compare.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Measure</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-dc">
+<span class="sig-name descname"><span class="pre">-dc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--design-code</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;design_code&gt;</span></span><a class="headerlink" href="#cmdoption-crane-compare-dc" title="Permalink to this definition">¶</a></dt>
+<dd><p>The name of the design code with which we compare.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Design</span> <span class="pre">Code</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-lppt">
+<span class="sig-name descname"><span class="pre">--lppt</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">-L</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-lppt</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-lppt" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether compare the low power physic tests result.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-boron-letdown">
+<span class="sig-name descname"><span class="pre">--boron-letdown</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">-B</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-boron-letdown</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-boron-letdown" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether compare the boron letdown curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-a">
+<span class="sig-name descname"><span class="pre">-a</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--assembly-power</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-assembly-power</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-a" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether compare the integral assembly power distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-d">
+<span class="sig-name descname"><span class="pre">-d</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--detector</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-detector</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-d" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether compare the detector reaction distribution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-p">
+<span class="sig-name descname"><span class="pre">-p</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--compare-dc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-compare-dc</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-p" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether compare the result of design code with measurement.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-c">
+<span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--criticals</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-criticals</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-c" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether compare the critical calculation results.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-0">
+<span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--crw</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-crw</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-0" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether compare the control rod worths.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-w">
+<span class="sig-name descname"><span class="pre">-w</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--crwc</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-crwc</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-w" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether compare the control rod worths curve.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-arg-FILENAME">
+<span class="sig-name descname"><span class="pre">FILENAME</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-arg-FILENAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-compare-arg-REFERENCE_FILE">
+<span class="sig-name descname"><span class="pre">REFERENCE_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-compare-arg-REFERENCE_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+
+</section>
+<section id="crane-visualize">
+<span id="crane-visualize"></span><h3>crane visualize<a class="headerlink" href="#crane-visualize" title="Permalink to this heading">¶</a></h3>
+<p>Start a interactive command line mode, which contains rich
+visualization functions.</p>
+<p>FILENAME is the name of file with path in which the model defined, both yaml
+and json format are acceptable. Or the name of output file in HDF5 format with path.</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>FILENAME<span class="w"> </span><span class="o">[</span>REFERENCE_FILE<span class="o">]</span>...
+</pre></div>
+</div>
+<p class="rubric">Arguments</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-visualize-arg-FILENAME">
+<span class="sig-name descname"><span class="pre">FILENAME</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-visualize-arg-FILENAME" title="Permalink to this definition">¶</a></dt>
+<dd><p>Required argument</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-crane-visualize-arg-REFERENCE_FILE">
+<span class="sig-name descname"><span class="pre">REFERENCE_FILE</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-crane-visualize-arg-REFERENCE_FILE" title="Permalink to this definition">¶</a></dt>
+<dd><p>Optional argument(s)</p>
+</dd></dl>
+
+</section>
+</section>
+<section id="interactive-commands">
+<span id="id3"></span><h2>交互式可视化命令行<a class="headerlink" href="#interactive-commands" title="Permalink to this heading">¶</a></h2>
+<section id="plot-model">
+<span id="cli-plot-model"></span><h3>plot-model<a class="headerlink" href="#plot-model" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-model<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-model-direction">
+<span class="sig-name descname"><span class="pre">--direction</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;direction&gt;</span></span><a class="headerlink" href="#cmdoption-plot-model-direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which direction the 2D slice lays, radial or axial. [default: radial]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">radial</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>radial | axial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-model-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-model-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-model-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-model-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-model-fine-meshes">
+<span class="sig-name descname"><span class="pre">--fine-meshes</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-fine-meshes</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-model-fine-meshes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show fine meshes which used by MOC.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-model-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-model-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-model-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-model-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-model-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-model-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-model-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-model-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-meshes">
+<span id="cli-plot-meshes"></span><h3>plot-meshes<a class="headerlink" href="#plot-meshes" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-meshes<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-meshes-mesh-type">
+<span class="sig-name descname"><span class="pre">--mesh-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;mesh_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-meshes-mesh-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which kind of mesh to show. [default: material]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">material</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>material | moc | cmfd | resonance | depletion | channel</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-meshes-direction">
+<span class="sig-name descname"><span class="pre">--direction</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;direction&gt;</span></span><a class="headerlink" href="#cmdoption-plot-meshes-direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which direction the 2D slice lays, radial or axial. [default: radial]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">radial</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>radial | axial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-meshes-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-meshes-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-meshes-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-meshes-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-meshes-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-meshes-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-meshes-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-meshes-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-meshes-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-meshes-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-meshes-show-channel-index">
+<span class="sig-name descname"><span class="pre">--show-channel-index</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-channel-index</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-meshes-show-channel-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the unique index of each channel on the plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-meshes-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-meshes-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-assembly-map">
+<span id="cli-plot-assembly-map"></span><h3>plot-assembly-map<a class="headerlink" href="#plot-assembly-map" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-assembly-map<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-assembly-map-map-type">
+<span class="sig-name descname"><span class="pre">--map-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;map_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-assembly-map-map-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which type of input map to plot. [default: assembly]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">assembly_type</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>loading_pattern | assembly_history | assembly_type | assembly_index | RCCA | inserted_BP | inserted_IT</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-assembly-map-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-assembly-map-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-tagged-regions">
+<span id="cli-plot-tagged-regions"></span><h3>plot-tagged-regions<a class="headerlink" href="#plot-tagged-regions" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-tagged-regions<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-tagged-regions-direction">
+<span class="sig-name descname"><span class="pre">--direction</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;direction&gt;</span></span><a class="headerlink" href="#cmdoption-plot-tagged-regions-direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which direction the 2D slice lays, radial or axial. [default: radial]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">radial</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>radial | axial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-tagged-regions-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-tagged-regions-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-tagged-regions-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-tagged-regions-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-tagged-regions-fine-meshes">
+<span class="sig-name descname"><span class="pre">--fine-meshes</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-fine-meshes</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-tagged-regions-fine-meshes" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show fine meshes which used by MOC.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-tagged-regions-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-tagged-regions-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-tagged-regions-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-tagged-regions-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-tagged-regions-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-tagged-regions-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-tagged-regions-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-tagged-regions-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</section>
+<section id="plot-moc-tracks">
+<span id="cli-plot-moc-tracks"></span><h3>plot-moc-tracks<a class="headerlink" href="#plot-moc-tracks" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-moc-tracks<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-moc-tracks-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-moc-tracks-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-moc-tracks-track-level">
+<span class="sig-name descname"><span class="pre">--track-level</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;track_level&gt;</span></span><a class="headerlink" href="#cmdoption-plot-moc-tracks-track-level" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which level tracks to show. [default: assembly]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">assembly</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>segment | assembly | core</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-moc-tracks-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-moc-tracks-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-moc-tracks-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-moc-tracks-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-power-distribution">
+<span id="cli-plot-power-distribution"></span><h3>plot-power-distribution<a class="headerlink" href="#plot-power-distribution" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-power-type">
+<span class="sig-name descname"><span class="pre">--power-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;power_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-power-distribution-power-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which type of power distribution to plot. [default: assembly-integral]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">assembly-integral</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>assembly-integral | assembly-integral-full-core | assembly-axial | assembly-radial-slice | assembly-quarter | pin-integral | pin-radial-slice | pin-axial-slice | pin-3dcube | axial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-power-distribution-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-power-distribution-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-power-distribution-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-power-distribution-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-power-distribution-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-show-peak-location">
+<span class="sig-name descname"><span class="pre">--show-peak-location</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-peak-location</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-power-distribution-show-peak-location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the location of peak values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-power-distribution-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-only-deviation">
+<span class="sig-name descname"><span class="pre">--only-deviation</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-only-deviation</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-power-distribution-only-deviation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the deviation of comparation only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-map-color-by">
+<span class="sig-name descname"><span class="pre">--map-color-by</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;map_color_by&gt;</span></span><a class="headerlink" href="#cmdoption-plot-power-distribution-map-color-by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map the color by the data of all model or the current plane. [default: all]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">all</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>all | plane</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-power-distribution-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-power-distribution-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-detector-reaction-distribution">
+<span id="cli-plot-detector-reaction-distribution"></span><h3>plot-detector-reaction-distribution<a class="headerlink" href="#plot-detector-reaction-distribution" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-detector-reaction-distribution<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-detector-reaction-distribution-reaction-type">
+<span class="sig-name descname"><span class="pre">--reaction-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;reaction_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-detector-reaction-distribution-reaction-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which type of power distribution to plot. [default: assembly-integral]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">assembly-integral-full-core</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>assembly-integral | assembly-integral-full-core | assembly-axial | assembly-radial-slice | assembly-quarter | pin-integral | pin-radial-slice | pin-axial-slice | pin-3dcube | axial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-detector-reaction-distribution-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-detector-reaction-distribution-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-detector-reaction-distribution-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-detector-reaction-distribution-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-detector-reaction-distribution-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-detector-reaction-distribution-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-detector-reaction-distribution-show-peak-location">
+<span class="sig-name descname"><span class="pre">--show-peak-location</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-peak-location</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-detector-reaction-distribution-show-peak-location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the location of peak values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-detector-reaction-distribution-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-detector-reaction-distribution-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-detector-reaction-distribution-only-deviation">
+<span class="sig-name descname"><span class="pre">--only-deviation</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-only-deviation</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-detector-reaction-distribution-only-deviation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the deviation of comparation only.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-detector-reaction-distribution-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-detector-reaction-distribution-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-burnup-distribution">
+<span id="cli-plot-burnup-distribution"></span><h3>plot-burnup-distribution<a class="headerlink" href="#plot-burnup-distribution" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-burnup-distribution<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-burnup-type">
+<span class="sig-name descname"><span class="pre">--burnup-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-burnup-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which type of burnup distribution to plot. [default: assembly-integral]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">assembly-integral</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>assembly-integral | pin-integral | pin-radial-slice | pin-axial-slice | axial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-show-peak-location">
+<span class="sig-name descname"><span class="pre">--show-peak-location</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-peak-location</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-show-peak-location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the location of peak values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-map-color-by">
+<span class="sig-name descname"><span class="pre">--map-color-by</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;map_color_by&gt;</span></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-map-color-by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map the color by the data of all model or the current plane. [default: all]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">all</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>all | plane</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-burnup-distribution-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-burnup-distribution-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-flux-distribution">
+<span id="cli-plot-flux-distribution"></span><h3>plot-flux-distribution<a class="headerlink" href="#plot-flux-distribution" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-flux-distribution<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-flux-type">
+<span class="sig-name descname"><span class="pre">--flux-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;flux_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-flux-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which type of flux distribution to plot. [default: cell-radial-slice]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">cell-radial-slice</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>cell-radial-slice | cell-axial-slice | mesh-radial-slice | mesh-axial-slice | axial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-energy">
+<span class="sig-name descname"><span class="pre">--energy</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;energy&gt;</span></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which energy group, thermal or epithermal. [default: thermal]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">thermal</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>thermal | epithermal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-show-peak-location">
+<span class="sig-name descname"><span class="pre">--show-peak-location</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-peak-location</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-show-peak-location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the location of peak values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-flux-distribution-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-flux-distribution-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-temperature-distribution">
+<span id="cli-plot-temperature-distribution"></span><h3>plot-temperature-distribution<a class="headerlink" href="#plot-temperature-distribution" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-temperature-distribution<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-temperature-type">
+<span class="sig-name descname"><span class="pre">--temperature-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;temperature_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-temperature-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which type of temperature distribution to plot. [default: cell-coolant-outlet]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">cell-coolant-outlet</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>channel-coolant-outlet | channel-coolant-radial | channel-coolant-axial | channel-coolant-3dcube | cell-coolant-outlet | cell-coolant-radial | cell-coolant-axial | cell-pellets-hottest-average | cell-pellets-hottest-effective | cell-pellets-radial-average | cell-pellets-radial-effective | cell-pellets-axial-average | cell-pellets-axial-effective | cell-pellets-3dcube</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-temperature-unit">
+<span class="sig-name descname"><span class="pre">--temperature-unit</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;temperature_unit&gt;</span></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-temperature-unit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which unit of temperature used, C(Celsius) or K(Kelvins). [default: C]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">C</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>C | K</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-map-color-by">
+<span class="sig-name descname"><span class="pre">--map-color-by</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;map_color_by&gt;</span></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-map-color-by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map the color by the data of all model or the current plane. [default: all]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">plane</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>all | plane</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-show-peak-location">
+<span class="sig-name descname"><span class="pre">--show-peak-location</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-peak-location</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-show-peak-location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the location of peak values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-temperature-distribution-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-temperature-distribution-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-mass-flow-distribution">
+<span id="cli-plot-mass-flow-distribution"></span><h3>plot-mass-flow-distribution<a class="headerlink" href="#plot-mass-flow-distribution" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-mass-flow-distribution<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-mass-flow-type">
+<span class="sig-name descname"><span class="pre">--mass-flow-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;mass_flow_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-mass-flow-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which type of cross mass distribution to plot. [default: liquid]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">channel-coolant-outlet</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>channel-coolant-outlet | channel-coolant-radial | channel-coolant-axial | gap-coolant-crosswise</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-map-color-by">
+<span class="sig-name descname"><span class="pre">--map-color-by</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;map_color_by&gt;</span></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-map-color-by" title="Permalink to this definition">¶</a></dt>
+<dd><p>Map the color by the data of all model or the current plane. [default: all]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">plane</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>all | plane</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-show-peak-location">
+<span class="sig-name descname"><span class="pre">--show-peak-location</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-peak-location</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-show-peak-location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the location of peak values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-mass-flow-distribution-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-mass-flow-distribution-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-number-density-distribution">
+<span id="cli-plot-number-density-distribution"></span><h3>plot-number-density-distribution<a class="headerlink" href="#plot-number-density-distribution" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-number-density-distribution<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-nuclide-name">
+<span class="sig-name descname"><span class="pre">--nuclide-name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;nuclide_name&gt;</span></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-nuclide-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Of which nuclide the number density to show.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">Xe-135</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>I-135 | Xe-135 | Pm-149 | Sm-149 | Gd-155 | Gd-157 | U-235 | U-238 | Pu-239</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-direction">
+<span class="sig-name descname"><span class="pre">--direction</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;direction&gt;</span></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which direction the 2D slice lays, radial or axial. [default: radial]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">radial</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>radial | axial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-show-peak-location">
+<span class="sig-name descname"><span class="pre">--show-peak-location</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-peak-location</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-show-peak-location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the location of peak values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-number-density-distribution-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-number-density-distribution-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-dancoff-factors">
+<span id="cli-plot-dancoff-factors"></span><h3>plot-dancoff-factors<a class="headerlink" href="#plot-dancoff-factors" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-dancoff-factors<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-dancoff-factors-direction">
+<span class="sig-name descname"><span class="pre">--direction</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;direction&gt;</span></span><a class="headerlink" href="#cmdoption-plot-dancoff-factors-direction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which direction the 2D slice lays, radial or axial. [default: radial]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">radial</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>radial | axial</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-dancoff-factors-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-dancoff-factors-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-dancoff-factors-axial-slice-coef">
+<span class="sig-name descname"><span class="pre">--axial-slice-coef</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_slice_coef&gt;</span></span><a class="headerlink" href="#cmdoption-plot-dancoff-factors-axial-slice-coef" title="Permalink to this definition">¶</a></dt>
+<dd><p>The coefficients (a, b, c) of the 2D slice ‘ax+by+c=0’ if we choose axial direction. [default: 0.0, 1.0, 0.0].</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0.0,</span> <span class="pre">1.0,</span> <span class="pre">0.0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-dancoff-factors-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-dancoff-factors-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-dancoff-factors-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-dancoff-factors-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-dancoff-factors-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-dancoff-factors-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-dancoff-factors-show-peak-location">
+<span class="sig-name descname"><span class="pre">--show-peak-location</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-peak-location</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-dancoff-factors-show-peak-location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the location of peak values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-dancoff-factors-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-dancoff-factors-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-dancoff-factors-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-dancoff-factors-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-cell-neutron-balance-error">
+<span id="cli-plot-cell-neutron-balance-error"></span><h3>plot-cell-neutron-balance-error<a class="headerlink" href="#plot-cell-neutron-balance-error" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-cell-neutron-balance-error<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-cell-neutron-balance-error-energy">
+<span class="sig-name descname"><span class="pre">--energy</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;energy&gt;</span></span><a class="headerlink" href="#cmdoption-plot-cell-neutron-balance-error-energy" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which energy group, thermal or epithermal. [default: thermal]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">thermal</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>thermal | epithermal</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-cell-neutron-balance-error-axial-height">
+<span class="sig-name descname"><span class="pre">--axial-height</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;axial_height&gt;</span></span><a class="headerlink" href="#cmdoption-plot-cell-neutron-balance-error-axial-height" title="Permalink to this definition">¶</a></dt>
+<dd><p>The axial height of the 2D slice if we choose radial direction, plot slices of each plane if None.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-cell-neutron-balance-error-burnup">
+<span class="sig-name descname"><span class="pre">--burnup</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;burnup&gt;</span></span><a class="headerlink" href="#cmdoption-plot-cell-neutron-balance-error-burnup" title="Permalink to this definition">¶</a></dt>
+<dd><p>The burnup (MWd/tU) of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-cell-neutron-balance-error-efpd">
+<span class="sig-name descname"><span class="pre">--efpd</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;efpd&gt;</span></span><a class="headerlink" href="#cmdoption-plot-cell-neutron-balance-error-efpd" title="Permalink to this definition">¶</a></dt>
+<dd><p>The effective full power days of which state point data used to plot, a nearest one would be choosed.</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-cell-neutron-balance-error-state-index">
+<span class="sig-name descname"><span class="pre">--state-index</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;state_index&gt;</span></span><a class="headerlink" href="#cmdoption-plot-cell-neutron-balance-error-state-index" title="Permalink to this definition">¶</a></dt>
+<dd><p>The index of which state point data used to plot.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">0</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-cell-neutron-balance-error-show-peak-location">
+<span class="sig-name descname"><span class="pre">--show-peak-location</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-peak-location</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-cell-neutron-balance-error-show-peak-location" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the location of peak values</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-cell-neutron-balance-error-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-cell-neutron-balance-error-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-cell-neutron-balance-error-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-cell-neutron-balance-error-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-result-summary">
+<span id="cli-plot-result-summary"></span><h3>plot-result-summary<a class="headerlink" href="#plot-result-summary" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-result-summary<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-x-axis">
+<span class="sig-name descname"><span class="pre">--x-axis</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;x_axis&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-x-axis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which data used as x axis, time or burnup. [default: time]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">burnup</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>burnup | effective_full_power_days | time | state_index</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-y-axis-first">
+<span class="sig-name descname"><span class="pre">--y-axis-first</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;y_axis_first&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-y-axis-first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which result data used as the first y axis. [default: keff]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">keff</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>keff | boron_concentration | control_rod_withdrawn_steps | relative_power | inlet_temperature | axial_offset | differential_boron_worth | Fdh | Fdh_fuel_pin_index | Fq | Fq_fuel_pin_index | Fq_plane_index | average_outlet_temperature | maximal_outlet_temperature | average_effective_temperature | maximal_effective_temperature | average_number_densities | computing_time | num_outer_iterations | num_core_rebuildings | num_dancoff_computations | num_resonance_computations | num_depletion_computations | num_macro_xs_updatings | num_thermal_feedbacks | num_critical_boron_searchs | num_xe_sm_transients | teff_U_region_fraction | teff_M_region_fraction | teff_L_region_fraction | total_pressure_loss | total_thermal_power</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-y-axis-second">
+<span class="sig-name descname"><span class="pre">--y-axis-second</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;y_axis_second&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-y-axis-second" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which result data used as the second y axis. [default: None]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>keff | boron_concentration | control_rod_withdrawn_steps | relative_power | inlet_temperature | axial_offset | differential_boron_worth | Fdh | Fdh_fuel_pin_index | Fq | Fq_fuel_pin_index | Fq_plane_index | average_outlet_temperature | maximal_outlet_temperature | average_effective_temperature | maximal_effective_temperature | average_number_densities | computing_time | num_outer_iterations | num_core_rebuildings | num_dancoff_computations | num_resonance_computations | num_depletion_computations | num_macro_xs_updatings | num_thermal_feedbacks | num_critical_boron_searchs | num_xe_sm_transients | teff_U_region_fraction | teff_M_region_fraction | teff_L_region_fraction | total_pressure_loss | total_thermal_power</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-y-axis-third">
+<span class="sig-name descname"><span class="pre">--y-axis-third</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;y_axis_third&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-y-axis-third" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which result data used as the third y axis. [default: None]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>keff | boron_concentration | control_rod_withdrawn_steps | relative_power | inlet_temperature | axial_offset | differential_boron_worth | Fdh | Fdh_fuel_pin_index | Fq | Fq_fuel_pin_index | Fq_plane_index | average_outlet_temperature | maximal_outlet_temperature | average_effective_temperature | maximal_effective_temperature | average_number_densities | computing_time | num_outer_iterations | num_core_rebuildings | num_dancoff_computations | num_resonance_computations | num_depletion_computations | num_macro_xs_updatings | num_thermal_feedbacks | num_critical_boron_searchs | num_xe_sm_transients | teff_U_region_fraction | teff_M_region_fraction | teff_L_region_fraction | total_pressure_loss | total_thermal_power</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-plot-type-first">
+<span class="sig-name descname"><span class="pre">--plot-type-first</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;plot_type_first&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-plot-type-first" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which kind of plotting used to show the first y axis data. [default: curve]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">curve</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>curve | scatter | step</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-plot-type-second">
+<span class="sig-name descname"><span class="pre">--plot-type-second</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;plot_type_second&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-plot-type-second" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which kind of plotting used to show the second y axis data. [default: curve]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">curve</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>curve | scatter | step</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-plot-type-third">
+<span class="sig-name descname"><span class="pre">--plot-type-third</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;plot_type_third&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-plot-type-third" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which kind of plotting used to show the third y axis data. [default: curve]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">curve</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>curve | scatter | step</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-ignore-power-change-more-than">
+<span class="sig-name descname"><span class="pre">--ignore-power-change-more-than</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;ignore_power_change_more_than&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-ignore-power-change-more-than" title="Permalink to this definition">¶</a></dt>
+<dd><p>Ignore the data when relative power change more than some level. [default: 5.0]</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-nuclide-name">
+<span class="sig-name descname"><span class="pre">--nuclide-name</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;nuclide_name&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-nuclide-name" title="Permalink to this definition">¶</a></dt>
+<dd><p>Of which nuclide the number density to show.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>I-135 | Xe-135 | Pm-149 | Sm-149 | Gd-155 | Gd-157 | U-235 | U-238 | Pu-239</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-rod-bank">
+<span class="sig-name descname"><span class="pre">--rod-bank</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;rod_bank&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-rod-bank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which control rod bank, choose the fisrt bank if None</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-squence-type">
+<span class="sig-name descname"><span class="pre">--squence-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;squence_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-squence-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which kind of squence calculation data to plot. [default: DEP]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Options<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DEP | CRIT | CRW | CRWC</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-show-grid">
+<span class="sig-name descname"><span class="pre">--show-grid</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-show-grid</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-result-summary-show-grid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to show the grid of the plotting. [default: True]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">True</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-result-summary-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">absolute</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-result-summary-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-result-summary-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-criticals">
+<span id="cli-plot-criticals"></span><h3>plot-criticals<a class="headerlink" href="#plot-criticals" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-criticals<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-criticals-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-criticals-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">absolute</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-criticals-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-criticals-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-control-rod-worths">
+<span id="cli-plot-control-rod-worths"></span><h3>plot-control-rod-worths<a class="headerlink" href="#plot-control-rod-worths" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-control-rod-worths-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-control-rod-worths-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">absolute</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-control-rod-worths-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-control-rod-worths-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-control-rod-worths-curve">
+<span id="cli-plot-control-rod-worths-curve"></span><h3>plot-control-rod-worths-curve<a class="headerlink" href="#plot-control-rod-worths-curve" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-control-rod-worths-curve<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-control-rod-worths-curve-rod-bank">
+<span class="sig-name descname"><span class="pre">--rod-bank</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;rod_bank&gt;</span></span><a class="headerlink" href="#cmdoption-plot-control-rod-worths-curve-rod-bank" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which control rod bank, choose the fisrt bank if None</p>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-control-rod-worths-curve-worth-type">
+<span class="sig-name descname"><span class="pre">--worth-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;worth_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-control-rod-worths-curve-worth-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which kind of control rod worth to plot. [default: IRW (pcm)]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">IRW(pcm)</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>IRW(pcm) | DRW(pcm) | DRW(pcm/cm)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-control-rod-worths-curve-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-control-rod-worths-curve-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">absolute</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-control-rod-worths-curve-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-control-rod-worths-curve-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="plot-timing-statistics">
+<span id="cli-plot-timing-statistics"></span><h3>plot-timing-statistics<a class="headerlink" href="#plot-timing-statistics" title="Permalink to this heading">¶</a></h3>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>plot-timing-statistics<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span>
+</pre></div>
+</div>
+<p class="rubric">Options</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-timing-statistics-difference-type">
+<span class="sig-name descname"><span class="pre">--difference-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;difference_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-timing-statistics-difference-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>The type of difference when comparing two results, relative or absolute. [default: relative]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">relative</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>relative | absolute</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-timing-statistics-plot-type">
+<span class="sig-name descname"><span class="pre">--plot-type</span></span><span class="sig-prename descclassname"> <span class="pre">&lt;plot_type&gt;</span></span><a class="headerlink" href="#cmdoption-plot-timing-statistics-plot-type" title="Permalink to this definition">¶</a></dt>
+<dd><p>Which kind of plotting used to show the timing statistics. [default: bar]</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">bar</span></code></p>
+</dd>
+<dt class="field-even">Options<span class="colon">:</span></dt>
+<dd class="field-even"><p>bar | pie</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-plot-timing-statistics-save-fig">
+<span class="sig-name descname"><span class="pre">--save-fig</span></span><span class="sig-prename descclassname"></span><span class="sig-prename descclassname"><span class="pre">,</span> </span><span class="sig-name descname"><span class="pre">--no-save-fig</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-plot-timing-statistics-save-fig" title="Permalink to this definition">¶</a></dt>
+<dd><p>Whether to save the plotting figure.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Default<span class="colon">:</span></dt>
+<dd class="field-odd"><p><code class="docutils literal notranslate"><span class="pre">False</span></code></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+</section>
+</section>
 
 
            </div>
