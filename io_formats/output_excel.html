@@ -214,7 +214,7 @@ CRANE还输出了一个Excel文件，里面保存了用户相对比较关心的�
 <p>该 <a class="reference internal" href="#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a> 至多包含以下十个sheet:</p>
 <blockquote>
 <div><ol class="arabic simple">
-<li><p><a class="reference internal" href="restart.html#summary"><span class="std std-ref">/summary/</span></a></p></li>
+<li><p><a class="reference internal" href="#summary"><span class="std std-ref">summary</span></a></p></li>
 <li><p><a class="reference internal" href="#assembly-power"><span class="std std-ref">assembly_power</span></a></p></li>
 <li><p><a class="reference internal" href="#axial-power"><span class="std std-ref">axial_power</span></a></p></li>
 <li><p><a class="reference internal" href="#detector-reaction"><span class="std std-ref">detector_reaction</span></a></p></li>
@@ -322,8 +322,8 @@ CRANE还输出了一个Excel文件，里面保存了用户相对比较关心的�
 <dd class="field-even"><p>字符串，计算序列类型，[CRIT, ITC, IRW, IRWC, DEP]五选一。</p>
 </dd>
 <dt class="field-odd">which_rod_bank<span class="colon">:</span></dt>
-<dd class="field-odd"><p>字符串，计算序列描述，即临界物理实验计算的 <a class="reference internal" href="input.html#critical-description"><span class="std std-ref">description</span></a>、温度系数计算的
-<a class="reference internal" href="input.html#tc-description"><span class="std std-ref">description</span></a> 或棒价值计算的 <a class="reference internal" href="input.html#crw-description"><span class="std std-ref">description</span></a>。</p>
+<dd class="field-odd"><p>字符串，计算序列描述，即临界物理实验计算的 <a class="reference internal" href="input.html#critical-name"><span class="std std-ref">name</span></a>、温度系数计算的
+<a class="reference internal" href="input.html#tc-name"><span class="std std-ref">name</span></a> 或棒价值计算的 <a class="reference internal" href="input.html#crw-name"><span class="std std-ref">name</span></a>。</p>
 </dd>
 <dt class="field-even">computing_time (second)<span class="colon">:</span></dt>
 <dd class="field-even"><p>浮点数，计算耗时，单位 second。</p>
@@ -481,7 +481,7 @@ CRANE还输出了一个Excel文件，里面保存了用户相对比较关心的�
 <dd class="field-even"><p>整数，控制棒组&lt;id&gt;的棒位。</p>
 </dd>
 <dt class="field-odd">which_rod_bank<span class="colon">:</span></dt>
-<dd class="field-odd"><p>字符串，临界实验计算序列描述，即 <a class="reference internal" href="input.html#critical-description"><span class="std std-ref">description</span></a>。</p>
+<dd class="field-odd"><p>字符串，临界实验计算序列描述，即 <a class="reference internal" href="input.html#critical-name"><span class="std std-ref">name</span></a>。</p>
 </dd>
 <dt class="field-even">boron_concentration (ppm)<span class="colon">:</span></dt>
 <dd class="field-even"><p>浮点数，可溶硼浓度，单位 ppm。</p>
@@ -511,8 +511,8 @@ CRANE还输出了一个Excel文件，里面保存了用户相对比较关心的�
 <dt class="field-even">type<span class="colon">:</span></dt>
 <dd class="field-even"><p>浮点数，温度系数类型，即 <a class="reference internal" href="input.html#tc-type"><span class="std std-ref">type</span></a>, [ITC, MTC, FTC]三选一。</p>
 </dd>
-<dt class="field-odd">description<span class="colon">:</span></dt>
-<dd class="field-odd"><p>字符串，温度系数计算序列描述，即 <a class="reference internal" href="input.html#tc-description"><span class="std std-ref">description</span></a>。</p>
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，温度系数计算序列的名称，即 <a class="reference internal" href="input.html#tc-name"><span class="std std-ref">name</span></a>。</p>
 </dd>
 <dt class="field-even">moderator_temperature_0 (K)<span class="colon">:</span></dt>
 <dd class="field-even"><p>浮点数，第一个状态点的慢化剂温度，单位 Kelvin。</p>
@@ -551,8 +551,8 @@ CRANE还输出了一个Excel文件，里面保存了用户相对比较关心的�
 <dt class="field-odd">index<span class="colon">:</span></dt>
 <dd class="field-odd"><p>整数，索引编号。</p>
 </dd>
-<dt class="field-even">description<span class="colon">:</span></dt>
-<dd class="field-even"><p>字符串，控制棒计算序列描述，即 <a class="reference internal" href="input.html#crw-description"><span class="std std-ref">description</span></a>。</p>
+<dt class="field-even">name<span class="colon">:</span></dt>
+<dd class="field-even"><p>字符串，控制棒计算序列的名称，即 <a class="reference internal" href="input.html#crw-name"><span class="std std-ref">name</span></a>。</p>
 </dd>
 <dt class="field-odd">keff<span class="colon">:</span></dt>
 <dd class="field-odd"><p>浮点数，有效增值系数。</p>
@@ -622,9 +622,8 @@ CRANE还输出了一个Excel文件，里面保存了用户相对比较关心的�
 <dt class="field-even">type<span class="colon">:</span></dt>
 <dd class="field-even"><p>字符串，计算序列类型，[CB, ITC, MTC, FTC, IRW]五选一。</p>
 </dd>
-<dt class="field-odd">description<span class="colon">:</span></dt>
-<dd class="field-odd"><p>字符串，计算序列描述，即CRIT <a class="reference internal" href="input.html#critical-description"><span class="std std-ref">description</span></a>，TC <a class="reference internal" href="input.html#tc-description"><span class="std std-ref">description</span></a> 和IRW
-<a class="reference internal" href="input.html#crw-description"><span class="std std-ref">description</span></a>。</p>
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，计算序列的名称，即CRIT <a class="reference internal" href="input.html#critical-name"><span class="std std-ref">name</span></a>，TC <a class="reference internal" href="input.html#tc-name"><span class="std std-ref">name</span></a> 和IRW <a class="reference internal" href="input.html#crw-name"><span class="std std-ref">name</span></a>。</p>
 </dd>
 <dt class="field-even">result<span class="colon">:</span></dt>
 <dd class="field-even"><p>浮点数，序列计算结果，CB对应临界硼浓度，ITC、MTC和FTC对应温度系数，IRW对应控制棒价值。</p>

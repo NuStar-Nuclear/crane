@@ -282,7 +282,7 @@
 </div>
 <p>这里初始状态（在 <a class="reference internal" href="../io_formats/input.html#core-control-rod"><span class="std std-ref">control_rod</span></a> 中设置）是ARO的，首先计算该状态点下的临界硼浓度，
 再分别计算这里的 <code class="docutils literal notranslate"><span class="pre">9</span></code> 个插棒状态下的keff来最终获得棒价值，所以一共是计算 <code class="docutils literal notranslate"><span class="pre">10</span></code> 个状态点。</p>
-<p>另外，你也可以通过将 <a class="reference internal" href="../io_formats/input.html#crw-description"><span class="std std-ref">description</span></a> 设置成 <code class="docutils literal notranslate"><span class="pre">ARO</span></code> 来定义ARO状态点的参数，而不是采用默认情况。</p>
+<p>另外，你也可以通过将 <a class="reference internal" href="../io_formats/input.html#crw-name"><span class="std std-ref">name</span></a> 设置成 <code class="docutils literal notranslate"><span class="pre">ARO</span></code> 来定义ARO状态点的参数，而不是采用默认情况。</p>
 <p>如以下是 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题的控制组价值计算输入：</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">low_power_physic_tests</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">control_rod_worths</span><span class="p">:</span>
@@ -316,7 +316,7 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">tag</span><span class="p">:</span><span class="w"> </span><span class="nv">SC_DCBASESDin</span><span class="p p-Indicator">,</span><span class="nt"> control_rod_position</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="w">  </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">228</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">,</span><span class="w">   </span><span class="nv">0</span><span class="p p-Indicator">]}</span>
 </pre></div>
 </div>
-<p>在控制棒价值计算中如果发现有同样的两个 <a class="reference internal" href="../io_formats/input.html#crw-description"><span class="std std-ref">description</span></a> ，CRANE会认为这两个状态点依次为未插棒与插棒状态，
+<p>在控制棒价值计算中如果发现有同样的两个 <a class="reference internal" href="../io_formats/input.html#crw-name"><span class="std std-ref">name</span></a> ，CRANE会认为这两个状态点依次为未插棒与插棒状态，
 而不是以初始ARO状态点作为未插棒状态，因此这里就是计算的是C棒组在D棒组全插下的价值，B棒组在C、D棒组全插下的价值，依次类推。</p>
 </section>
 <section id="crwc-computation">
@@ -329,7 +329,7 @@
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">bank</span><span class="p">:</span><span class="w"> </span><span class="nv">D</span><span class="p p-Indicator">,</span><span class="nt"> step_size</span><span class="p">:</span><span class="w"> </span><span class="nv">23</span><span class="p p-Indicator">,</span><span class="nt"> boron_concentration</span><span class="p">:</span><span class="w"> </span><span class="nv">1230</span><span class="p p-Indicator">}</span>
 </pre></div>
 </div>
-<p>这里步长 <a class="reference internal" href="../io_formats/input.html#crwc-step-size"><span class="std std-ref">step_size</span></a> 设置为 23，硼浓度 <a class="reference internal" href="../io_formats/input.html#crwc-boron-concentration"><span class="std std-ref">boron_concentration</span></a> 设置为 1230 ppm。</p>
+<p>这里步长 <span class="xref std std-ref">crwc_step_size</span> 设置为 23，硼浓度 <a class="reference internal" href="../io_formats/input.html#crwc-boron-concentration"><span class="std std-ref">boron_concentration</span></a> 设置为 1230 ppm。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>若这里不输入硼浓度，则会在棒全提时进行临界硼搜索，后续插棒状态点采用该硼浓度进行计算。</p>

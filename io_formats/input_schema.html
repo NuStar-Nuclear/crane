@@ -936,7 +936,7 @@
         <span class="p">},</span>
     <span class="p">},</span>
     <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;boron_concentration&quot;</span><span class="p">,</span> <span class="s2">&quot;system_pressure&quot;</span><span class="p">],</span>
-    <span class="s2">&quot;oneOf&quot;</span><span class="p">:</span> <span class="p">[</span>
+    <span class="s2">&quot;anyOf&quot;</span><span class="p">:</span> <span class="p">[</span>
         <span class="p">{</span><span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;boron_concentration&quot;</span><span class="p">,</span> <span class="s2">&quot;inlet_temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;system_pressure&quot;</span><span class="p">]},</span>
         <span class="p">{</span><span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;boron_concentration&quot;</span><span class="p">,</span> <span class="s2">&quot;moderator_temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;fuel_temperature&quot;</span><span class="p">,</span> <span class="s2">&quot;system_pressure&quot;</span><span class="p">]}</span>
     <span class="p">],</span>
@@ -961,13 +961,13 @@
             <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
                     <span class="s2">&quot;boron_concentration&quot;</span><span class="p">:</span> <span class="n">BORON</span><span class="p">,</span>
                     <span class="s2">&quot;fuel_temperature&quot;</span><span class="p">:</span> <span class="n">TEMPERATURE</span><span class="p">,</span>
                     <span class="s2">&quot;moderator_temperature&quot;</span><span class="p">:</span> <span class="n">TEMPERATURE</span><span class="p">,</span>
                     <span class="s2">&quot;control_rod_position&quot;</span><span class="p">:</span> <span class="n">CONTROL_ROD_POSITION</span>
                 <span class="p">},</span>
-                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">]</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span>
             <span class="p">},</span>
         <span class="p">},</span>
         <span class="s2">&quot;temperature_coefficients&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -975,7 +975,7 @@
             <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
                     <span class="s2">&quot;types&quot;</span><span class="p">:</span> <span class="p">{</span>
                         <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span>
                         <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -988,7 +988,7 @@
                     <span class="s2">&quot;delta_temperature&quot;</span><span class="p">:</span> <span class="n">TEMPERATURE</span><span class="p">,</span>
                     <span class="s2">&quot;control_rod_position&quot;</span><span class="p">:</span> <span class="n">CONTROL_ROD_POSITION</span>
                 <span class="p">},</span>
-                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;types&quot;</span><span class="p">]</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;types&quot;</span><span class="p">]</span>
             <span class="p">},</span>
         <span class="p">},</span>
         <span class="s2">&quot;control_rod_worths&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -996,13 +996,13 @@
             <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;tag&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
                     <span class="s2">&quot;boron_concentration&quot;</span><span class="p">:</span> <span class="n">BORON</span><span class="p">,</span>
                     <span class="s2">&quot;fuel_temperature&quot;</span><span class="p">:</span> <span class="n">TEMPERATURE</span><span class="p">,</span>
                     <span class="s2">&quot;moderator_temperature&quot;</span><span class="p">:</span> <span class="n">TEMPERATURE</span><span class="p">,</span>
                     <span class="s2">&quot;control_rod_position&quot;</span><span class="p">:</span> <span class="n">CONTROL_ROD_POSITION</span>
                 <span class="p">},</span>
-                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;tag&quot;</span><span class="p">,</span> <span class="s2">&quot;control_rod_position&quot;</span><span class="p">]</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;control_rod_position&quot;</span><span class="p">]</span>
             <span class="p">},</span>
         <span class="p">},</span>
         <span class="s2">&quot;control_rod_worths_curve&quot;</span><span class="p">:</span> <span class="p">{</span>
@@ -1010,15 +1010,27 @@
             <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span>
                 <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
                 <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
-                    <span class="s2">&quot;bank&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
-                    <span class="s2">&quot;step_size&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span>
-                                  <span class="s2">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
-                                 <span class="p">},</span>
+                    <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="p">{</span><span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;string&quot;</span><span class="p">},</span>
                     <span class="s2">&quot;boron_concentration&quot;</span><span class="p">:</span> <span class="n">BORON</span><span class="p">,</span>
                     <span class="s2">&quot;fuel_temperature&quot;</span><span class="p">:</span> <span class="n">TEMPERATURE</span><span class="p">,</span>
                     <span class="s2">&quot;moderator_temperature&quot;</span><span class="p">:</span> <span class="n">TEMPERATURE</span><span class="p">,</span>
+                    <span class="s2">&quot;steps&quot;</span><span class="p">:</span> <span class="p">{</span>
+                        <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;array&quot;</span><span class="p">,</span>
+                        <span class="s2">&quot;items&quot;</span><span class="p">:</span> <span class="p">{</span>
+                            <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;object&quot;</span><span class="p">,</span>
+                            <span class="s2">&quot;properties&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                <span class="s2">&quot;step&quot;</span><span class="p">:</span> <span class="p">{</span>
+                                    <span class="s2">&quot;type&quot;</span><span class="p">:</span> <span class="s2">&quot;integer&quot;</span><span class="p">,</span>
+                                    <span class="s2">&quot;minimum&quot;</span><span class="p">:</span> <span class="mi">0</span>
+                                <span class="p">},</span>
+                                <span class="s2">&quot;control_rod_position&quot;</span><span class="p">:</span> <span class="n">CONTROL_ROD_POSITION</span><span class="p">,</span>
+                            <span class="p">},</span>
+                            <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;step&quot;</span><span class="p">,</span> <span class="s2">&quot;control_rod_position&quot;</span><span class="p">]</span>
+                        <span class="p">},</span>
+                        <span class="s2">&quot;minItems&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+                    <span class="p">},</span>
                 <span class="p">},</span>
-                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;bank&quot;</span><span class="p">,</span> <span class="s2">&quot;step_size&quot;</span><span class="p">]</span>
+                <span class="s2">&quot;required&quot;</span><span class="p">:</span> <span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">,</span> <span class="s2">&quot;steps&quot;</span><span class="p">]</span>
             <span class="p">},</span>
         <span class="p">},</span>
     <span class="p">},</span>

@@ -1333,10 +1333,10 @@ critical 对象
 
 critical对象用于定义临界实验计算的控制参数，该对象包含以下属性：
 
-    .. _critical_description:
+    .. _critical_name:
 
-    :description:
-        字符串，该临界实验计算的描述。
+    :name:
+        字符串，该临界实验计算的名称。
 
         *不可缺省*
 
@@ -1377,10 +1377,10 @@ temperature_coefficient 对象
 
 temperature_coefficient对象用于定义温度系数计算的控制参数，该对象包含以下属性：
 
-    .. _tc_description:
+    .. _tc_name:
 
-    :description:
-        字符串，该温度系数计算的描述。
+    :name:
+        字符串，该温度系数计算的名称。
 
         *不可缺省*
     
@@ -1421,12 +1421,12 @@ control_rod_worth 对象
 
 control_rod_worth对象用于定义控制棒价值（积分价值）计算参数，该对象包含以下属性：
 
-    .. _crw_description:
+    .. _crw_name:
 
-    :description:
-        字符串，该控制棒价值计算的描述，通过同样描述下的两个状态点来计算棒价值。
+    :name:
+        字符串，该控制棒价值计算的名称，通过同样名称下的两个状态点来计算棒价值。
 
-        .. note:: 控制棒价值计算是通过同样 :ref:`crw_description` 前后两个不同棒位下的状态点计算来产生棒价值的。
+        .. note:: 控制棒价值计算是通过同样 :ref:`crw_name` 前后两个不同棒位下的状态点计算来产生棒价值的。
 
         .. note:: ``ARO`` 是保留字符串，用来自定义棒全提下的状态点参数，见 :ref:`crw_computation`。
 
@@ -1460,6 +1460,27 @@ control_rod_worth对象用于定义控制棒价值（积分价值）计算参数
 
         *不可缺省*
 
+.. _control_rod_worth_curve_step:
+
+-----------------------------------
+control_rod_worth_curve_step 对象
+-----------------------------------
+
+control_rod_worth_curve_step对象用于定义控制棒价值曲线（微分价值）计算时每步的控制棒位信息，该对象包含以下属性：
+
+    .. _crwcs_step:
+
+    :step:
+        整数，目标控制棒组的位置。
+        
+        *不可缺省*
+
+    .. _crwcs_control_rod_position:
+
+    :control_rod_position:
+        整数列表，目标控制棒组在其所在位置时所有控制棒的棒位。
+
+        *不可缺省*
 
 .. _control_rod_worth_curve:
 
@@ -1469,17 +1490,20 @@ control_rod_worth_curve 对象
 
 control_rod_worth_curve对象用于定义控制棒价值曲线（微分价值）计算参数，该对象包含以下属性：
 
-    .. _crwc_bank:
+    .. _crwc_name:
 
-    :bank:
-        字符串，计算哪组控制棒，必须是 :ref:`banks` 中定义的控制棒组名称。
+    :name:
+        字符串，计算的控制棒名称。
+        
+        .. note:: 该名称可以是任意字符串，不一定非得是 :ref:`banks` 中定义的控制棒组名称，比如可以定义“重叠棒”，真正的棒位在
+                  :ref:`crwc_steps` 定义。
 
         *不可缺省*
 
-    .. _crwc_step_size:
+    .. _crwc_steps:
 
-    :step_size:
-        整数，该控制棒价值曲线计算时采用的步长。
+    :steps:
+        :ref:`control_rod_worth_curve_step` 列表，用于定义该控制棒价值曲线计算时每步的控制棒棒位信息。
 
         *不可缺省*
     

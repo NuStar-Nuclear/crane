@@ -125,8 +125,8 @@ summary表中保存各个状态点的计算结果汇总信息，表中每一行�
         字符串，计算序列类型，[CRIT, ITC, IRW, IRWC, DEP]五选一。
 
     :which_rod_bank:
-        字符串，计算序列描述，即临界物理实验计算的 :ref:`critical_description`、温度系数计算的
-        :ref:`tc_description` 或棒价值计算的 :ref:`crw_description`。
+        字符串，计算序列描述，即临界物理实验计算的 :ref:`critical_name`、温度系数计算的
+        :ref:`tc_name` 或棒价值计算的 :ref:`crw_name`。
 
     :computing_time (second):
         浮点数，计算耗时，单位 second。
@@ -275,7 +275,7 @@ criticals表中保存 :ref:`crit_computation` 的结果，表中每一行代表�
         整数，控制棒组<id>的棒位。
 
     :which_rod_bank:
-        字符串，临界实验计算序列描述，即 :ref:`critical_description`。
+        字符串，临界实验计算序列描述，即 :ref:`critical_name`。
 
     :boron_concentration (ppm):
         浮点数，可溶硼浓度，单位 ppm。
@@ -304,8 +304,8 @@ temperature_coefficients表中保存 :ref:`tc_computation` 的结果，表中每
     :type:
         浮点数，温度系数类型，即 :ref:`tc_type`, [ITC, MTC, FTC]三选一。
 
-    :description:
-        字符串，温度系数计算序列描述，即 :ref:`tc_description`。
+    :name:
+        字符串，温度系数计算序列的名称，即 :ref:`tc_name`。
 
     :moderator_temperature_0 (K):
         浮点数，第一个状态点的慢化剂温度，单位 Kelvin。
@@ -343,8 +343,8 @@ control_rod_worths表中保存 :ref:`crw_computation` 的结果，表中每一�
     :index:
         整数，索引编号。
 
-    :description:
-        字符串，控制棒计算序列描述，即 :ref:`crw_description`。
+    :name:
+        字符串，控制棒计算序列的名称，即 :ref:`crw_name`。
 
     :keff:
         浮点数，有效增值系数。
@@ -412,9 +412,8 @@ lppt_summary表中保存 :ref:`low_power_physic_tests` 序列计算结果汇总�
     :type:
         字符串，计算序列类型，[CB, ITC, MTC, FTC, IRW]五选一。
 
-    :description:
-        字符串，计算序列描述，即CRIT :ref:`critical_description`，TC :ref:`tc_description` 和IRW
-        :ref:`crw_description`。
+    :name:
+        字符串，计算序列的名称，即CRIT :ref:`critical_name`，TC :ref:`tc_name` 和IRW :ref:`crw_name`。
 
     :result:
         浮点数，序列计算结果，CB对应临界硼浓度，ITC、MTC和FTC对应温度系数，IRW对应控制棒价值。

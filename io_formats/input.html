@@ -149,9 +149,10 @@
 <li class="toctree-l3"><a class="reference internal" href="#critical">4.36. critical 对象</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#temperature-coefficient">4.37. temperature_coefficient 对象</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#control-rod-worth">4.38. control_rod_worth 对象</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#control-rod-worth-curve">4.39. control_rod_worth_curve 对象</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#depletion">4.40. depletion 对象</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#depletion-state">4.41. depletion_state 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-rod-worth-curve-step">4.39. control_rod_worth_curve_step 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#control-rod-worth-curve">4.40. control_rod_worth_curve 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#depletion">4.41. depletion 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#depletion-state">4.42. depletion_state 对象</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="output_excel.html">5. Excel 结果文件</a></li>
@@ -1360,9 +1361,9 @@
 <span id="id37"></span><h2><span class="section-number">4.36. </span>critical 对象<a class="headerlink" href="#critical" title="Permalink to this heading">¶</a></h2>
 <p>critical对象用于定义临界实验计算的控制参数，该对象包含以下属性：</p>
 <blockquote>
-<div><dl class="field-list" id="critical-description">
-<dt class="field-odd">description<span class="colon">:</span></dt>
-<dd class="field-odd"><p>字符串，该临界实验计算的描述。</p>
+<div><dl class="field-list" id="critical-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该临界实验计算的名称。</p>
 <p><em>不可缺省</em></p>
 </dd>
 </dl>
@@ -1396,9 +1397,9 @@
 <span id="id38"></span><h2><span class="section-number">4.37. </span>temperature_coefficient 对象<a class="headerlink" href="#temperature-coefficient" title="Permalink to this heading">¶</a></h2>
 <p>temperature_coefficient对象用于定义温度系数计算的控制参数，该对象包含以下属性：</p>
 <blockquote>
-<div><dl class="field-list" id="tc-description">
-<dt class="field-odd">description<span class="colon">:</span></dt>
-<dd class="field-odd"><p>字符串，该温度系数计算的描述。</p>
+<div><dl class="field-list" id="tc-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该温度系数计算的名称。</p>
 <p><em>不可缺省</em></p>
 </dd>
 </dl>
@@ -1432,12 +1433,12 @@
 <span id="id39"></span><h2><span class="section-number">4.38. </span>control_rod_worth 对象<a class="headerlink" href="#control-rod-worth" title="Permalink to this heading">¶</a></h2>
 <p>control_rod_worth对象用于定义控制棒价值（积分价值）计算参数，该对象包含以下属性：</p>
 <blockquote>
-<div><dl class="field-list" id="crw-description">
-<dt class="field-odd">description<span class="colon">:</span></dt>
-<dd class="field-odd"><p>字符串，该控制棒价值计算的描述，通过同样描述下的两个状态点来计算棒价值。</p>
+<div><dl class="field-list" id="crw-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，该控制棒价值计算的名称，通过同样名称下的两个状态点来计算棒价值。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>控制棒价值计算是通过同样 <a class="reference internal" href="#crw-description"><span class="std std-ref">description</span></a> 前后两个不同棒位下的状态点计算来产生棒价值的。</p>
+<p>控制棒价值计算是通过同样 <a class="reference internal" href="#crw-name"><span class="std std-ref">name</span></a> 前后两个不同棒位下的状态点计算来产生棒价值的。</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1472,19 +1473,42 @@
 </dl>
 </div></blockquote>
 </section>
-<section id="control-rod-worth-curve">
-<span id="id40"></span><h2><span class="section-number">4.39. </span>control_rod_worth_curve 对象<a class="headerlink" href="#control-rod-worth-curve" title="Permalink to this heading">¶</a></h2>
-<p>control_rod_worth_curve对象用于定义控制棒价值曲线（微分价值）计算参数，该对象包含以下属性：</p>
+<section id="control-rod-worth-curve-step">
+<span id="id40"></span><h2><span class="section-number">4.39. </span>control_rod_worth_curve_step 对象<a class="headerlink" href="#control-rod-worth-curve-step" title="Permalink to this heading">¶</a></h2>
+<p>control_rod_worth_curve_step对象用于定义控制棒价值曲线（微分价值）计算时每步的控制棒位信息，该对象包含以下属性：</p>
 <blockquote>
-<div><dl class="field-list" id="crwc-bank">
-<dt class="field-odd">bank<span class="colon">:</span></dt>
-<dd class="field-odd"><p>字符串，计算哪组控制棒，必须是 <span class="xref std std-ref">banks</span> 中定义的控制棒组名称。</p>
+<div><dl class="field-list" id="crwcs-step">
+<dt class="field-odd">step<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，目标控制棒组的位置。</p>
 <p><em>不可缺省</em></p>
 </dd>
 </dl>
-<dl class="field-list" id="crwc-step-size">
-<dt class="field-odd">step_size<span class="colon">:</span></dt>
-<dd class="field-odd"><p>整数，该控制棒价值曲线计算时采用的步长。</p>
+<dl class="field-list" id="crwcs-control-rod-position">
+<dt class="field-odd">control_rod_position<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数列表，目标控制棒组在其所在位置时所有控制棒的棒位。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="control-rod-worth-curve">
+<span id="id41"></span><h2><span class="section-number">4.40. </span>control_rod_worth_curve 对象<a class="headerlink" href="#control-rod-worth-curve" title="Permalink to this heading">¶</a></h2>
+<p>control_rod_worth_curve对象用于定义控制棒价值曲线（微分价值）计算参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="crwc-name">
+<dt class="field-odd">name<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，计算的控制棒名称。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>该名称可以是任意字符串，不一定非得是 <span class="xref std std-ref">banks</span> 中定义的控制棒组名称，比如可以定义“重叠棒”，真正的棒位在
+<a class="reference internal" href="#crwc-steps"><span class="std std-ref">steps</span></a> 定义。</p>
+</div>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="crwc-steps">
+<dt class="field-odd">steps<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#control-rod-worth-curve-step"><span class="std std-ref">control_rod_worth_curve_step 对象</span></a> 列表，用于定义该控制棒价值曲线计算时每步的控制棒棒位信息。</p>
 <p><em>不可缺省</em></p>
 </dd>
 </dl>
@@ -1509,7 +1533,7 @@
 </div></blockquote>
 </section>
 <section id="depletion">
-<span id="id41"></span><h2><span class="section-number">4.40. </span>depletion 对象<a class="headerlink" href="#depletion" title="Permalink to this heading">¶</a></h2>
+<span id="id42"></span><h2><span class="section-number">4.41. </span>depletion 对象<a class="headerlink" href="#depletion" title="Permalink to this heading">¶</a></h2>
 <p>depletion对象用于定义燃耗计算相关控制参数，该对象包含以下属性：</p>
 <blockquote>
 <div><dl class="field-list" id="dep-time-step-units">
@@ -1533,7 +1557,7 @@
 </div></blockquote>
 </section>
 <section id="depletion-state">
-<span id="id42"></span><h2><span class="section-number">4.41. </span>depletion_state 对象<a class="headerlink" href="#depletion-state" title="Permalink to this heading">¶</a></h2>
+<span id="id43"></span><h2><span class="section-number">4.42. </span>depletion_state 对象<a class="headerlink" href="#depletion-state" title="Permalink to this heading">¶</a></h2>
 <p>depletion_state对象用于定义燃耗点的状态参数，该对象包含以下属性：</p>
 <blockquote>
 <div><dl class="field-list" id="dep-state-burnup">
