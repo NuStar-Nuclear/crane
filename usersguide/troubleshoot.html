@@ -367,11 +367,11 @@
 中的哪些区域，重叠区域的面积是多少，重叠发生在哪个组件。</p>
 <p>虽然错误信息非常详细，但是很多情况下由于结构体重复排列，出现结构体之间重叠区域会非常多，会报出大量的区域重叠错误。
 另外通过文字信息去寻找到底哪些位置出现了重叠确实比较费力。</p>
-<p>为此，CRANE提供了 <a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">crane check-region-overlap</span></a> 命令，能够将结构体之间的区域重叠错误变为警告以防止程序中断，
+<p>为此，CRANE提供了 <a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">交互式可视化命令行</span></a> 命令，能够将结构体之间的区域重叠错误变为警告以防止程序中断，
 并在几何处理完毕后绘制出区域重叠的可视化图。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">crane check-region-overlap</span></a> 命令只支持结构体之间的区域重叠可视化，
+<p><a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">交互式可视化命令行</span></a> 命令只支持结构体之间的区域重叠可视化，
 并不支持单个结构体内部的区域重叠可视化。</p>
 </div>
 <p>如对以上 <a class="reference internal" href="../examples/vera.html#vera-2a"><span class="std std-ref">VERA_2A</span></a> 问题执行：</p>
@@ -393,7 +393,7 @@
 由图可见中心测量管与周围的燃料棒结构体发生了区域重叠。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>对于三维问题，<a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">crane check-region-overlap</span></a> 命令会从底到顶逐层产生区域重叠可视化图，
+<p>对于三维问题，<a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">交互式可视化命令行</span></a> 命令会从底到顶逐层产生区域重叠可视化图，
 中间取消可按 <code class="docutils literal notranslate"><span class="pre">Ctrl</span> <span class="pre">+</span> <span class="pre">C</span></code>。</p>
 </div>
 </section>

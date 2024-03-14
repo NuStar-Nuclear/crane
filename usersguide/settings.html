@@ -306,7 +306,22 @@ CMFD加速、临界硼搜索、氙瞬态、能量沉积方式、热工水力反�
 </section>
 <section id="id6">
 <h2><span class="section-number">5.7. </span>热工水力反馈<a class="headerlink" href="#id6" title="Permalink to this heading">¶</a></h2>
-<p>热工水力反馈控制参数通过 <span class="xref std std-ref">thermal</span> 设置。</p>
+<p>热工水力反馈控制参数通过 <a class="reference internal" href="../io_formats/input.html#thermal"><span class="std std-ref">thermal 对象</span></a> 设置，控制参数包含热工水力计算模式和热构件导热模型的相关参数。其中热工水力
+计算模式包括基于能量守恒的 <code class="docutils literal notranslate"><span class="pre">DIRECT</span></code> 模式，基于子通道但无横向流动的 <code class="docutils literal notranslate"><span class="pre">CLOSEGAP</span></code> 模式，以及基于子通道有横向流动的
+<code class="docutils literal notranslate"><span class="pre">OPENGAP</span></code> 模式。热构件导热模型当前仅适用于常规圆柱形燃料棒的计算。</p>
+<p>对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题我们设置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span><span class="w">  </span>
+<span class="w">  </span><span class="nt">thermal</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">model_option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DIRECT</span><span class="w">   </span>
+<span class="w">    </span><span class="nt">solid</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">pellet_rings_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">      </span><span class="nt">gap_conductivity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5678.3</span>
+<span class="w">      </span><span class="nt">theoretical_density_persent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.95</span>
+<span class="w">      </span><span class="nt">effective_fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.7</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>在热构件导热模型的设置中有effective_fuel_temperature是用于在中子物理和热工水力耦合时，反馈燃料有效温度时燃料芯块
+中心和表面温度的权重因子。</p>
 </section>
 <section id="id7">
 <h2><span class="section-number">5.8. </span>输出数据控制<a class="headerlink" href="#id7" title="Permalink to this heading">¶</a></h2>

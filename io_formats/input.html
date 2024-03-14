@@ -153,6 +153,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#control-rod-worth-curve">4.40. control_rod_worth_curve 对象</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#depletion">4.41. depletion 对象</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#depletion-state">4.42. depletion_state 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#thermal">4.43. thermal 对象</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#solid">4.44. solid 对象</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="output_excel.html">5. Excel 结果文件</a></li>
@@ -1217,6 +1219,11 @@
 <dd class="field-odd"><p><a class="reference internal" href="#output"><span class="std std-ref">output 对象</span></a>，用于定义输出相关的控制参数。</p>
 </dd>
 </dl>
+<dl class="field-list simple">
+<dt class="field-odd">thermal<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#thermal"><span class="std std-ref">thermal 对象</span></a>，用于定义热工水力和热构件导热的控制参数。</p>
+</dd>
+</dl>
 </div></blockquote>
 </section>
 <section id="critical-boron-search">
@@ -1640,6 +1647,53 @@
 <dt class="field-odd">output_type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>字符串，该状态点输出的结果数据详细程度，[MINIMAL, MEDIUM, MAXIMUM]三选一。</p>
 <p><em>默认值：初始状态点的结果数据输出详细程度</em></p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="thermal">
+<span id="id44"></span><h2><span class="section-number">4.43. </span>thermal 对象<a class="headerlink" href="#thermal" title="Permalink to this heading">¶</a></h2>
+<p>thermal对象用于定义热工水力和固体导热计算相关控制参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="model-option">
+<dt class="field-odd">model_option<span class="colon">:</span></dt>
+<dd class="field-odd"><p>字符串，热工水力计算的计算模式，[DIRECT, CLOSEGAP, OPENGAP]三选一。</p>
+<p><em>不可缺省</em></p>
+</dd>
+</dl>
+<dl class="field-list simple" id="solid-dict">
+<dt class="field-odd">solid<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#solid"><span class="std std-ref">solid 对象</span></a> 字典，用于定义燃料棒导热及温度反馈的控制参数。</p>
+</dd>
+</dl>
+</div></blockquote>
+</section>
+<section id="solid">
+<span id="id45"></span><h2><span class="section-number">4.44. </span>solid 对象<a class="headerlink" href="#solid" title="Permalink to this heading">¶</a></h2>
+<p>solid对象用于定义热构件导热计算相关控制参数，该对象包含以下属性：</p>
+<blockquote>
+<div><dl class="field-list" id="pellet-rings-number">
+<dt class="field-odd">pellet_rings_number<span class="colon">:</span></dt>
+<dd class="field-odd"><p>整数，燃料棒芯块在离散计算时径向圈数。</p>
+<p><em>默认值：8</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="gap-conductivity">
+<dt class="field-odd">gap_conductivity<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点数，燃料棒芯块外表面与包壳内表面间气隙热导率，单位 W/(m^2-K)。</p>
+<p><em>默认值：5678.3 W/(m^2-K)</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="theoretical-density-persent">
+<dt class="field-odd">theoretical_density_persent<span class="colon">:</span></dt>
+<dd class="field-odd"><p>浮点型，燃料棒芯块材料实际密度与理论密度比值。</p>
+<p><em>默认值：0.95</em></p>
+</dd>
+</dl>
+<dl class="field-list" id="effective-fuel-temperature">
+<dt class="field-odd">effective_fuel_temperature<span class="colon">:</span></dt>
+<dd class="field-odd"><p>列表，物理热工耦合反馈中计算有效燃料温度时，燃料芯块中心与外表面温度的权重因子。</p>
+<p><em>默认值：[0.3,0.7]</em></p>
 </dd>
 </dl>
 </div></blockquote>

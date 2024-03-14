@@ -522,7 +522,7 @@
 <p>为了减少用户输入，<a class="reference internal" href="../io_formats/input.html#lattice"><span class="std std-ref">lattice 对象</span></a> 中不需要定义格架以及可插入式的结构如可分离的可燃毒物棒等，它们会在其他方定义。</p>
 </div>
 <p>这两种方式可以同时使用，互相作为补充。但无论怎样布置，不同结构体之间不能有材料区的重叠，否则会出现
-<span class="xref std std-ref">region_overlap_between_structure</span>，可以通过 <a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">crane check-region-overlap</span></a> 命令来检查重叠区域。</p>
+<span class="xref std std-ref">region_overlap_between_structure</span>，可以通过 <a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">交互式可视化命令行</span></a> 命令来检查重叠区域。</p>
 <p>所有的 <a class="reference internal" href="../io_formats/input.html#lattice"><span class="std std-ref">lattice 对象</span></a> 都定义在 <a class="reference internal" href="../io_formats/input.html#geometries-lattices"><span class="std std-ref">lattices</span></a> 列表中，
 后面使用的时候通过 <a class="reference internal" href="../io_formats/input.html#lattice-name"><span class="std std-ref">name</span></a> 来引用该两维组件栅格。</p>
 <section id="lattice-pwr">
@@ -639,7 +639,7 @@
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>格架栅格与组件栅格组合的时候，也必须满足各自排布的几何结构体之间不能有重叠，否则会出现
-<span class="xref std std-ref">region_overlap_between_structure</span>，可以通过 <a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">crane check-region-overlap</span></a>
+<span class="xref std std-ref">region_overlap_between_structure</span>，可以通过 <a class="reference internal" href="../commands.html#crane-check-region-overlap"><span class="std std-ref">交互式可视化命令行</span></a>
 命令来检查重叠区域。</p>
 </div>
 <p><a class="reference internal" href="../io_formats/input.html#grid"><span class="std std-ref">grid 对象</span></a> 定义同样支持规则布置和非规则布置，对应需输入 <a class="reference internal" href="../io_formats/input.html#grid-map"><span class="std std-ref">grid_map</span></a> 和 <a class="reference internal" href="../io_formats/input.html#grid-structure-locations"><span class="std std-ref">structure_locations</span></a>。

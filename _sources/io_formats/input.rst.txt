@@ -1157,6 +1157,11 @@ settings对象用于设置计算参数，该对象包含以下属性：
     :output:
         :ref:`output`，用于定义输出相关的控制参数。
 
+    .. _settings_thermal
+
+    :thermal:
+        :ref:`thermal`，用于定义热工水力和热构件导热的控制参数。
+
 .. _critical_boron_search:
 
 ----------------------------
@@ -1655,3 +1660,62 @@ depletion_state对象用于定义燃耗点的状态参数，该对象包含以�
         字符串，该状态点输出的结果数据详细程度，[MINIMAL, MEDIUM, MAXIMUM]三选一。
         
         *默认值：初始状态点的结果数据输出详细程度*
+
+
+.. _thermal:
+
+---------------
+thermal 对象
+---------------
+
+thermal对象用于定义热工水力和固体导热计算相关控制参数，该对象包含以下属性：
+
+    .. _model_option:
+
+    :model_option:
+        字符串，热工水力计算的计算模式，[DIRECT, CLOSEGAP, OPENGAP]三选一。
+
+        *不可缺省*
+    
+    .. _solid_dict:
+   
+    :solid:
+        :ref:`solid` 字典，用于定义燃料棒导热及温度反馈的控制参数。
+
+
+.. _solid:
+
+------------
+solid 对象
+------------
+
+solid对象用于定义热构件导热计算相关控制参数，该对象包含以下属性： 
+
+    .. _pellet_rings_number:
+
+    :pellet_rings_number:
+        整数，燃料棒芯块在离散计算时径向圈数。
+
+        *默认值：8*
+
+    .. _gap_conductivity:
+
+    :gap_conductivity:
+        浮点数，燃料棒芯块外表面与包壳内表面间气隙热导率，单位 W/(m^2-K)。
+
+        *默认值：5678.3 W/(m^2-K)*
+    
+    .. _theoretical_density_persent:
+
+    :theoretical_density_persent:
+        浮点型，燃料棒芯块材料实际密度与理论密度比值。
+
+        *默认值：0.95*
+
+    .. _effective_fuel_temperature:
+
+    :effective_fuel_temperature:
+        列表，物理热工耦合反馈中计算有效燃料温度时，燃料芯块中心与外表面温度的权重因子。
+
+        *默认值：[0.3,0.7]*
+    

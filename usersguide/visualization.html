@@ -264,10 +264,10 @@
 <p>CRANE内建的可视化功能都是基于两维矢量图的，如果你对堆芯三维可视化有需求，可关注CRANE的进展，
 我们正在研发基于web的堆芯三维可视化工具。</p>
 </div>
-<p>为了能够方便用户使用，所有可视化命令都采用交互式命令行方式，只要执行 <a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 命令进入到交互式命令行环境，
+<p>为了能够方便用户使用，所有可视化命令都采用交互式命令行方式，只要执行 <a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">交互式可视化命令行</span></a> 命令进入到交互式命令行环境，
 按 <code class="docutils literal notranslate"><span class="pre">Tab</span></code> 键就可提示出可视化命令及选项。</p>
-<p>对于建模可视化，<a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 后面可以是 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a>，也可以是
-<a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>。但如果要进行计算结果可视化，<a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 后面必须是
+<p>对于建模可视化，<a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">交互式可视化命令行</span></a> 后面可以是 <a class="reference internal" href="../io_formats/input.html#io-file-formats-input"><span class="std std-ref">用户输入文件</span></a>，也可以是
+<a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>。但如果要进行计算结果可视化，<a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">交互式可视化命令行</span></a> 后面必须是
 <a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>。</p>
 <p>比如，你可以执行以下命令</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_7.yaml
@@ -291,7 +291,7 @@
 <p>以下我们以 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题为例，对所有可视化功能进行逐一介绍。</p>
 <section id="plot-model">
 <span id="id2"></span><h2><span class="section-number">11.1. </span>模型可视化<a class="headerlink" href="#plot-model" title="Permalink to this heading">¶</a></h2>
-<p>模型可视化通过 <a class="reference internal" href="../commands.html#cli-plot-model"><span class="std std-ref">plot-model</span></a> 命令实现，是最基本的建模可视化功能，该功能会对不同材料渲染不同颜色来绘制模型两维图，
+<p>模型可视化通过 <span class="xref std std-ref">cli_plot_model</span> 命令实现，是最基本的建模可视化功能，该功能会对不同材料渲染不同颜色来绘制模型两维图，
 支持径向、轴向两种切面。用户可以通过模型可视化来检查几何建模是否正确，材料区输入是否正确等。</p>
 <p>执行以下交互式命令行:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-model<span class="w"> </span>--direction<span class="w"> </span>radial<span class="w"> </span>--axial-height<span class="w"> </span><span class="m">200</span>
@@ -333,7 +333,7 @@
 </section>
 <section id="plot-meshes">
 <span id="id3"></span><h2><span class="section-number">11.2. </span>网格可视化<a class="headerlink" href="#plot-meshes" title="Permalink to this heading">¶</a></h2>
-<p>网格可视化通过 <a class="reference internal" href="../commands.html#cli-plot-meshes"><span class="std std-ref">plot-meshes</span></a> 命令实现，该可视化功能会对不同的网格渲染不同的颜色，支持材料区、MOC、
+<p>网格可视化通过 <span class="xref std std-ref">cli_plot_meshes</span> 命令实现，该可视化功能会对不同的网格渲染不同的颜色，支持材料区、MOC、
 CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网格。</p>
 <p>所有网格可视化都支持径向、轴向两类切面，以下以径向切面网格可视化为例。</p>
 <section id="plot-meshes-material">
@@ -445,7 +445,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-assembly-map">
 <span id="id8"></span><h2><span class="section-number">11.3. </span>组件布置图可视化<a class="headerlink" href="#plot-assembly-map" title="Permalink to this heading">¶</a></h2>
-<p>组件布置图可视化通过 <a class="reference internal" href="../commands.html#cli-plot-assembly-map"><span class="std std-ref">plot-assembly-map</span></a> 命令实现，该可视化功能以组件为单位绘制堆芯布置图，支持组件装载、
+<p>组件布置图可视化通过 <span class="xref std std-ref">cli_plot_assembly_map</span> 命令实现，该可视化功能以组件为单位绘制堆芯布置图，支持组件装载、
 组件历史、组件类型、组件编号、控制棒组、分离式可燃毒物、中子测量管共七种。</p>
 <p>这里我们用多循环计算基准题 <a class="reference internal" href="../examples/beavrs.html#beavrs-c2"><span class="std std-ref">BEAVRS_C2</span></a> 作为示例来进行组件布置图的可视化功能。</p>
 <section id="plot-assembly-map-lp">
@@ -546,7 +546,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-tagged-regions">
 <span id="id16"></span><h2><span class="section-number">11.4. </span>标记区域可视化<a class="headerlink" href="#plot-tagged-regions" title="Permalink to this heading">¶</a></h2>
-<p>标记区域可视化通过 <a class="reference internal" href="../commands.html#cli-plot-tagged-regions"><span class="std std-ref">plot-tagged-regions</span></a> 命令实现，该可视化功能只对标记区域渲染颜色，
+<p>标记区域可视化通过 <span class="xref std std-ref">cli_plot_tagged_regions</span> 命令实现，该可视化功能只对标记区域渲染颜色，
 用来检查用户所标记的区域是否正确，有关标记区域的功能请参阅 <span class="xref std std-ref">tally_tagged_regions</span>。</p>
 <p>与模型可视化一样，标记区域可视化也支持径向、轴向两类切面。</p>
 <p>执行以下交互式命令行:</p>
@@ -561,7 +561,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-moc-tracks">
 <span id="id17"></span><h2><span class="section-number">11.5. </span>MOC特征线可视化<a class="headerlink" href="#plot-moc-tracks" title="Permalink to this heading">¶</a></h2>
-<p>MOC特征线可视化通过 <a class="reference internal" href="../commands.html#cli-plot-moc-tracks"><span class="std std-ref">plot-moc-tracks</span></a> 命令实现，该可视化功能在模型径向切面基础上绘制出不同层级的特征线，
+<p>MOC特征线可视化通过 <span class="xref std std-ref">cli_plot_moc_tracks</span> 命令实现，该可视化功能在模型径向切面基础上绘制出不同层级的特征线，
 支持堆芯、组件、特征线段三个层级，其 <code class="docutils literal notranslate"><span class="pre">--track-level</span></code> 选项分别为 <code class="docutils literal notranslate"><span class="pre">core,</span> <span class="pre">assembly,</span> <span class="pre">segments</span></code>。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -586,7 +586,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-power-distribution">
 <span id="id18"></span><h2><span class="section-number">11.6. </span>功率分布可视化<a class="headerlink" href="#plot-power-distribution" title="Permalink to this heading">¶</a></h2>
-<p>功率分布可视化通过 <a class="reference internal" href="../commands.html#cli-plot-power-distribution"><span class="std std-ref">plot-power-distribution</span></a> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">8</span></code> 种功率分布进行可视化:</p>
+<p>功率分布可视化通过 <span class="xref std std-ref">cli_plot_power_distribution</span> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">8</span></code> 种功率分布进行可视化:</p>
 <section id="plot-power-distribution-assembly-integral">
 <span id="id19"></span><h3><span class="section-number">11.6.1. </span>组件积分功率分布可视化<a class="headerlink" href="#plot-power-distribution-assembly-integral" title="Permalink to this heading">¶</a></h3>
 <p>组件积分功率分布为最常用的功率分布，是对每个组件进行轴向积分后的两维功率分布，其 <code class="docutils literal notranslate"><span class="pre">--power-type</span></code> 选项为
@@ -698,7 +698,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-flux-distribution">
 <span id="id27"></span><h2><span class="section-number">11.7. </span>通量分布可视化<a class="headerlink" href="#plot-flux-distribution" title="Permalink to this heading">¶</a></h2>
-<p>通量分布可视化通过 <a class="reference internal" href="../commands.html#cli-plot-flux-distribution"><span class="std std-ref">plot-flux-distribution</span></a> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">5</span></code> 种功率分布进行可视化：</p>
+<p>通量分布可视化通过 <span class="xref std std-ref">cli_plot_flux_distribution</span> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">5</span></code> 种功率分布进行可视化：</p>
 <section id="plot-flux-distribution-cell-radial-slice">
 <span id="id28"></span><h3><span class="section-number">11.7.1. </span>径向切面的栅元通量分布可视化<a class="headerlink" href="#plot-flux-distribution-cell-radial-slice" title="Permalink to this heading">¶</a></h3>
 <p>径向切面的栅元通量分布是指在三维栅元通量分布下，选取某径向切面绘制的两维通量分布。其 <code class="docutils literal notranslate"><span class="pre">--flux-type</span></code> 选项为
@@ -798,7 +798,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-detector-reaction-distribution">
 <span id="id33"></span><h2><span class="section-number">11.8. </span>探测器活度分布可视化<a class="headerlink" href="#plot-detector-reaction-distribution" title="Permalink to this heading">¶</a></h2>
-<p>探测器活度分布可视化通过 <a class="reference internal" href="../commands.html#cli-plot-detector-reaction-distribution"><span class="std std-ref">plot-detector-reaction-distribution</span></a> 命令实现，
+<p>探测器活度分布可视化通过 <span class="xref std std-ref">cli_plot_detector_reaction_distribution</span> 命令实现，
 该功能根据组件探测器的活度（反应率）进行颜色渲染产生两维图。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -821,7 +821,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-burnup-distribution">
 <span id="id34"></span><h2><span class="section-number">11.9. </span>燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution" title="Permalink to this heading">¶</a></h2>
-<p>燃耗分布可视化通过 <a class="reference internal" href="../commands.html#cli-plot-burnup-distribution"><span class="std std-ref">plot-burnup-distribution</span></a> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">5</span></code> 种燃耗分布进行可视化:</p>
+<p>燃耗分布可视化通过 <span class="xref std std-ref">cli_plot_burnup_distribution</span> 命令实现，能够对以下 <code class="docutils literal notranslate"><span class="pre">5</span></code> 种燃耗分布进行可视化:</p>
 <p>由于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 不带燃耗计算，这里我们以 <a class="reference internal" href="../examples/vera.html#vera-9"><span class="std std-ref">VERA_9</span></a> 基准题为例来进行燃耗分布可视化。</p>
 <section id="plot-burnup-distribution-assembly-integral">
 <span id="id35"></span><h3><span class="section-number">11.9.1. </span>组件积分燃耗分布可视化<a class="headerlink" href="#plot-burnup-distribution-assembly-integral" title="Permalink to this heading">¶</a></h3>
@@ -898,7 +898,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-number-density-distribution">
 <span id="id40"></span><h2><span class="section-number">11.10. </span>核素核子密度分布可视化<a class="headerlink" href="#plot-number-density-distribution" title="Permalink to this heading">¶</a></h2>
-<p>核素核子密度可视化通过 <a class="reference internal" href="../commands.html#cli-plot-number-density-distribution"><span class="std std-ref">plot-number-density-distribution</span></a> 命令实现，
+<p>核素核子密度可视化通过 <span class="xref std std-ref">cli_plot_number_density_distribution</span> 命令实现，
 该功能根据指定核素每个燃耗区的核子密度进行颜色渲染产生两维图，支持径向、轴向两种切面。
 用户可以通过核素核子密度可视化来查看核素成分在堆芯内的空间分布。</p>
 <div class="admonition note">
@@ -912,7 +912,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>目前支持的核子密度可视化的核素可查看 <a class="reference internal" href="../commands.html#cli-plot-number-density-distribution"><span class="std std-ref">plot-number-density-distribution</span></a> 的 <code class="docutils literal notranslate"><span class="pre">--nuclide-name</span></code> 选项。</p>
+<p>目前支持的核子密度可视化的核素可查看 <span class="xref std std-ref">cli_plot_number_density_distribution</span> 的 <code class="docutils literal notranslate"><span class="pre">--nuclide-name</span></code> 选项。</p>
 </div>
 <p>可绘制出距离堆芯底部（包含反射层）距离200cm处径向切面的Xe-135核子密度分布图：</p>
 <figure class="align-center">
@@ -929,7 +929,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="dancoff">
 <span id="plot-dancoff-factors"></span><h2><span class="section-number">11.11. </span>Dancoff因子分布可视化<a class="headerlink" href="#dancoff" title="Permalink to this heading">¶</a></h2>
-<p>Dancoff因子可视化通过 <a class="reference internal" href="../commands.html#cli-plot-dancoff-factors"><span class="std std-ref">plot-dancoff-factors</span></a> 命令实现，该功能以每个共振区的Dancoff因子进行颜色渲染产生两维图，
+<p>Dancoff因子可视化通过 <span class="xref std std-ref">cli_plot_dancoff_factors</span> 命令实现，该功能以每个共振区的Dancoff因子进行颜色渲染产生两维图，
 支持径向、轴向两种切面。</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -971,7 +971,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-result-summary">
 <span id="id41"></span><h2><span class="section-number">11.12. </span>汇总数据随燃耗变化可视化<a class="headerlink" href="#plot-result-summary" title="Permalink to this heading">¶</a></h2>
-<p>汇总数据随燃耗可视化通过 <a class="reference internal" href="../commands.html#cli-plot-result-summary"><span class="std std-ref">plot-result-summary</span></a> 命令实现，该功能以燃耗（或时间）为X轴，汇总数据（
+<p>汇总数据随燃耗可视化通过 <span class="xref std std-ref">cli_plot_result_summary</span> 命令实现，该功能以燃耗（或时间）为X轴，汇总数据（
 <a class="reference internal" href="../io_formats/output_hdf5.html#statepoint-summary"><span class="std std-ref">/statepoint&lt;index&gt;/summary/</span></a> 中的数据，如Keff、临界硼浓度等）为Y轴绘制折线（或散点图）。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-9"><span class="std std-ref">VERA_9</span></a> 基准题为例来进行汇总数据随燃耗可视化。</p>
 <p>执行以下交互式命令行：</p>
@@ -1012,7 +1012,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 <span id="id42"></span><h2><span class="section-number">11.13. </span>低功率物理实验结果可视化<a class="headerlink" href="#plot-lppt" title="Permalink to this heading">¶</a></h2>
 <section id="plot-criticals">
 <span id="id43"></span><h3><span class="section-number">11.13.1. </span>临界实验结果可视化<a class="headerlink" href="#plot-criticals" title="Permalink to this heading">¶</a></h3>
-<p>临界实验结果可视化通过 <a class="reference internal" href="../commands.html#cli-plot-criticals"><span class="std std-ref">plot-criticals</span></a> 命令实现，该功能将 <a class="reference internal" href="lppt.html#crit-computation"><span class="std std-ref">临界实验计算</span></a> 的 <code class="docutils literal notranslate"><span class="pre">keff</span></code>
+<p>临界实验结果可视化通过 <span class="xref std std-ref">cli_plot_criticals</span> 命令实现，该功能将 <a class="reference internal" href="lppt.html#crit-computation"><span class="std std-ref">临界实验计算</span></a> 的 <code class="docutils literal notranslate"><span class="pre">keff</span></code>
 与 <code class="docutils literal notranslate"><span class="pre">1.0</span></code> 的差值绘制成条形图。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题为例来进行临界实验结果可视化。</p>
 <p>执行以下交互式命令行：</p>
@@ -1026,7 +1026,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-control-rod-worths">
 <span id="id44"></span><h3><span class="section-number">11.13.2. </span>控制棒组价值可视化<a class="headerlink" href="#plot-control-rod-worths" title="Permalink to this heading">¶</a></h3>
-<p>控制棒组价值（积分价值）可视化通过 <a class="reference internal" href="../commands.html#cli-plot-control-rod-worths"><span class="std std-ref">plot-control-rod-worths</span></a> 命令实现，该功能将
+<p>控制棒组价值（积分价值）可视化通过 <span class="xref std std-ref">cli_plot_control_rod_worths</span> 命令实现，该功能将
 <a class="reference internal" href="lppt.html#crw-computation"><span class="std std-ref">控制棒组价值计算</span></a> 的结果绘制成条形图。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题为例来进行控制棒组价值可视化。</p>
 <p>执行以下交互式命令行：</p>
@@ -1040,7 +1040,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-control-rod-worths-curve">
 <span id="id45"></span><h3><span class="section-number">11.13.3. </span>控制棒组价值曲线可视化<a class="headerlink" href="#plot-control-rod-worths-curve" title="Permalink to this heading">¶</a></h3>
-<p>控制棒组价值曲线（微分价值）可视化通过 <a class="reference internal" href="../commands.html#cli-plot-control-rod-worths-curve"><span class="std std-ref">plot-control-rod-worths-curve</span></a> 命令实现，该功能将
+<p>控制棒组价值曲线（微分价值）可视化通过 <span class="xref std std-ref">cli_plot_control_rod_worths_curve</span> 命令实现，该功能将
 <a class="reference internal" href="lppt.html#crwc-computation"><span class="std std-ref">控制棒组价值曲线计算</span></a> 的结果绘制成折线图或条形图。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题为例来进行控制棒组价值曲线可视化。</p>
 <p>执行以下交互式命令行：</p>
@@ -1071,7 +1071,7 @@ CMFD、共振计算、燃耗计算、和热工水力通道共六种类型的网�
 </section>
 <section id="plot-timing-statistics">
 <span id="id46"></span><h2><span class="section-number">11.14. </span>分项耗时统计可视化<a class="headerlink" href="#plot-timing-statistics" title="Permalink to this heading">¶</a></h2>
-<p>分项耗时统计可视化通过 <a class="reference internal" href="../commands.html#cli-plot-timing-statistics"><span class="std std-ref">plot-timing-statistics</span></a> 命令实现，该功能以各个分项（或者模块）的计算耗时来绘制条状图或者饼图。</p>
+<p>分项耗时统计可视化通过 <span class="xref std std-ref">cli_plot_timing_statistics</span> 命令实现，该功能以各个分项（或者模块）的计算耗时来绘制条状图或者饼图。</p>
 <p>这里我们以 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题为例来进行分项耗时统计可视化。</p>
 <p>执行以下交互式命令行：</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-timing-statistics<span class="w"> </span>--plot-type<span class="w"> </span>bar

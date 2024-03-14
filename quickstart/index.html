@@ -506,11 +506,11 @@
 <section id="crane">
 <h2>运行CRANE<a class="headerlink" href="#crane" title="Permalink to this heading">¶</a></h2>
 <p>输入文件填写完成以后，首先可以用 <a class="reference internal" href="../usersguide/visualization.html#usersguide-visualization"><span class="std std-ref">可视化</span></a> 功能来检查下模型的几何、材料布置是否正确。执行
-<a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 命令进入CRANE的可视化交互式命令行环境:</p>
+<a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">交互式可视化命令行</span></a> 命令进入CRANE的可视化交互式命令行环境:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_2A.yaml
 </pre></div>
 </div>
-<p>在该环境下按 <code class="docutils literal notranslate"><span class="pre">Tab</span></code> 键可自动提示 <a class="reference internal" href="../commands.html#interactive-commands"><span class="std std-ref">交互式可视化命令行</span></a>，以下我们运行 <a class="reference internal" href="../commands.html#cli-plot-model"><span class="std std-ref">plot-model</span></a> 命令来查看模型:</p>
+<p>在该环境下按 <code class="docutils literal notranslate"><span class="pre">Tab</span></code> 键可自动提示 <a class="reference internal" href="../commands.html#interactive-commands"><span class="std std-ref">交互式可视化命令行</span></a>，以下我们运行 <span class="xref std std-ref">cli_plot_model</span> 命令来查看模型:</p>
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/plot_model.png"><img alt="../_images/plot_model.png" src="../_images/plot_model.png" style="width: 800px;" /></a>
 </figure>
@@ -522,7 +522,7 @@
 <figure class="align-center">
 <a class="reference internal image-reference" href="../_images/scale_pin.png"><img alt="../_images/scale_pin.png" src="../_images/scale_pin.png" style="width: 800px;" /></a>
 </figure>
-<p>检查模型无误后，运行 <a class="reference internal" href="../commands.html#crane-run"><span class="std std-ref">crane run</span></a> 命令进行计算:</p>
+<p>检查模型无误后，运行 <a class="reference internal" href="../commands.html#crane-run"><span class="std std-ref">交互式可视化命令行</span></a> 命令进行计算:</p>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>run<span class="w"> </span>VERA_2A.yaml
 </pre></div>
 </div>
@@ -539,10 +539,10 @@
 <p>另外，CRANE还会产生一个同样命名的 Excel 文件，该文件保存了主要的一些结果数据，如计算状态参数、硼降曲线、
 组件功率分布、轴向功率分布、控制棒价值等，方便用户在windows系统上进行查看编辑。关于该文件的详细说明请参阅
 <a class="reference internal" href="../io_formats/output_excel.html#io-file-formats-output-excel"><span class="std std-ref">Excel 结果文件</span></a>。</p>
-<p>和执行 <a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 命令一样，计算完成后CRANE默认会进入可视化交互式命令行环境，执行命令:</p>
+<p>和执行 <a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">交互式可视化命令行</span></a> 命令一样，计算完成后CRANE默认会进入可视化交互式命令行环境，执行命令:</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p><a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 命令后面也可以接计算结果文件，如 <code class="docutils literal notranslate"><span class="pre">crane</span> <span class="pre">visualize</span> <span class="pre">VERA_2A.h5</span></code>
+<p><a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">交互式可视化命令行</span></a> 命令后面也可以接计算结果文件，如 <code class="docutils literal notranslate"><span class="pre">crane</span> <span class="pre">visualize</span> <span class="pre">VERA_2A.h5</span></code>
 即可进入可视化交互式命令行环境。</p>
 </div>
 <div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>pin-integral
