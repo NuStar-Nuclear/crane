@@ -1,0 +1,38 @@
+===================
+What's New in 1.0.1
+===================
+
+------------
+New Features
+------------
+
+#. 支持燃耗计算；
+#. 燃耗计算可在GPU上进行；
+#. 能够采用不同核素数量的多群常数库进行计算；
+
+---------
+Bug Fixes
+---------
+
+#. 690b28a: cell map should be padded by cell pitch and assembly before initialize cells
+#. 7f70669: bad x used to calcuate y since  x hasupdated when calcualte y
+#. 68d1580: bad theta used in apply_offset in build_core_assemblies
+#. 1707fad: the type of geoms affined should be same as the original one
+#. 021478e: forget to copy mesh data in Region's clone method
+#. 2914063: structure location should not be considered if a core that does have baffle or reflector
+#. 24c8d78: if cell outer of assembly container, its region and geos data should be freed
+#. e917eb1: structure json should have property name in method toStructureJson
+#. 6cb4171: incorrect index used for centers
+#. a9de701: incorrect xmin, xmax, ymin, ymax calculation in generate_cell_container_with_meshing
+#. f62a72c: region and reg_geos should be reallocate and recompute when cell is clipped
+#. 45b8465: forget to clear mesh_geos and free its memory before re-build
+#. 102efe6: region_filled should not be destoried
+#. 5a373ae: space operator should not be performed if space string is empty
+#. f8697f6: point in unfilled region do not call containsPoint
+#. 7141709: incorrect length calcuation, and typo
+#. 0874fbc: use the wrong size of assembly_map
+#. 405f99b: geos info should be cloned as well as other data
+#. 960daa5: empty cell meshing not setting
+#. a926773: incorrect index of _reg_centers in build_region_geos
+#. e11694b: incorrrect is_backward used in transport_flux_sweep
+#. 0f57304: incorrect cell_index calculation logics

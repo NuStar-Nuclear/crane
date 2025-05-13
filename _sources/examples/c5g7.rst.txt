@@ -1,0 +1,78 @@
+.. _examples_c5g7:
+
+
+=======
+C5G7
+=======
+
+C5G7基准题是OECD/NEA于2001年发布用来检验确定论输运计算程序求解非均匀堆芯能力的基准问题。
+该问题堆芯由UO2燃料组件和MOX燃料组件混合装载，共计16盒燃料组件，呈1/8对称。
+由于它具有强泄漏、组件间能谱差异大、非均匀性强等特点，被广泛用于新一代堆芯物理分析方法的检验。
+
+相关参考文献如下:
+
+1. M.A. Smith, E.E. Lewis, et al., Benchmark on Deterministic Transport Calculation 
+   without Spatial Homogenization a 2-D/3-D MOX Fuel Assembly Benchmark (C5G7 
+   MOX Benchmark), OECD/NEA, NEA/NSC/DOC(2003)16, 2003.
+
+2. Benchmark on Deterministic Transport Calculations without Spatial Homogenization, 
+   NEA, OECD, NEA/NSC/DOC(2003)16, 2005.
+
+
+该系列基准题问题根据两维、三维及插棒状态可分为以下5个基准题：
+
+   #. :ref:`c5g7_2d`
+   #. :ref:`c5g7_3d`
+   #. :ref:`c5g7_3d_unrodded`
+   #. :ref:`c5g7_3d_rodded_a`
+   #. :ref:`c5g7_3d_rodded_b`
+
+
+.. _c5g7_2d:
+
+------------
+C5G7_2D
+------------
+
+.. literalinclude:: ../../../examples/C5G7_2D.yaml
+    :language: yaml
+
+
+.. _c5g7_3d:
+
+------------
+C5G7_3D
+------------
+
+.. literalinclude:: ../../../examples/C5G7_3D.yaml
+    :language: yaml
+
+
+.. _c5g7_3d_unrodded:
+
+-----------------
+C5G7_3D_unrodded
+-----------------
+
+.. literalinclude:: ../../../examples/C5G7_3D_unrodded.yaml
+    :language: yaml
+
+
+.. _c5g7_3d_rodded_a:
+
+-----------------
+C5G7_3D_rodded_A
+-----------------
+
+.. literalinclude:: ../../../examples/C5G7_3D_rodded_A.yaml
+    :language: yaml
+
+
+.. _c5g7_3d_rodded_b:
+
+-----------------
+C5G7_3D_rodded_B
+-----------------
+
+.. literalinclude:: ../../../examples/C5G7_3D_rodded_B.yaml
+    :language: yaml

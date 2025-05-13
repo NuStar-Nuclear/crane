@@ -1,0 +1,210 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. VVER-1000 堆型 &mdash; CRANE Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=ab79f9eb" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="canonical" href="/crane/v_and_v/vver1000.html" />
+      <script src="../_static/documentation_options.js?v=28d163b9"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="输入示例" href="../examples/index.html" />
+    <link rel="prev" title="3. M310/CNP1000/CNP1000+ 堆型" href="cnp1000.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CRANE
+              <img src="../_static/crane_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../usersguide/index.html">用户指南</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">验证确认</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="index.html#id2">国际基准题验证</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html#id3">电厂实测数据确认</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="cnp300.html">1. CNP300 堆型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cnp650.html">2. CNP600/CNP650 堆型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cnp1000.html">3. M310/CNP1000/CNP1000+ 堆型</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">4. VVER-1000 堆型</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#vv-vver1000-lppt">4.1. 启动物理试验</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#vv-vver1000-follow">4.2. 运行跟踪</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">输入示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">验证确认</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>VVER-1000 堆型</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/v_and_v/vver1000.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="vver-1000">
+<span id="v-and-v-vver1000"></span><h1><span class="section-number">4. </span>VVER-1000 堆型<a class="headerlink" href="#vver-1000" title="Link to this heading">¶</a></h1>
+<p>CRANE针对 VVER-1000 堆型的确认数据总共包含2个机组，8个循环，10个堆年，涵盖启动物理试验的临界硼浓度、
+控制棒价值、温度系数，以及功率运行跟踪一天一个点的临界硼浓度、定期通量图测量的组件功率分布。</p>
+<section id="vv-vver1000-lppt">
+<span id="id1"></span><h2><span class="section-number">4.1. </span>启动物理试验<a class="headerlink" href="#vv-vver1000-lppt" title="Link to this heading">¶</a></h2>
+<section id="id2">
+<h3><span class="section-number">4.1.1. </span>临界硼浓度<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h3>
+<p>启动物理试验的临界硼浓度测量数据总共8个，都是ARO状态，CRANE计算偏差平均值-10.80ppm，均方根值12.41ppm，
+工业限值±100ppm，CRANE计算值8个都在工业限值内，100%满足验收准则，偏差统计图如下：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/vv_vver1000_cb.png"><img alt="../_images/vv_vver1000_cb.png" src="../_images/vv_vver1000_cb.png" style="width: 800px;" />
+</a>
+</figure>
+</section>
+<section id="id3">
+<h3><span class="section-number">4.1.2. </span>温度系数<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h3>
+<p>启动物理试验的温度系数测量数据包含ARO以及不同棒组插入情况下总共22个，CRANE计算偏差平均值1.35pcm/C°，均方根值0.92pcm/C°，
+工业限值±5.0pcm/C°，CRANE计算值22个都在工业限值内，100%满足验收准则，偏差统计图如下：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/vv_vver1000_tc.png"><img alt="../_images/vv_vver1000_tc.png" src="../_images/vv_vver1000_tc.png" style="width: 800px;" />
+</a>
+</figure>
+</section>
+<section id="id4">
+<h3><span class="section-number">4.1.3. </span>控制棒价值<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h3>
+<p>启动物理试验的控制棒价值测量数据包含不同棒组总共67个，CRANE计算偏差平均值-6.71%，均方根值3.04%，
+工业限值±20%，CRANE计算值67个都在工业限值内，100%满足验收准则，偏差统计图如下：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/vv_vver1000_crw.png"><img alt="../_images/vv_vver1000_crw.png" src="../_images/vv_vver1000_crw.png" style="width: 800px;" />
+</a>
+</figure>
+</section>
+</section>
+<section id="vv-vver1000-follow">
+<span id="id5"></span><h2><span class="section-number">4.2. </span>运行跟踪<a class="headerlink" href="#vv-vver1000-follow" title="Link to this heading">¶</a></h2>
+<section id="id6">
+<h3><span class="section-number">4.2.1. </span>临界硼浓度<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h3>
+<p>运行跟踪的临界硼浓度测量数据是一天一个点，总计8个循环2952个点（剔除工况不稳定的点），临界硼浓度随燃耗的偏差（未考虑硼燃耗效应）图如下：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/vv_vver1000_boron_letdown.png"><img alt="../_images/vv_vver1000_boron_letdown.png" src="../_images/vv_vver1000_boron_letdown.png" style="width: 800px;" />
+</a>
+</figure>
+<p>针对以上运行跟踪的临界硼浓度总共2952个点，CRANE的计算偏差平均值-2.66ppcm，均方根值13.92，工业限值±100ppm，
+CRANE计算值2952个都在工业限值内，100%满足验收准则，偏差统计图如下：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/vv_vver1000_cb_follow.png"><img alt="../_images/vv_vver1000_cb_follow.png" src="../_images/vv_vver1000_cb_follow.png" style="width: 800px;" />
+</a>
+</figure>
+</section>
+<section id="id7">
+<h3><span class="section-number">4.2.2. </span>组件功率分布<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h3>
+<p>VVER-1000针对组件功率分布的验收准则是对对称位置做平均后，组件功率相对偏差不超过10%，这里我们不做对称位置平均，直接比较所有组件。
+运行跟踪功率分布测量数据包含总共59张通量图，组件功率数据9617个，CRANE计算偏差平均值0.19%，均方根值1.64%，
+工业限值±10%，CRANE计算值9593个在工业限值内，100%满足验收准则，偏差统计图如下：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/vv_vver1000_assembly_power.png"><img alt="../_images/vv_vver1000_assembly_power.png" src="../_images/vv_vver1000_assembly_power.png" style="width: 800px;" />
+</a>
+</figure>
+<p>若对对称位置进行平均后再比较，偏差会减少很多，可见CRANE计算的组件功率分布精度较高，离工业限值还有较大裕量。</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cnp1000.html" class="btn btn-neutral float-left" title="3. M310/CNP1000/CNP1000+ 堆型" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../examples/index.html" class="btn btn-neutral float-right" title="输入示例" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

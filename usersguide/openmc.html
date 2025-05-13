@@ -1,0 +1,288 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>13. OpenMC 接口 &mdash; CRANE Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=ab79f9eb" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="canonical" href="/crane/usersguide/openmc.html" />
+      <script src="../_static/documentation_options.js?v=28d163b9"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="14. 常见错误排查" href="troubleshoot.html" />
+    <link rel="prev" title="12. 结果比较" href="compare.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CRANE
+              <img src="../_static/crane_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">用户指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library.html">1. 多群常数库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials.html">2. 材料定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">3. 几何建模</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 堆芯状态参数</a></li>
+<li class="toctree-l2"><a class="reference internal" href="settings.html">5. 计算选项设置</a></li>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html">6. 燃耗跟踪</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">7. 序列计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicycle.html">8. 多循环换料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">9. 启动计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">10. 结果输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">11. 可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compare.html">12. 结果比较</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">13. OpenMC 接口</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">13.1. 生成 OpenMC 输入并执行计算</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">13.2. 对计算结果进行比较和可视化</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html">14. 常见错误排查</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">输入示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">用户指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">13. </span>OpenMC 接口</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usersguide/openmc.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="openmc">
+<span id="usersguide-openmc"></span><h1><span class="section-number">13. </span>OpenMC 接口<a class="headerlink" href="#openmc" title="Link to this heading">¶</a></h1>
+<p><a class="reference external" href="https://docs.openmc.org/">OpenMC</a> 是近些年由麻省理工大学开发的开源蒙卡软件，
+该软件能够对复杂三维模型进行固定源、k-本征值问题等不同的类型的中子输运计算，同时兼具燃耗计算的功能。</p>
+<p>由于其开源的特性，其社区群体、高校用户都增长较快，CRANE开发团队也用OpenMC进行程序验证工作。</p>
+<p>为了能够方便的同时使用CRANE和OpenMC两个程序，我们开发了CRANE与OpenMC的接口模块，
+其主要功能包括两部分：</p>
+<ol class="arabic simple">
+<li><p>将CRANE模型自动转换成OpenMC模型，产生OpenMC的计算输入；</p></li>
+<li><p>计算完成后，抓取OpenMC的结果，用于和CRANE进行比较并可视化。</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>目前与OpenMC的模型转换功能只支持不带热工水力反馈的问题，可进行状态参数不变的燃耗计算，但不支持序列计算。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>能够使用CRANE的OpenMC接口功能的前提是环境中已经安装有OpenMC，且对OpenMC计算所需的数据库等信息已经配置完成。</p>
+</div>
+<section id="id2">
+<h2><span class="section-number">13.1. </span>生成 OpenMC 输入并执行计算<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>首先在CRANE的输入文件中定义 <a class="reference internal" href="../io_formats/input.html#to-openmc"><span class="std std-ref">to_openmc 对象</span></a>。</p>
+<p>这里我们以两维堆芯问题 <a class="reference internal" href="../examples/vera.html#vera-5a-2d"><span class="std std-ref">VERA_5A_2D</span></a> 为例，我们在其输入文件中增加该部分输入：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">to_openmc</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">openmc_settings</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">batches</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2000</span>
+<span class="w">    </span><span class="nt">inactive</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">500</span>
+<span class="w">    </span><span class="nt">particles</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">200000</span>
+</pre></div>
+</div>
+<p>然后直接执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>to-openmc<span class="w"> </span>VERA_5A_2D.yaml
+</pre></div>
+</div>
+<p>就能够基于CRANE模型自动生成OpenMC的计算输入，并直接驱动OpenMC计算。详细命令行功能见 <a class="reference internal" href="../commands.html#crane-to-openmc"><span class="std std-ref">crane to-openmc</span></a>。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>执行 <a class="reference internal" href="../commands.html#crane-to-openmc"><span class="std std-ref">crane to-openmc</span></a> 命令后，CRANE会创建一个名为 <a class="reference internal" href="../io_formats/input.html#core-name"><span class="std std-ref">name</span></a> + <code class="docutils literal notranslate"><span class="pre">__openmc</span></code> 的文件夹，
+OpenMC所有的输入文件都在该文件夹内。</p>
+</div>
+<p>利用 <a class="reference external" href="https://github.com/openmc-dev/plotter">openmc plotter</a> 工具对上述命令产生OpenMC模型进行可视化：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/openmc_plotter_vera_5a_2d.png"><img alt="../_images/openmc_plotter_vera_5a_2d.png" src="../_images/openmc_plotter_vera_5a_2d.png" style="width: 800px;" />
+</a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<p>而利用CRANE的 <a class="reference internal" href="../commands.html#cli-plot-model"><span class="std std-ref">plot-model</span></a> 命令也可对 <a class="reference internal" href="../examples/vera.html#vera-5a-2d"><span class="std std-ref">VERA_5A_2D</span></a> 基准题进行可视化：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/crane_plotter_vera_5a_2d.png"><img alt="../_images/crane_plotter_vera_5a_2d.png" src="../_images/crane_plotter_vera_5a_2d.png" style="width: 800px;" />
+</a>
+</figure>
+<p>可见两者的模型是一致的，只是CRANE模型的边界为活性区向外拓展若干个组件宽度（通过 <a class="reference internal" href="../io_formats/input.html#num-assembly-layers-reflector"><span class="std std-ref">num_assembly_layers_reflector</span></a>
+控制，默认为一个组件），而OpenMC的模型边界为反射层结构体定义中的最外围的 <a class="reference internal" href="../io_formats/input.html#primitive"><span class="std std-ref">primitive 对象</span></a>。</p>
+<p>实际上，从CRANE的模型转换至OpenMC模型的过程主要包含两部分，材料和几何。</p>
+<p>对材料来说，若是宏观截面给定材料，CRANE会根据宏观截面数据直接产生OpenMC的MGXS，若是真实材料，
+CRANE会计算出每种材料所包含的所有核素的核子密度数据，利用该数据进行OpenMC的材料建模。</p>
+<p>对于几何来说，CRANE会根据用户输入的逐步产生OpenMC几何建模需要的从Region到Universe的各个数据，
+CRANE与OpenMC在几何建模对象上的对应如下：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>CRANE</p></th>
+<th class="head"><p>OpenMC</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../io_formats/input.html#primitive"><span class="std std-ref">primitive</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Region.html#openmc.Region" title="(in OpenMC v0.15.2)"><code class="docutils literal notranslate"><span class="pre">openmc.Region</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../io_formats/input.html#region"><span class="std std-ref">region</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Cell.html#openmc.Cell" title="(in OpenMC v0.15.2)"><code class="docutils literal notranslate"><span class="pre">openmc.Cell</span></code></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../io_formats/input.html#structure"><span class="std std-ref">structure</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Universe.html#openmc.Universe" title="(in OpenMC v0.15.2)"><code class="docutils literal notranslate"><span class="pre">openmc.Universe</span></code></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../io_formats/input.html#lattice"><span class="std std-ref">lattice</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Universe.html#openmc.Universe" title="(in OpenMC v0.15.2)"><code class="docutils literal notranslate"><span class="pre">openmc.Universe</span></code></a> containing <a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Lattice.html#openmc.Lattice" title="(in OpenMC v0.15.2)"><code class="docutils literal notranslate"><span class="pre">openmc.Lattice</span></code></a> of pins</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../io_formats/input.html#core"><span class="std std-ref">core</span></a></p></td>
+<td><p><a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Universe.html#openmc.Universe" title="(in OpenMC v0.15.2)"><code class="docutils literal notranslate"><span class="pre">openmc.Universe</span></code></a> containing <a class="reference external" href="https://docs.openmc.org/en/stable/pythonapi/generated/openmc.Lattice.html#openmc.Lattice" title="(in OpenMC v0.15.2)"><code class="docutils literal notranslate"><span class="pre">openmc.Lattice</span></code></a> of assemblies</p></td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>OpenMC燃耗计算所需要的体积数据是由CRANE的几何模块计算获得的。</p>
+</div>
+</section>
+<section id="id3">
+<h2><span class="section-number">13.2. </span>对计算结果进行比较和可视化<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>采用CRANE的 <a class="reference internal" href="../commands.html#crane-to-openmc"><span class="std std-ref">crane to-openmc</span></a> 功能进行OpenMC的模型产生和计算时，默认会产生统计三维组件功率分布的
+<a class="reference external" href="https://docs.openmc.org/en/stable/usersguide/tallies.html">tallies</a>，因此OpenMC计算完成后，除了比较特征值，
+还可以比较组件功率分布、轴向功率分布等。</p>
+<p>类似于比较两个CRANE的结果，我们可以用 <a class="reference internal" href="../commands.html#crane-visualize"><span class="std std-ref">crane visualize</span></a> 命令来比较CRANE的 <a class="reference internal" href="../io_formats/output_hdf5.html#io-file-formats-output-hdf5"><span class="std std-ref">HDF5 结果文件</span></a>
+和OpenMC的 <a class="reference external" href="https://docs.openmc.org/en/stable/io_formats/statepoint.html">statepoint file</a>。</p>
+<p>如执行以下命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>crane<span class="w"> </span>visualize<span class="w"> </span>VERA_5A_2D.h5<span class="w"> </span>VERA_5A_2D__openmc/statepoint2000.h5
+</pre></div>
+</div>
+<p>进入到CRANE的可视化交互式命令行环境，然后执行命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>assembly-integral
+</pre></div>
+</div>
+<p>就可以比较CRANE与OpenMC的组件功率分布：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/crane_vs_openmc_assembly_power.png"><img alt="../_images/crane_vs_openmc_assembly_power.png" src="../_images/crane_vs_openmc_assembly_power.png" style="width: 800px;" />
+</a>
+</figure>
+<p>若执行命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>plot-power-distribution<span class="w"> </span>--power-type<span class="w"> </span>pin-integral
+</pre></div>
+</div>
+<p>就可以比较CRANE与OpenMC的棒功率分布：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/crane_vs_openmc_pin_power.png"><img alt="../_images/crane_vs_openmc_pin_power.png" src="../_images/crane_vs_openmc_pin_power.png" style="width: 800px;" />
+</a>
+</figure>
+<p>或者直接执行命令：</p>
+<div class="highlight-sh notranslate"><div class="highlight"><pre><span></span>print_power_distribution_comparation
+</pre></div>
+</div>
+<p>可打印出CRANE与OpenMC的结果比较的汇总表：</p>
+<figure class="align-center">
+<a class="reference internal image-reference" href="../_images/crane_vs_openmc_print.png"><img alt="../_images/crane_vs_openmc_print.png" src="../_images/crane_vs_openmc_print.png" style="width: 800px;" />
+</a>
+</figure>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="compare.html" class="btn btn-neutral float-left" title="12. 结果比较" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="troubleshoot.html" class="btn btn-neutral float-right" title="14. 常见错误排查" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

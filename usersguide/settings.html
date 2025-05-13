@@ -1,0 +1,306 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. 计算选项设置 &mdash; CRANE Documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="../_static/theme_overrides.css?v=ab79f9eb" />
+
+  
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <link rel="canonical" href="/crane/usersguide/settings.html" />
+      <script src="../_static/documentation_options.js?v=28d163b9"></script>
+      <script src="../_static/doctools.js?v=9bcbadda"></script>
+      <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script crossorigin="anonymous" integrity="sha256-Ae2Vz/4ePdIu6ZyI/5ZGsYnb+m0JlOmKPjt6XZ9JJkA=" src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="6. 燃耗跟踪" href="depletion.html" />
+    <link rel="prev" title="4. 堆芯状态参数" href="state.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            CRANE
+              <img src="../_static/crane_logo.svg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">文档内容:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../install.html">安装指引</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/index.html">快速上手</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">用户指南</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="library.html">1. 多群常数库</a></li>
+<li class="toctree-l2"><a class="reference internal" href="materials.html">2. 材料定义</a></li>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html">3. 几何建模</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state.html">4. 堆芯状态参数</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5. 计算选项设置</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#id2">5.1. 源迭代</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#moc">5.2. 两维MOC</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cmfd">5.3. CMFD加速</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id3">5.4. 临界硼搜索</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id4">5.5. 氙钐瞬态</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id5">5.6. 能量沉积方式</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id6">5.7. 热工水力反馈</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id7">5.8. 输出数据控制</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="depletion.html">6. 燃耗跟踪</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sequences.html">7. 序列计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="multicycle.html">8. 多循环换料</a></li>
+<li class="toctree-l2"><a class="reference internal" href="run.html">9. 启动计算</a></li>
+<li class="toctree-l2"><a class="reference internal" href="results.html">10. 结果输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="visualization.html">11. 可视化</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compare.html">12. 结果比较</a></li>
+<li class="toctree-l2"><a class="reference internal" href="openmc.html">13. OpenMC 接口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="troubleshoot.html">14. 常见错误排查</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../methods/index.html">理论方法</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../v_and_v/index.html">验证确认</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">输入示例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io_formats/index.html">文件格式说明</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../commands.html">命令行</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../releasenotes/index.html">Release Notes</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">CRANE</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html">用户指南</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>计算选项设置</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="../_sources/usersguide/settings.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="usersguide-settings">
+<span id="id1"></span><h1><span class="section-number">5. </span>计算选项设置<a class="headerlink" href="#usersguide-settings" title="Link to this heading">¶</a></h1>
+<p>计算选项设置，即 <a class="reference internal" href="../io_formats/input.html#settings"><span class="std std-ref">settings 对象</span></a>，是用来定义CRANE各部分计算模块的控制参数，如源迭代（外迭代）、两维MOC、
+CMFD加速、临界硼搜索、氙瞬态、能量沉积方式、热工水力反馈以及输出数据控制等。</p>
+<section id="id2">
+<h2><span class="section-number">5.1. </span>源迭代<a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
+<p>源迭代（外迭代）控制参数通过 <a class="reference internal" href="../io_formats/input.html#power-iteration"><span class="std std-ref">power_iteration 对象</span></a> 设置，它包含迭代收敛判据、最大迭代次数等控制参数。</p>
+<p>如对于 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题我们设置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">power_iteration</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5.0e-4</span>
+<span class="w">    </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1.0e-5</span>
+<span class="w"> </span>
+</pre></div>
+</div>
+<p>由于真正起到全局耦合作用的CMFD加速设置的收敛判据远高于此，因此这里的裂变源收敛判据设置到 <code class="docutils literal notranslate"><span class="pre">5e-4</span></code> 精度也足够了。</p>
+<p>如果需要快速计算调试，可以通过 <a class="reference internal" href="../io_formats/input.html#pi-max-num-outer-iterations"><span class="std std-ref">max_num_outer_iterations</span></a> 来减少迭代次数。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当 <a class="reference internal" href="../io_formats/input.html#pi-max-num-outer-iterations"><span class="std std-ref">max_num_outer_iterations</span></a> 设置太小，跳出迭代时并未达到收敛判据的标准时，CRANE会给出警告信息。</p>
+</div>
+</section>
+<section id="moc">
+<h2><span class="section-number">5.2. </span>两维MOC<a class="headerlink" href="#moc" title="Link to this heading">¶</a></h2>
+<p>两维MOC计算控制参数通过 <a class="reference internal" href="../io_formats/input.html#moc-2d"><span class="std std-ref">moc_2d 对象</span></a> 设置，它包含MOC计算采用的离散角度数量、特征线密度及源项近似类型等。</p>
+<p>如对于 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题我们设置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">moc_2d</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">num_azimuths</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">12</span>
+<span class="w">    </span><span class="nt">num_polars</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">3</span>
+<span class="w">    </span><span class="nt">track_density</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.05</span>
+</pre></div>
+</div>
+<p>以上MOC计算离散方位角总共是 <code class="docutils literal notranslate"><span class="pre">12</span> <span class="pre">x</span> <span class="pre">3</span> <span class="pre">x</span> <span class="pre">8</span> <span class="pre">=</span> <span class="pre">288</span></code> 个，这对于热中子谱的压水堆来说足够精确了。
+该设置也是程序的默认值, 即缺省整个 <a class="reference internal" href="../io_formats/input.html#moc-2d"><span class="std std-ref">moc_2d 对象</span></a> 下程序的设置。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>对于六角形组件堆型，<a class="reference internal" href="../io_formats/input.html#moc2d-num-azimuths"><span class="std std-ref">num_azimuths</span></a> 是 <code class="docutils literal notranslate"><span class="pre">0~60°</span></code> 的离散角度数量，因此设置为 <code class="docutils literal notranslate"><span class="pre">8</span></code> 即可。</p>
+</div>
+<p>至于 <a class="reference internal" href="../io_formats/input.html#moc2d-source-type"><span class="std std-ref">source_type</span></a>，即是否采用线性源近似，建议大型压水堆采用平源近似（默认值）即可，
+因为采用线性源近似虽然可以用更大的网格以减少网格数量，但每次特征线扫描时间会增加，总体计算效率差异不大。
+而对于精度要求较高，而规模较小的问题，如 <a class="reference internal" href="../examples/c5g7.html#c5g7-3d"><span class="std std-ref">C5G7_3D</span></a>，则可以采用线性源近似。</p>
+</section>
+<section id="cmfd">
+<h2><span class="section-number">5.3. </span>CMFD加速<a class="headerlink" href="#cmfd" title="Link to this heading">¶</a></h2>
+<p>CMFD加速计算控制参数通过 <a class="reference internal" href="../io_formats/input.html#cmfd"><span class="std std-ref">cmfd 对象</span></a> 设置，它包含CMFD加速开关及其收敛判据。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>CRANE采用的是多群+少群双层CMFD加速，多群CMFD固定迭代次数，少群CMFD才需要通过收敛判据来调整，
+它起到耦合全局的作用，因此这里的CMFD加速设置指的是少群CMFD。</p>
+</div>
+<p>如对于 <a class="reference internal" href="../examples/vera.html#vera-5"><span class="std std-ref">VERA_5</span></a> 基准题我们设置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
+<span class="w"> </span><span class="nt">cmfd</span><span class="p">:</span>
+<span class="w">   </span><span class="nt">cmfd_on</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">   </span><span class="nt">fission_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0e-6</span>
+<span class="w">   </span><span class="nt">keff_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">2.0e-7</span>
+</pre></div>
+</div>
+<p>以上设置也是程序的默认值, 即缺省整个 <a class="reference internal" href="../io_formats/input.html#cmfd"><span class="std std-ref">cmfd 对象</span></a> 下程序的设置。</p>
+</section>
+<section id="id3">
+<h2><span class="section-number">5.4. </span>临界硼搜索<a class="headerlink" href="#id3" title="Link to this heading">¶</a></h2>
+<p>临界硼搜索控制参数通过 <a class="reference internal" href="../io_formats/input.html#critical-boron-search"><span class="std std-ref">critical_boron_search 对象</span></a> 设置，它包含临界硼搜索开关及其收敛判据。</p>
+<p>如对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题我们设置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">critical_boron_search</span><span class="p">:</span><span class="w"> </span>
+<span class="w">    </span><span class="nt">boron_converge_criterion</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.1</span>
+<span class="w"> </span>
+</pre></div>
+</div>
+<p>这里的 <a class="reference internal" href="../io_formats/input.html#boron-converge-criterion"><span class="std std-ref">boron_converge_criterion</span></a> 为 <code class="docutils literal notranslate"><span class="pre">0.1</span></code> ppm，是比较高的收敛判据，默认值为 <code class="docutils literal notranslate"><span class="pre">0.5</span></code> ppm。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当开启临界硼搜索时，硼浓度收敛标准优先级高于keff，因此当硼浓度收敛时，keff哪怕没有达到收敛判据也认为是收敛的。</p>
+</div>
+<p><a class="reference internal" href="../io_formats/input.html#cb-search-on"><span class="std std-ref">cb_search_on</span></a> 默认为 <code class="docutils literal notranslate"><span class="pre">false</span></code>，因此缺省整个 <a class="reference internal" href="../io_formats/input.html#critical-boron-search"><span class="std std-ref">critical_boron_search 对象</span></a> 则不进行临界硼搜索。</p>
+</section>
+<section id="id4">
+<h2><span class="section-number">5.5. </span>氙钐瞬态<a class="headerlink" href="#id4" title="Link to this heading">¶</a></h2>
+<p>氙和钐瞬态的设置方式是一样的，这里以氙为例。</p>
+<p>初始状态的氙瞬态控制参数通过 <a class="reference internal" href="../io_formats/input.html#settings-xe-transients"><span class="std std-ref">xe_transients</span></a> 设置。</p>
+<p>可支持三种氙瞬态：真实燃耗跟踪、平衡氙、零氙，对应为 <code class="docutils literal notranslate"><span class="pre">TRAN、EQUI、ZERO</span></code>。</p>
+<p>如对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题我们设置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">xe_transients</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EQUI</span>
+</pre></div>
+</div>
+<p><a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题是平衡氙状态，因此设置为 <code class="docutils literal notranslate"><span class="pre">EQUI</span></code>，默认值是 <code class="docutils literal notranslate"><span class="pre">TRAN</span></code>，即真实燃耗跟踪。</p>
+</section>
+<section id="id5">
+<h2><span class="section-number">5.6. </span>能量沉积方式<a class="headerlink" href="#id5" title="Link to this heading">¶</a></h2>
+<p>能量沉积方式通过 <a class="reference internal" href="../io_formats/input.html#settings-energy-deposition"><span class="std std-ref">energy_deposition</span></a> 设置，有 <code class="docutils literal notranslate"><span class="pre">KAPPA_FISSION</span></code> 和 <code class="docutils literal notranslate"><span class="pre">HEATING_LOCAL</span></code> 这两种方式可选。</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">KAPPA_FISSION</span></code> 中，俘获反应释热以隐式方式考虑（等效在裂变核的 <code class="docutils literal notranslate"><span class="pre">KAPPA</span></code> 值中）；在 <code class="docutils literal notranslate"><span class="pre">HEATING_LOCAL</span></code> 中，
+俘获反应释热以显式方式考虑，每一个核都有独立的俘获释热值。</p>
+<p>对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题我们设置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">energy_deposition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HEATING_LOCAL</span>
+</pre></div>
+</div>
+<p>该问题为真实堆芯问题，考虑俘获释能是更加符合实际的，特别对于俘获反应较多的可燃毒物棒位置的功率有较显著影响。</p>
+<p>而对于 <a class="reference internal" href="../examples/c5g7.html#c5g7-3d"><span class="std std-ref">C5G7_3D</span></a> 基准题我们设置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">energy_deposition</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">KAPPA_FISSION</span>
+</pre></div>
+</div>
+<p>宏观截面给定问题的功率只能通过裂变能量产生截面来统计，因此设置为 <code class="docutils literal notranslate"><span class="pre">KAPPA_FISSION</span></code>。</p>
+</section>
+<section id="id6">
+<h2><span class="section-number">5.7. </span>热工水力反馈<a class="headerlink" href="#id6" title="Link to this heading">¶</a></h2>
+<p>热工水力反馈控制参数通过 <a class="reference internal" href="../io_formats/input.html#thermal"><span class="std std-ref">thermal 对象</span></a> 设置，控制参数包含热工水力计算模式和热构件导热模型的相关参数。</p>
+<p>其中热工水力计算模式包括基于能量守恒的 <code class="docutils literal notranslate"><span class="pre">DIRECT</span></code> 模式，基于子通道但无横向流动的 <code class="docutils literal notranslate"><span class="pre">CLOSEGAP</span></code> 模式，
+以及基于子通道有横向流动的 <code class="docutils literal notranslate"><span class="pre">OPENGAP</span></code> 模式。热构件导热模型当前仅适用于常规圆柱形燃料棒的计算。</p>
+<p>对于 <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题我们设置如下：</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">settings</span><span class="p">:</span><span class="w">  </span>
+<span class="w">  </span><span class="nt">thermal</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">model_option</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DIRECT</span><span class="w">   </span>
+<span class="w">    </span><span class="nt">solid</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">pellet_rings_number</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">8</span>
+<span class="w">      </span><span class="nt">gap_conductivity</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">5678.3</span>
+<span class="w">      </span><span class="nt">theoretical_density_persent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">0.95</span>
+<span class="w">      </span><span class="nt">effective_fuel_temperature</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">0.3</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">0.7</span><span class="p p-Indicator">]</span>
+</pre></div>
+</div>
+<p>在热构件导热模型的设置中有effective_fuel_temperature是用于在中子物理和热工水力耦合时，反馈燃料有效温度时燃料芯块
+中心和表面温度的权重因子。</p>
+</section>
+<section id="id7">
+<h2><span class="section-number">5.8. </span>输出数据控制<a class="headerlink" href="#id7" title="Link to this heading">¶</a></h2>
+<p>输出数据控制通过 <a class="reference internal" href="../io_formats/input.html#output"><span class="std std-ref">output 对象</span></a> 设置，用来定义输出数据的详细程度，或者指定哪些数据需要额外输出。</p>
+<p>CRANE定义了最小、中等、最大三种详细程度的输出，对应的 <a class="reference internal" href="../io_formats/input.html#output-type"><span class="std std-ref">type</span></a> 分别为：</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code>，输出所有计算结果数据，该模式下输出数据存储会比较庞大；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MEDIUM</span></code>，在 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 基础上，减去三维MOC细网少群通量分布、三维核素核子密度分布、三维燃料温度分布、三维慢化剂温度分布、三维CMFD网格中子平衡数据、三维Dancoff因子分布数据，是默认的输出设置；</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MINIMAL</span></code>，在 <code class="docutils literal notranslate"><span class="pre">MEDIUM</span></code> 基础上 ，减去三维棒功率分布、三维棒通量分布、三维棒燃耗分布数据。</p></li>
+</ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>当输出类型 <a class="reference internal" href="../io_formats/input.html#output-type"><span class="std std-ref">type</span></a> 为 <code class="docutils literal notranslate"><span class="pre">MAXIMUM</span></code> 时，三维核素核子密度分布数据只包含
+<code class="docutils literal notranslate"><span class="pre">I-135,</span> <span class="pre">Xe-135,</span> <span class="pre">Pm-149,</span> <span class="pre">Sm-149,</span> <span class="pre">U-235,</span> <span class="pre">U-238,</span> <span class="pre">Pu-239,</span> <span class="pre">Pu-241</span></code> 共8种核素。</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>采用 <code class="docutils literal notranslate"><span class="pre">MEDIUM</span></code> 情况下， <a class="reference internal" href="../examples/vera.html#vera-7"><span class="std std-ref">VERA_7</span></a> 基准题的输出数据量约在 <code class="docutils literal notranslate"><span class="pre">16M</span></code> 左右。</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="state.html" class="btn btn-neutral float-left" title="4. 堆芯状态参数" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="depletion.html" class="btn btn-neutral float-right" title="6. 燃耗跟踪" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2019-2023, ShangHai NuStar Nuclear Power Technology Co., Ltd..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ 
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-30411614-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+
+
+</body>
+</html>

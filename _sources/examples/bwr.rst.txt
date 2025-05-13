@@ -1,0 +1,23 @@
+.. _examples_bwr_nupec:
+
+
+==============
+NUPEC BWR
+==============
+
+NUPEC BWR基准题是OECD/NEA于2005年发布的沸水堆基准题问题。
+
+相关参考文献如下:
+
+1. B. Neykov, et al.,NUPEC BWR Full-size Fine-mesh Bundle Test (BFBT) Benchmark 
+   Volume I: Specifications, OECD/NEA, NEA/NSC/DOC(2005)5, 2006.
+
+
+.. .. _BWR_NUPEC:
+
+.. ----------------
+.. BWR_NUPEC
+.. ----------------
+
+.. literalinclude:: ../../../models/BWR/BWR_NUPEC.yaml
+    :language: yaml

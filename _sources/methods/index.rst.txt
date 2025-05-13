@@ -1,0 +1,19 @@
+.. _methods:
+
+============
+理论方法
+============
+
+.. toctree::
+    :numbered:
+    :maxdepth: 1
+
+    introduction
+    geometry
+    nuclear_lib
+    resonance
+    2d_1d_moc
+    multi_cmfd
+    depletion
+    thermal_feedback
+    fuel_performance

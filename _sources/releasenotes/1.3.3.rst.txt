@@ -1,0 +1,35 @@
+===================
+What's New in 1.3.3
+===================
+
+------------
+New Features
+------------
+
+#. 支持1/4组件的平均功率和通量编辑和可视化；
+#. 支持拷贝前序循环的用户输入文件到当前循环，以减少后续循环建模中的重复输入；
+#. 支持对材料区进行打标记，能够将这些标记区域进行可视化；
+
+---------
+Bug Fixes
+---------
+
+#. 61c6337: negative data accurred in get_spline_y_d
+#. 648ac0c: assembly column row indexes plotted in axial slice plotting with data
+#. f144788: empty average effective fuel temperature error
+#. e6dca07: key error in recursively_update_dict
+#. 11e4d9e: support empty map input
+#. 86ead7d: control rod should use initial position as default if not input by states
+#. 38a73b1: argument passing error
+#. 9c36127: indexes and weight error for axial plane weighting
+#. dc2dc5b: only should fuel quad assembly tallyed
+#. e7a66ab: can not insert assembly error
+#. 2129c3a: vector size error if control rod not defined
+#. 3d11716: no first burnup day point
+#. a7a93c0: efpd not supported in exceed limit burnup
+#. 04967c7: add attr and argument only_for_geometry to avoid multi-model bug in statistic
+#. f022f7b: markers may empty for direct handler input
+#. 440462b: average power should be tallyed only for fission area to make power distribution normalized correctly
+#. ff3904f: the relationship of cell_map or grid_map and structure location should be anyOf
+#. 481180d: periodic not supported for quad one cases
+#. 7eb86be: input_model may be None

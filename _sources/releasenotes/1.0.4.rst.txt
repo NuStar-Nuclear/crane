@@ -1,0 +1,31 @@
+===================
+What's New in 1.0.4
+===================
+
+------------
+New Features
+------------
+
+#. 宏观截面更新计算在GPU上进行；
+#. Dancoff因子计算也在GPU上进行；
+#. 增加了Dancoff因子的编辑输出；
+
+---------
+Bug Fixes
+---------
+
+#. b8865d8: can not allocate cell if the point is just on the cell side
+#. cd3dea6: use flat radial transverse leakage for debug purpose
+#. cd9866e: use incorrect formula to update radial net current for ucmfd solver
+#. ba5d39b: leakage split term should be added to sigma tr in kernel add_source_to_scalar_flux for moc1d solver
+#. 0000fee: leakage split term should be added to sigma tr in kernel add_source_to_scalar_flux for moc2d solver
+#. 5d910de: if fission source is zero, do not divide it
+#. 2243480: miss brackets in macros
+#. 24b1b29: average radial leakage should be divide by cell area
+#. db9702a: moc1d's cell avg flux should be comes from moc2d for each power iteration
+#. 974fde1: the denominator of leakage split term should be angular flux, not scalar flux
+#. bd84aca: volume-average axial transverse source should be divide by plane thickness, not mesh thickness
+#. d774765: radial transverse source is a volume-averaged one before add to total mesh source
+#. c35378a: radial leakage should be an integral value
+#. 25e37a4: bad symbol used in transverse_sources calculation
+#. a17a35a: incorrect memcpy size

@@ -1,0 +1,29 @@
+===================
+What's New in 1.3.2
+===================
+
+------------
+New Features
+------------
+
+#. 增加了结果比较统计图可视化功能；
+#. 在两维组件布置图中增加了组件行列编号；
+#. 多群常数库更新至RLIB-1.1.1b；
+
+---------
+Bug Fixes
+---------
+
+#. 0c63d3b: duplicated burnup state points
+#. 29bcdb7: use output file name as the core name if output file inputed
+#. 62cf0fd: carin output file only require suffix to be '.OUT'
+#. a7045c9: only the macro xs of boron in moderator should be updated when searching critical boron
+#. bd0c16a: the burnup points may not equal for calculated result and reference result
+#. b078769: KeyError if time_step_units not inputted
+#. eaf5269: variable error when comparing with openmc
+#. f022f7b: markers may empty for direct handler input
+#. 440462b: average power should be tallyed only for fission area to make power distribution normalized correctly
+#. ff3904f: the relationship of cell_map or grid_map and structure location should be anyOf
+#. 481180d: periodic not supported for quad one cases
+#. 7eb86be: input_model may be None
+#. f957808: histogram fitting should be multipy with the interval

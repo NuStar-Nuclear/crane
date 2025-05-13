@@ -1,0 +1,28 @@
+===================
+What's New in 1.1.6
+===================
+
+------------
+New Features
+------------
+
+#. 多群常数库更新至RLIB-1.0.9；
+#. 增加组件索引编号可视化功能；
+#. 支持燃料棒中心有孔洞的热工水力反馈；
+
+---------
+Bug Fixes
+---------
+
+#. 42a6b35: sor_weight should be allocated whether sor_on true or false
+#. da49600: repeated control rod position if crd_max_num_steps is a multiple of step size
+#. 8936bba: extending the top of crd rod also needed
+#. 810a485: global_dep_index and global_res_index count error
+#. 994290b: no need to compare crd_position if crd_position not input
+#. be32c84: region index may not consistent axially if other structures (such as grids) included in crd cells, which can cause incorrect homogenization by rod decusping method
+#. efdeb95: mat_dict can not updating while accessing, or some material can not found
+#. f267d07: subplane cells should be built squentially
+#. e0fd231: no need to perform dancoff calculation for all planes on each GPU
+#. b8e7dad: height >= position should be removed since virtual bottom added to crd
+#. dc731de: region area not cell area should be used to compute vol_inverse in kernel compute_crd_cell_reg_flux
+#. 0b71dd7: loop size error

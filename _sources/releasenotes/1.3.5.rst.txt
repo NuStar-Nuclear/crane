@@ -1,0 +1,28 @@
+===================
+What's New in 1.3.5
+===================
+
+------------
+New Features
+------------
+
+#. 支持标记区域的中子能谱、中子注量率编辑及可视化；
+#. 支持探测器反应率三维分布的编辑和可视化；
+#. 支持全堆组件的轴向功率倾斜编辑及可视化；
+
+---------
+Bug Fixes
+---------
+
+#. 6b6db73: size error if interpolating fuel planes which have different fuel regions
+#. 786d775: material nuclide number density not initialized
+#. 14df3b2: key error when search sym cell in symmetrize_center_burned_assembly
+#. 7bd7bb7: index may < 0 in assembly not rotated cases
+#. 28c1684: dataframe index error in lppt comparation if reference result df has different size
+#. 5f57bab: typo
+#. 2173509: can not use TC input boron concentrations if critical squence input before
+#. 5f3c39e: detector region index error if IT region defined
+#. 844ef8b: full core assembly power and detector reaction can not dump to excel in hexagonal core cases
+#. c2f0780: variable error if comparing with openmc result summary
+#. 78267cf: empty coolant temperature of guide tube for temperature distribution visualization
+#. b192f32: key error in meta_dict

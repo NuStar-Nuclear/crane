@@ -1,0 +1,41 @@
+===================
+What's New in 1.0.5
+===================
+
+------------
+New Features
+------------
+
+#. 多群常数库读入后直接在GPU上分配内存，减少GPU-CPU数据传递；
+#. 多群常数库从RLIB-1.04c更新至RLIB-1.0.5；
+#. 增加了通量分布、核子密度分布等输出；
+
+---------
+Bug Fixes
+---------
+
+#. a6c6e03: incorrect scatter start and end group index
+#. 2a94f05: type error if library is None
+#. ef3c9f3: incorrect reflector heights set
+#. 4a9f326: incorrect length of group_bins
+#. e912c9a: mesh_index not correct when get source slope
+#. b64220e: typo which cause address out of bounds
+#. 769a34a: heights may exceed plane boundary
+#. 944dca1: assembly track endpoints may not include in segments points
+#. 39e3e35: duplicated vertexes may generated when clipping cell
+#. 68151a2: incorrect reporting error about if track linked
+#. f3d84ba: use almost_equal to avoid equal lines not equal after rotation
+#. c5002b2: forget to add source slope term
+#. baa706a: line point overlap bug if nr = 0 in SectMeshing
+#. 480ea14: forget to reset flux_slope and a typo
+#. 3ef2374: forgot to push_back values into cell_mesh_index
+#. 5856478: cell_avg_power not zero in non-fuel pins
+#. 8c7faf7: incorrect logics in get_plane_index
+#. 0159119: miss cudaDeviceSynchronize
+#. 843e87a: use sector meshing instead of rectangle meshing for hexagonal cases to avoid bugs
+#. e94e577: incorrect pad_width used by map resizing
+#. 995e119: the number of nearest cells more than 16 some times
+#. 6f0f0e3: rotational theta can not kept by cloning of SectMeshing
+#. 22947d1: boundary exceed if the core has only one assembly
+#. 12106c8: insufficient length for nearest_index
+#. 0a8a912: cudaFree bug

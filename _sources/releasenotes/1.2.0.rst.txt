@@ -1,0 +1,30 @@
+===================
+What's New in 1.2.0
+===================
+
+------------
+New Features
+------------
+
+#. 增加再启动文件保存功能；
+#. 支持多循环换料计算；
+#. 支持停堆冷却燃耗计算功能；
+#. 增加了针对Docker平台的自动构建脚本；
+
+---------
+Bug Fixes
+---------
+
+#. d8920b8: really power ratio should be treated as the averge of two end points power ratio
+#. b2668d4: jmax error
+#. 011751d: cell index and pin index
+#. 9c5a4d4: dset may empty
+#. f391cda: do not rebuild core if crd_position empty
+#. 3e0b838: _crd_group_location_map need padding before rebuilding core
+#. 2b119b8: comparison of temperature is needed for the first state as well to decide whether to update dancoff factors
+#. a61a807: neighbor region spectrum index may not correct if neighbor cell have different regions such as grid regions
+#. abc2f76: subplane's moc2d_solver may be nullptr when getDeviceID
+#. 226269c: _max_seglen_computed make C5G7_3D case calculation error if use linear source
+#. c2fa5e4: incorrect n_unnormal dancoff factors
+#. ff4f7fc: memory error cause by using MAX_NUM_REGION_CRD_CELL
+#. 7f3fce5: device id of moc2d_solver not subplane is realy effective

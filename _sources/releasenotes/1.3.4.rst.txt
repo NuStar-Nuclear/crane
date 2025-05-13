@@ -1,0 +1,29 @@
+===================
+What's New in 1.3.4
+===================
+
+------------
+New Features
+------------
+
+#. 支持用户自定义的控制棒组（如重叠棒组）价值计算；
+#. 支持INCORE输出文件的解析功能，能够将INCORE输出文件中的功率分布、探测器活度分布等提取至excel文件；
+#. 支持对跟踪计算中的临界硼浓度进行比较和统计，产生统计偏差图；
+
+---------
+Bug Fixes
+---------
+
+#. ae5cf5d: material number may exceeds number of colors
+#. 6395cbc: crwc_crd_step size error
+#. 70574ef: argument passing error of generate_deviation_statistics_figures
+#. 415dc80: parsing error FP getting of INCORE.out
+#. 572998d: incorrect argument passed
+#. 8489784: thermal initialization failed since some non-Zr material such as SS316 used as cladding as well
+#. 43d397c: boundary exceeds in points overlap checking of POLYGON
+#. c8cc1ff: key error if not perform thermal
+#. 9f3da72: is_axial argument missed after merging
+#. aa50563: no attr method if compare with .yaml refernce file
+#. 9e99d5b: ValueError: The truth value of a Series is ambiguous.
+#. 403eee3: delta_temps may empty for crit_squence
+#. 7d85ea3: title not found in timing statistics plotting

@@ -1,0 +1,37 @@
+.. _usersguide_multicycle:
+
+
+==============
+多循环换料
+==============
+
+CRANE通过以下几个方面来支持多循环换料：
+
+1. 在每个循环燃耗跟踪计算中可设置 :ref:`dep_state_save_restart_file` 保存
+   `HDF5 <https://www.hdfgroup.org/solutions/hdf5/>`_ 格式的 :ref:`io_file_formats_restart`，
+   该文件包含所有模型及核素分布信息。
+
+   .. note:: 如果不设置任何 :ref:`dep_state_save_restart_file`，则默认对燃耗跟踪计算的最后一个状态点保存名为 
+             :ref:`core_name` ``+.restart.h5`` 的 :ref:`io_file_formats_restart`。
+
+2. 通过 :ref:`previous_cycles` 设置当前循环需要用到的前序循环的 :ref:`io_file_formats_restart`，
+   以及至当前循环的停堆冷却时间，CRANE会根据此信息进行分批次的衰变燃耗计算；
+3. :ref:`assembly_map` 中可直接定义旧料组件，命名规则为 ``组件行编号+组件列编号+C+循环编号``，如 ``A01C02`` 
+   就指第二循环 ``A`` 行 ``01`` 列的组件；
+4. 可通过 :ref:`copy_from` 来拷贝前序循环 :ref:`io_file_formats_input` 的内容，在此基准上可追加或者替换所有输入内容，
+   以减少后续循环的重复输入。
+
+.. note:: CRANE支持不同循环采用不同的对称性，如第一循环采用1/4堆芯计算，而第二循环采用全堆芯计算。
+
+以下是 :ref:`beavrs_c2` （BEAVRS基准题第二循环）模型相关的输入：
+
+.. literalinclude:: ../_yamls/multicycle_beavrs_c2.yaml
+    :language: yaml
+
+这里通过 :ref:`copy_from` 拷贝了第一循环的 :ref:`io_file_formats_input`，依次在 :ref:`materials`、
+:ref:`geometries_structures`、:ref:`geometries_lattices` 和 :ref:`geometries_assemblies`
+中添加了富集度分别为3.2%和3.4%的两类组件建模需要的内容。在 :ref:`assembly_map` 中定义了第二循环的组件布置，在
+:ref:`burnable_absorber_map` 和 :ref:`burnable_absorber_position` 中定义了第二循环的可燃毒物布置。
+
+.. note:: 若第二循环不再布置分离式可燃毒物棒，则需要将 :ref:`burnable_absorber_map` 和 :ref:`burnable_absorber_position` 
+          设置为空列表 ``[]``

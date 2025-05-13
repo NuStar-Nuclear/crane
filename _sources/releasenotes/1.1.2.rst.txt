@@ -1,0 +1,31 @@
+===================
+What's New in 1.1.2
+===================
+
+------------
+New Features
+------------
+
+#. 增加燃耗区平均的核素核子密度编辑功能；
+#. 增加Fdh、Fq、Fxy、AO等计算结果的编辑功能；
+#. 支持相对流量水平的输入；
+#. 支持负的临界硼浓度搜索；
+
+---------
+Bug Fixes
+---------
+
+#. feceee4: incorrect coolant perimeter and gaps
+#. efa9eae: main_stru_set empty error
+#. 1332b14: too many values to unpack
+#. bb05693: index boundary exceeds
+#. 307aaec: parallel GEOSIntersection is not thread safe
+#. d10e756: vector empty error
+#. 7c6f36e: set white for nan values
+#. 2324b0a: two assembly may not has same geoemtry if one has empty cells
+#. b2ee481: index error when accessing combine_coef
+#. c3537ed: one residual calculation performed after 5 inner iterations for cmfd smoothing
+#. df15f47: cell_fission_source forget to set 0 if it is not fissionable
+#. b6424d6: 1.flux slope should be reversed in backward axial flux sweeping; 2.flux slope should be devide with mesh thickness
+#. 9a412c6: method is_same_geometry should compare empty cells as well
+#. ea95335: moc1d flux sweeping backward is not correct

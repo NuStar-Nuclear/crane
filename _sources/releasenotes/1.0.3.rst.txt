@@ -1,0 +1,33 @@
+===================
+What's New in 1.0.3
+===================
+
+------------
+New Features
+------------
+
+#. 共振计算可在GPU上进行；
+#. 支持等效满功率天的燃耗输入；
+#. 增加了每个模块的计算时间统计；
+
+---------
+Bug Fixes
+---------
+
+#. 910a86e: incorrect short option
+#. eaec067: axial transverse source should be the inverse of transverse leakage
+#. 1756509: transverse 'sources' should be the inverse of transverse 'leakage'
+#. 1b3573b: axial transverse leakage should be a volume-averaged value
+#. b7e3770: radial transverse source should be a volume-averaged value
+#. 484221a: cell volume should be set to zero if not effective
+#. 32a6217: intersection algrithm of circle and line is wrong when line's b = 0
+#. 4f00f83: incorrect line defination
+#. a96ba33: if axial_height input, then use axial height to plot radial slice
+#. 14b84d7: miss mesh_thickness in add_source_to_scalar_flux
+#. 34a7f91: max num polar is 32, not 4
+#. 3dace03: integral transverse source should multipy with the perimeter of cell
+#. 7ffea2d: angular flux pointer should be pass as pointer reference in getIncomingAngularFluxFromNeighborPlane
+#. a6fe94d: do not need thickness to compute radial net current by outgoing current
+#. d9fcadf: incorrect plane boundary value setting if only has one plane
+#. 71abb04: forget to copy centroid for cell's cloning
+#. 7cc5e52: incorrector macro used in compute_cell_boundary_net_current

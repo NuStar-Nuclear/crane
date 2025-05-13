@@ -1,0 +1,25 @@
+===================
+What's New in 1.4.1
+===================
+
+------------
+New Features
+------------
+
+#. 多群常数库更新至RLIB-1.1.1e；
+#. 支持用户自定义的，且能够在任意燃耗点进行启动的序列计算;
+
+---------
+Bug Fixes
+---------
+
+#. 64437f3a bugfix: rdata do not has method close if comparing with .yaml reference file
+#. 2da1b95c bugfix: forget to initialize the burnup of first state
+#. 6dfcb3a8 bugfix: illegal memory access when MAX_NUM_POINTS_PER_CM_TRACK set to 24\48
+#. 52018538 bugfix: computing axial net current need to update old top\bottom out angular flux
+#. 74871910 bugfix: python format error since control rod position change to float
+#. 6f1b44c6 bugfix: only plane contains depletion region cant store/restore number density
+#. 044b21f2 bugfix: dep_regions' _number_density should be updated in sequences calculation to get the right averaged number densities
+#. ce646b45 bugfix: cell moderator and fuel info not updated after core rebuilding
+#. c5579f5b bugfix: attr forget to copy in Cell's clone method
+#. 34fced01 bugfix: result name and reference name should be model name if comparing two CRANE results

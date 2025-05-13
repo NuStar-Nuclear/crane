@@ -1,0 +1,34 @@
+===================
+What's New in 1.4.0
+===================
+
+------------
+New Features
+------------
+
+#. 增加了CRANE与OpenMC的材料、几何、结果统计等class的接口函数；
+#. 支持CRANE模型一键转换至OpenMC模型；
+#. 支持对OpenMC的计算结果解析并与CRANE进行比较；
+#. 更新多群常数库至RLIB-1.1.1d；
+#. 支持组件棒功率和棒燃耗最大值分布结果的输出与可视化；
+#. 支持将多个组件层面的结果如功率分布、燃耗分布、棒功率最大值、棒燃耗分布最大值等绘制在一张图上；
+
+---------
+Bug Fixes
+---------
+
+#. 1f44cb62 bugfix: miss type of error in some utils functions
+#. fbd32f50 bugfix: same index used for plane and region
+#. 0d88daab bugfix: openmc periodic boundary type defination must using general plane
+#. b3a9fd62 bugfix: bad round used to get region_center
+#. 599eb5da bugfix: copy_from can not set new input dict to empty, such as set critical_boron_search to {}
+#. f77df797 bugfix: _num_assemblies_axis not prepared before using it
+#. f7d3557b bugfix: assembly universe map of hexagonal core count from bottom, not top
+#. bc6c32ce bugfix: assembly2D's pin_universe_map must be updated after clone
+#. 6340948a bugfix: base_assem2d_dict should be used instead of _assem_dict to generate universe
+#. 4c4b479a bugfix: typo
+#. b578b0a6 bugfix: for crd defination use locations not location_map do not need to pad map for _crd_group_location_map
+#. 112172fe bugfix: day_time_points computation error when burnup_step_unit use DAY
+#. 8e0b8a1e bugfix: burnup step computation error when use DAY
+#. dd6e28ca bugfix: crd_positions vector size error when depletion states input not by states list
+

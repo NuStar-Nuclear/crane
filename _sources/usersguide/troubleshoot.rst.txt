@@ -1,0 +1,192 @@
+.. _usersguide_troubleshoot:
+
+
+===============
+常见错误排查
+===============
+
+CRANE有一套非常完善的错误排查机制，该机制由外向内分为以下三层：
+
+1. 基于 `PyYAML`_ 库，直接排查 :ref:`io_file_formats_input` 中的 `YAML`_ 格式错误；
+2. 基于 `python-jsonschema`_ 库，通过CRANE自带的 :ref:`io_file_formats_input_schema`，排查
+   :ref:`io_file_formats_input` 中的输入内容规则错误；
+3. 基于CRANE的C++错误处理模块，排查几何建模及计算过程中出现的运行时错误，如几何区域重叠错误等。
+
+
+.. _yaml_format_error:
+
+------------------
+`YAML`_ 格式错误
+------------------
+
+`YAML`_ 格式错误是由于在 :ref:`io_file_formats_input` 中的内容不满足 `YAML`_ 格式要求，比较常见的问题有：
+
+#. 缩进错误： `YAML`_ 是通过缩进来表示层级关系的，因此在编写时需要确保正确的缩进。使用空格或者制表符缩进，
+   但不能混用。常见的是使用两个空格作为缩进；
+#. 键值对格式错误：键值对之间使用冒号 ``:`` 分隔， **冒号后面需要加上一个空格**，同时键值对的值需要适当地使用引号包裹，
+   特别是包含特殊字符时，或者是字符串值；
+#. 列表格式错误：展开的列表开头需要加 ``-``，列表项之间需要统一的缩进，列表项也可以是单个值或者是键值对；
+#. 引用错误：使用 ``&`` 和 ``*`` 符号可以进行变量引用，但是在使用时要注意引用的正确性和范围。
+#. 注释错误：使用 ``#`` 符号来表示注释，注释只能出现在一行的开头或者键值对的末尾；
+
+.. note:: 如果在专业的文本编辑工具上编辑 `YAML`_ 文件，许多格式错误本身就可以通过内容的颜色来区分，
+          我们推荐使用 `VScode <https://code.visualstudio.com/>`_ 作为 :ref:`io_file_formats_input` 的编辑器。
+
+这里以缩进错误为示例，若我们在 :ref:`c5g7_2d` 基准题中第一个材料的 :ref:`sigma_tr` 输入时缩进没有对齐：
+
+.. literalinclude:: ../_yamls/error_indent.yaml
+    :language: yaml
+
+这时我们运行CRANE会出现以下错误：
+
+.. figure:: ../_images/error_indent.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+错误的详细信息会在最后显示（图中白色背景部分），对于 `YAML`_ 格式错误，除了提示是什么错误，
+还会给出错误发生的位置，几行几列。
+
+
+.. _input_schema_error:
+
+------------------
+输入内容规则错误
+------------------
+
+输入内容规则错误是由于 :ref:`io_file_formats_input` 中的内容不满足 :ref:`io_file_formats_input_schema`
+中定义的规则。
+
+比如 :ref:`structure` 必须要包含 :ref:`structure_primitives`，若不满足该规则程序就会报错。
+
+这里我们在 :ref:`vera_2a` 基准题中把 ``primitives`` 的 ``p`` 改成大写：
+
+.. literalinclude:: ../_yamls/error_no_primitives.yaml
+    :language: yaml
+
+这时我们运行CRANE会出现以下错误：
+
+.. figure:: ../_images/error_no_primitives.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+除了给出是什么错误的信息外，还会以 `JSON Path <https://apifox.com/help/reference/json-path>`_
+的形式给出错误发生的具体位置。如上图中错误信息中给出的是在根目录下的 :ref:`geometries` 下的第1个（0是最开头）
+:ref:`structure` 中缺少 :ref:`structure_primitives`，因为我们把 ``primitives`` 改成了 ``Primitives``。
+
+.. note:: :ref:`io_file_formats_input` 中所有的内容都是大小写相关的。
+
+
+.. _runtime_error:
+
+--------------
+运行时错误
+--------------
+
+若 :ref:`yaml_format_error` 和 :ref:`input_schema_error` 都没有发生，才会进入到CRANE运行，如进行几何建模、
+输运计算等等。此时若再出现错误，则为运行时错误。
+
+
+.. _region_overlap_in_structure_error:
+
+单个几何结构体内区域重叠错误
+-----------------------------
+
+在定义 :ref:`structure` 时，其材料区是通过 :ref:`structure_regions` 来定义的，如果几个材料区之间存在区域重叠，
+则会给出几何结构体内的区域重叠错误。
+
+如我们在 :ref:`vera_2a` 基准题中，将燃料棒定义两个重复的气隙区域 ``2-1``：
+
+.. literalinclude:: ../_yamls/error_region_overlap_in_structure.yaml
+    :language: yaml
+
+这时我们运行CRANE会出现以下错误：
+
+.. figure:: ../_images/error_region_overlap_in_structure.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+该错误信息会给出哪个 :ref:`structure` 发生了区域重叠，重叠的是哪些区域。
+
+
+.. _region_overlap_between_structure_error:
+
+几何结构体之间区域重叠错误
+-----------------------------
+
+不同的几何结构体定义好了之后，CRANE会根据 :ref:`lattice`、:ref:`grid` 等包含的布置图信息或者
+:ref:`structure_location` 来排布不同的几何结构体，如果这时发生不同几何结构体之间的区域重叠，也会报错。
+
+如我们在 :ref:`vera_2a` 基准题中，将中心测量管的外径由 ``0.605`` 改为 ``0.905``：
+
+.. literalinclude:: ../_yamls/error_region_overlap_between_structure.yaml
+    :language: yaml
+
+这时我们运行CRANE会出现以下错误：
+
+.. figure:: ../_images/error_region_overlap_between_structure.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+该错误信息会给出哪几个 :ref:`structure` 之间发生了区域重叠，重叠的分别是这几个 :ref:`structure`
+中的哪些区域，重叠区域的面积是多少，重叠发生在哪个组件。
+
+虽然错误信息非常详细，但是很多情况下由于结构体重复排列，出现结构体之间重叠区域会非常多，会报出大量的区域重叠错误。
+另外通过文字信息去寻找到底哪些位置出现了重叠确实比较费力。
+
+为此，CRANE提供了 :ref:`crane_check_region_overlap` 命令，能够将结构体之间的区域重叠错误变为警告以防止程序中断，
+并在几何处理完毕后绘制出区域重叠的可视化图。
+
+.. note:: :ref:`crane_check_region_overlap` 命令只支持结构体之间的区域重叠可视化，
+          并不支持单个结构体内部的区域重叠可视化。
+
+如对以上 :ref:`vera_2a` 问题执行：
+
+.. code-block:: sh
+
+    crane check-region-overlap VERA_2A.yaml
+
+在几何处理过程中会出现以下警告信息：
+
+.. figure:: ../_images/warn_region_overlap_between_structure.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+|
+
+运行结束后绘制出区域重叠的可视化图：
+
+.. figure:: ../_images/region_overlap_between_structure.png
+    :align: center
+    :figclass: align-center
+    :width: 800px
+
+该图只会对区域重叠的材料区进行颜色渲染，以方便用户迅速定位区域重叠位置。
+由图可见中心测量管与周围的燃料棒结构体发生了区域重叠。
+
+.. note:: 对于三维问题，:ref:`crane_check_region_overlap` 命令会从底到顶逐层产生区域重叠可视化图，
+          中间取消可按 ``Ctrl + C``。
+
+
+
+
+
+
+
+
+
+
+
+.. _PyYAML: https://pyyaml.org/wiki/PyYAMLDocumentation/
+.. _YAML: https://yaml.org/
+.. _python-jsonschema: https://python-jsonschema.readthedocs.io/en/stable/

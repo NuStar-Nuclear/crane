@@ -1,0 +1,29 @@
+===================
+What's New in 1.4.2
+===================
+
+------------
+New Features
+------------
+
+#. 增加目标keff的定义，以支持非临界的目标硼搜索；
+#. 多群常数库更新至RLIB-1.1.1f；
+#. 增加全堆动力学参数的编辑和输出；
+#. 支持控制棒微分价值曲线的后期平滑；
+#. 增加硼微分价值计算序列的编辑和输出；
+
+---------
+Bug Fixes
+---------
+
+#. 699d08b5 bugfix: typo
+#. 821a00a6 bugfix: calendar_day not work caused by time_step_units error
+#. cc8ee70b bugfix: can not plot CRWC for empty df
+#. 12ad82cc bugfix: keff restore error if use fitting for CRWC sequence
+#. d8ed1026 bugfix: CRWC_N_FIT should be integer
+#. c78c5228 bugfix: print state point result summary before result editing
+#. fc59fe52 bugfix: incorrect B10 abundance ratio, remove DEFAULT_BORON_10_ABUNDANCE
+#. d911e845 bugfix: cuda array boundary error in solve_resonance
+#. aea57afc bugfix: forgot to remove useless method store/restore_cell_burnup
+#. a12475c8 bugfix: moderator temperture is zero of assembly boundary cell, and should be excluded in average temperature counting
+#. 855357ba bugfix: efpd and calandar_day is not zero at first point

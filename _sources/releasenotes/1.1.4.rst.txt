@@ -1,0 +1,37 @@
+===================
+What's New in 1.1.4
+===================
+
+------------
+New Features
+------------
+
+#. 将默认的燃耗单位由 GWd/tU 修改为 MWd/tU；
+#. 增加Excel格式的输出结果文件；
+#. 能够自动保存结果比较图片；
+#. 增加MOC、CMFD网格的可视化功能；
+#. 增加汇总结果随燃耗变化的可视化功能；
+
+---------
+Bug Fixes
+---------
+
+#. 80d88f7: incorrect axial net current updating on top or bottom boundaries
+#. 6b1faff: temporary fixed the large error mesh bug
+#. f298187: fission source residual should use number of fuel cells as norm
+#. 7d144be: cudaFree in track generation accurred covert memory error
+#. 05dae31: do not use temperature and density from NuCTF in reflector region
+#. e6cc759: equilirium Xe, Sm computation use macro reaction rate, not micro
+#. 7ec2648: reaction rate unit error in I, Xe, Pm, Sm calculation
+#. 5d7aa48: incorrect moderator material if MOD is input by number densities
+#. fc0df24: axial net current not updated and neutron balance is incorrect
+#. 14cbb99: bugs in concurrently resonance solving for different group
+#. e119170: can not build channels on boundires for no-reflector cases
+#. 7be0030: no argument difference_type in plot_axial_data
+#. 82503f6: peak value showed without sign
+#. d3aa81c: zero values should not be considered for unit converting
+#. 0e9427a: pin linear heat rate for clipped pins are not correct
+#. 26b0834: key error accurred in non openmc comparation
+#. 0568a7a: incorrect norm for temperature residuals computation
+#. 76084de: incorrect unit of pin linear heat rate
+#. 217916d: only fuel plane should be set the temperatures from thermal solver

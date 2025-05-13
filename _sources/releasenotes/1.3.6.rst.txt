@@ -1,0 +1,31 @@
+===================
+What's New in 1.3.6
+===================
+
+------------
+New Features
+------------
+
+#. 增加授权文件解析；
+#. 多群常数库更新至RLIB-1.1.1c；
+#. 支持全堆组件的燃耗分布输出和可视化；
+#. 支持与ROBIN3的HDF5结果文件的比较；
+#. 支持多循环混料时长组件和短组件的混合装载；
+
+---------
+Bug Fixes
+---------
+
+#. 20014bde bugfix: axial patch dict's key not include 'tag'
+#. 34bd259a bugfix: tag should be erased in crd extended structure copy
+#. 39c99e6d bugfix: region tags should be removed before comparing same geometry
+#. 73d91a01 bugfix: short command option repeated
+#. 3393c9cd bugfix: can not compare keff with robin3 if case_matrix calculation performed
+#. 7a06d054 bugfix: repeated varibles
+#. 0d2c4f74 bugfix: fig name error when saving axial power distribution
+#. 4de1349a bugfix: KeyError if result file has been updated
+#. d822d357 bugfix: KeyError raised if some output not found in result file, such as orient-h result file
+#. 1b277cac bugfix: burnup distibution at 0 burnups cannot plotting correctly
+#. 80be6a28 bugfix: cudaMallocManaged size error in ucmfd initialization
+#. e1680632 bugfix: docs typo
+
